@@ -1,7 +1,7 @@
 /* keybrd_mapping_bb.ino
 
 Runs on DodoHand hardware or breadboard, using the left matrix, first two rows and columns.
-Uses the same variable naming convention as DH_2565.
+Uses the same variable naming convention as keybrd_DH.
 
 | Layout | **0** | **1** |
 |:------:|-------|-------|

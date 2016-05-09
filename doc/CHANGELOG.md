@@ -2,20 +2,20 @@
 All notable changes to the keybrd project will be documented in this file.
 This project adheres to [Semantic Versioning 2.0.0](http://semver.org/).
 
-Version 0.x.x is for initial development. The public API should not be considered stable.
-Version 1.0.0 will be released when the public API is stable.
+keybrd version 0.x.x is for initial development. The public API should not be considered stable.
+keybrd version 1.0.0 will be released when the public API is stable.
 
 ## [Unreleased][unreleased]
 
 ## [0.3.0] - 2016-05-09
 ### Changed
 * Restructured the project directory to conform to Arduino library manager specifications
-    * Moved keybrd_DH library extension (DodoHand) to its own repository
+    * Moved keybrd_DH library extension (for DodoHand) to its own repository
     * Moved sketches to examples directory
 * Replaced Key_Layered dependency on LayerManager with StateLayers class
 
 ### Added
-* tutorials
+* Tutorials
 
 ## [0.2.0] - 2016-02-25
 ### Added

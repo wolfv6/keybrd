@@ -1,20 +1,16 @@
 keybrd Library Developer's Guide
 ================================
-This guide contains diagrams, naming conventions, and a style guide.
-
-This guide will help you design custom classes to interface with the keybrd library.
-The most common need for custom classes are:
+This guide contains diagrams, naming conventions, and a style guide,
+ which are useful when designing new classes for the keybrd library and its extension libraries.
+The most common reason for new classes are:
 * Port classes for micro controller or I/O expanders
 * custom layer schemes for multi-layer keyboards
 * experimental features
 
 ## Who this guide is for
-This guide is for the maintainers, developers, and anyone that wants to extend the keybrd library.
+This guide is for the maintainers and developers of the keybrd library and it's extensions.
 It is assumed the reader is familiar with C++ language including pointers, objects, classes, static class variables, composition, inheritance, polymorphism, and enum.
 Some classes use bit manipulation.
-
-## Custom keybrd classes
-Please refer to tutorial_7a_using_someone_else's_keybrd_extension_library.md
 
 ## Class diagrams
 
@@ -114,11 +110,11 @@ Most derived-class names start with the base class name followed by "_" and a na
 
 ```
 This convention leads to class names that convey information about the classes inheritance.
-Underscore delineates base class name and sub name.  Capital letters delineate words.
+Underscore delineates base class name and sub-class name.  Capital letters delineate words.
 
 ## Style guide
 Following the style guide makes it easier for the next programmer to understand your code.
-* For class names, see above section "Class Naming Conventions"
+* For class names, see above section "Class naming conventions"
 * For member names, use camelCase starting with lowercase letter.
 * Use constants rather than macros, except for header guards.
 * For constant names that could be macros, use ALL_CAPS_AND_UNDERSCORE.
@@ -126,34 +122,27 @@ Following the style guide makes it easier for the next programmer to understand 
     * **itemCount** is a variable number of items.
 * Use header guards CLASS_NAME_H.
 * Prefix pointer name with "ptr" e.g. ptrRow =  &row
-* Name arrays using the plural of elements e.g. Row* const = ptrsRows { &row0,  &row1 };
+* Name arrays using the plural of element name e.g. Row* const = ptrsRows { &row0,  &row1 };
 * Pass arrays using array notation rather than pointer notation.  Use
 ```
         void printArray(char[] array);
     not
         void printArray( char* array);
 ```
-* In constructor's initialization list, use same names for fields and constructor parameters
-* Do not use new or malloc (to make memory leaks impossible).
+* In constructor's initialization list, use same names for fields and constructor parameters.
+* Do not use new or malloc (making memory leaks impossible).
 * If class has any non-[POD](http://en.wikipedia.org/wiki/Plain_old_data_structure) data members, [do not inline constructors and destructors](http://www.chromium.org/developers/coding-style/cpp-dos-and-donts).
 * Document class interface in .h file, above the class declaration.
 * Code should be self-documenting.
   The only comments should be things that may need clarification.
   A simple function with a good name needs no comment.
-  http://stackoverflow.com/questions/2198241/best-practice-for-c-function-commenting
+  <-- http://stackoverflow.com/questions/2198241/best-practice-for-c-function-commenting !-->
 * Code is automatically formated before being pushed to the keybrd repository
   The options file doc/astyle_cpp specifies the format:
     * Allman style indentation
     * indent 4 spaces
     * replace tabs with spaces
     * maximum code width of 100 columns
-
-## keybrd sketches
-keybrd sketch naming convention is described in the keybrd_library_user_guide "Sample keybrd sketches".
-
-The head of sketch should contain latest version of keybrd lib that sketch was test on:
-
-    tested on keybrd v1.1 by wolfv6
 
 ## trace of keybrd scan
 Arduino does not have a debugger; so here is a list of functions in the order that they are called.

@@ -15,7 +15,7 @@ Its easy for novice programmers to setup and learn.
 This guide is for anyone who wants to use the keybrd library to develop custom-keyboard firmware.
 
 A reader with programming experience, but no C++ experience, would understand the tutorials well enough to modify existing keybrd sketches.
-An experienced C++ programmer would be able to write original sketches and classes from scratch.
+An experienced C++ programmer would be able to write original sketches and classes.
 
 The library is written in the C++ language and uses pointers, objects, classes, static class variables, composition, inheritance, and enum.
 
@@ -24,7 +24,7 @@ The keybrd library works with Teensy and Arduino boards.
 
 [Teensy LC](https://www.pjrc.com/teensy/teensyLC.html) has 8K RAM, which is more than enough memory for any keyboard.
 
-keybrd has been tested on the DodoHand keyboard with Teensy 2.0 and PCA9655E I/O expander using the DH_2565 sketch.
+keybrd has been tested on the DodoHand keyboard with Teensy 2.0 and PCA9655E I/O expander using the keybrd_DH sketch.
 
 Teensy LC is preferred over the older Teensy 2.0 for it's larger memory capacity and lower price.
 
@@ -36,10 +36,10 @@ Teensyduino is a software add-on for the Arduino IDE that allows it to compile t
 [Teensy Getting Started](http://www.pjrc.com/teensy/first_use.html) is a good way to familiarize yourself with Teensy.
 [Arduino Development Environment](http://arduino.cc/en/guide/Environment) is a brief description.
 
-The following steps create an Arduino development environment for keybrd sketches.
+The following install and setup steps create an Arduino development environment for keybrd sketches.
 
 ### Install Arduino IDE and Teensyduino
-Follow the install steps are modified from the [Teensyduino download page](https://www.pjrc.com/teensy/td_download.html)
+Following install steps are modified from the [Teensyduino download page](https://www.pjrc.com/teensy/td_download.html)
 
 For Linux:
 
@@ -64,39 +64,25 @@ For Linux:
 
 4. Launch Arduino IDE from /opt/arduino-1.x.x/arduino
 
-### Setup Arduino IDE for compiling keybrd firmware
-From the Arduino IDE tool bar, select: 
-* Tools > Board > Teensy LC (or whatever board you are using)
-* Tools > USB Type > Keyboard + Mouse + Joystick
-
-optional:
-* File > Preferences > Compiler warnings: All
-* File > Preferences > check: Use external editor
-
-A Sketchbook is a folder that the Arduino IDE uses to store sketches and libraries.
-The default location for [Arduino libraries](https://www.arduino.cc/en/Guide/Libraries) is in
-
-    ~/Documents/Arduino/libraries/
-
 ### Download and unpack keybrd-master.zip into your Arduino directory
-todo update after testing Arduino library manager
+<-- todo update after testing Arduino library manager
 link from tutorial 7 ## Publishing
     https://www.arduino.cc/en/Guide/Libraries
      > Installing Additional Arduino Libraries
      > Using the Library Manager
-
+ !-->
 Down load keybrd-master.zip from the [Download ZIP](https://github.com/wolfv6/keybrd) button.
 
 Unpack keybrd-master.zip into your Arduino directory on your system (default location is ~/Documents/Arduino/).
 
 ### keybrd library and keybrd extension libraries
-todo update after testing Arduino library manager
+<-- todo update after testing Arduino library manager !-->
 
 The keybrd library contains the foundation classes for creating a keyboard firmware.
-For emphasis, it is sometimes referred to as the "core keybrd library".
+For emphasis, it is referred to as the "core keybrd library".
 
 keybrd extension libraries contain additional classes that extend the keyboard library.
-keybrd extension library names are prefixed by "keybrd_".
+keybrd extension library names are prefixed with "keybrd_".
 
 The Arduino IDE looks for libraries in Arduino/libraries/.
 For example, the DodoHand keyboard requires that the core keybrd library and the keybrd_DH extension library be installed:
@@ -104,6 +90,20 @@ For example, the DodoHand keyboard requires that the core keybrd library and the
 * Arduino/libraries/keybrd_DH/
 
 A keybrd extension library allows classes to be shared by multiple sketches without polluting the core keybrd library with classes that few other keyboards can use.
+
+### Setup Arduino IDE for compiling keybrd firmware
+From the Arduino IDE tool bar, select: 
+* Tools > Board > Teensy LC (or whatever board you are using)
+* Tools > USB Type > Keyboard + Mouse + Joystick
+
+These are optional:
+* File > Preferences > Compiler warnings: All
+* File > Preferences > check: Use external editor
+
+A Sketchbook is a folder that the Arduino IDE uses to store sketches and libraries.
+The default location for [Arduino libraries](https://www.arduino.cc/en/Guide/Libraries) is in
+
+    ~/Documents/Arduino/libraries/
 
 ### Compile and load keybrd sketch
 If it isn't already plugged in, plug the USB cable into the computer and controller.
@@ -121,22 +121,22 @@ If it isn't already plugged in, plug the USB cable into the computer and control
 
 Compile and load workflow:
 
-    1. Open a keybrd sketch in the Arduino IDE (for example Arduino/keybrds/firmware/keybrd_single-layer/keybrd_single-layer_1221_bb/keybrd_single-layer_1221_bb.ino)
+    1. Open a keybrd sketch in the Arduino IDE.
     2. Prepare for loosing control of keyboard and mouse.
     3. On the Arduino IDE, click the Upload button.
-    4. The Teensy boot loader window opens, you might need to press and release the tiny pushbutton on the Teensy circuit board.
+    4. The Teensy boot loader window opens;
+       you might need to press and release the pushbutton on the Teensy circuit board.
 
 ## Example keybrd sketches
-Example keybrd sketches are in the keybrd_proj/keybrd/examples/ directory.
+Example keybrd sketches are in the [examples](../examples/) directory.
 Extension libraries have their example sketches similarly located.
 
 The example sketch names use the following conventions.
 
-    keybrd_extension_feature_version.ino
+    **keybrd_extension_feature_version.ino**
 
 where
-* **keybrd** indicates a keybrd sketch
-* **extension** is the extension library name e.g. DH, DualMode
+* **keybrd_extension** is the extension library name e.g. keybrd_DH
 * **feature** is distinguishing feature of keybrd sketch e.g. breadboard, LED, sound, Dvorak
 * **version** is version number
 
@@ -146,7 +146,7 @@ The first two fields are mandatory, the remaining fields are optional.
 The physical martix rows and columns on a keyboard can be in any direction or shape.
 [diode](https://en.wikipedia.org/wiki/Diode) orientation is specified in [Matrix.h](todo)
 
-![Diode](images/120px-Diode_pinout_en_fr.svg.png)
+![Diode](../tutorials/images/120px-Diode_pinout_en_fr.svg.png)
 
 Diagram is of typical through-the-hole diode in same alignment as diode symbol.
 Cross bar and band depict the cathode.
@@ -156,9 +156,8 @@ The following is a listing of items to check when a new keybrd sketch or keyboar
 
 Development-environment items to check:
 * If the keyboard has an I/O expander, power cycle (replug the USB) after loading the HEX file.
-* If the keybrd extension library directory name or location was changed, see section 
-[Populate Arduino/libraries with keybrd library symlinks](todo link)
 * If compile error: 'KEY_A' was not declared in this scope
+
   From the Arduino IDE tool bar, select: Tools > USB Type > Keyboard + Mouse + Joystick
 
 Sketch items to check:
@@ -187,6 +186,9 @@ Hardware items to check:
 * Diode orientation
 * 5 volts across power and ground
 * To validate keyboard hardware, modify the simple single-layer keybrd sketch from the tutorial.
+<!-- todo after teensy LC bb, linke to minimal keybrd sketch
+[minimal keybrd sketch](blob/master/tutorials/keybrd_2_single-layer_annotated/keybrd_2_single-layer_annotated.ino).
+ -->
 
 ## Keybrd nomenclature
 **[scancode](http://en.wikipedia.org/wiki/Scancode)** -
@@ -208,12 +210,13 @@ The [Neo layout](http://neo-layout.org/index_en.html) has 6 layers.
 
 **[Matrix](http://pcbheaven.com/wikipages/How_Key_Matrices_Works/)** - is a collection of switches connected by rows and columns.
 
-**[bounce](http://en.wikipedia.org/wiki/Switch#Contact_bounce)** -
+**[Bounce](http://en.wikipedia.org/wiki/Switch#Contact_bounce)** -
 Keyboard switches are made of moving contacts.
 When the contacts close, they bounce apart one or more times before making steady contact.
 A debouncer removes the bounce so that a key press is sent to the computer only once.
 
-**[Modifier key](http://en.wikipedia.org/wiki/Modifier_key)** - is a special key on a computer keyboard that temporarily modifies the normal action of another key when pressed together. By themselves, modifier keys usually do nothing; that is, pressing any of the Shift, Alt, or Ctrl keys alone does not trigger any action from the computer.
+**[Modifier key](http://en.wikipedia.org/wiki/Modifier_key)** - is a special key on a computer keyboard that temporarily modifies the normal action of another key when pressed together e.g. Shift, Alt, or Ctrl.
+By themselves, modifier keys usually do nothing; that is, pressing any of the Shift, Alt, or Ctrl keys alone does not trigger any action from the computer.
 
 **Sketch** - is the name that Arduino uses for a program
 

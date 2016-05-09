@@ -23,22 +23,28 @@ The keybrd library has been tested on the Teensy 2.0 microcontroller, MCP23018 I
 
 Example minimal keybrd sketch
 -----------------------------
-Here is a [minimal keybrd sketch](keybrd_single-layer_2/keybrd_single-layer_2.ino).
-    todo after teensy LC bb, copy and remove annotations from keybrd_single-layer_2_annotated.ino
-The sketch has about 50 lines of code and runs a 4-key keyboard.
+<!-- todo after teensy LC bb, copy and remove annotations from keybrd_single-layer_2_annotated.ino -->
+Here is a [minimal keybrd sketch](blob/master/tutorials/keybrd_2_single-layer_annotated/keybrd_2_single-layer_annotated.ino).
+The sketch has about 50 lines of code and runs on a 4-key keyboard.
 It runs on a breadboard with rows, columns, and diodes just like the big keyboards.
 The sketch is small because the keybrd library takes care of the low-level details.
 
 The keybrd tutorial 1 shows how to make a breadboard keyboard.
-The keybrd tutorials 2 and 3 show how to create custom keybrd firmware.
+The keybrd tutorials 2, 3, and 4 show how to create custom keybrd firmware.
 
 Example complex keybrd sketch
 -----------------------------
-The DodoHand keybrd emulates the DataHand keyboard.
-It has 72 keys, 4 layers, 2 sub-layers, 2 matrices, and is loaded with features.
-The [DodoHand sketch](todo /sketch.cpp), and its instantiation files, contain about 800 lines of code.
+The keybrd_DH emulates the DataHand keyboard.
+It has 72 keys, 4 layers, a sub-layers, 2 matrices, and is loaded with features.
+The keybrd_DH and its instantiation files, contain about 800 lines of code.
+
+    [mainSketch.ino](../keybrd_DH/blob/master/examples/keybrd_DH/mainSketch.cpp)
+    [instantiations_ports.h](../keybrd_DH/tree/master/src/instantiations_ports.h)
+    [instantiations_LEDs.h](../keybrd_DH/tree/master/src/instantiations_LEDs.h)
+    [instantiations_codes.h](../keybrd_DH/tree/master/src/instantiations_codes.h)
+    [instantiations_matrix.h](../keybrd_DH/tree/master/src/instantiations_matrix.h)
 
 Support
 -------
-The [doc](doc) folder contains guides and tutorials.
+[Guides](tree/master/doc) and [tutorials](/tree/master/tutorials) are provided.
 Please ask a questions in [issues](https://github.com/wolfv6/Keybrd/issues) if something is not clear.
