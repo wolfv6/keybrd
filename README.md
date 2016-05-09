@@ -38,11 +38,11 @@ The keybrd_DH emulates the DataHand keyboard.
 It has 72 keys, 4 layers, a sub-layer, 2 matrices, and many features.
 The keybrd_DH and its instantiation files contain about 800 lines of code.
 
-   [mainSketch.ino](https://github.com/wolfv6/keybrd_DH/blob/master/examples/keybrd_DH/mainSketch.cpp)<br>
-   [instantiations_ports.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_ports.h)<br>
-   [instantiations_LEDs.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_LEDs.h)<br>
-   [instantiations_codes.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_codes.h)<br>
-   [instantiations_matrix.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_matrix.h)
+[mainSketch.ino](https://github.com/wolfv6/keybrd_DH/blob/master/examples/keybrd_DH/mainSketch.cpp)<br>
+[instantiations_ports.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_ports.h)<br>
+[instantiations_LEDs.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_LEDs.h)<br>
+[instantiations_codes.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_codes.h)<br>
+[instantiations_matrix.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_matrix.h)
 
 Support
 -------
