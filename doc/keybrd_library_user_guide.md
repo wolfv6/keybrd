@@ -65,18 +65,18 @@ For Linux:
 4. Launch Arduino IDE from /opt/arduino-1.x.x/arduino
 
 ### Download and unpack keybrd-master.zip into your Arduino directory
-<-- todo update after testing Arduino library manager
+<--! todo update after testing Arduino library manager
 link from tutorial 7 ## Publishing
     https://www.arduino.cc/en/Guide/Libraries
      > Installing Additional Arduino Libraries
      > Using the Library Manager
- !-->
+ -->
 Down load keybrd-master.zip from the [Download ZIP](https://github.com/wolfv6/keybrd) button.
 
 Unpack keybrd-master.zip into your Arduino directory on your system (default location is ~/Documents/Arduino/).
 
 ### keybrd library and keybrd extension libraries
-<-- todo update after testing Arduino library manager !-->
+<--! todo update after testing Arduino library manager -->
 
 The keybrd library contains the foundation classes for creating a keyboard firmware.
 For emphasis, it is referred to as the "core keybrd library".
@@ -144,9 +144,9 @@ The first two fields are mandatory, the remaining fields are optional.
 
 ## Diode orientation
 The physical martix rows and columns on a keyboard can be in any direction or shape.
-[diode](https://en.wikipedia.org/wiki/Diode) orientation is specified in [Matrix.h](todo)
+[diode](https://en.wikipedia.org/wiki/Diode) orientation is specified in [Matrix.h](https://github.com/wolfv6/keybrd/blob/master/src/Matrix.h)
 
-![Diode](../tutorials/images/120px-Diode_pinout_en_fr.svg.png)
+[Diode](../tutorials/images/120px-Diode_pinout_en_fr.svg.png)
 
 Diagram is of typical through-the-hole diode in same alignment as diode symbol.
 Cross bar and band depict the cathode.

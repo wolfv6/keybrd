@@ -1,4 +1,4 @@
-keybrd library for creating custom-keyboard firmware
+keybrd library for creating keyboard firmware
 ====================================================
 keybrd library is an open source library for creating custom-keyboard firmware.
 The resulting keyboard firmware is compatible with standard USB keyboard drivers.
@@ -24,7 +24,7 @@ The keybrd library has been tested on the Teensy 2.0 microcontroller, MCP23018 I
 Example minimal keybrd sketch
 -----------------------------
 <!-- todo after teensy LC bb, copy and remove annotations from keybrd_single-layer_2_annotated.ino -->
-Here is a [minimal keybrd sketch](blob/master/tutorials/keybrd_2_single-layer_annotated/keybrd_2_single-layer_annotated.ino).
+Here is a [minimal keybrd sketch](tutorials/keybrd_2_single-layer_annotated/keybrd_2_single-layer_annotated.ino).
 The sketch has about 50 lines of code and runs on a 4-key keyboard.
 It runs on a breadboard with rows, columns, and diodes just like the big keyboards.
 The sketch is small because the keybrd library takes care of the low-level details.
@@ -35,16 +35,16 @@ The keybrd tutorials 2, 3, and 4 show how to create custom keybrd firmware.
 Example complex keybrd sketch
 -----------------------------
 The keybrd_DH emulates the DataHand keyboard.
-It has 72 keys, 4 layers, a sub-layers, 2 matrices, and is loaded with features.
-The keybrd_DH and its instantiation files, contain about 800 lines of code.
+It has 72 keys, 4 layers, a sub-layer, 2 matrices, and many features.
+The keybrd_DH and its instantiation files contain about 800 lines of code.
 
-    [mainSketch.ino](../keybrd_DH/blob/master/examples/keybrd_DH/mainSketch.cpp)
-    [instantiations_ports.h](../keybrd_DH/tree/master/src/instantiations_ports.h)
-    [instantiations_LEDs.h](../keybrd_DH/tree/master/src/instantiations_LEDs.h)
-    [instantiations_codes.h](../keybrd_DH/tree/master/src/instantiations_codes.h)
-    [instantiations_matrix.h](../keybrd_DH/tree/master/src/instantiations_matrix.h)
+[mainSketch.ino](../keybrd_DH/blob/master/examples/keybrd_DH/mainSketch.cpp)<br>
+[instantiations_ports.h](../keybrd_DH/tree/master/src/instantiations_ports.h)<br>
+[instantiations_LEDs.h](../keybrd_DH/tree/master/src/instantiations_LEDs.h)<br>
+[instantiations_codes.h](../keybrd_DH/tree/master/src/instantiations_codes.h)<br>
+[instantiations_matrix.h](../keybrd_DH/tree/master/src/instantiations_matrix.h)
 
 Support
 -------
-[Guides](tree/master/doc) and [tutorials](/tree/master/tutorials) are provided.
+[Guides](doc) and [tutorials](tutorials) are provided.
 Please ask a questions in [issues](https://github.com/wolfv6/Keybrd/issues) if something is not clear.
