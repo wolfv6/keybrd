@@ -30,7 +30,7 @@ It runs on a breadboard with rows, columns, and diodes just like the big keyboar
 The sketch is small because the keybrd library takes care of the low-level details.
 
 The keybrd tutorial 1 shows how to make a breadboard keyboard.
-The keybrd tutorials 2, 3, and 4 show how to create custom keybrd firmware.
+The [keybrd tutorials](tutorials) 2, 3, and 4 show how to create custom keybrd firmware.
 
 Example complex keybrd sketch
 -----------------------------
@@ -38,11 +38,11 @@ The keybrd_DH emulates the DataHand keyboard.
 It has 72 keys, 4 layers, a sub-layer, 2 matrices, and many features.
 The keybrd_DH and its instantiation files contain about 800 lines of code.
 
-[mainSketch.ino](../keybrd_DH/examples/keybrd_DH/mainSketch.cpp)<br>
-[instantiations_ports.h](../keybrd_DH/src/instantiations_ports.h)<br>
-[instantiations_LEDs.h](../keybrd_DH/src/instantiations_LEDs.h)<br>
-[instantiations_codes.h](../keybrd_DH/src/instantiations_codes.h)<br>
-[instantiations_matrix.h](../keybrd_DH/src/instantiations_matrix.h)
+[mainSketch.ino](https://github.com/wolfv6/keybrd_DH/blob/master/examples/keybrd_DH/mainSketch.cpp)<br>
+[instantiations_ports.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_ports.h)<br>
+[instantiations_LEDs.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_LEDs.h)<br>
+[instantiations_codes.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_codes.h)<br>
+[instantiations_matrix.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_matrix.h)
 
 Support
 -------
