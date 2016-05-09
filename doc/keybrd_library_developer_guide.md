@@ -133,18 +133,15 @@ Following the style guide makes it easier for the next programmer to understand 
 * Do not use new or malloc (making memory leaks impossible).
 * If class has any non-[POD](http://en.wikipedia.org/wiki/Plain_old_data_structure) data members, [do not inline constructors and destructors](http://www.chromium.org/developers/coding-style/cpp-dos-and-donts).
 * Document class interface in .h file, above the class declaration.
-* Code should be self-documenting.
-  The only comments should be things that may need clarification.
-  A simple function with a good name needs no comment.
-
-  <!-- http://stackoverflow.com/questions/2198241/best-practice-for-c-function-commenting -->
-
+* Code should be self-documenting.  The only comments should be things that may need clarification.  A simple function with a good name needs no comment.
 * Code is automatically formated before being pushed to the keybrd repository
   The options file doc/astyle_cpp specifies the format:
     * Allman style indentation
     * indent 4 spaces
     * replace tabs with spaces
     * maximum code width of 100 columns
+
+  <!-- http://stackoverflow.com/questions/2198241/best-practice-for-c-function-commenting -->
 
 ## trace of keybrd scan
 Arduino does not have a debugger; so here is a list of functions in the order that they are called.
