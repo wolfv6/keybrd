@@ -68,8 +68,8 @@ For Linux:
 <--! todo update after testing Arduino library manager
 link from tutorial 7 ## Publishing
     https://www.arduino.cc/en/Guide/Libraries
-     > Installing Additional Arduino Libraries
-     > Using the Library Manager
+     * Installing Additional Arduino Libraries
+     * Using the Library Manager
  -->
 Down load keybrd-master.zip from the [Download ZIP](https://github.com/wolfv6/keybrd) button.
 
@@ -133,7 +133,7 @@ Extension libraries have their example sketches similarly located.
 
 The example sketch names use the following conventions.
 
-    **keybrd_extension_feature_version.ino**
+   **keybrd_extension_feature_version.ino**
 
 where
 * **keybrd_extension** is the extension library name e.g. keybrd_DH
@@ -146,7 +146,7 @@ The first two fields are mandatory, the remaining fields are optional.
 The physical martix rows and columns on a keyboard can be in any direction or shape.
 [diode](https://en.wikipedia.org/wiki/Diode) orientation is specified in [Matrix.h](https://github.com/wolfv6/keybrd/blob/master/src/Matrix.h)
 
-[Diode](../tutorials/images/120px-Diode_pinout_en_fr.svg.png)
+[Diode](https://github.com/wolfv6/keybrd/blob/master/tutorials/images/120px-Diode_pinout_en_fr.svg.png)
 
 Diagram is of typical through-the-hole diode in same alignment as diode symbol.
 Cross bar and band depict the cathode.
