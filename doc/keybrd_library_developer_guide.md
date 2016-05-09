@@ -136,7 +136,9 @@ Following the style guide makes it easier for the next programmer to understand 
 * Code should be self-documenting.
   The only comments should be things that may need clarification.
   A simple function with a good name needs no comment.
+
   <!-- http://stackoverflow.com/questions/2198241/best-practice-for-c-function-commenting -->
+
 * Code is automatically formated before being pushed to the keybrd repository
   The options file doc/astyle_cpp specifies the format:
     * Allman style indentation
