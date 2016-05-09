@@ -12,7 +12,7 @@ The Arduino development environment is free and simple as possible.
 Its easy for novice programmers to setup and learn.
 
 ## Who this guide is for
-This guide is for anyone who wants to use the keybrd library to develop custom-keyboard firmware.
+This guide is for anyone who wants to use the keybrd library to develop keyboard firmware.
 
 A reader with programming experience, but no C++ experience, would understand the tutorials well enough to modify existing keybrd sketches.
 An experienced C++ programmer would be able to write original sketches and classes.
@@ -121,7 +121,6 @@ If it isn't already plugged in, plug the USB cable into the computer and control
 >   if that fails, unplug Teensy USB
 
 Compile and load workflow:
-
     1. Open a keybrd sketch in the Arduino IDE.
     2. Prepare for loosing control of keyboard and mouse.
     3. On the Arduino IDE, click the Upload button.
