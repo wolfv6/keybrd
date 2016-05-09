@@ -1,0 +1,44 @@
+keybrd library for creating custom-keyboard firmware
+====================================================
+keybrd library is an open source library for creating custom-keyboard firmware.
+The resulting keyboard firmware is compatible with standard USB keyboard drivers.
+
+keybrd library can support any keyboard configuration:
+* one-piece
+* split with I/O expander
+* single-layer
+* multiple-layer
+
+Multiple-layer keyboards can write symbols without using the shift key:
+
+    ~ ! @ # $ % ^ & * () _ {} | < > : ?
+
+keybrd library leverages the Arduino environment to create keyboard firmware.
+The Arduino development environment is free, and easy for novice programmers to setup and learn.
+
+The keybrd library has been tested on the Teensy 2.0 microcontroller, MCP23018 I/O expander, and PCA9655E I/O expander.
+
+> The public API should not be considered stable.
+> Currently the keybrd library is limited to 8x8 matrices, which is enough for compact split keyboards.
+
+Example minimal keybrd sketch
+-----------------------------
+Here is a [minimal keybrd sketch](keybrd_single-layer_2/keybrd_single-layer_2.ino).
+    todo after teensy LC bb, copy and remove annotations from keybrd_single-layer_2_annotated.ino
+The sketch has about 50 lines of code and runs a 4-key keyboard.
+It runs on a breadboard with rows, columns, and diodes just like the big keyboards.
+The sketch is small because the keybrd library takes care of the low-level details.
+
+The keybrd tutorial 1 shows how to make a breadboard keyboard.
+The keybrd tutorials 2 and 3 show how to create custom keybrd firmware.
+
+Example complex keybrd sketch
+-----------------------------
+The DodoHand keybrd emulates the DataHand keyboard.
+It has 72 keys, 4 layers, 2 sub-layers, 2 matrices, and is loaded with features.
+The [DodoHand sketch](todo /sketch.cpp), and its instantiation files, contain about 800 lines of code.
+
+Support
+-------
+The [doc](doc) folder contains guides and tutorials.
+Please ask a questions in [issues](https://github.com/wolfv6/Keybrd/issues) if something is not clear.

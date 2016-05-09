@@ -1,0 +1,11 @@
+# this file specifies style for keybrd C++ and Arduino sketch .ino files
+# Artistic Style is a console application for formatting C++ and Java source code
+# http://sourceforge.net/projects/astyle/files/ download
+# http://astyle.sourceforge.net/astyle.html manual
+
+--style=allman 
+--indent-classes
+--keep-one-line-blocks
+--indent=spaces=4
+--convert-tabs
+--max-code-length=100

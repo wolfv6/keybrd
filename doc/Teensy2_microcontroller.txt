@@ -1,0 +1,37 @@
+
+Teensy 2.0 Pinout Diagram
+ -------------------------
+USB is on top in the diagram.
+Inner columns are pin numbers, outer columns are port+bit pin name.
+```
+ground  GND      USB      VCC   +5v power
+        B0 0            21 F0
+        B1 1            20 F1
+        B2 2            19 F4
+        B3 3            18 F5
+        B7 4            17 F6
+SCL     D0 5            16 F7
+SDA     D1 6            15 B6
+        D2 7            14 B5
+        D3 8            13 B4
+        C6 9            12 D7
+        C7 10           11 D6   Do not use pin D6 for scanning keyboard matrix
+                                LED on pin D6 pulls voltage down and will always return low
+
+BOTTOM (USB on top, left to right)
+PIN#    port+bit        function
+23      D5
+        VCC             5v power
+        GND             ground
+        RST             reset
+22      D4
+
+MID (below USB, left to right)
+PIN#    port+bit        function
+24      E6
+Ref
+```
+
+Teensy pin out with port names is on http://www.pjrc.com/teensy/td_digital.html
+Identifying and naming ports is useful when instantiating RowPorts and ColPorts.
+Keybrd library was tested on Teensy 2.0
