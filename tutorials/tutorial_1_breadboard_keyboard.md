@@ -3,26 +3,27 @@ Tutorial 1 - breadboard keyboard
 When you finish this tutorial you will have a working keyboard and understand how a key matrix works.
 
 ## Why a breadboard keyboard is useful
-A breadboard is the easiest way to learn keyboard electronics.
-Electronics are fickle, you won't get everything right the first time, there is a learning curve.
-Breadboards make the learning electronics faster and fun.
-
+All the tutorial example sketches run on breadboard keyboards that have 2 to 8 keys.
 Breadboard keyboards have row-column matrices and diodes just like the big keyboards.
-Compared to full size keyboards on PCBs, breadboard keyboards are easier to learn on because:
+
+A breadboard is the easiest way to learn keyboard electronics.
+Electronics are fickle, and you won't get everything right the first time.
+There is a learning curve.
+Compared to PCBs, breadboard keyboards are easier to learn on because:
+* Mistakes are easily corrected because no desoldering
 * Parts can be reused in many different configurations
 * A small keyboard is easier to trouble shoot
-* Mistakes are easily corrected because no desoldering
 
 Breadboard keyboards are useful for:
 * learning keyboard electronics - diodes, micro controllers, I/O expanders
 * learning the firmware development workflow
 * prototyping circuits before making a PCB
-* testing firmware concepts before building the keyboard hardware
+* testing firmware concepts before committing to a keyboard-hardware design
 
 ## How a breadboard works
 To understand the breadboard keyboard you will need to know the internal parts of a breadboard:
-* terminal strip
 * power rail
+* terminal strip
 
 These are explained in [How to Use a Breadboard](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard)
 
