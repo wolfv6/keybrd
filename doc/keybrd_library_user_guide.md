@@ -121,12 +121,11 @@ If it isn't already plugged in, plug the USB cable into the computer and control
 >   if that fails, unplug Teensy USB
 
 Compile and load workflow:
-
-    1. Open a keybrd sketch in the Arduino IDE.
-    2. Prepare for loosing control of keyboard and mouse.
-    3. On the Arduino IDE, click the Upload button.
-    4. The Teensy boot loader window opens;
-       you might need to press and release the pushbutton on the Teensy circuit board.
+ 1. Open a keybrd sketch in the Arduino IDE.
+ 2. Prepare for loosing control of keyboard and mouse.
+ 3. On the Arduino IDE, click the Upload button.
+ 4. The Teensy boot loader window opens;
+    you might need to press and release the pushbutton on the Teensy circuit board.
 
 ## Example keybrd sketches
 Example keybrd sketches are in the [examples](../examples/) directory.

@@ -1,14 +1,15 @@
 Tutorial 3b - autoShift
 =======================
-After reading this tutorial your keyboard will be able to be able to automatically shifted characters.
+When you finish this tutorial your keyboard will be able to automatically shifted characters.
 
 ## AutoShift
-Some mulit-layer keyboards have a symbols layer that writes symbols and numbers without using the shift key:
+Some mulit-layer keyboards have a symbols layer that writes symbols without using the shift key:
 
-    ~ ! @ # $ % ^ & * () _ {} | < > ? 1 2 3 4 5 6 7 8 9 0
+    ~ ! @ # $ % ^ & * () _ {} | < > : ?
 
 The keybrd library does this by automatically sending the MODIFIERKEY_SHIFT scancode.
-This annotated sketch demonstrates the AutoShift feature: [keybrd_3_autoShift_annotated.ino](keybrd_proj/keybrd/examples/keybrd_3_autoShift_annotated/keybrd_3_autoShift_annotated.ino)
+The [keybrd_3_autoShift_annotated.ino](keybrd_proj/keybrd/examples/keybrd_3_autoShift_annotated/keybrd_3_autoShift_annotated.ino)
+sketch explains the AutoShift feature.
 
 Two keybrd classes use AutoShift:
 * Code_ScS

@@ -1,11 +1,10 @@
 keybrd Tutorial 4 - split keyboard with I/O Expander
 ====================================================
-After reading this tutorial you will be able to be able to modify a 2-matrix keybrd sketch to suite your own split keyboard design.
+When you finish this tutorial you will be able to be able to modify a 2-matrix keybrd sketch to suite your own split keyboard design.
 
 ## Overview of split keyboard with I/O Expander
 The breadboard in this picture models a split keyboard.
-![breadboard keyboard with 2 rows and 4 columns of keys]
-(images/breadboard_keyboard_2x4_labeled.jpg "2x5 breadboard keyboard")
+![breadboard keyboard with 2 rows and 4 columns of keys](images/breadboard_keyboard_2x5_labeled.jpg "2x5 breadboard keyboard")
 
 The right matrix is connected to a microcontroller.
 The left matrix is connected to a I/O expander.
@@ -84,6 +83,5 @@ todo these tables might not match the sketch
 todo add capacitor
 
 ## Sketch for split keyboard with I/O Expander
-An annotated sketch for the split keyboard with I/O Expander is on 
-[keybrd_4_split_with_IOE_annotated.ino](keybrd_4_split_with_IOE_annotated/keybrd_4_split_with_IOE_annotated.ino)
-
+The [keybrd_4_split_with_IOE_annotated.ino](keybrd_4_split_with_IOE_annotated/keybrd_4_split_with_IOE_annotated.ino)
+ sketch explains how the I/O Expander works on a keyboard.

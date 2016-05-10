@@ -143,7 +143,7 @@ Following the style guide makes it easier for the next programmer to understand 
 
   <!-- http://stackoverflow.com/questions/2198241/best-practice-for-c-function-commenting -->
 
-## trace of keybrd scan
+## Trace of keybrd scan
 Arduino does not have a debugger; so here is a list of functions in the order that they are called.
 Refer to it like a table of contents while reading the keybrd library.
 
