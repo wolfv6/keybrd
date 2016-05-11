@@ -29,7 +29,11 @@ keybrd has been tested on the DodoHand keyboard with Teensy 2.0 and PCA9655E I/O
 Teensy LC is preferred over the older Teensy 2.0 for it's larger memory capacity and lower price.
 
 ## Getting started with Teensy, Arduino IDE, and keybrd
-The Arduino IDE is used to edit and compile sketches, and then load them on to the microcontroller.
+The Arduino IDE is used to
+
+1. edit sketches
+2. compile sketches into HEX files
+3. load the HEX file onto the microcontroller
 
 Teensyduino is a software add-on for the Arduino IDE that allows it to compile to Teensy.
 
@@ -39,7 +43,7 @@ Teensyduino is a software add-on for the Arduino IDE that allows it to compile t
 The following install and setup steps create an Arduino development environment for keybrd sketches.
 
 ### Install Arduino IDE and Teensyduino
-Following install steps are modified from the [Teensyduino download page](https://www.pjrc.com/teensy/td_download.html)
+The following install steps are modified from the [Teensyduino download page](https://www.pjrc.com/teensy/td_download.html)
 
 For Linux:
 
@@ -76,11 +80,11 @@ Down load keybrd-master.zip from the [Download ZIP](https://github.com/wolfv6/ke
 
 Unpack keybrd-master.zip into your Arduino directory on your system (default location is ~/Documents/Arduino/).
 
-### keybrd library and keybrd extension libraries
+### Install keybrd library and keybrd extension libraries
 <!-- todo update after testing Arduino library manager -->
 
 The keybrd library contains the foundation classes for creating a keyboard firmware.
-For emphasis, it is referred to as the "core keybrd library".
+For emphasis, it is sometimes referred to as the "core keybrd library".
 
 keybrd extension libraries contain additional classes that extend the keyboard library.
 keybrd extension library names are prefixed with "keybrd_".
@@ -90,7 +94,7 @@ For example, the DodoHand keyboard requires that the core keybrd library and the
 * Arduino/libraries/keybrd/
 * Arduino/libraries/keybrd_DH/
 
-A keybrd extension library allows classes to be shared by multiple sketches without polluting the core keybrd library with classes that few other keyboards can use.
+A keybrd extension library allows classes to be shared by multiple sketches without polluting the core keybrd library with classes that other keyboards can not use.
 
 ### Setup Arduino IDE for compiling keybrd firmware
 From the Arduino IDE tool bar, select: 
@@ -133,14 +137,14 @@ Extension libraries have their example sketches similarly located.
 
 The example sketch names use the following conventions.
 
-   **keybrd_extension_feature_version.ino**
+   **keybrd_feature_version.ino**
 
 where
-* **keybrd_extension** is the extension library name e.g. keybrd_DH
-* **feature** is distinguishing feature of keybrd sketch e.g. breadboard, LED, sound, Dvorak
-* **version** is version number
+* **keybrd** is the library name e.g. keybrd, keybrd_DH
+* **feature** is a distinguishing feature of the keybrd sketch e.g. breadboard, LED, sound, Dvorak
+* **version** is the sketch's version number
 
-The first two fields are mandatory, the remaining fields are optional.
+The first field are mandatory, the remaining fields are optional.
 
 ## Diode orientation
 The physical martix rows and columns on a keyboard can be in any direction or shape.
@@ -207,7 +211,7 @@ The [Neo layout](http://neo-layout.org/index_en.html) has 6 layers.
 **Layer scheme** - is a system for changing layers while typing.
                    A single-layer scheme does not change layers.
 
-**Layout** - is a grid of keys.  Key caps are often labeled to show a keyboard's layout.
+**Layout** - is the placement of keys.  Key caps are often labeled to show a keyboard's layout.
 
 **[Matrix](http://pcbheaven.com/wikipages/How_Key_Matrices_Works/)** - is a collection of switches connected by rows and columns.
 

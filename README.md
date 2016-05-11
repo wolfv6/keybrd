@@ -30,7 +30,7 @@ It runs on a breadboard and has rows, columns, and diodes just like the big keyb
 The sketch is small because the keybrd library takes care of the low-level details.
 
 The keybrd tutorial 1 shows how to make a breadboard keyboard.
-The [keybrd tutorials](tutorials) 2, 3, and 4 show how to create custom keybrd firmware.
+The remaining [keybrd tutorials](tutorials) show how to create custom keybrd firmware.
 
 Example complex keybrd sketch
 -----------------------------

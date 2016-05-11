@@ -17,19 +17,19 @@ When you finish this tutorial you will be able to be able to modify a multi-laye
 ## Pseudo code for simple layer scheme
 The following pseudo code has just enough detail to show how layer schemes work.
 
-**Layer** objects control the active layer.
-There is one Key_Layer object for each layer.  Each Key_Layer object has a unique layer number.
-When a Layer object is pressed, it tells StateLayer to change the active layer.
+**Layer** objects select the active layer.
+When a Layer object is pressed, it tells StateLayer to update the active layer.
+There is one Key_Layer object for each layer. Each Key_Layer object has a unique layer Id number.
 ```
 class Key_Layer
 {
     int layer
-    StateLayer& refState
-    press() { refState.setLayer(layer) }
+    StateLayer& refStateLayer
+    press() { refStateLayer.setLayer(layer) }
 }
 ```
 
-A **StateLayer** object's activeLayer is always up to date.
+A **StateLayer**'s activeLayer is always up to date.
 ```
 class StateLayer
 {
@@ -39,14 +39,15 @@ class StateLayer
 }
 ```
 
-**Layered** objects contain one scancode for each layer.
+**Layered** objects contain an array of Key pointers, one Key pointer for each layer.
+Layer Id numbers are used as array indexes in the Key_Layered ptrsKeys array.
 When a Layered object is pressed, it gets the active layer from StateLayer, and then presses the key of the active layer.
 ```
 class Key_Layered
 {
-    Key** ptrsKeys          //array of Key pointers, one Key per layer
-    StateLayer& refState
-    press() { layer = refState.getLayer()
+    Key** ptrsKeys          //array of Key pointers, one Key pointer per layer
+    StateLayer& refStateLayer
+    press() { layer = refStateLayer.getActiveLayer()
               ptrsKeys[layer]->press() }
 }
 ```
@@ -98,6 +99,8 @@ Example single-layer Code classes include:
 * Code_Shift
 * Code_LayerHold
 * Code_LayerLock
+
+<!-- todo -->
 
 (Future version of keybrd library may change all Code classes to Key classes.)
 

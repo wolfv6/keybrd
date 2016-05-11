@@ -63,7 +63,7 @@ const uint8_t COL_PORT_L_COUNT = sizeof(ptrsColPorts_L)/sizeof(*ptrsColPorts_L);
 /*
 The right matrix is scanned by an I/O expander.
 
-The micro-controller and I/O expander use address 0x18 to communicate with each other over I2C.
+I/O expander I2C address is configured by hardware pins.
 ADDR is a static variable of class IOExpanderPort.
 */
 const uint8_t IOExpanderPort::ADDR = 0x18;
@@ -73,7 +73,6 @@ The I/O expander has two ports.  Each port has eight pins.
 One port is connected to the matrix's rows.  The other port is connected to the matrix's columns.
 
 The IOExpanderPort constructor parameters specify the port number and initial output value.
-I/O Expander and AVR have similar constructor parameters for RowPort and ColPort.
 
 port1_R is port 1 and has an initial output value of 0.
 rowPort1_R uses port1_R.

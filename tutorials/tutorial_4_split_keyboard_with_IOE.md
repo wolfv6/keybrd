@@ -20,35 +20,40 @@ The microcontroller and I/O expander are connected by 4 jumper wires:
 * Serial CLock signal (SCL)
 * Serial DAta signal (SDA)
 
-A capacitor on the power pin smooths power to the I/O expander.
+A decoupling capacitor on the power pin dampens noise coming in through the power wire.
 
 The microcontroller and I/O expander communicate via [I2C](http://en.wikipedia.org/wiki/I%C2%B2C) bus, which consists of two signals: SCL and SDA.
 Two resistors pull-up voltage on the SCL and SDA.
 
-I/O expander I2C address is configured by three hardware pins (AD0, AD1, AD2).
+I/O expander I2C address is configured by hardware pins.
+The MCP23018 with all address pins grounded has an I2C address of ?? todo.
 
 The I/O expander has two ports.  Each port has eight pins.
 One port is connected to the matrix's rows.  The other port is connected to the matrix's columns.
 
 ## Building a split keyboard with I/O Expander
-The split keyboard is built on the basic breadboard keyboard described in [tutorial_1_breadboard_keyboard.md](tutorial_1_breadboard_keyboard.md)
+We will build a split keyboard adding parts to the basic breadboard keyboard described in [tutorial_1_breadboard_keyboard.md](tutorial_1_breadboard_keyboard.md)
 
-<!-- todo add schematic with a capacitor to IOE power
+todo add schematic
+
+<!-- schematic with IOE power decoupling capacitor
 This schematic was written by consulting the I/O expander's datasheet and using the ?? tool. -->
 
 Continuing from the basic breadboard keyboard instructions:
 
+<!--  At some point in the future, Markdown may support starting ordered lists at an arbitrary number. -->
+
 4. Insert the I/O expander
 
 5. Install I/O expander power
-* ground
-* power
-* capacitor
+ * ground
+ * power
+ * capacitor
 
 6. Install I2C bus
-* SCL
-* SDA
-* pull-up resistors on SCL and SDA
+ * SCL
+ * SDA
+ * pull-up resistors on SCL and SDA
 
 7. configure I2C address
 

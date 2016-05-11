@@ -53,7 +53,7 @@ The CODES section instantiates six codes, one for each item in the layout:
 */
 // ---------------- LAYER CODE -----------------
 /*
-enum assings ID numbers to the layers.
+enum assings Id numbers to the layers.
 */
 enum layers { NORMAL, FN };
 /*
@@ -61,7 +61,7 @@ stateLayer keeps track of the active layer.  The default layer number is 0.
 */
 StateLayers stateLayer;
 /*
-The Code_LayerHold constructor parameter specifies a layer ID number and a StateLayer.
+The Code_LayerHold constructor parameter specifies a layer Id number and a StateLayer.
 When l_fn is pressed, it tells stateLayer to change the active layer to 1.
 When l_fn is released, it tells stateLayer to restore the normal layer.
 */
@@ -90,8 +90,8 @@ Key_LayeredKeysArray constructor parameters are:
     one array of Code pointers
 
 Key_LayeredKeysArray objects are multi-layered - one Code object per layer.
-Layer ID numbers are array indexes for the Key_LayeredKeysArray.
-Defining layer ID numbers with enum insures that they are a series of intergers starting at 0.
+Layer Id numbers are used as array indexes for the Key_LayeredKeysArray.
+Defining layer Id numbers with enum insures that they are a series of intergers starting at 0.
 
 The Key object names in this sketch start with a "k_" followed by matrix-row-column coordinates.
 */

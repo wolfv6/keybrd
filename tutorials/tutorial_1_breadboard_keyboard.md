@@ -62,10 +62,11 @@ Breadboard keyboard assembly instructions:
  * follow pin connections table (below) and consult pinout diagram in
    [Teensy2_pinout.txt](../doc/Teensy2_pinout.txt)
 
-<!-- todo replace this table with a schematic
-This schematic was written by consulting the micro-controller's datasheet and using the ?? tool.
+todo add a schematic
 
-this table might not match the sketches
+<!-- This schematic was written by consulting the micro-controller's datasheet and using the ?? tool.
+
+this table might not match the sketches, replace with a schematic
 
 **Teensy 2.0 pin connections table**
 

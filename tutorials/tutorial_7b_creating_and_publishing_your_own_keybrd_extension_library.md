@@ -2,6 +2,7 @@ Tutorial 7b - creating and publishing your own keybrd extension library
 =======================================================================
 Publishing and listing your keybrd extension library allows others to find and install your library.
 The keybrd extension library name should start with "keybrd_" so that it is easy for people to find.
+
 The directory structure of the library depends on where it will be listed.
 
 ## Publishing anywhere with listing on Arduino Playground LibraryList

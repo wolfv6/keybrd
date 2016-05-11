@@ -1,7 +1,6 @@
 keybrd Library Developer's Guide
 ================================
-This guide contains diagrams, naming conventions, and a style guide,
- which are useful when designing new classes for the keybrd library and its extension libraries.
+This guide if for maintaining and writing new classes for the keybrd library and its extension libraries.
 The most common reason for new classes are:
 * Port classes for micro controller or I/O expanders
 * custom layer schemes for multi-layer keyboards
@@ -101,7 +100,7 @@ Most derived-class names start with the base class name followed by "_" and a na
 ```
 	Code
 	  |
-	Code_Sc
+	Code_LayerLock
 
 ```
 This convention leads to class names that convey information about the classes inheritance.
@@ -116,7 +115,7 @@ Following the style guide makes it easier for the next programmer to understand 
     * **ITEM_COUNT** is a constant number of items.
     * **itemCount** is a variable number of items.
 * Use header guards CLASS_NAME_H.
-* Prefix pointer name with "ptr" e.g. ptrRow =  &row
+* Prefix pointer name with "ptr" e.g. ptrRow =  &row;
 * Name arrays using the plural of element name e.g. Row* const = ptrsRows { &row0,  &row1 };
 * Pass arrays using array notation rather than pointer notation.  Use
 ```
@@ -129,8 +128,8 @@ Following the style guide makes it easier for the next programmer to understand 
 * If class has any non-[POD](http://en.wikipedia.org/wiki/Plain_old_data_structure) data members, [do not inline constructors and destructors](http://www.chromium.org/developers/coding-style/cpp-dos-and-donts).
 * Document class interface in .h file, above the class declaration.
 * Code should be self-documenting.  The only comments should be things that may need clarification.  A simple function with a good name needs no comment.
-* Code is automatically formated before being pushed to the keybrd repository
-  The options file doc/astyle_cpp specifies the format:
+* Code is automatically formated before being pushed to the keybrd repository.
+  The [astyle_cpp](astyle_cpp) file specifies the format:
     * Allman style indentation
     * indent 4 spaces
     * replace tabs with spaces

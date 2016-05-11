@@ -4,7 +4,7 @@ Some mulit-layer keyboards have a symbols layer that writes symbols without usin
 
     ~ ! @ # $ % ^ & * () _ {} | < > : ?
 
-The keybrd library does this by automatically sending the MODIFIERKEY_SHIFT scancode.
+The keybrd library does this by automatically sending a MODIFIERKEY_SHIFT scancode.
 
 The [keybrd_3_autoShift_annotated.ino](keybrd_3_autoShift_annotated/keybrd_3_autoShift_annotated.ino) sketch explains the AutoShift feature.
 After reading the sketch you too will be able to automatically shifted characters.

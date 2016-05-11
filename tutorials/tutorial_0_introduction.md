@@ -21,6 +21,8 @@ The tutorials assume the reader:
 
 > Some of the pictures do not match the sketches, they will be updated after changing to Teensy LC
 
+> Schematic diagrams are missing from tutorials 2 and 4, they will be added after changing to Teensy LC
+
 You will need a breadboard keyboard with a Teensy 2.0 controller to run the tutorial sketches.
 If you use a different controller, you may have to change port classes.
 If you already have a keyboard with an Arduino compatible controller, you can use that instead of a breadboard keyboard.

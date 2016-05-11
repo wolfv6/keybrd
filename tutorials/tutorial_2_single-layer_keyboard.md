@@ -1,7 +1,6 @@
 Tutorial 2 - single-layer keyboard
 =======================================
 [keybrd_2_single-layer_annotated.ino](keybrd_2_single-layer_annotated/keybrd_2_single-layer_annotated.ino) explains how a keybrd sketch works.
-
 You can view the class definitions in the [keybrd library](../src/).
 
 After reading the sketch you will be able to modify it to suite your own single-layer keyboard design.
