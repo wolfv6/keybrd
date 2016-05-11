@@ -10,7 +10,7 @@ A breadboard is the easiest way to learn keyboard electronics.
 Electronics are fickle, and you won't get everything right the first time.
 There is a learning curve.
 Compared to PCBs, breadboard keyboards are easier to learn on because:
-* Mistakes are easily corrected because no desoldering
+* Mistakes are easily corrected; no soldering and desoldering
 * Parts can be reused in many different configurations
 * A small keyboard is easier to trouble shoot
 
@@ -18,7 +18,12 @@ Breadboard keyboards are useful for:
 * learning keyboard electronics - diodes, micro controllers, I/O expanders
 * learning the firmware development workflow
 * prototyping circuits before making a PCB
-* testing firmware concepts before committing to a keyboard-hardware design
+
+## Breadboard keyboard starter kit
+The parts needed to build all the tutorial Breadboard Keyboards are listed in [breadboard_keyboard_supplies.ods](breadboard_keyboard_supplies.ods).
+
+Wire cutters (or nail clipper) is the only required tool.
+A multi-meter is useful for trouble shooting.
 
 ## How a breadboard works
 To understand the breadboard keyboard you will need to know the internal parts of a breadboard:
@@ -27,11 +32,9 @@ To understand the breadboard keyboard you will need to know the internal parts o
 
 These are explained in [How to Use a Breadboard](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard)
 
-## Breadboard keyboard starter kit
-The parts needed to build all the Breadboard Keyboards in the keybrd tutorials are listed in [breadboard_keyboard_supplies.ods](breadboard_keyboard_supplies.ods).
-
-Wire cutters (or nail clippers) is the only required tool.
-A multi-meter is useful for trouble shooting.
+## How a keyboard matrix works
+This excellent article explains how the microcontroller, matrix, switches and diodes work together:
+[How a Key Matrix Work](http://pcbheaven.com/wikipages/How_Key_Matrices_Works/)
 
 ## Building a basic breadboard keyboard
 The basic breadboard has 4 switches and a microcontroller.
@@ -59,25 +62,28 @@ Breadboard keyboard assembly instructions:
  * follow pin connections table (below) and consult pinout diagram in
    [Teensy2_pinout.txt](../doc/Teensy2_pinout.txt)
 
+<!-- todo replace this table with a schematic
+This schematic was written by consulting the micro-controller's datasheet and using the ?? tool.
+
+this table might not match the sketches
+
 **Teensy 2.0 pin connections table**
 
 | Pin number | Row  Column |
 |------------|-------------|
-| 21         | row_0       | todo this table might not match the sketches
+| 21         | row_0       |
 | 20         | row_1       |
 | 0          | col_0       |
 | 1          | col_1       |
+-->
 
 ## Compiling and loading the keyboard firmware
 Follow the [keybrd Library User's Guide](../doc/keybrd_library_user_guide.md) to set up the Arduino environment and to compile and load keybrd firmware onto the keyboard's controller.
-
-## How a keyboard matrix works
-Now that you have built your first breadboard keyboard, you can dig in and learn how it actually works.
-This excellent article explains how the microcontroller, matrix, switches and diodes work together:
-[How a Key Matrix Work](http://pcbheaven.com/wikipages/How_Key_Matrices_Works/)
 
 ## Bigger breadboard keyboards
 Sometimes its useful to prototype a full keyboard matrix before designing the PCB.
 Several breadboards can be tied together into one.
 
 ![big breadboard keyboard](images/breadboard_big.jpg "breadboard_big.jpg")
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">keybrd tutorial</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/wolfv6/keybrd" property="cc:attributionName" rel="cc:attributionURL">Wolfram Volpi</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/wolfv6/keybrd/issues/new" rel="cc:morePermissions">https://github.com/wolfv6/keybrd/issues/new</a>.

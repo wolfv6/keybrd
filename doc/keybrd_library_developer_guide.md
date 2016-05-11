@@ -12,7 +12,7 @@ This guide is for the maintainers and developers of the keybrd library and it's 
 It is assumed the reader is familiar with C++ language including pointers, objects, classes, static class variables, composition, inheritance, polymorphism, and enum.
 Some classes use bit manipulation.
 
-## Class diagrams
+## Class inheritance diagrams
 
 Keybrd library class inheritance diagram
 ```
@@ -63,12 +63,10 @@ Keybrd library class inheritance diagram
 
 ```
 
-## Association diagrams
+## Dependency diagrams
 
-single-layer Keybrd association diagram with LEDs
+single-layer dependency diagram with LEDs
 ```
-	keybrd[1]
-	  |
 	matrix[1..*]
 	  |
 	row[1..*]_____________________________
@@ -81,11 +79,8 @@ single-layer Keybrd association diagram with LEDs
 
 ```
 
-multi-layer Keybrd association diagram with LEDs and I/O Expander
+multi-layer dependency diagram with LEDs and I/O Expander
 ```
-
-	keybrd[1]
-	  |
 	matrix[1..*]
 	  |                                                stateLayers[1..*]
 	row[1..*]_________________________________________/__    |         \
@@ -148,7 +143,6 @@ Arduino does not have a debugger; so here is a list of functions in the order th
 Refer to it like a table of contents while reading the keybrd library.
 
 ```
-Keybrd::scan()                          for each matrix
     Matrix::scan()                          for each row
         Row::process()
             Row::scan()
@@ -175,3 +169,5 @@ The keybrd libraries compile on the Arduino IDE and make extensive use of the fo
     #include <Wire.h>
     #include <Keyboard.h>
     #include <Mouse.h>
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">keybrd tutorial</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/wolfv6/keybrd" property="cc:attributionName" rel="cc:attributionURL">Wolfram Volpi</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/wolfv6/keybrd/issues/new" rel="cc:morePermissions">https://github.com/wolfv6/keybrd/issues/new</a>.

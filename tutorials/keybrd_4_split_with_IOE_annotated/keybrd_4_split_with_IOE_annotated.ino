@@ -63,45 +63,33 @@ const uint8_t COL_PORT_L_COUNT = sizeof(ptrsColPorts_L)/sizeof(*ptrsColPorts_L);
 /*
 The right matrix is scanned by an I/O expander.
 
-The micro-controller and I/O expander communicates via I2C bus.
-Three hardware pins (AD0, AD1, AD2) are used to configure the I2C address of the I/O expander.
-ADDR is a static variable of class IOExpanderPort.  The I2C address of this I/O expander is 0x18.
-
-An I/O expander used on a matrix has two ports.  Each port has eight pins.
-One port is connected to the matrix's rows.  The other port is connected to the matrix's columns.
-
-The IOExpanderPort constructor parameters specify the port number and initial output value.
-I/O Expander and AVR have similar constructor parameters for RowPort and ColPort.
+The micro-controller and I/O expander use address 0x18 to communicate with each other over I2C.
+ADDR is a static variable of class IOExpanderPort.
 */
 const uint8_t IOExpanderPort::ADDR = 0x18;
 
 /*
-port1_R uses port 1 with an initial output value of 0.
+The I/O expander has two ports.  Each port has eight pins.
+One port is connected to the matrix's rows.  The other port is connected to the matrix's columns.
+
+The IOExpanderPort constructor parameters specify the port number and initial output value.
+I/O Expander and AVR have similar constructor parameters for RowPort and ColPort.
+
+port1_R is port 1 and has an initial output value of 0.
+rowPort1_R uses port1_R.
 */
 IOExpanderPort port1_R(1, 0);
-
-/*
-The RowPort_PCA9655E constructor parameter specifies the IOExpanderPort.
-*/
 RowPort_PCA9655E rowPort1_R(port1_R);
 
 /*
-port0_R uses port 0 with an initial output value of 0.
+port0_R is port 0 and has an initial output value of 0.
+colPort0_R uses port0_R to read pin 0 and pin 1.
 */
 IOExpanderPort port0_R(0, 0);
-
-/*
-The ColPort_PCA9655E constructor parameter specifies the IOExpanderPort and the port pins to read:
-A number to the right of "1<<" is the pin number to read.  1<<0 reads pin 0, and 1<<1 reads pin 1.
-*/
 ColPort_PCA9655E colPort0_R(port0_R, 1<<0 | 1<<1 );
 
 /*
-ColPort pointers are placed in an array because some keyboards use multiple column ports.
-This sketch only has one column port.
-
-sizeof() is used to compute the number of array elements.
-This eliminates the risk of forgetting to update the count after adding or removing an element.
+ColPort pointers are packed into an array.
 */
 ColPort* const ptrsColPorts_R[] = { &colPort0_R };
 const uint8_t COL_PORT_R_COUNT = sizeof(ptrsColPorts_R)/sizeof(*ptrsColPorts_R);

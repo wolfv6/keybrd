@@ -54,13 +54,13 @@ const unsigned int Row::DELAY_MICROSECONDS = 1000;
 A micro-controller has one or more ports.  Each port has one or more pins.
 These pins are connected to the keyboard's rows and columns.
 
-The RowPort constructor parameters specify the port's registers.
+rowPortF will strobe PORTF one row at a time.
 */
 RowPort_AVR_Optic rowPortF(DDRF, PORTF);
 
 /*
-The ColPort constructor parameters specify the port's registers and the port pins to read:
-A number to the right of "1<<" is the pin number to read.  1<<0 reads pin 0, and 1<<1 reads pin 1.
+A number to the right of "1<<" is a pin number to read.
+colPortB will read PORTB's pin 0 and pin 1
 */
 ColPort_AVR colPortB(DDRB, PORTB, PINB, 1<<0 | 1<<1 );
 
@@ -134,7 +134,8 @@ const uint8_t ROW_COUNT = sizeof(ptrsRows)/sizeof(*ptrsRows);
 
 /*
 The Matrix constructor parameters are:
-    one array of Row pointers, and the number of rows
+    one array of Row pointers
+    the number of Row pointers
     '0' for active low or '1' for active high
 WARNING: the tutorial sketches all have '1' for active high to be compatible with DH.
 The breadboard keyboard described in tutorial_1 is active low.
