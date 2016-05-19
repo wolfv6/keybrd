@@ -3,7 +3,6 @@
 
 #include <inttypes.h>
 #include <StateLayersInterface.h>
-//#include <LED.h>
 
 /* basic StateLayers for keyboard.
 When pressed, Code_Layer objects call StateLayers functions lock() or hold().
@@ -17,9 +16,9 @@ class StateLayers : public StateLayersInterface
         virtual void setActiveLayer(const uint8_t layer);
     public:
         StateLayers() : activeLayer(0), lockedLayer(0) {}
-        virtual void hold(uint8_t layer);               //set activeLayer
-        virtual void unhold(const uint8_t layer);       //restore activeLayer to lockedLayer
-        virtual void lock(uint8_t layer);               //set activeLayer and lock it
+        virtual void hold(uint8_t layer);       //set activeLayer
+        virtual void unhold(const uint8_t layer); //restore activeLayer to lockedLayer
+        virtual void lock(uint8_t layer);       //set activeLayer and lock it
         virtual uint8_t getActiveLayer();
 };
 #endif

@@ -19,7 +19,7 @@ void StateLayers::lock(const uint8_t layer)
     lockedLayer = layer;
 }
 
-//could set LED indicator lights in setActiveLayer()
+//Derived classes override setActiveLayer() to also set LED indicator lights.
 void StateLayers::setActiveLayer(const uint8_t layer)
 {
     activeLayer = layer;

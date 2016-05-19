@@ -47,10 +47,9 @@ The following install steps are modified from the [Teensyduino download page](ht
 
 For Linux:
 
-1. Download and extract the Arduino software.
-   Move the extracted directory to /opt:
+1. Download and extract the Arduino software to the /opt directory:
 
-       $ sudo mv ~/Downloads/arduino-1.6.7 /opt/arduino-1.6.7 
+       /opt/arduino-1.x.x 
 
 2. The "Linux udev rules" link is at top right of page.
    Save the teensy.rules file in /etc/udev/rules.d/
@@ -63,7 +62,7 @@ For Linux:
 
    Run the teensyduino installer and fill the form fields:
 
-       Arduino location to install Teensyduino: /usr/local/bin/arduino-1.x.x 
+       Arduino location to install Teensyduino: /opt/arduino-1.x.x 
        Libraries to Install: None
 
 4. Launch Arduino IDE from /opt/arduino-1.x.x/arduino
