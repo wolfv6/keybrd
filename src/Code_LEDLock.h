@@ -21,7 +21,7 @@ class Code_LEDLock : public Code
     private:
         const uint16_t scancode;
         uint8_t USB_LED_bit;                    //codes used by keyboard output report
-        LED& refLED;
+        LED& refLED;                            //indicator on keyboard
         void updateLED() const;
 
     public:
