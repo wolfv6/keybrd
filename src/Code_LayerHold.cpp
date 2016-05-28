@@ -2,10 +2,10 @@
 
 void Code_LayerHold::press()
 {
-    refStateLayers.hold(layer);
+    refLayerState.hold(layer);
 }
 
 void Code_LayerHold::release()
 {
-    refStateLayers.unhold(layer);
+    refLayerState.unhold(layer);
 }

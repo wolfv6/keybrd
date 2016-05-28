@@ -2,6 +2,6 @@
 
 void Code_LayeredScSc::press()
 {
-    layer = refStateLayers.getActiveLayer();
+    layer = refLayerState.getActiveLayer();
     pressScancode();
 }

@@ -19,20 +19,20 @@ The following pseudo code has just enough detail to show how layer schemes work.
 
 **Key_Layer** objects select the active layer.
 The "layer" variable is a layer id number.
-When a Key_Layer object is pressed, it tells StateLayer to update the active layer.
+When a Key_Layer object is pressed, it tells LayerState to update the active layer.
 ```
 class Key_Layer
 {
     int layer
-    StateLayer& refStateLayer
-    press() { refStateLayer.setActiveLayer(layer) }
+    LayerState& refLayerState
+    press() { refLayerState.setActiveLayer(layer) }
 }
 ```
 
-**StateLayer** objects keep track of the active layer.
-A StateLayer's activeLayer is always up to date.
+**LayerState** objects keep track of the active layer.
+A LayerState's activeLayer is always up to date.
 ```
-class StateLayer
+class LayerState
 {
     int activeLayer
     setActiveLayer(int layer) { activeLayer = layer }
@@ -42,13 +42,13 @@ class StateLayer
 
 **Key_Layered** objects contain multiple Key pointers, one Key pointer for each layer.
 Layer ids are used like indexes to select the appropriate key.
-When a Key_Layered object is pressed, it gets the active layer from StateLayer, and then sends the key of the active layer.
+When a Key_Layered object is pressed, it gets the active layer from LayerState, and then sends the key of the active layer.
 ```
 class Key_Layered
 {
     Key** ptrsKeys          //array of Key pointers, one Key pointer per layer
-    StateLayer& refStateLayer
-    press() { layer = refStateLayer.getActiveLayer()
+    LayerState& refLayerState
+    press() { layer = refLayerState.getActiveLayer()
               ptrsKeys[layer]->press() }
 }
 ```
@@ -63,7 +63,7 @@ Dependency diagram
           |
           v
     +------------+
-    | StateLayer |
+    | LayerState |
     +------------+
           ^
           |
@@ -81,8 +81,8 @@ Key_Layer classes include:
 * Code_LayerHold
 * Code_LayerLock
 
-A basic StateLayer class is:
-* StateLayer
+A basic LayerState class is:
+* LayerState
 
 Key_Layered classes include:
 * Code_LayeredScSc
@@ -108,7 +108,7 @@ Example single-layer Code classes include:
 ## A simple multi-layer keybrd sketch
 The [keybrd_3a_multi-layer_annotated.ino](keybrd_3a_multi-layer_annotated/keybrd_3a_multi-layer_annotated.ino)
 sketch uses three layer-scheme classes:
-* StateLayers
+* LayerState
 * Code_LayerHold
 * Key_LayeredKeysArray
 

@@ -26,7 +26,7 @@ Holding the fn key down makes it the active layer.  Releasing the fn key restore
 #include <Code_Sc.h>
 #include <Code_ScS.h>
 #include <Code_Shift.h>
-#include <StateLayers.h>
+#include <LayerState.h>
 #include <Code_LayerHold.h>
 #include <Key_LayeredKeysArray.h>
 
@@ -54,8 +54,8 @@ The CODES section instantiates six codes, one for each item in the layout:
 // ---------------- LAYER CODE -----------------
 enum layers { NORMAL, FN };
 
-StateLayers stateLayer;
-Code_LayerHold l_fn(FN, stateLayer);
+LayerState layerState;
+Code_LayerHold l_fn(FN, layerState);
 
 // ---------------- SCAN CODES -----------------
 /*
@@ -115,7 +115,7 @@ Key_LayeredKeysArray k_00(ptrsCodes_00);
 Key* const ptrsCodes_01[] = { &s_b, &s_at };
 Key_LayeredKeysArray k_01(ptrsCodes_01);
 
-StateLayersInterface& Key_LayeredKeysArray::refStateLayers = stateLayer;
+LayerStateInterface& Key_LayeredKeysArray::refLayerState = layerState;
 
 // ------------------- ROWS --------------------
 Key* const ptrsKeys_0[] = { &k_00, &k_01 };

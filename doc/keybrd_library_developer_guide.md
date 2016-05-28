@@ -34,9 +34,9 @@ Keybrd library class inheritance diagram
 	LED_AVR  LED_MCP23018  LED_PCA9655E                 (one LED class for each type of IC)
 
 
-	StateLayersInterface
+	LayerStateInterface
 	    |
-	StateLayers
+	LayerState
 
 
 	Key __
@@ -81,7 +81,7 @@ single-layer dependency diagram with LEDs
 multi-layer dependency diagram with LEDs and I/O Expander
 ```
 	matrix[1..*]
-	  |                                                stateLayers[1..*]
+	  |                                                layerStates[1..*]
 	row[1..*]_________________________________________/__    |         \
 	  |          \          \                \       /   \   |          \
 	rowPort[1]  rowPin[1]  colPort[1]       keys[1] / code_layer[1..*]  LED[0..*]
@@ -116,11 +116,11 @@ Example Code_Layer class names:
 * Code_LayerHold
 * Code_LayerLock
 
-*StateLayer* class names start with "StateLayer" and end with a descriptive name.
-Example StateLayer class names:
-* StateLayer    - basic StateLayer class in keybrd library
-* StateLayer_DH - main StateLayer for the keybrd_DH library
-* StateLayer_MF - StateLayer for Mouse Function sub-layers in the keybrd_DH library
+*LayerState* class names start with "LayerState" and end with a descriptive name.
+Example LayerState class names:
+* LayerState    - basic LayerState class in keybrd library
+* LayerState_DH - main LayerState for the keybrd_DH library
+* LayerState_MF - LayerState for Mouse Function sub-layers in the keybrd_DH library
 
 *Code_Layered* class names start with "Code_Layered" and end with a descriptive name.
 Example Code_Layered class names:

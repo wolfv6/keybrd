@@ -19,7 +19,7 @@ Uses the same variable naming convention as keybrd_DH.
 #include <Code_ScS.h>
 
 #include <Code_Shift.h>
-#include <StateLayers.h>
+#include <LayerState.h>
 //#include <Code_LayerLock.h>
 #include <Code_LayerHold.h>
 
@@ -49,9 +49,9 @@ const uint8_t COL_PORT_L_COUNT = sizeof(ptrsColPorts_L)/sizeof(*ptrsColPorts_L);
 
 // ================= CODES =====================
 // -------------- LAYER CODES ------------------
-StateLayers stateLayer;
-//Code_LayerLock l_alpha(0, stateLayer);
-Code_LayerHold l_fn(1, stateLayer);
+LayerState layerState;
+//Code_LayerLock l_alpha(0, layerState);
+Code_LayerHold l_fn(1, layerState);
 
 // --------------- SHIFT CODE ------------------
 Code_Shift s_shift(MODIFIERKEY_LEFT_SHIFT);
@@ -65,7 +65,7 @@ Code_Sc s_b(KEY_B);
 Code_ScS s_exclamation(KEY_1);
 Code_ScS s_at(KEY_2);
 
-StateLayersInterface& Key_LayeredKeysArray::refStateLayers = stateLayer;
+LayerStateInterface& Key_LayeredKeysArray::refLayerState = layerState;
 
 // ============== LEFT MATRIX ==================
 // --------------- LEFT KEYS -------------------

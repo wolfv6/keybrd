@@ -2,7 +2,7 @@
 
 void Key_LayeredKeysArray::press()
 {
-    layer = refStateLayers.getActiveLayer();
+    layer = refLayerState.getActiveLayer();
 
     ptrsKeys[layer]->press();
 }

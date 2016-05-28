@@ -26,7 +26,7 @@ Holding the fn key down makes it the active layer.  Releasing the fn key restore
 
 //Codes
 #include <Code_Sc.h>
-#include <StateLayers.h>
+#include <LayerState.h>
 #include <Code_LayerHold.h>
 #include <Key_LayeredKeysArray.h>
 
@@ -57,15 +57,15 @@ enum assings Id numbers to the layers.
 */
 enum layers { NORMAL, FN };
 /*
-stateLayer keeps track of the active layer.  The default layer number is 0.
+layerState keeps track of the active layer.  The default layer number is 0.
 */
-StateLayers stateLayer;
+LayerState layerState;
 /*
-The Code_LayerHold constructor parameter specifies a layer Id number and a StateLayer.
-When l_fn is pressed, it tells stateLayer to change the active layer to 1.
-When l_fn is released, it tells stateLayer to restore the normal layer.
+The Code_LayerHold constructor parameter specifies a layer Id number and a LayerState.
+When l_fn is pressed, it tells layerState to change the active layer to 1.
+When l_fn is released, it tells layerState to restore the normal layer.
 */
-Code_LayerHold l_fn(FN, stateLayer);
+Code_LayerHold l_fn(FN, layerState);
 
 // ---------------- SCAN CODES -----------------
 Code_Sc s_a(KEY_A);
@@ -102,15 +102,15 @@ Key* const ptrsCodes_01[] = { &s_b, &s_2 };
 Key_LayeredKeysArray k_01(ptrsCodes_01);
 
 /*
-Key_LayeredKeysArray has a static variable refStateLayers defined here.
-It is a reference to stateLayer.
+Key_LayeredKeysArray has a static variable refLayerState defined here.
+It is a reference to layerState.
 */
-StateLayersInterface& Key_LayeredKeysArray::refStateLayers = stateLayer;
+LayerStateInterface& Key_LayeredKeysArray::refLayerState = layerState;
 
 /*
 HOW LAYERED OBJECTS WORK
 When a Key_LayeredKeysArray object is pressed,
- it gets the active layer from stateLayer and then sends the scancode for the active layer.
+ it gets the active layer from layerState and then sends the scancode for the active layer.
 */
 
 // ------------------- ROWS --------------------

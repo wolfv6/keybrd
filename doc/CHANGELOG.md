@@ -12,7 +12,7 @@ keybrd version 1.0.0 will be released when the public API is stable.
 * Restructured the project directory to conform to Arduino library manager specifications
     * Moved keybrd_DH library extension (for DodoHand) to its own repository
     * Moved sketches to examples directory
-* Replaced Key_Layered dependency on LayerManager with StateLayers class
+* Replaced Key_Layered dependency on LayerManager with LayerState class
 
 ### Added
 * Tutorials
