@@ -4,11 +4,11 @@ When you finish this tutorial you will be able to be able to modify a multi-laye
 
 ## Multi-layer nomenclature
 **[layers](http://deskthority.net/wiki/Layer)** are key bindings provided by the keyboard firmware.  For example,
-* The full-size [IBM PC keyboard](http://en.wikipedia.org/wiki/IBM_PC_keyboard) has one layer.
+* The classic [IBM PC keyboard](http://en.wikipedia.org/wiki/IBM_PC_keyboard) has one layer.
 * Many compact keyboards have an additional [Fn layer](http://en.wikipedia.org/wiki/Fn_key).
 * The [Neo layout](http://neo-layout.org/index_en.html) has 6 layers.
 
-**layer code** - is an integer used to identify a layer.
+**layer id** - is an integer used to identify a layer.
 
 **active layer** - is the layer currently used by the keyboard.
 
@@ -17,19 +17,20 @@ When you finish this tutorial you will be able to be able to modify a multi-laye
 ## Pseudo code for simple layer scheme
 The following pseudo code has just enough detail to show how layer schemes work.
 
-**Layer** objects select the active layer.
-When a Layer object is pressed, it tells StateLayer to update the active layer.
-There is one Key_Layer object for each layer. Each Key_Layer object has a unique layer Id number.
+**Key_Layer** objects select the active layer.
+The "layer" variable is a layer id number.
+When a Key_Layer object is pressed, it tells StateLayer to update the active layer.
 ```
 class Key_Layer
 {
     int layer
     StateLayer& refStateLayer
-    press() { refStateLayer.setLayer(layer) }
+    press() { refStateLayer.setActiveLayer(layer) }
 }
 ```
 
-A **StateLayer**'s activeLayer is always up to date.
+**StateLayer** objects keep track of the active layer.
+A StateLayer's activeLayer is always up to date.
 ```
 class StateLayer
 {
@@ -39,9 +40,9 @@ class StateLayer
 }
 ```
 
-**Layered** objects contain an array of Key pointers, one Key pointer for each layer.
-Layer Id numbers are used as array indexes in the Key_Layered ptrsKeys array.
-When a Layered object is pressed, it gets the active layer from StateLayer, and then presses the key of the active layer.
+**Key_Layered** objects contain multiple Key pointers, one Key pointer for each layer.
+Layer ids are used like indexes to select the appropriate key.
+When a Key_Layered object is pressed, it gets the active layer from StateLayer, and then sends the key of the active layer.
 ```
 class Key_Layered
 {
@@ -58,7 +59,7 @@ Dependency diagram
      | Key_Layer |
      +-----------+
           |
-          |setLayer()
+          |setActiveLayer()
           |
           v
     +------------+
@@ -66,7 +67,7 @@ Dependency diagram
     +------------+
           ^
           |
-          |getLayer()
+          |getActiveLayer()
           |
     +-------------+
     | Key_Layered |
@@ -76,14 +77,14 @@ Dependency diagram
 There are several layer scheme-classes to choose from.
 You can view all the class definitions in the [keybrd library](../src/).
 
-Layer classes include:
+Key_Layer classes include:
 * Code_LayerHold
 * Code_LayerLock
 
-There is only one StateLayer class:
+A basic StateLayer class is:
 * StateLayer
 
-Layered classes include:
+Key_Layered classes include:
 * Code_LayeredScSc
 * Code_LayeredCodeSc
 * Code_LayeredCodeCode

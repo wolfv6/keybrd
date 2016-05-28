@@ -106,6 +106,27 @@ Most derived-class names start with the base class name followed by "_" and a na
 This convention leads to class names that convey information about the classes inheritance.
 Underscore delineates base class name and sub-class name.  Capital letters delineate words.
 
+## Layer-class naming conventions
+*Code_Layer* class names are concatenations of "Code_", "Layer" or layer name, and persistence.
+Example persistences are:
+* "Lock" - layer remains active after the layer key is released
+* "Hold" - layer is active for as long as layer key is held down
+
+Example Code_Layer class names:
+* Code_LayerHold
+* Code_LayerLock
+
+*StateLayer* class names start with "StateLayer" and end with a descriptive name.
+Example StateLayer class names:
+* StateLayer    - basic StateLayer class in keybrd library
+* StateLayer_DH - main StateLayer for the keybrd_DH library
+* StateLayer_MF - StateLayer for Mouse Function sub-layers in the keybrd_DH library
+
+*Code_Layered* class names start with "Code_Layered" and end with a descriptive name.
+Example Code_Layered class names:
+* Code_LayeredScSc
+* Key_LayeredKeysArray
+
 ## Style guide
 Following the style guide makes it easier for the next programmer to understand your code.
 * For class names, see above section "Class naming conventions"

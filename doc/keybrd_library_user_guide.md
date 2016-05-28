@@ -205,7 +205,7 @@ The standard [IBM PC keyboard](http://en.wikipedia.org/wiki/IBM_PC_keyboard) has
 Many compact keyboards have an additional [Fn layer](http://en.wikipedia.org/wiki/Fn_key).
 The [Neo layout](http://neo-layout.org/index_en.html) has 6 layers.
 
-**Layer code** - is an integer assigned to a layer.
+**Layer id** - is an integer assigned to a layer.
 
 **Layer scheme** - is a system for changing layers while typing.
                    A single-layer scheme does not change layers.
