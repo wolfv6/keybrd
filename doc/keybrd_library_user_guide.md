@@ -190,7 +190,7 @@ Hardware items to check:
 * 5 volts across power and ground
 * To validate keyboard hardware, modify the simple single-layer keybrd sketch from the tutorial.
 
-<!-- todo after teensy LC bb, linke to minimal keybrd sketch
+<!-- todo after teensy LC bb, link to minimal keybrd sketch
 [minimal keybrd sketch](blob/master/tutorials/keybrd_2_single-layer_annotated/keybrd_2_single-layer_annotated.ino).
  -->
 

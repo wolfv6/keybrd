@@ -17,7 +17,7 @@ When you finish this tutorial you will be able to be able to modify a multi-laye
 ## Pseudo code for simple layer scheme
 The following pseudo code has just enough detail to show how layer schemes work.
 
-**Key_Layer** objects select the active layer.
+**Key_Layer** objects are used to select an active layer.
 The "layer" variable is a layer id number.
 When a Key_Layer object is pressed, it tells LayerState to update the active layer.
 ```
@@ -40,9 +40,9 @@ class LayerState
 }
 ```
 
-**Key_Layered** objects contain multiple Key pointers, one Key pointer for each layer.
-Layer ids are used like indexes to select the appropriate key.
-When a Key_Layered object is pressed, it gets the active layer from LayerState, and then sends the key of the active layer.
+**Key_Layered** objects contain multiple elements, one element for each layer.
+Layer ids are used like indexes to send the appropriate element.
+When a Key_Layered object is pressed, it gets the active layer from LayerState, and then sends the appropriate element.
 ```
 class Key_Layered
 {

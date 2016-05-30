@@ -7,6 +7,10 @@ keybrd version 1.0.0 will be released when the public API is stable.
 
 ## [Unreleased][unreleased]
 
+## [0.3.1] - 2016-05-30
+### Changed
+* Rename StateLayers to LayerState
+
 ## [0.3.0] - 2016-05-09
 ### Changed
 * Restructured the project directory to conform to Arduino library manager specifications
