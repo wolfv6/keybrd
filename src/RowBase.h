@@ -1,5 +1,5 @@
-#ifndef ROW_H
-#define ROW_H
+#ifndef ROWBASE_H
+#define ROWBASE_H
 #include <Arduino.h>
 #include <inttypes.h>
 #include <Key.h>
@@ -46,7 +46,7 @@ Slow-scan trick for debug message that print too fast
 Change DELAY_MICROSECONDS to a large number like 10000
 That way printing debug messages is slowed to a managable rate
 */
-class Row
+class RowBase
 {
     private:
         Key *const *const ptrsKeys;         //array of Key pointers
@@ -57,25 +57,23 @@ class Row
         ColPort *const *const ptrsColPorts; //array of column ports
         const uint8_t colPortCount;
 
-        static const unsigned int DELAY_MICROSECONDS; //delay between each Row scan for debouncing
-        uint8_t samples[SAMPLE_COUNT];      //bitwise, one bit per key, most resent readings
-        uint8_t samplesIndex;               //samples[] current write index
-        uint8_t debounced;                  //bitwise, one bit per key, debounced value of readings
+        void scan(const bool activeHigh);
+        uint8_t getRowState(uint16_t& rowEnd, const bool activeHigh);
+        virtual uint8_t debounce(const uint8_t rowState)=0; //debouncer and I2C error correction
+        void detectEdge(uint8_t newDebounced, uint8_t& isFallingEdge, uint8_t& isRisingEdge);
+        void pressRelease(const uint16_t rowEnd,
+                const uint8_t isFallingEdge, const uint8_t isRisingEdge);
         virtual void keyWasPressed();
+    protected:
+        uint8_t debounced;                  //bitwise, one bit per key, debounced value of readings
     public:
-        Row( RowPort &refRowPort, const uint8_t rowPin,
+        RowBase( RowPort &refRowPort, const uint8_t rowPin,
             ColPort *const ptrsColPorts[], const uint8_t colPortCount,
             Key *const ptrsKeys[])
             : ptrsKeys(ptrsKeys), refRowPort(refRowPort), rowPin(rowPin),
               ptrsColPorts(ptrsColPorts), colPortCount(colPortCount),
-              samplesIndex(0), debounced(0) { }
-
-        Key* getPtrKey(uint8_t col) const;
+              debounced(0) { }
+        //Key* getPtrKey(uint8_t col) const; todo delete, no longer needed 5/31/16
         void process(const bool activeHigh);
-        void scan(const bool activeHigh);
-        uint8_t getRowState(uint16_t& rowEnd, const bool activeHigh);
-        uint8_t debounce(const uint8_t rowState); //switch debouncer and I2C error correction
-        void detectEdge(uint8_t newDebounced, uint8_t& isFallingEdge, uint8_t& isRisingEdge);
-        void pressRelease(const uint16_t rowEnd, const uint8_t isFallingEdge, const uint8_t isRisingEdge);
 };
 #endif

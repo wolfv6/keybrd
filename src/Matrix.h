@@ -2,7 +2,7 @@
 #define MATRIX_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include "Row.h"
+#include "RowBase.h"
 
 /*
 Diode orientation
@@ -28,12 +28,12 @@ External pull-down resistors should have a value between 10k Ohms and 2.2k Ohms.
 class Matrix
 {
     private:
-        Row *const *const ptrsRows;         //array of row pointers
+        RowBase *const *const ptrsRows;     //array of row pointers
         const uint8_t rowCount;
         const bool activeHigh;              //logic level of strobe pin: 0=activeLow, 1=activeHigh
 
     public:
-        Matrix( Row *const ptrsRows[], const uint8_t rowCount, const bool activeHigh)
+        Matrix( RowBase *const ptrsRows[], const uint8_t rowCount, const bool activeHigh)
             : ptrsRows(ptrsRows), rowCount(rowCount), activeHigh(activeHigh) {}
 
         void scan();

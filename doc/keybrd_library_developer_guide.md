@@ -17,7 +17,9 @@ Keybrd library class inheritance diagram
 ```
 	Matrix
 
-	Row
+	RowBase
+     |
+    Row
 
 	IOExpanderPort
 
