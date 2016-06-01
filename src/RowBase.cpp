@@ -7,15 +7,13 @@ void RowBase::process(const bool activeHigh)
     //these variables are all bitwise, one bit per key
     uint8_t rowState;                           //1 means pressed, 0 means released
     uint16_t rowEnd;                            //1 bit marks positioned after last key of row
-    uint8_t debounced;                       //1 means pressed, 0 means released
-    uint8_t isFallingEdge;                      //1 means falling edge
-    uint8_t isRisingEdge;                       //1 means rising edge
+    uint8_t debounced;                          //1 means pressed, 0 means released
+    uint8_t debouncedChanged;                   //1 means debounced changed
 
     scan(activeHigh);                           //save column-port-pin values to portState
     rowState = getRowState(rowEnd, activeHigh);
-    debounced = debounce(rowState);
-    detectEdge(debounced, isFallingEdge, isRisingEdge);
-    pressRelease(rowEnd, isFallingEdge, isRisingEdge);
+    debouncedChanged = debounce(rowState, debounced);
+    pressRelease(rowEnd, debouncedChanged);
 }
 
 /*
@@ -95,32 +93,21 @@ uint8_t RowBase::getRowState(uint16_t& rowEnd, const bool activeHigh)
 }
 
 /*
-Computes isFallingEdge and isRisingEdge.
-All 3 parameters are bitwise.
+pressRelease() calls key's press() or release() function if it was pressed or released.
+Both parameters are bitwise.
 */
-void RowBase::detectEdge(uint8_t debounced, uint8_t& isFallingEdge, uint8_t& isRisingEdge)
+void RowBase::pressRelease(const uint16_t rowEnd, const uint8_t debouncedChanged)
 {
-    uint8_t debouncedChanged;                   //bitwise
-
-    debouncedChanged = debounced xor previousDebounced;
-    previousDebounced = debounced;
+    uint8_t isFallingEdge;                      //1 means falling edge
+    uint8_t isRisingEdge;                       //1 means rising edge
+    uint8_t rowMask;                            //bitwise, active col bit is 1
+    uint8_t col;                                //index for ptrsKeys[col] array
 
     //bit=1 if last debounced changed from 1 to 0, else bit=0
     isFallingEdge = debouncedChanged & ~previousDebounced;
 
     //bit=1 if last debounced changed from 0 to 1, else bit=0
     isRisingEdge = debouncedChanged & previousDebounced;
-}
-
-/*
-calls key's press() or release() function if it was pressed or released.
-All 3 parameters are bitwise.
-*/
-void RowBase::pressRelease(const uint16_t rowEnd, const uint8_t isFallingEdge,
-                       const uint8_t isRisingEdge)
-{
-    uint8_t rowMask;                            //bitwise, active col bit is 1
-    uint8_t col;                                //index for ptrsKeys[col] array
 
     for (rowMask=1, col=0; rowMask<rowEnd; rowMask<<=1, col++) //for each key in row
     {

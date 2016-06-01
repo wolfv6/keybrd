@@ -57,10 +57,9 @@ class RowBase
 
         void scan(const bool activeHigh);
         uint8_t getRowState(uint16_t& rowEnd, const bool activeHigh);
-        virtual uint8_t debounce(const uint8_t rowState)=0; //debouncer and I2C error correction
-        void detectEdge(uint8_t debounced, uint8_t& isFallingEdge, uint8_t& isRisingEdge);
-        void pressRelease(const uint16_t rowEnd,
-                const uint8_t isFallingEdge, const uint8_t isRisingEdge);
+        virtual uint8_t debounce(const uint8_t rowState, uint8_t& debounced)=0;
+        //void detectEdge(uint8_t debounced, uint8_t& isFallingEdge, uint8_t& isRisingEdge);
+        void pressRelease(const uint16_t rowEnd, const uint8_t debouncedChanged);
         virtual void keyWasPressed();
     protected:
         uint8_t previousDebounced;              //bitwise, one bit per key
