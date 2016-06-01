@@ -58,19 +58,19 @@ class RowBase
         void scan(const bool activeHigh);
         uint8_t getRowState(uint16_t& rowEnd, const bool activeHigh);
         virtual uint8_t debounce(const uint8_t rowState)=0; //debouncer and I2C error correction
-        void detectEdge(uint8_t newDebounced, uint8_t& isFallingEdge, uint8_t& isRisingEdge);
+        void detectEdge(uint8_t debounced, uint8_t& isFallingEdge, uint8_t& isRisingEdge);
         void pressRelease(const uint16_t rowEnd,
                 const uint8_t isFallingEdge, const uint8_t isRisingEdge);
         virtual void keyWasPressed();
     protected:
-        uint8_t debounced;                  //bitwise, one bit per key, debounced value of readings
+        uint8_t previousDebounced;              //bitwise, one bit per key
     public:
         RowBase( RowPort &refRowPort, const uint8_t rowPin,
             ColPort *const ptrsColPorts[], const uint8_t colPortCount,
             Key *const ptrsKeys[])
             : ptrsKeys(ptrsKeys), refRowPort(refRowPort), rowPin(rowPin),
               ptrsColPorts(ptrsColPorts), colPortCount(colPortCount),
-              debounced(0) { }
+              previousDebounced(0) { }
         //Key* getPtrKey(uint8_t col) const; todo delete, no longer needed 5/31/16
         void process(const bool activeHigh);
 };
