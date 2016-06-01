@@ -7,12 +7,11 @@ void RowBase::process(const bool activeHigh)
     //these variables are all bitwise, one bit per key
     uint8_t rowState;                           //1 means pressed, 0 means released
     uint16_t rowEnd;                            //1 bit marks positioned after last key of row
-    uint8_t debounced;                          //1 means pressed, 0 means released
     uint8_t debouncedChanged;                   //1 means debounced changed
 
     scan(activeHigh);                           //save column-port-pin values to portState
     rowState = getRowState(rowEnd, activeHigh);
-    debouncedChanged = debounce(rowState, debounced);
+    debouncedChanged = debounce(rowState);
     pressRelease(rowEnd, debouncedChanged);
 }
 

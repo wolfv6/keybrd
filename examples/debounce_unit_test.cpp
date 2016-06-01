@@ -14,10 +14,11 @@ uint8_t samples[SAMPLE_COUNT];                  //bitwise, one bit per key, most
 uint8_t samplesIndex = 0;                       //samples[] current write index
 uint8_t previousDebounced = 0;                  //bitwise, one bit per key
 
+uint8_t debounced;                              //1 means pressed, 0 means released
 uint8_t isFallingEdge;                          //1 means falling edge
 uint8_t isRisingEdge;                           //1 means rising edge
 
-uint8_t debounce(const uint8_t rowState, uint8_t& debounced)
+uint8_t debounce(const uint8_t rowState)
 {
     uint8_t debouncedChanged;                   //bitwise
     uint8_t all_1 = ~0;                         //bitwise
@@ -63,10 +64,9 @@ int main()
     //Test input and output only shows first bit of each byte.
     const uint8_t pressed[]        = {1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0};
     const uint8_t bouncy[]         = {1,0,0,0,0,1,0,0,1,1,1,1,0,1,1,1,1,0,0,0,0};
-    const uint8_t expectDebounced[]= {0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0};
+    const uint8_t expectDebounced[]= {0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0}; //SAMPLE_COUNT 4
     const uint8_t SCAN_COUNT = sizeof(bouncy)/sizeof(*bouncy);
     uint8_t i;
-    uint8_t debounced;                          //1 means pressed, 0 means released
     uint8_t debouncedChanged;                   //1 means debounced changed
 
     std::cout << "button pressed:            ";
@@ -86,7 +86,7 @@ int main()
     std::cout << "debounced signal:          ";
     for (i=0; i<SCAN_COUNT; i++)
     {
-        debouncedChanged = debounce(bouncy[i], debounced);
+        debouncedChanged = debounce(bouncy[i]);
         //pressRelease(debouncedChanged);
         std::cout << (int)debounced;
     }
@@ -103,7 +103,7 @@ int main()
     std::cout << "isFallingEdge:             ";
     for (i=0; i<SCAN_COUNT; i++)
     {
-        debouncedChanged = debounce(bouncy[i], debounced);
+        debouncedChanged = debounce(bouncy[i]);
         pressRelease(debouncedChanged);
         std::cout << (int)isFallingEdge;
     }
@@ -112,7 +112,7 @@ int main()
     std::cout << "isRisingEdge:              ";
     for (i=0; i<SCAN_COUNT; i++)
     {
-        debouncedChanged = debounce(bouncy[i], debounced);
+        debouncedChanged = debounce(bouncy[i]);
         pressRelease(debouncedChanged);
         std::cout << (int)isRisingEdge;
     }
