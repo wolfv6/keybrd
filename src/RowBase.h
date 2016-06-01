@@ -6,8 +6,6 @@
 #include <RowPort.h>
 #include <ColPort.h>
 
-#define SAMPLE_COUNT 4      //number of consecutive equal bits needed to change a debounced bit
-
 /*
 Instantiation
  ------------
