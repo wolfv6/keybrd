@@ -43,5 +43,5 @@ void RowPort_PCA9655E::setActivePinHigh(const uint8_t activePin)
     Wire.write(outputByteCommand);
     Wire.write(port.outputVal |= activePin);
     Wire.endTransmission();
-    //todo delayMicroseconds(1500);
+    //todo delayMicroseconds(1500); still 4*bb w/o debouncer prints IOE rows sporadically
 }

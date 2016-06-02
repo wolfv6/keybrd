@@ -1,7 +1,7 @@
 #ifndef LAYERSTATEINTERFACE_H
 #define LAYERSTATEINTERFACE_H
 
-/* LayerStateInterface in an interface class
+/* LayerStateInterface is an interface class
 */
 class LayerStateInterface
 {

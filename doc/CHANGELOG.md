@@ -1,4 +1,4 @@
-# Change Log
+# Change Log for keybrd library
 All notable changes to the keybrd project will be documented in this file.
 This project adheres to [Semantic Versioning 2.0.0](http://semver.org/).
 
@@ -7,9 +7,10 @@ keybrd version 1.0.0 will be released when the public API is stable.
 
 ## [Unreleased][unreleased]
 
-## [0.3.1] - 2016-05-30
-### Changed
-* Rename StateLayers to LayerState
+## [0.3.1] - 2016-06-02
+### Added
+* RowBase class
+* Row::debounce()
 
 ## [0.3.0] - 2016-05-09
 ### Changed
