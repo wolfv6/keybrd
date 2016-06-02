@@ -30,31 +30,6 @@ need a larger SAMPLE_COUNT for reliability.
 Larger SAMPLE_COUNTs are more reliable but consume more memory, where
      SAMPLE_COUNT*ROW_COUNT = bytes of memory consumed by keyboard
 SAMPLE_COUNT = 4 is very reliable for a keyboard.
-
-Avoid sampling the switch input at a rate synchronous to events in the environment
- that might create periodic EMI. For instance, 50 and 60 Hz.
-
-A keyboard with a faster scan rate responds faster.
-Follow these step to tune DELAY_MICROSECONDS for maximum scan rate for a given SAMPLE_COUNT:
-Initialize DELAY_MICROSECONDS in your sketch:
-    const unsigned int Row::DELAY_MICROSECONDS = 1000;
-Add this to the sketch's loop() function:
-    debug.print_microseconds_per_scan();
-Compile and load the sketch into the microcontroller; microseconds_per_scan is printed every second.
-Adjust the value of DELAY_MICROSECONDS and repeat until:
-    debug.print_microseconds_per_scan() <= DEBOUNCE_TIME / SAMPLE_COUNT
-
-DEBOUNCE_TIME can be obtained from the switch's datasheet.  Some switch bounce times are:
-Cherry MX specifies 5msec bounce time http://www.cherrycorp.com/english/switches/key/mx.htm
-hasu measured Cherry MX bounce times .3ms to 1.4ms http://geekhack.org/index.php?topic=42385.0
-Tactile switch MJTP series bounce 10 ms http://www.apem.com/files/apem/brochures/MJTP_6MM.pdf 
-
-Polling I2C may slow the scan rate enough so that no additional delay is needed:
-    const unsigned int Row::DELAY_MICROSECONDS = 0;
-
-Slow-scan trick for debug messages that print too fast:
-    change DELAY_MICROSECONDS to a large number like 10000
-That way debug messages are printed at a managable rate.
 */
 /* debounce() function
 Parameter rowState is bitwise, 1 means pressed, 0 means released.

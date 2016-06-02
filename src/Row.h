@@ -33,7 +33,6 @@ Number of ColPort::colPins should equal number of keys in Row::ptrsKeys array
 class Row : public RowBase
 {
     private:
-        static const unsigned int DELAY_MICROSECONDS; //delay between each Row scan for debouncing
         uint8_t samples[SAMPLE_COUNT];          //bitwise, one bit per key, most recent readings
         uint8_t samplesIndex;                   //samples[] current write index
         virtual uint8_t debounce(const uint8_t rowState);

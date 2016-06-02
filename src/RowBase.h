@@ -11,6 +11,7 @@
 class RowBase
 {
     private:
+        static const unsigned int DELAY_MICROSECONDS; //delay between each Row scan for debouncing
         Key *const *const ptrsKeys;         //array of Key pointers
 
         RowPort &refRowPort;                //this row's IC port
@@ -19,6 +20,7 @@ class RowBase
         ColPort *const *const ptrsColPorts; //array of column ports
         const uint8_t colPortCount;
 
+        void wait();
         void scan(const bool activeHigh);
         uint8_t getRowState(uint16_t& rowEnd, const bool activeHigh);
         virtual uint8_t debounce(const uint8_t rowState)=0;
