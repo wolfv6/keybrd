@@ -27,14 +27,14 @@ class RowBase
         void pressRelease(const uint16_t rowEnd, const uint8_t debouncedChanged);
         virtual void keyWasPressed();
     protected:
-        uint8_t previousDebounced;              //bitwise, one bit per key
+        uint8_t debounced;                  //bitwise, 1 means pressed, 0 means released
     public:
         RowBase( RowPort &refRowPort, const uint8_t rowPin,
             ColPort *const ptrsColPorts[], const uint8_t colPortCount,
             Key *const ptrsKeys[])
             : ptrsKeys(ptrsKeys), refRowPort(refRowPort), rowPin(rowPin),
               ptrsColPorts(ptrsColPorts), colPortCount(colPortCount),
-              previousDebounced(0) { }
+              debounced(0) { }
         //Key* getPtrKey(uint8_t col) const; todo delete, no longer needed 5/31/16
         void process(const bool activeHigh);
 };

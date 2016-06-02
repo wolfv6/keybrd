@@ -39,7 +39,7 @@ Returns bitwise debouncedChanged.
 
 uint8_t Row::debounce(const uint8_t rowState)
 {
-    uint8_t debounced;                          //bitwise, 1 means pressed, 0 means released
+    uint8_t previousDebounced;                  //bitwise, one bit per key
     uint8_t debouncedChanged;                   //bitwise, 1 means debounced changed
     uint8_t all_1 = ~0;                         //bitwise
     uint8_t all_0 = 0;                          //bitwise
@@ -57,6 +57,8 @@ uint8_t Row::debounce(const uint8_t rowState)
         all_0 |= samples[j];                    //0 if all samples are 0
     }
 
+    previousDebounced = debounced;
+
     // update newDebounce if all the samples agree with one another
     // if all samples=1 then debounced=1
     //     elseif all samples=0 then debounced=0
@@ -64,6 +66,5 @@ uint8_t Row::debounce(const uint8_t rowState)
     debounced = all_1 | (all_0 & previousDebounced);
 
     debouncedChanged = debounced xor previousDebounced;
-    previousDebounced = debounced;
     return debouncedChanged;
 }

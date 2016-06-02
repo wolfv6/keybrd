@@ -140,10 +140,10 @@ void RowBase::pressRelease(const uint16_t rowEnd, const uint8_t debouncedChanged
     uint8_t col;                                //index for ptrsKeys[col] array
 
     //bit=1 if last debounced changed from 1 to 0, else bit=0
-    isFallingEdge = debouncedChanged & ~previousDebounced;
+    isFallingEdge = debouncedChanged & ~debounced;
 
     //bit=1 if last debounced changed from 0 to 1, else bit=0
-    isRisingEdge = debouncedChanged & previousDebounced;
+    isRisingEdge = debouncedChanged & debounced;
 
     for (rowMask=1, col=0; rowMask<rowEnd; rowMask<<=1, col++) //for each key in row
     {
