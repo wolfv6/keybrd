@@ -43,4 +43,5 @@ void RowPort_PCA9655E::setActivePinHigh(const uint8_t activePin)
     Wire.write(outputByteCommand);
     Wire.write(port.outputVal |= activePin);
     Wire.endTransmission();
+    //todo delayMicroseconds(1500);
 }

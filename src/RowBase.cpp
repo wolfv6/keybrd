@@ -15,6 +15,11 @@ void RowBase::process(const bool activeHigh)
     pressRelease(rowEnd, debouncedChanged);
 }
 
+void RowBase::wait()
+{
+    delayMicroseconds(DELAY_MICROSECONDS);      //delay between Row scans to debounce switches
+}
+
 /*
 Strobes the row and reads the columns.
 Strobe is on for shortest possible time to preserve IR LED on DodoHand's optic switch.

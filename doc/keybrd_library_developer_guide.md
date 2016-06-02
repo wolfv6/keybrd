@@ -177,7 +177,6 @@ Refer to it like a table of contents while reading the keybrd library.
                                                         if key is pressed
                                                             set rowState bit
             Row::debounce()                     debounce
-            Row::detectEdge()                   detect edge
             Row::pressRelease()                 for each key in row
                                                     if rising edge
                 Key_*::press()                          scanCode->press()

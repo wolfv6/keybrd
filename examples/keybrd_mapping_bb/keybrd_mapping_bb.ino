@@ -92,7 +92,7 @@ Key* const ptrsKeys_L1[] = { ptrsLayout[1][0], ptrsLayout[1][1] };
 Row row_L1(rowPortF_L, 1<<1, ptrsColPorts_L, COL_PORT_L_COUNT, ptrsKeys_L1);
 
 // -------------- LEFT MATRIX ------------------
-Row* const ptrsRows_L[] = { &row_L0, &row_L1 };
+RowBase* const ptrsRows_L[] = { &row_L0, &row_L1 };
 const uint8_t ROW_L_COUNT = sizeof(ptrsRows_L)/sizeof(*ptrsRows_L);
 
 Matrix matrix_L(ptrsRows_L, ROW_L_COUNT, 1);

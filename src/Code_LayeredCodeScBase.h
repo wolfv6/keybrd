@@ -4,7 +4,7 @@
 #include <inttypes.h>
 #include "Code.h"
 
-/* Class Code_LayeredCodeScBase is a 2-layer code, one object for each layer e.g.
+/* Class Code_LayeredCodeScBase is a 2-layer code, with one object for each layer e.g.
     layer0: ms_up    //mouse up
     layer1: KEY_UP   //up arrow
 When the key is pressed, the active layer is retrieved from refLayerState,
