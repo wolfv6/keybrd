@@ -8,7 +8,7 @@ The most common reason for new classes are:
 
 ## Who this guide is for
 This guide is for the maintainers and developers of the keybrd library and it's extensions.
-It is assumed the reader is familiar with C++ language including pointers, objects, classes, static class variables, composition, inheritance, polymorphism, and enum.
+It is assumed the reader is familiar with C++ language including pointers, objects, classes, static class variables, aggregation, inheritance, polymorphism, and enum.
 Some classes use bit manipulation.
 
 ## Class inheritance diagrams
@@ -148,7 +148,6 @@ Following the style guide makes it easier for the next programmer to understand 
 ```
 * In constructor's initialization list, use same names for fields and constructor parameters.
 * Do not use new or malloc (making memory leaks impossible).
-* If class has any non-[POD](http://en.wikipedia.org/wiki/Plain_old_data_structure) data members, [do not inline constructors and destructors](http://www.chromium.org/developers/coding-style/cpp-dos-and-donts).
 * Document class interface in .h file, above the class declaration.
 * Code should be self-documenting.  The only comments should be things that may need clarification.  A simple function with a good name needs no comment.
 * Code is automatically formated before being pushed to the keybrd repository.

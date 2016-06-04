@@ -17,7 +17,7 @@ This guide is for anyone who wants to use the keybrd library to develop keyboard
 A reader with programming experience, but no C++ experience, would understand the tutorials well enough to modify existing keybrd sketches.
 An experienced C++ programmer would be able to write original sketches and classes.
 
-The library is written in the C++ language and uses pointers, objects, classes, static class variables, composition, inheritance, and enum.
+The library is written in the C++ language and uses pointers, objects, classes, static class variables, aggregation, inheritance, and enum.
 
 ## Microcontroller board requirements
 The keybrd library works with Teensy and Arduino boards.
