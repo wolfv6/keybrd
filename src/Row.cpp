@@ -4,6 +4,23 @@ For return, 1 means debounced changed.
 */
 #include "Row.h"
 
+/*
+process() scans the row and calls any newly pressed or released keys.
+*/
+void Row::process(const bool activeHigh)
+{
+    //these variables are all bitwise, one bit per key
+    uint8_t rowState;                           //1 means pressed, 0 means released
+    uint16_t rowEnd;                            //1 bit marks positioned after last key of row
+    uint8_t debouncedChanged;                   //1 means debounced changed
+
+    wait();
+    scan(activeHigh);                           //save column-port-pin values to portState
+    rowState = getRowState(rowEnd, activeHigh);
+    debouncedChanged = debounce(rowState);
+    pressRelease(rowEnd, debouncedChanged);
+}
+
 uint8_t Row::debounce(const uint8_t rowState)
 {
     return debouncer.debounce(rowState, debounced);

@@ -26,5 +26,6 @@ class Row : public RowBase
         {
             Debouncer_4Samples debouncer;
         }
+        virtual void process(const bool activeHigh);
 };
 #endif
