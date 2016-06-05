@@ -18,7 +18,6 @@ class Row : public RowBase
 {
     private:
         Debouncer_4Samples debouncer;
-        virtual uint8_t debounce(const uint8_t rowState);
     public:
         Row( RowPort &refRowPort, const uint8_t rowPin,
             ColPort *const ptrsColPorts[], const uint8_t colPortCount, Key *const ptrsKeys[])

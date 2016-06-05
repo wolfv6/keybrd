@@ -27,7 +27,6 @@ class RowBase
         void wait();
         void scan(const bool activeHigh);
         uint8_t getRowState(uint16_t& rowEnd, const bool activeHigh);
-        virtual uint8_t debounce(const uint8_t rowState)=0;
         void pressRelease(const uint16_t rowEnd, const uint8_t debouncedChanged);
     public:
         RowBase( RowPort &refRowPort, const uint8_t rowPin,
