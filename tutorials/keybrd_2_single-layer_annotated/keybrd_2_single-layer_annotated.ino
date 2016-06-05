@@ -24,7 +24,6 @@ keybrd runs at the end of this sketch, under the "MAIN" heading.
 // ################## GLOBAL ###################
 // ================= INCLUDES ==================
 /*
-The compiler copies #included files into the sketch.
 All the includes in this sketch are to keybrd library classes.
 */
 //Ports

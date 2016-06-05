@@ -160,12 +160,14 @@ Following the style guide makes it easier for the next programmer to understand 
   <!-- http://stackoverflow.com/questions/2198241/best-practice-for-c-function-commenting -->
 
 ## Trace of keybrd scan
-Arduino does not have a debugger; so here is a list of functions in the order that they are called.
+Arduino does not have a debugger.
+So here is the next best thing; a list of functions in the order that they are called.
 Refer to it like a table of contents while reading the keybrd library.
 
 ```
     Matrix::scan()                          for each row
         Row::process()
+            Row::wait()
             Row::scan()
                 RowPort_*::setActivePin*()      strobe row on
                                                 for each col port
@@ -177,6 +179,9 @@ Refer to it like a table of contents while reading the keybrd library.
                                                             set rowState bit
             Row::debounce()                     debounce
             Row::pressRelease()                 for each key in row
+                                                    if falling edge
+                Key_*::release()                        scanCode->release()
+                    Code_*::release()                       Keyboard.release(scancode)
                                                     if rising edge
                 Key_*::press()                          scanCode->press()
                     Code_*::press()                         Keyboard.press(scancode)
