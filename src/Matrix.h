@@ -30,12 +30,9 @@ class Matrix
     private:
         RowBase *const *const ptrsRows;     //array of row pointers
         const uint8_t rowCount;
-        const bool activeHigh;              //logic level of strobe pin: 0=activeLow, 1=activeHigh
-
     public:
-        Matrix( RowBase *const ptrsRows[], const uint8_t rowCount, const bool activeHigh)
-            : ptrsRows(ptrsRows), rowCount(rowCount), activeHigh(activeHigh) {}
-
+        Matrix( RowBase *const ptrsRows[], const uint8_t rowCount)
+            : ptrsRows(ptrsRows), rowCount(rowCount) {}
         void scan();
 };
 #endif

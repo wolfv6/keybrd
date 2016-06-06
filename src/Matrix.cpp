@@ -7,6 +7,6 @@ void Matrix::scan()
 {
     for (uint8_t i=0; i < rowCount; i++)
     {
-        ptrsRows[i]->process(activeHigh);
+        ptrsRows[i]->process();
     }
 }

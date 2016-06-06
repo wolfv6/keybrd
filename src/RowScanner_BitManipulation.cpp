@@ -3,7 +3,7 @@
 Strobes the row and reads the columns.
 Strobe is on for shortest possible time to preserve IR LED on DodoHand's optic switch.
 */
-uint8_t RowScanner_BitManipulation::scan(uint16_t& rowEnd, const bool activeHigh)
+uint8_t RowScanner_BitManipulation::scan(uint16_t& rowEnd)
 {
     //strobe row on
     if (activeHigh)
@@ -31,7 +31,7 @@ uint8_t RowScanner_BitManipulation::scan(uint16_t& rowEnd, const bool activeHigh
         refRowPort.setActivePinHigh(rowPin);
     }
    
-    return getRowState(rowEnd, activeHigh);
+    return getRowState(rowEnd);
 }
 
 /*
@@ -40,7 +40,7 @@ Sets rowEnd and returns rowState.
 rowEnd is bitwise, where 1 bit corrsiponds to place immediatly after last key of row.
 rowEnd and rowMask are larger type than portMask so that they can not overflow.
 */
-uint8_t RowScanner_BitManipulation::getRowState(uint16_t& rowEnd, const bool activeHigh)
+uint8_t RowScanner_BitManipulation::getRowState(uint16_t& rowEnd)
 {
     uint16_t rowMask = 1;           //bitwise, one col per bit, active col bit is 1
     uint8_t rowState = 0;           //bitwise, one key per bit, 1 means key is pressed

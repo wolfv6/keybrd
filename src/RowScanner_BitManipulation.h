@@ -9,6 +9,7 @@
 class RowScanner_BitManipulation : public RowScannerInterface
 {
     private:
+        static const bool activeHigh;       //logic level of strobe pin: 0=activeLow, 1=activeHigh
         RowPort &refRowPort;                //this row's IC port
         const uint8_t rowPin;               //bitwise, 1 indicates IC pin connected to this row
 
@@ -20,7 +21,7 @@ class RowScanner_BitManipulation : public RowScannerInterface
             ColPort *const ptrsColPorts[], const uint8_t colPortCount)
             : refRowPort(refRowPort), rowPin(rowPin),
               ptrsColPorts(ptrsColPorts), colPortCount(colPortCount) {}
-        virtual uint8_t scan(uint16_t& rowEnd, const bool activeHigh);
-        uint8_t getRowState(uint16_t& rowEnd, const bool activeHigh);
+        virtual uint8_t scan(uint16_t& rowEnd);
+        uint8_t getRowState(uint16_t& rowEnd);
 };
 #endif

@@ -12,7 +12,7 @@ rowEnd and rowMask are larger type than portMask so that they can not overflow.
 class RowScannerInterface
 {
     public:
-        virtual uint8_t scan(uint16_t& rowEnd, const bool activeHigh)=0;
+        virtual uint8_t scan(uint16_t& rowEnd)=0;
 };
 #endif
 

@@ -7,7 +7,7 @@ For return, 1 means debounced changed.
 /*
 process() scans the row and calls any newly pressed or released keys.
 */
-void Row::process(const bool activeHigh)
+void Row::process()
 {
     //these variables are all bitwise, one bit per key
     uint8_t rowState;                           //1 means pressed, 0 means released
@@ -15,7 +15,7 @@ void Row::process(const bool activeHigh)
     uint8_t debouncedChanged;                   //1 means debounced changed
 
     wait();
-    rowState = scanner.scan(rowEnd, activeHigh);
+    rowState = scanner.scan(rowEnd);
     debouncedChanged = debouncer.debounce(rowState, debounced);
     pressRelease(rowEnd, debouncedChanged);
 }

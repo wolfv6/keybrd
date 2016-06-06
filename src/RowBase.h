@@ -20,6 +20,6 @@ class RowBase
         void pressRelease(const uint16_t rowEnd, const uint8_t debouncedChanged);
     public:
         RowBase(Key *const ptrsKeys[]) : ptrsKeys(ptrsKeys), debounced(0) { }
-        virtual void process(const bool activeHigh)=0;
+        virtual void process()=0;
 };
 #endif

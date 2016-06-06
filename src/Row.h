@@ -24,6 +24,6 @@ class Row : public RowBase
         Row( RowPort &refRowPort, const uint8_t rowPin,
             ColPort *const ptrsColPorts[], const uint8_t colPortCount, Key *const ptrsKeys[])
             : RowBase(ptrsKeys), scanner(refRowPort, rowPin, ptrsColPorts, colPortCount) { }
-        virtual void process(const bool activeHigh);
+        virtual void process();
 };
 #endif
