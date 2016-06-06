@@ -15,7 +15,7 @@ void Row::process(const bool activeHigh)
     uint8_t debouncedChanged;                   //1 means debounced changed
 
     wait();
-    //rowState = scanner.scan(rowEnd, activeHigh);
+    rowState = scanner.scan(rowEnd, activeHigh);
     debouncedChanged = debouncer.debounce(rowState, debounced);
     pressRelease(rowEnd, debouncedChanged);
 }

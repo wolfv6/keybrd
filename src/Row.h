@@ -23,9 +23,7 @@ class Row : public RowBase
     public:
         Row( RowPort &refRowPort, const uint8_t rowPin,
             ColPort *const ptrsColPorts[], const uint8_t colPortCount, Key *const ptrsKeys[])
-            : RowBase(ptrsKeys)
-            , RowScanner_BitManipulation scanner(refRowPort, rowPin, ptrsColPorts, colPortCount)
-            { }
+            : RowBase(ptrsKeys), scanner(refRowPort, rowPin, ptrsColPorts, colPortCount) { }
         virtual void process(const bool activeHigh);
 };
 #endif
