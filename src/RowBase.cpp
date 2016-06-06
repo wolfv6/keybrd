@@ -33,6 +33,8 @@ That way debug messages are printed at a managable rate.
 void RowBase::wait()
 {
     delayMicroseconds(DELAY_MICROSECONDS);      //delay between Row scans to debounce switches
+delay(500);
+Keyboard.print(" w ");
 }
 
 /*

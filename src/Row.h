@@ -2,7 +2,8 @@
 #define ROW_H
 
 #include <RowBase.h>
-#include <RowScanner_BitManipulation.h>
+//#include <RowScanner_BitManipulation.h>
+#include <RowScanner_Arduino.h>
 #include <Debouncer_4Samples.h>
 
 /*
@@ -18,12 +19,12 @@ Instantiation
 class Row : public RowBase
 {
     private:
-        RowScanner_BitManipulation scanner;
+        //RowScanner_BitManipulation scanner;
+        RowScanner_Arduino scanner;
         Debouncer_4Samples debouncer;
     public:
-        Row( RowPort &refRowPort, const uint8_t rowPin,
-            ColPort *const ptrsColPorts[], const uint8_t colPortCount, Key *const ptrsKeys[])
-            : RowBase(ptrsKeys), scanner(refRowPort, rowPin, ptrsColPorts, colPortCount) { }
+        //Row constructor was like Row_DH constructor
+        Row(Key *const ptrsKeys[]) : RowBase(ptrsKeys) { }
         virtual void process();
 };
 #endif
