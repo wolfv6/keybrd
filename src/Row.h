@@ -2,6 +2,7 @@
 #define ROW_H
 
 #include <RowBase.h>
+#include <RowScanner_BitManipulation.h>
 #include <Debouncer_4Samples.h>
 
 /*
@@ -17,14 +18,14 @@ Instantiation
 class Row : public RowBase
 {
     private:
+        RowScanner_BitManipulation scanner;
         Debouncer_4Samples debouncer;
     public:
         Row( RowPort &refRowPort, const uint8_t rowPin,
             ColPort *const ptrsColPorts[], const uint8_t colPortCount, Key *const ptrsKeys[])
-            : RowBase(refRowPort, rowPin, ptrsColPorts, colPortCount, ptrsKeys)
-        {
-            Debouncer_4Samples debouncer;
-        }
+            : RowBase(ptrsKeys)
+            , RowScanner_BitManipulation scanner(refRowPort, rowPin, ptrsColPorts, colPortCount)
+            { }
         virtual void process(const bool activeHigh);
 };
 #endif
