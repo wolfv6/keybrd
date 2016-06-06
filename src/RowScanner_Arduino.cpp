@@ -1,7 +1,7 @@
 #include "RowScanner_Arduino.h"
 /*
 Strobes the row and reads the columns.
-Strobe is on for shortest possible time to preserve IR LED on DodoHand's optic switch.
+Strobe is on for shortest possible time.
 */
 uint8_t RowScanner_Arduino::scan(uint16_t& rowEnd)
 {
@@ -10,11 +10,11 @@ uint8_t RowScanner_Arduino::scan(uint16_t& rowEnd)
     //strobe row on
     if (activeHigh)
     {
-        digitalWrite(0, HIGH);
+        digitalWrite(stobePin, HIGH);
     }
     else //activeLow
     {
-        digitalWrite(0, LOW);
+        digitalWrite(stobePin, LOW);
     }
     delayMicroseconds(3);  //time to stablize voltage
     
