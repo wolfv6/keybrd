@@ -24,7 +24,8 @@ class Row : public RowBase
         Debouncer_4Samples debouncer;
     public:
         //Row constructor was like Row_DH constructor
-        Row(const uint8_t rowPin, Key *const ptrsKeys[]) : RowBase(ptrsKeys), scanner(rowPin) { }
+        Row(const uint8_t strobePin, const uint8_t readPins[], const uint8_t READ_PIN_COUNT, Key *const ptrsKeys[])
+            : RowBase(ptrsKeys), scanner(strobePin, readPins, READ_PIN_COUNT) { }
         virtual void process();
 };
 #endif
