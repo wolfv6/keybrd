@@ -28,9 +28,10 @@ The largest allowabl DELAY_MICROSECONDS is 65535 (.065535 second).
 Polling I2C may slow the scan rate enough so that no additional delay is needed:
     const unsigned int Row::DELAY_MICROSECONDS = 0;
 
-Slow-scan trick for debug messages that print too fast, add delay to sketch loop():
+Slow-scan trick for debug messages that print too fast and not aligned, add this to sketch loop():
     delay(1000);
-That way debug messages are printed at a managable rate.
+    Keyboard.println("");
+That way debug messages are printed at a managable rate, and each scan starts a new line.
 */
 void RowBase::wait()
 {
