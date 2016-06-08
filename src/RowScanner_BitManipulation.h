@@ -6,6 +6,8 @@
 #include <RowPort.h>
 #include <ColPort.h>
 
+/* RowScanner_BitManipulation uses bit manipulation to read all pins of one port.
+*/
 class RowScanner_BitManipulation : public RowScannerInterface
 {
     private:

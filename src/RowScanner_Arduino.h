@@ -5,19 +5,16 @@
 #include <RowScannerInterface.h>
 #include <RowPort.h>
 #include <ColPort.h>
-/* rowPin > strobePins[]
-replace port calls with
-  x pass 1: hard code pins for row0 and col6, init in setup()
-  x pass 2: readPins[] array
-    pass 3: move calls to IC classes - Strobe_uC, Read_uC
-    pass 4: add IC classes Strobe_MCP23018, Read_MCP23018 */
+
+/* RowScanner_Arduino class uses Arduino pin numbers (no port name).
+*/
 class RowScanner_Arduino : public RowScannerInterface
 {
     private:
         static const bool activeHigh;           //logic level of strobe pin: 0=activeLow, 1=activeHigh
-        const uint8_t strobePin;                 //Arduino pin number connected to this row
-        const uint8_t* readPins;                //array of read pins
-        const uint8_t READ_PIN_COUNT;//todo READ_PIN_COUNT
+        const uint8_t strobePin;                //Arduino pin number connected to this row
+        const uint8_t* readPins;                //array of read pin numbers
+        const uint8_t READ_PIN_COUNT;           //number of read pins
     public:
         RowScanner_Arduino(const uint8_t strobePin,
                 const uint8_t readPins[], const uint8_t READ_PIN_COUNT)

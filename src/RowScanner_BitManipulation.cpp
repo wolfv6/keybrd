@@ -37,13 +37,15 @@ uint8_t RowScanner_BitManipulation::scan(uint16_t& rowEnd)
 /*
 Copies column pins to rowState.  Unused column pins are not copied.
 Sets rowEnd and returns rowState.
-rowEnd is bitwise, where 1 bit corrsiponds to place immediatly after last key of row.
-rowEnd and rowMask are larger type than portMask so that they can not overflow.
+rowEnd is a bitwise row mask, one col per bit, where active col bit is 1.
+At end of function, 1 bit marks place immediatly after last key of row.
+rowEnd is a larger type than portMask so that it can not overflow.
 */
 uint8_t RowScanner_BitManipulation::getRowState(uint16_t& rowEnd)
 {
-    uint16_t rowMask = 1;           //bitwise, one col per bit, active col bit is 1
     uint8_t rowState = 0;           //bitwise, one key per bit, 1 means key is pressed
+
+    rowEnd = 1;
 
     for (uint8_t i=0; i < colPortCount; i++)    //for each col port
     {
@@ -64,15 +66,13 @@ uint8_t RowScanner_BitManipulation::getRowState(uint16_t& rowEnd)
             {
                 if (portMask & ~colPortState)   //if pin detected a key press
                 {
-                    rowState |= rowMask;        //set rowState bit for that key
+                    rowState |= rowEnd;         //set rowState bit for that key
                 }
 
-                rowMask <<= 1;                  //shift rowMask to next key
+                rowEnd <<= 1;                   //shift rowEnd to next key
             }
         }
     }
-
-    rowEnd = rowMask;
 
     return rowState;
 }

@@ -29,7 +29,7 @@ Polling I2C may slow the scan rate enough so that no additional delay is needed:
     const unsigned int Row::DELAY_MICROSECONDS = 0;
 
 Slow-scan trick for debug messages that print too fast and not aligned, add this to sketch loop():
-    delay(1000);
+    delay(500);
     Keyboard.println("");
 That way debug messages are printed at a managable rate, and each scan starts a new line.
 */
@@ -41,6 +41,7 @@ void RowBase::wait()
 /*
 pressRelease() calls key's press() or release() function if it was pressed or released.
 Both parameters are bitwise.
+rowEnd bit marks positioned immediatly after last key of row.
 */
 void RowBase::pressRelease(const uint16_t rowEnd, const uint8_t debouncedChanged)
 {
