@@ -1,9 +1,9 @@
-#include "Row.h"
+#include "RowIOE.h"
 
 /*
 process() scans the row and calls any newly pressed or released keys.
 */
-void Row::process()
+void RowIOE::process()
 {
     //these variables are all bitwise, one bit per key
     uint8_t rowState;                           //1 means pressed, 0 means released

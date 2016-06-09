@@ -23,14 +23,14 @@ Tactile switch MJTP series bounce 10 ms http://www.apem.com/files/apem/brochures
 Avoid sampling the switch input at a rate synchronous to events in the environment
  that might create periodic EMI. For instance, 50 and 60 Hz.
 
-The largest allowabl DELAY_MICROSECONDS is 65535 (.065535 second).
+The largest allowable DELAY_MICROSECONDS is 65535 (.065535 seconds).
 
 Polling I2C may slow the scan rate enough so that no additional delay is needed:
     const unsigned int Row::DELAY_MICROSECONDS = 0;
 
 Slow-scan trick for debug messages that print too fast and not aligned, add this to sketch loop():
     delay(500);
-    Keyboard.println("");
+    Keyboard.println(F(""));
 That way debug messages are printed at a managable rate, and each scan starts a new line.
 */
 void RowBase::wait()

@@ -5,6 +5,9 @@
 #include <Key.h>
 
 /* RowBase is an abstract base class.
+
+Define and initilize DELAY_MICROSECONDS in sketch.
+    const unsigned int RowBase::DELAY_MICROSECONDS = 0;
 */
 class RowBase
 {
