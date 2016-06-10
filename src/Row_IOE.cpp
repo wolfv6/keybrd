@@ -1,17 +1,11 @@
 #include "Row_IOE.h"
 
-/*
-process() scans the row and calls any newly pressed or released keys.
-*/
-void Row_IOE::process()
+uint8_t Row_IOE::scan(uint16_t& rowEnd)
 {
-    //these variables are all bitwise, one bit per key
-    uint8_t rowState;                           //1 means pressed, 0 means released
-    uint16_t rowEnd;                            //1 bit marks positioned after last key of row
-    uint8_t debouncedChanged;                   //1 means debounced changed
+    return scanner.scan(rowEnd);
+}
 
-    wait();
-    rowState = scanner.scan(rowEnd);
-    debouncedChanged = debouncer.debounce(rowState, debounced);
-    pressRelease(rowEnd, debouncedChanged);
+uint8_t Row_IOE::debounce(const uint8_t rowState, uint8_t& debounced)
+{
+    return debouncer.debounce(rowState, debounced);
 }

@@ -23,6 +23,7 @@ class Row_IOE : public RowBase
         Row_IOE( RowPort& refRowPort, const uint8_t strobePin,
              ColPort& refColPort, Key *const ptrsKeys[])
             : RowBase(ptrsKeys), scanner(refRowPort, strobePin, refColPort) { }
-        virtual void process();
+        uint8_t scan(uint16_t& rowEnd);
+        uint8_t debounce(const uint8_t rowState, uint8_t& debounced);
 };
 #endif
