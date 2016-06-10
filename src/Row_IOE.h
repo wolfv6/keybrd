@@ -14,13 +14,13 @@ Configuration
 Instantiation
 -------------
 */
-class RowIOE : public RowBase
+class Row_IOE : public RowBase
 {
     private:
         RowScanner_PinsBitwise scanner;
         Debouncer_4Samples debouncer;
     public:
-        RowIOE( RowPort& refRowPort, const uint8_t strobePin,
+        Row_IOE( RowPort& refRowPort, const uint8_t strobePin,
              ColPort& refColPort, Key *const ptrsKeys[])
             : RowBase(ptrsKeys), scanner(refRowPort, strobePin, refColPort) { }
         virtual void process();
