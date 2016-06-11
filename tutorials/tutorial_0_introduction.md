@@ -19,7 +19,7 @@ The tutorials assume the reader:
 * is new to Arduino, firmware, controllers, and the internal workings of keyboards
 
 <!-- todo -->
-> All the tutorial sketches are tested on teensy 2.0 and PCA9655E-D I/O expander
+> Most of the tutorial sketches are obsolete and will not compile.  Will be updated soon.
 
 > The tutorial sketches will be changed to Teensy LC and MCP23018 I/O expander
 

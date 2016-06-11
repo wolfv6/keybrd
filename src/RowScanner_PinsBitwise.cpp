@@ -1,7 +1,7 @@
 #include "RowScanner_PinsBitwise.h"
 /*
 Strobes the row and reads the columns.
-Strobe is on for shortest possible time to preserve IR LED on DodoHand's optic switch.
+Sets rowEnd and returns rowState.
 */
 uint8_t RowScanner_PinsBitwise::scan(uint16_t& rowEnd)
 {
@@ -16,13 +16,9 @@ uint8_t RowScanner_PinsBitwise::scan(uint16_t& rowEnd)
     }
     delayMicroseconds(3);                       //time to stablize voltage
 
-    //read all the port pins
+    //read the port pins
     refColPort.read();
-/* shows strobing pin 1 and 2, but realy stobing 0 and 1 todo
-Keyboard.print(F(" strobePin="));
-Keyboard.print(strobePin);
-Keyboard.print(F(", "));
-*/
+
     //strobe row off
     if (activeHigh)
     {

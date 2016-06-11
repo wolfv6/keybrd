@@ -8,8 +8,8 @@ The most common reason for new classes are:
 
 ## Who this guide is for
 This guide is for the maintainers and developers of the keybrd library and it's extensions.
-It is assumed the reader is familiar with C++ language including pointers, objects, classes, static class variables, aggregation, inheritance, polymorphism, and enum.
-Some classes use bit manipulation.
+It is assumed the reader is familiar with C++ language including pointers, objects, classes, static class variables, composition, aggregation, inheritance, polymorphism, and enum.
+Debouncer and I/O expander use bit manipulation.
 
 ## Class inheritance diagrams
 
@@ -17,9 +17,14 @@ Keybrd library class inheritance diagram
 ```
 	Matrix
 
-	RowBase
-     |
-    Row
+	    RowBase
+	    /    \
+	Row_uC  Row_IOE
+
+	            RowScannerInterface
+	              /           \
+	RowScanner_PinsArray  RowScanner_PinsBitwise
+
 
 	IOExpanderPort
 
@@ -36,8 +41,13 @@ Keybrd library class inheritance diagram
 	LED_AVR  LED_MCP23018  LED_PCA9655E                 (one LED class for each type of IC)
 
 
+	DebouncerInterface
+	      |
+	Debouncer_4Samples
+
+
 	LayerStateInterface
-	    |
+	     |
 	LayerState
 
 
@@ -66,32 +76,70 @@ Keybrd library class inheritance diagram
 
 ## Dependency diagrams
 
-single-layer dependency diagram with LEDs
+Example single-layer dependency diagram with LEDs
 ```
-	matrix[1..*]
-	  |
-	row[1..*]_____________________________
-	  |          \          \             \
-	rowPort[1]  rowPin[1]  colPort[1]     keys[1]
-	                         |             |
-	                       colPins[1..*]  code[1..*]
-	                                       |
-	                                      LED[1]
+	             matrix[1..*]
+	               |
+	         ___ row_uC[1..*] ________
+	        /               \         \
+	RowScanner_PinsArray  debouncer  keys[1..*]
+	  /             \                  |
+	strobePin[1]  readPins[1..*]     code[1..*]
+	                                   |
+	                                 LED[1]
 
 ```
 
-multi-layer dependency diagram with LEDs and I/O Expander
+Example single-layer dependency diagram I/O Expander
 ```
-	matrix[1..*]
-	  |                                                layerStates[1..*]
-	row[1..*]_________________________________________/__    |         \
-	  |          \          \                \       /   \   |          \
-	rowPort[1]  rowPin[1]  colPort[1]       keys[1] / code_layer[1..*]  LED[0..*]
-	   \                  /   \               |    /                    /
-	    \                /   colPins[1..*]  key[1..*]                  /
-	     \              /                     |                       /
-	      \            /                    code[1..*]               /
-	       \          /       ______________________________________/
+	         ________ row_uC[1..*] _________
+	        /                     \         \
+	RowScanner_PinsArray[1]  debouncer[1]  keys[1..*]
+	  /             \                        |
+	strobePin[1]  readPins[1..*]           code[1..*]
+
+	
+	                 ___ row_IOE[1..*] _________
+	                /             \             \
+	  RowScanner_PinsBitwise[1]  debouncer[1]  keys[1..*]
+	     /         |        \                    |
+	rowPort[1]  rowPin[1]  colPort[1]          code[1..*]
+	     \                /   \
+	      \              /   colPins[1..*]
+	       \            /
+	      IOExpanderPort[0..*] 
+
+```
+
+Example multi-layer dependency diagram with layer LEDs
+```
+	                                                    layerStates[1..*]
+	         ________ row_uC[1..*] _____________________/__    |         \
+	        /                     \         \          /   \   |          \
+	RowScanner_PinsArray[1]  debouncer[1]  keys[1..*] / code_layer[1..*]  LED[0..*]
+	  /             \                        |       /
+	strobePin[1]  readPins[1..*]           code[1..*]
+
+```
+
+Example multi-layer dependency diagram with I/O Expander
+```
+	                                                    
+	         ________ row_uC[1..*] ________________________     _______layerStates[1..*]
+	        /                     \         \              \   /             |
+	RowScanner_PinsArray[1]  debouncer[1]  keys[1..*]   code_layer[1..*]     |
+	  /             \                        |       ________________________|
+	strobePin[1]  readPins[1..*]           code[1..*]                        |
+	                                                                         |
+	                                                                         |
+	                 ___ row_IOE[1..*] _________                   __________|
+	                /             \             \                 /          |
+	  RowScanner_PinsBitwise[1]  debouncer[1]  keys[1..*]  code_layer[1..*]  |
+	     /         |        \                    |      _____________________|
+	rowPort[1]  rowPin[1]  colPort[1]          code[1..*]
+	     \                /   \
+	      \              /   colPins[1..*]
+	       \            /
 	      IOExpanderPort[0..*] 
 
 ```
@@ -162,29 +210,25 @@ Following the style guide makes it easier for the next programmer to understand 
 ## Trace of keybrd scan
 Arduino does not have a debugger.
 So here is the next best thing; a list of functions in the order that they are called.
+The trace is of a single-layer keybrd scan (no LEDs and no I/O expander).
 Refer to it like a table of contents while reading the keybrd library.
 
 ```
-    Matrix::scan()                          for each row
-        Row::process()
-            Row::wait()
-            Row::scan()
-                RowPort_*::setActivePin*()      strobe row on
-                                                for each col port
-                    ColPort_*::read()               read col port
-                RowPort_*::setActivePin*()      strobe row off
-            Row::getRowState()                  for each col port
-                                                    for each connected col pin
-                                                        if key is pressed
+    Matrix::scan()                              for each row
+        RowBase::process()
+            RowBase::wait()                         delay time for debounce
+            RowScanner_PinsArray::scan()            strobe row on
+                                                        for each readPin
                                                             set rowState bit
-            Row::debounce()                     debounce
-            Row::pressRelease()                 for each key in row
-                                                    if falling edge
-                Key_*::release()                        scanCode->release()
-                    Code_*::release()                       Keyboard.release(scancode)
-                                                    if rising edge
-                Key_*::press()                          scanCode->press()
-                    Code_*::press()                         Keyboard.press(scancode)
+                                                    strobe row off
+            Debouncer_4Samples::debounce()          debounce
+            RowBase::pressRelease()                 for each key in row
+                                                        if falling edge
+                Key_*::release()                            scanCode->release()
+                    Code_*::release()                           Keyboard.release(scancode)
+                                                        if rising edge
+                Key_*::press()                              scanCode->press()
+                    Code_*::press()                             Keyboard.press(scancode)
 ```
 
 ## The Arduino libraries

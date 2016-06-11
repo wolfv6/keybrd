@@ -7,6 +7,25 @@ keybrd version 1.0.0 will be released when the public API is stable.
 
 ## [Unreleased][unreleased]
 
+## [0.3.2] - 2016-06-10
+### Changed
+* Changed uC from scanning port arrays to scanning Arduino pins.
+    Thereby added support for Arduino boards, Teensy 3, and Teensy LC micro controllers.
+* Changed IOE from scanning port arrays to scanning single ports.
+* Moved scanner and debouncer into their own classes.
+
+### Added
+* Row_uC
+* Row_IOE
+* RowScannerInterface
+* RowScanner_PinsArray
+* RowScanner_PinsBitwise
+* DebouncerInterface
+* Debouncer_4Samples
+
+### Removed
+* Port arrays
+
 ## [0.3.1] - 2016-06-02
 ### Added
 * RowBase class

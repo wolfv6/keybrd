@@ -24,7 +24,7 @@ For fastest response time, wait() should be placed before scan() or after pressR
 A keyboard with a faster scan rate responds faster.
 Follow these step to tune DELAY_MICROSECONDS for maximum scan rate for a given SAMPLE_COUNT:
 Initialize DELAY_MICROSECONDS in your sketch:
-    const unsigned int Row::DELAY_MICROSECONDS = 1000;
+    const unsigned int RowBase::DELAY_MICROSECONDS = 1000;
 Add this to the sketch's loop() function:
     debug.print_microseconds_per_scan();
 Compile and load the sketch into the microcontroller; microseconds_per_scan is printed every second.
@@ -42,12 +42,7 @@ Avoid sampling the switch input at a rate synchronous to events in the environme
 The largest allowable DELAY_MICROSECONDS is 65535 (.065535 seconds).
 
 Polling I2C may slow the scan rate enough so that no additional delay is needed:
-    const unsigned int Row::DELAY_MICROSECONDS = 0;
-
-Slow-scan trick for debug messages that print too fast and not aligned, add this to sketch loop():
-    delay(500);
-    Keyboard.println(F(""));
-That way debug messages are printed at a managable rate, and each scan starts a new line.
+    const unsigned int RowBase::DELAY_MICROSECONDS = 0;
 */
 void RowBase::wait()
 {
