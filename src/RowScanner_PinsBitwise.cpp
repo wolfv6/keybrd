@@ -69,7 +69,6 @@ uint8_t RowScanner_PinsBitwise::getRowState(uint16_t& rowEnd)
             rowEnd <<= 1;                   //shift rowEnd to next key
         }
     }
-//todo Keyboard.print(rowState);
 
     return rowState;
 }

@@ -38,7 +38,7 @@ class ColPort_MCP23018 : public ColPort
     public:
         //The constructor initialization list is in .cpp
         ColPort_MCP23018(IOExpanderPort& port, const uint8_t colPins);
-        void begin();
+        void begin(uint8_t activeHigh);
 
         //read port and store result in portState
         virtual void read();

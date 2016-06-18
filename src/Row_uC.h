@@ -6,13 +6,15 @@
 #include <Debouncer_4Samples.h>
 
 /* Row_uC is a row connected to a micro controller.
-Configuration
--------------
-Define and initilize DELAY_MICROSECONDS in sketch.  Detailed how to is in RowBase.cpp.
 
 Instantiation
 -------------
+Definition of DELAY_MICROSECONDS is explained in RowBase.cpp.
+todo Definition of activeHigh is explained in RowScanner_Interface.h
 Example instantiation of a row:
+
+    const unsigned int RowBase::DELAY_MICROSECONDS = 1000;
+    const bool RowScanner_PinsArray::activeHigh = 0;
 
     const uint8_t colPins[] = {0,1,2,3,7,8};
     const uint8_t COL_PIN_COUNT = sizeof(colPins)/sizeof(*colPins);

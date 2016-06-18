@@ -7,7 +7,8 @@ All the tutorial example sketches run on breadboard keyboards that have 2 to 8 k
 Breadboard keyboards have row-column matrices and diodes just like the big keyboards.
 
 A breadboard is the easiest way to learn keyboard electronics.
-Electronics are fickle, and you won't get everything right the first time.
+It's easy to get some detail wrong with electronics.
+You won't get everything right the first time.
 There is a learning curve.
 Compared to PCBs, breadboard keyboards are easier to learn on because:
 * Mistakes are easily corrected; no soldering and desoldering
@@ -22,12 +23,13 @@ Breadboard keyboards are useful for:
 ## Breadboard keyboard starter kit
 The parts needed to build all the tutorial Breadboard Keyboards are listed in [breadboard_keyboard_supplies.ods](breadboard_keyboard_supplies.ods).
 
-Wire cutters (or nail clipper) is the only required tool.
-A multi-meter is useful for trouble shooting.
+You will need two tools:
+* Wire cutters (or nail clipper)
+* A multi-meter for trouble shooting
 
 ## How a breadboard works
 To understand the breadboard keyboard you will need to know the internal parts of a breadboard:
-* power rail
+* bus strip
 * terminal strip
 
 These are explained in [How to Use a Breadboard](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard)
@@ -42,7 +44,7 @@ The basic breadboard has 4 switches and a microcontroller.
 ![breadboard keyboard with 2 rows and 2 columns](images/breadboard_keyboard_2x2_labeled.jpg "2x2 breadboard keyboard")
 
 The key matrix has two rows and two columns.
-Breadboard power rails are repurposed as matrix rows.
+Breadboard bus strips are used as matrix rows.
 Short bare wires connect terminal strips into matrix columns.
 Switch-diode pairs connect rows to columns.
 
@@ -63,7 +65,7 @@ Breadboard keyboard assembly instructions:
  * Teensy LC on the terminal strip labeled 1
  * switch leads oriented so that they will connect diodes to columns
  * diode cut offs connect terminal strips into columns
- * diodes are orient with cathode (banded end) towards the row (power strip)
+ * diodes are orient with cathode (banded end) towards the row (bus strip)
 3. Insert jumper wires connecting Teensy2 to the matrix rows and columns.
  * follow pin connections table (below) and consult pinout diagram in
    [close-up pic shows switch way half out, to show lead orientation]

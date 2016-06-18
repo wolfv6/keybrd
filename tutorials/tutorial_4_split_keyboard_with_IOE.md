@@ -6,10 +6,8 @@ When you finish this tutorial you will be able to be able to modify a 2-matrix k
 The breadboard in this picture models a split keyboard.
 ![breadboard keyboard with 2 rows and 4 columns of keys](images/breadboard_keyboard_2x5_labeled.jpg "2x5 breadboard keyboard")
 
-There is a total of 4 matrix rows, each on a breadboard power rail.
-
-The right matrix is connected to a microcontroller.
-The left matrix is connected to a I/O expander.
+The breadboard has four bus strips used as rows.
+Two rows connected to a microcontroller, and two rows connected to a I/O expander.
 
 The I/O expander has a small notch on one end, which identifies the end with pin 1.
 In the picture, pin 1 is on the right end.

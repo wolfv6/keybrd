@@ -15,9 +15,7 @@ class LED_AVR: public LED
 
     public:
         LED_AVR(volatile unsigned char& PORTx, const uint8_t pin): PORT(PORTx), pin(pin) {}
-
         virtual void on();
-
         virtual void off();
 };
 #endif

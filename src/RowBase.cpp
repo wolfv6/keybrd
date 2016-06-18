@@ -21,6 +21,8 @@ This version of wait() is very simple.  More sophisticated versions can override
 For fastest response time, wait() should be placed before scan() or after pressRelease()
  (waiting between strobe and send would unnecessarily delay send).
 
+DELAY_MICROSECONDS explained
+----------------------------
 A keyboard with a faster scan rate responds faster.
 Follow these step to tune DELAY_MICROSECONDS for maximum scan rate for a given SAMPLE_COUNT:
 Initialize DELAY_MICROSECONDS in your sketch:
@@ -58,7 +60,7 @@ void RowBase::pressRelease(const uint16_t rowEnd, const uint8_t debouncedChanged
 {
     uint8_t isFallingEdge;                      //1 means falling edge
     uint8_t isRisingEdge;                       //1 means rising edge
-    uint8_t rowMask;                            //bitwise, active col bit is 1
+    uint16_t rowMask;                           //bitwise, active col bit is 1 (same type as rowEnd)
     uint8_t col;                                //index for ptrsKeys[col] array
 
     //bit=1 if last debounced changed from 1 to 0, else bit=0

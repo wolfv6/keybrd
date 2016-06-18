@@ -6,7 +6,7 @@
 #include <RowPort.h>
 #include <ColPort.h>
 
-/* RowScanner_PinsArray class uses Arduino pin numbers (no port name).
+/* RowScanner_PinsArray class uses Arduino pin numbers (not port pin numbers).
 */
 class RowScanner_PinsArray : public RowScannerInterface
 {
@@ -17,18 +17,7 @@ class RowScanner_PinsArray : public RowScannerInterface
         const uint8_t READ_PIN_COUNT;           //number of read pins
     public:
         RowScanner_PinsArray(const uint8_t strobePin,
-                const uint8_t readPins[], const uint8_t READ_PIN_COUNT)
-            : strobePin(strobePin), readPins(readPins), READ_PIN_COUNT(READ_PIN_COUNT)
-        {
-            //row
-            pinMode(strobePin, OUTPUT);
-
-            //cols
-            for (uint8_t i=0; i < READ_PIN_COUNT; i++)
-            {
-                pinMode(readPins[i], INPUT_PULLUP);
-            }
-        }
+                const uint8_t readPins[], const uint8_t READ_PIN_COUNT);
         virtual uint8_t scan(uint16_t& rowEnd);
         uint8_t getRowState(uint16_t& rowEnd);
 };

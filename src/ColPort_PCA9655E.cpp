@@ -10,12 +10,6 @@ ColPort_PCA9655E::ColPort_PCA9655E
 
 void ColPort_PCA9655E::begin()
 {
-//Wire.begin() should only be called once https://www.arduino.cc/en/Reference/WireBegin
-#ifndef WIRE_BEGIN
-#define WIRE_BEGIN
-    Wire.begin();
-#endif
-
     Wire.beginTransmission(port.ADDR);
     Wire.write(configurationByteCommand);
     Wire.write(colPins);    //0=configure as output (for LED), 1=configure as input (for read)

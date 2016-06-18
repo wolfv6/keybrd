@@ -9,12 +9,6 @@ RowPort_MCP23018::RowPort_MCP23018(IOExpanderPort& port)
 
 void RowPort_MCP23018::begin()
 {
-//Wire.begin() should only be called once https://www.arduino.cc/en/Reference/WireBegin
-#ifndef WIRE_BEGIN
-#define WIRE_BEGIN
-    Wire.begin();
-#endif
-
     Wire.beginTransmission(port.ADDR);
     Wire.write(IODIR);
     Wire.write(0);                            //0=configure as output (for strobe pins and LED pins)

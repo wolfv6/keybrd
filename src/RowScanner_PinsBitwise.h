@@ -11,7 +11,6 @@
 class RowScanner_PinsBitwise : public RowScannerInterface
 {
     private:
-        static const bool activeHigh;       //logic level of strobe pin: 0=activeLow, 1=activeHigh
         RowPort& refRowPort;                //this row's IC port
         const uint8_t strobePin;            //bitwise, 1 indicates IC pin connected to this row
         ColPort& refColPort;
@@ -20,6 +19,7 @@ class RowScanner_PinsBitwise : public RowScannerInterface
             ColPort& refColPort)
             : refRowPort(refRowPort), strobePin(strobePin),
               refColPort(refColPort) {}
+        static const bool activeHigh;       //logic level of strobe pin: 0=activeLow, 1=activeHigh
         virtual uint8_t scan(uint16_t& rowEnd);
         uint8_t getRowState(uint16_t& rowEnd);
 };

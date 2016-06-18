@@ -7,6 +7,7 @@
 #include "IOExpanderPort.h"
 
 /* One PCA9655E I/O expander port connected to matrix columns.
+PCA9655E does not have internal pull-up resistors (PCA9535E does).
 
 Instantiation
  ------------

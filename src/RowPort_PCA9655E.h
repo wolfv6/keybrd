@@ -23,6 +23,8 @@ Example instantiation for row port 1:
 
 Diode orientation
  ----------------
+PCA9655E does not have internal pull-up resistors, external pull-down resistors are required.
+
 Rows, columns, and diode orientation are explained in Matrix.h
 
 PCA9655E data sheet
