@@ -2,11 +2,14 @@
 #define ROWSCANNER_PINSARRAY_H
 #include <Arduino.h>
 #include <inttypes.h>
+#include <config_keybrd.h>
 #include <RowScannerInterface.h>
 #include <RowPort.h>
 #include <ColPort.h>
 
 /* RowScanner_PinsArray class uses Arduino pin numbers (not port pin numbers).
+The maximum keys per row is 31, because Arduino's largest type is 32 bits and rowEnd consumes the last bit.
+Constructor is in RowScanner_PinsArray.cpp
 */
 class RowScanner_PinsArray : public RowScannerInterface
 {
@@ -18,8 +21,8 @@ class RowScanner_PinsArray : public RowScannerInterface
     public:
         RowScanner_PinsArray(const uint8_t strobePin,
                 const uint8_t readPins[], const uint8_t READ_PIN_COUNT);
-        virtual uint8_t scan(uint16_t& rowEnd);
-        uint8_t getRowState(uint16_t& rowEnd);
+        virtual read_pins_t scan(read_pins_mask_t& rowEnd);
+        //read_pins_t getRowState(read_pins_mask_t& rowEnd);
 };
 #endif
 

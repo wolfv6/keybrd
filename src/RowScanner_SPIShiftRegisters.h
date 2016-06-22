@@ -8,6 +8,7 @@
 #include <ColPort.h>
 
 /* RowScanner_SPIShiftRegisters reads all shift registers in a daisy chain.
+The maximum keys per row is 31, because Arduino's largest type is 32 bits and rowEnd consumes the last bit.
 //todo delete: Assumes only one row of shift registers is connected (no Slave Select).
 */
 class RowScanner_SPIShiftRegisters : public RowScannerInterface
@@ -17,9 +18,9 @@ class RowScanner_SPIShiftRegisters : public RowScannerInterface
         const uint8_t BYTE_COUNT;               //number of shift registers
         const uint8_t KEY_COUNT;                //number of keys in row
     public:
-        RowScanner_SPIShiftRegisters(const uint8_t SS, uint8_t BYTE_COUNT, uint16_t KEY_COUNT)
+        RowScanner_SPIShiftRegisters(const uint8_t SS, uint8_t BYTE_COUNT, uint8_t KEY_COUNT)
             : SS(SS), BYTE_COUNT(BYTE_COUNT), KEY_COUNT(KEY_COUNT) {}
-        virtual uint8_t scan(uint16_t& rowEnd);
+        virtual read_pins_t scan(read_pins_mask_t& rowEnd);
         void begin();
 };
 #endif

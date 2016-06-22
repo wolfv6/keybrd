@@ -3,11 +3,12 @@
 
 #include <Arduino.h>
 #include <inttypes.h>
+#include <config_keybrd.h>
 
 class RowScannerInterface
 {
     public:
-        virtual uint8_t scan(uint16_t& rowEnd)=0;
+        virtual read_pins_t scan(read_pins_mask_t& rowEnd)=0;
 };
 #endif
 

@@ -3,7 +3,7 @@
 Strobes the row and reads the columns.
 Sets rowEnd and returns rowState.
 */
-uint8_t RowScanner_PinsBitwise::scan(uint16_t& rowEnd)
+read_pins_t RowScanner_PinsBitwise::scan(read_pins_mask_t& rowEnd)
 {
     //strobe row on
     if (activeHigh)
@@ -39,7 +39,7 @@ rowEnd is a bitwise row mask, one col per bit, where active col bit is 1.
 At end of function, 1 bit marks place immediatly after last key of row.
 rowEnd is a larger type than portMask so that it can not overflow.
 */
-uint8_t RowScanner_PinsBitwise::getRowState(uint16_t& rowEnd)
+uint8_t RowScanner_PinsBitwise::getRowState(read_pins_mask_t& rowEnd)
 {
     uint8_t rowState = 0;           //bitwise, one key per bit, 1 means key is pressed
     uint8_t portMask;               //bitwise, 1 bit is a colPortState position

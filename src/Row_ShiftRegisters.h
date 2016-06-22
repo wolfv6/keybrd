@@ -29,10 +29,10 @@ class Row_ShiftRegisters : public RowBase
         RowScanner_SPIShiftRegisters scanner;
         Debouncer_4Samples debouncer;
     public:
-        Row_ShiftRegisters(const uint8_t SS, uint8_t BYTE_COUNT, Key *const ptrsKeys[], uint16_t KEY_COUNT)
+        Row_ShiftRegisters(const uint8_t SS, uint8_t BYTE_COUNT, Key *const ptrsKeys[], uint8_t KEY_COUNT)
             : RowBase(ptrsKeys), scanner(SS, BYTE_COUNT, KEY_COUNT) { }
         void begin();
-        uint8_t scan(uint16_t& rowEnd);
-        uint8_t debounce(const uint8_t rowState, uint8_t& debounced);
+        read_pins_t scan(read_pins_mask_t& rowEnd);
+        read_pins_t debounce(const read_pins_t rowState, read_pins_t& debounced);
 };
 #endif

@@ -4,10 +4,10 @@ where each sample contains the switch states for a row of switches, one bit per 
 
 Debounce uses Dr. Marty's debounce algorithm from
  http://drmarty.blogspot.com.br/2009/05/best-switch-debounce-routine-ever.html
-I2C and TWI protocols do not include any Packet Error Checking (PEC).
+SPI, I2C, and TWI protocols do not include any Packet Error Checking (PEC).
 The goal of Marty's debounce routine is to reject spurious signals,
-which is useful when connecting split keyboards with a cable using I2C or TWI.
-Was tested on split keyboard with 3-meter long telephone wire to I/O expander
+which is useful when connecting split keyboards with a cable using SPI, I2C, or TWI.
+This class was tested on split keyboard with a 3-meter long telephone wire to I/O expander.
 
 Dr. Marty's debounce algorithm:
  Periodically read samples and update the state when a number consecutive sample bits are equal.
@@ -23,11 +23,11 @@ There is a latency equal to SAMPLE_COUNT, between button press and debounced sig
 samples[SAMPLE_COUNT] is a ring buffer.  samplesIndex is it's current write index.
 SAMPLE_COUNT is the number of consecutive equal samples needed to debounce.
 SAMPLE_COUNT is a macro because it defines samples[SAMPLE_COUNT] array size at compile time.
-SAMPLE_COUNT should be at lease 1.
+SAMPLE_COUNT is defined in config_keybrd.h and should be at lease 1.
 
 SAMPLE_COUNT = 4 is very reliable for a keyboard.
-Keyboards with a long I2C wire or in environment with strong electromagnetic interference (EMI)
-may need a larger SAMPLE_COUNT for reliability.
+Split keyboards with a long connecting wire or in environment with
+strong electromagnetic interference (EMI) may need a larger SAMPLE_COUNT for reliability.
 */
 #include "Debouncer_4Samples.h"
 
@@ -35,11 +35,11 @@ may need a larger SAMPLE_COUNT for reliability.
 For parameters, 1 means pressed, 0 means released.
 For return, 1 means debounced changed.
 */
-uint8_t Debouncer_4Samples::debounce(const uint8_t rawSignal, uint8_t& debounced)
+read_pins_t Debouncer_4Samples::debounce(const read_pins_t rawSignal, read_pins_t& debounced)
 {
-    uint8_t previousDebounced;                  //bitwise, 1 means pressed, 0 means released
-    uint8_t all_1 = ~0;                         //bitwise
-    uint8_t all_0 = 0;                          //bitwise
+    read_pins_t previousDebounced;                  //bitwise, 1 means pressed, 0 means released
+    read_pins_t all_1 = ~0;                         //bitwise
+    read_pins_t all_0 = 0;                          //bitwise
 
     samples[samplesIndex] = rawSignal;          //insert rawSignal into samples[] ring buffer
 

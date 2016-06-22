@@ -7,6 +7,7 @@
 #include <ColPort.h>
 
 /* RowScanner_PinsBitwise uses bit manipulation to read all pins of one port.
+The maximum keys per row is 8, because ports have a maximum of 8 pins each.
 */
 class RowScanner_PinsBitwise : public RowScannerInterface
 {
@@ -20,7 +21,7 @@ class RowScanner_PinsBitwise : public RowScannerInterface
             : refRowPort(refRowPort), strobePin(strobePin),
               refColPort(refColPort) {}
         static const bool activeHigh;       //logic level of strobe pin: 0=activeLow, 1=activeHigh
-        virtual uint8_t scan(uint16_t& rowEnd);
-        uint8_t getRowState(uint16_t& rowEnd);
+        virtual read_pins_t scan(read_pins_mask_t& rowEnd);
+        uint8_t getRowState(read_pins_mask_t& rowEnd);
 };
 #endif

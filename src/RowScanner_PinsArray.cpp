@@ -39,9 +39,9 @@ https://www.arduino.cc/en/Reference/DigitalWrite
 https://www.arduino.cc/en/Reference/DigitalRead
 https://www.arduino.cc/en/Reference/Constants > Digital Pins modes: INPUT, INPUT_PULLUP, and OUTPUT
 */
-uint8_t RowScanner_PinsArray::scan(uint16_t& rowEnd)
+read_pins_t RowScanner_PinsArray::scan(read_pins_mask_t& rowEnd)
 {
-    uint8_t rowState = 0;
+    read_pins_t rowState = 0;                   //bitwise
     rowEnd = 1;
 
     //strobe row on

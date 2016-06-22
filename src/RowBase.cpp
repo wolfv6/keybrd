@@ -5,9 +5,9 @@ process() scans the row and calls any newly pressed or released keys.
 void RowBase::process()
 {
     //these variables are all bitwise, one bit per key
-    uint8_t rowState;                           //1 means pressed, 0 means released
-    uint16_t rowEnd;                            //1 bit marks positioned after last key of row
-    uint8_t debouncedChanged;                   //1 means debounced changed
+    read_pins_t rowState;                           //1 means pressed, 0 means released
+    read_pins_mask_t rowEnd;                            //1 bit marks positioned after last key of row
+    read_pins_t debouncedChanged;                   //1 means debounced changed
 
     wait();
     rowState = scan(rowEnd);
@@ -56,11 +56,11 @@ pressRelease() calls key's press() or release() function if it was pressed or re
 Both parameters are bitwise.
 rowEnd bit marks positioned immediatly after last key of row.
 */
-void RowBase::pressRelease(const uint16_t rowEnd, const uint8_t debouncedChanged)
+void RowBase::pressRelease(const read_pins_mask_t rowEnd, const read_pins_t debouncedChanged)
 {
-    uint8_t isFallingEdge;                      //1 means falling edge
-    uint8_t isRisingEdge;                       //1 means rising edge
-    uint16_t rowMask;                           //bitwise, active col bit is 1 (same type as rowEnd)
+    read_pins_t isFallingEdge;                  //bitwise, 1 means falling edge
+    read_pins_t isRisingEdge;                   //bitwise, 1 means rising edge
+    read_pins_t rowMask;                        //bitwise, active col bit is 1 (same type as rowEnd)
     uint8_t col;                                //index for ptrsKeys[col] array
 
     //bit=1 if last debounced changed from 1 to 0, else bit=0

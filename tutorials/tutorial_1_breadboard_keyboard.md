@@ -7,8 +7,8 @@ All the tutorial example sketches run on breadboard keyboards that have 2 to 8 k
 Breadboard keyboards have row-column matrices and diodes just like the big keyboards.
 
 A breadboard is the easiest way to learn keyboard electronics.
+A novice won't get everything right the first time.
 It's easy to get some detail wrong with electronics.
-You won't get everything right the first time.
 There is a learning curve.
 Compared to PCBs, breadboard keyboards are easier to learn on because:
 * Mistakes are easily corrected; no soldering and desoldering

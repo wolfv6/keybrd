@@ -9,10 +9,10 @@ void RowScanner_SPIShiftRegisters::begin()
 /*
 Sets rowEnd and returns rowState.
 */
-uint8_t RowScanner_SPIShiftRegisters::scan(uint16_t& rowEnd)
+read_pins_t RowScanner_SPIShiftRegisters::scan(read_pins_mask_t& rowEnd)
 {
 //todo rowEnd, rowState, return int size depend on BYTE_COUNT, like in send()
-    uint8_t rowState;
+    read_pins_t rowState = 0;
 
     digitalWrite(SS, LOW);
     digitalWrite(SS, HIGH);

@@ -7,10 +7,17 @@ keybrd version 1.0.0 will be released when the public API is stable.
 
 ## [Unreleased][unreleased]
 
+## [0.3.2] - 2016-06-21
+### Added
+config_keybrd.h for size configurations.
+RowScanner_SPI-ShiftRegisters for compact split keyboards up to 32 keys per matrix.
+LED_PinNumber for controlling indicator lights by pin number.
+
 ## [0.3.2] - 2016-06-10
 ### Changed
-* Changed uC from scanning port arrays to scanning Arduino pins.
-    Thereby added support for Arduino boards, Teensy 3, and Teensy LC micro controllers.
+* Changed uC from scanning port arrays to scanning Arduino pins, thereby adding support for:
+    Arduino boards, Teensy 3, and Teensy LC micro controllers
+    up to 31x31 matrix capability
 * Changed IOE from scanning port arrays to scanning single ports.
 * Moved scanner and debouncer into their own classes.
 

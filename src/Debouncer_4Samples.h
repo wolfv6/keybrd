@@ -2,21 +2,20 @@
 #define DEBOUNCER_4SAMPLES_H
 #include <Arduino.h>
 #include <inttypes.h>
+#include <config_keybrd.h>
 #include <DebouncerInterface.h>
 
-#define SAMPLE_COUNT 4      //number of consecutive equal bits needed to change a debounced bit
-
 /* Debouncer_4Samples
-Configuration: #define SAMPLE_COUNT in this header file.
+Configuration: #define SAMPLE_COUNT in config_keybrd.h
 */
 class Debouncer_4Samples : public DebouncerInterface
 {
     private:
-        uint8_t samples[SAMPLE_COUNT];          //bitwise, one bit per key, most recent readings
+        read_pins_t samples[SAMPLE_COUNT];          //bitwise, one bit per key, most recent readings
         uint8_t samplesIndex;                   //samples[] current write index
     public:
         Debouncer_4Samples(): samplesIndex(0) {}
-        virtual uint8_t debounce(const uint8_t rawSignal, uint8_t& debounced);
+        virtual read_pins_t debounce(const read_pins_t rawSignal, read_pins_t& debounced);
 };
 #endif
 
