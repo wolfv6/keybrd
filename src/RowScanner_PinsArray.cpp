@@ -2,16 +2,16 @@
 
 /* constructor
 */
-RowScanner_PinsArray::RowScanner_PinsArray(const uint8_t strobePin,
-        const uint8_t readPins[], const uint8_t READ_PIN_COUNT)
-    : strobePin(strobePin), readPins(readPins), READ_PIN_COUNT(READ_PIN_COUNT)
+RowScanner_PinsArray::RowScanner_PinsArray(const uint8_t STROBE_PIN,
+        const uint8_t READ_PINS[], const uint8_t READ_PIN_COUNT)
+    : STROBE_PIN(STROBE_PIN), READ_PINS(READ_PINS), READ_PIN_COUNT(READ_PIN_COUNT)
 {
     uint8_t mode;
 
     //configure row
-    pinMode(strobePin, OUTPUT);
+    pinMode(STROBE_PIN, OUTPUT);
 
-    if (activeHigh)
+    if (ACTIVE_HIGH)
     {
         mode = INPUT;                   //requires external pull-down resistor
     }
@@ -23,7 +23,7 @@ RowScanner_PinsArray::RowScanner_PinsArray(const uint8_t strobePin,
     //configure cols
     for (uint8_t i=0; i < READ_PIN_COUNT; i++)
     {
-        pinMode(readPins[i], mode);
+        pinMode(READ_PINS[i], mode);
     }
 }
 
@@ -45,20 +45,20 @@ read_pins_t RowScanner_PinsArray::scan(read_pins_mask_t& rowEnd)
     rowEnd = 1;
 
     //strobe row on
-    if (activeHigh)
+    if (ACTIVE_HIGH)
     {
-        digitalWrite(strobePin, HIGH);
+        digitalWrite(STROBE_PIN, HIGH);
     }
     else //activeLow
     {
-        digitalWrite(strobePin, LOW);
+        digitalWrite(STROBE_PIN, LOW);
     }
     delayMicroseconds(3);                       //time to stablize voltage
 
     //read all the column pins
     for (uint8_t i=0; i < READ_PIN_COUNT; i++)
     {
-        if ( digitalRead(readPins[i]) == activeHigh )
+        if ( digitalRead(READ_PINS[i]) == ACTIVE_HIGH )
         {
             rowState |= rowEnd;
         }
@@ -66,13 +66,13 @@ read_pins_t RowScanner_PinsArray::scan(read_pins_mask_t& rowEnd)
     }
 
     //strobe row off
-    if (activeHigh)
+    if (ACTIVE_HIGH)
     {
-        digitalWrite(strobePin, LOW);
+        digitalWrite(STROBE_PIN, LOW);
     }
     else //activeLow
     {
-        digitalWrite(strobePin, HIGH);
+        digitalWrite(STROBE_PIN, HIGH);
     }
 
     return rowState;
