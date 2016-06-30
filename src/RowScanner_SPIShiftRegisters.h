@@ -14,8 +14,8 @@ The maximum keys per row is 31, because Arduino's largest type is 32 bits and ro
 class RowScanner_SPIShiftRegisters : public RowScannerInterface
 {
     private:
-        const uint8_t SS;                       //Slave Select, pin on master
-        const uint8_t BYTE_COUNT;               //number of shift registers
+        const uint8_t SS;                       //pin on master that selects slave
+        const uint8_t BYTE_COUNT;               //number of bytes to read from shift registers
         const uint8_t KEY_COUNT;                //number of keys in row
     public:
         RowScanner_SPIShiftRegisters(const uint8_t SS, uint8_t BYTE_COUNT, uint8_t KEY_COUNT)

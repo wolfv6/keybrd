@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning 2.0.0](http://semver.org/).
 keybrd version 0.x.x is for initial development. The public API should not be considered stable.
 keybrd version 1.0.0 will be released when the public API is stable.
 
-## [Unreleased][unreleased]
+## [Unreleased]
 
 ## [0.3.2] - 2016-06-21
 ### Added

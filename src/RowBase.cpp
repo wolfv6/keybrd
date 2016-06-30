@@ -60,7 +60,7 @@ void RowBase::pressRelease(const read_pins_mask_t rowEnd, const read_pins_t debo
 {
     read_pins_t isFallingEdge;                  //bitwise, 1 means falling edge
     read_pins_t isRisingEdge;                   //bitwise, 1 means rising edge
-    read_pins_t rowMask;                        //bitwise, active col bit is 1 (same type as rowEnd)
+    read_pins_mask_t rowMask;                   //bitwise, active col bit is 1
     uint8_t col;                                //index for ptrsKeys[col] array
 
     //bit=1 if last debounced changed from 1 to 0, else bit=0
