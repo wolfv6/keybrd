@@ -4,6 +4,7 @@
 #include <RowBase.h>
 #include <RowScanner_SPIShiftRegisters.h>
 #include <Debouncer_4Samples.h>
+//todo #include <Debouncer_Not.h>
 
 /* Row_DH_IOE is a row connected to an Input/Output Expander.
 
@@ -28,9 +29,11 @@ class Row_ShiftRegisters : public RowBase
     private:
         RowScanner_SPIShiftRegisters scanner;
         Debouncer_4Samples debouncer;
+        //Debouncer_Not debouncer; //todo test
     public:
-        Row_ShiftRegisters(const uint8_t SS, uint8_t BYTE_COUNT, Key *const ptrsKeys[], uint8_t KEY_COUNT)
-            : RowBase(ptrsKeys), scanner(SS, BYTE_COUNT, KEY_COUNT) { }
+        Row_ShiftRegisters(const uint8_t STROBE_PIN, const uint8_t SHIFT_LOAD, uint8_t BYTE_COUNT,
+                Key *const ptrsKeys[], uint8_t KEY_COUNT)
+            : RowBase(ptrsKeys), scanner(STROBE_PIN, SHIFT_LOAD, BYTE_COUNT, KEY_COUNT) { }
         void begin();
         read_pins_t scan(read_pins_mask_t& rowEnd);
         read_pins_t debounce(const read_pins_t rowState, read_pins_t& debounced);
