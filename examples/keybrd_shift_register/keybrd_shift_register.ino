@@ -126,7 +126,7 @@ const uint8_t LED_PIN = 16;                     //indicates wait
 //sometimes OS takes 6 seconds to recongnize keyboard, LED blinks from the begining
 void wait()
 {
-    for (uint8_t count = 0; count < 6; count++)
+    for (uint8_t count = 0; count < 7; count++)
     {
         //print count
         Keyboard.print(count);
@@ -144,11 +144,12 @@ void setup()
 {
     pinMode (LED_PIN, OUTPUT);
     Keyboard.begin();
+
+    wait();
     SPI.begin();
     row_R0.begin();
     row_R1.begin();
 
-    wait();
     Keyboard.print(F("keybrd_shift_reg.ino "));
     debug.print_free_RAM();
 }

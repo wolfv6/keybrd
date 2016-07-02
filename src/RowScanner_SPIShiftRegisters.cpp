@@ -1,12 +1,17 @@
 #include "RowScanner_SPIShiftRegisters.h"
 
+//constructor
+RowScanner_SPIShiftRegisters::RowScanner_SPIShiftRegisters(const uint8_t STROBE_PIN, uint8_t KEY_COUNT)
+    : STROBE_PIN(STROBE_PIN), ROW_END(1 << KEY_COUNT), BYTE_COUNT(ceil (float(KEY_COUNT)/8))
+{
+    //configure controller to communicate with shift register matrix
+    pinMode(STROBE_PIN, OUTPUT);
+    pinMode(SHIFT_LOAD, OUTPUT);
+}
+
 void RowScanner_SPIShiftRegisters::begin()
 {
-    //configure row
-    pinMode(STROBE_PIN, OUTPUT);
-
     //initialize shift register's shift/load pin
-    pinMode(SHIFT_LOAD, OUTPUT);
     digitalWrite(SHIFT_LOAD, HIGH);
 }
 
@@ -29,7 +34,8 @@ read_pins_t RowScanner_SPIShiftRegisters::scan(read_pins_mask_t& rowEnd)
     //strobe row off
     digitalWrite(STROBE_PIN, LOW);
 
-    rowEnd = 1 << KEY_COUNT;
+    rowEnd = ROW_END;
+    //rowEnd = 1 << 8;
 
     //clear unpowered pins (for testing bb) todo
     rowState &= 0b01010001000100010001000100010001; //also 31st key
