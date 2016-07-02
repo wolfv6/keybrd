@@ -7,33 +7,27 @@
 #include <RowPort.h>
 #include <ColPort.h>
 
-/* RowScanner_SPIShiftRegisters reads all shift registers in a daisy chain.
+/* RowScanner_SPIShiftRegisters reads shift registers.
+shift registers 74HC165 Parallel-In-Serial-Out (PISO)
+
+in sketch:
+    const uint8_t RowScanner_SPIShiftRegisters::SHIFT_LOAD = 10;
+    call begin() from setup()
+
+Upto 4 shift registers can be in a daisy chained.
 The maximum keys per row is 31, because Arduino's largest type is 32 bits and rowEnd consumes the last bit.
-//todo delete: Assumes only one row of shift registers is connected (no Slave Select).
 
-For active low:
-    10k pull-up resistor are connected to power
-    connect controller's MISO pin to shift register's /QH pin
-    in sketch, const bool RowScanner_PinsArray::ACTIVE_HIGH = 0;
-
-For active high:
+The shift registers are active high:
     10k pull-down resistors are grounded
     connect controller's MISO pin to shift register's QH pin
-    in sketch, const bool RowScanner_PinsArray::ACTIVE_HIGH = 1;
-
-shift registers 74HC165 Parallel-In-Serial-Out (PISO) are Daisy chained
-
-The maximum keys per row is 31, because Arduino's largest type is 32 bits and rowEnd consumes the last bit.
-call begin() from setup()
 
 */
 class RowScanner_SPIShiftRegisters : public RowScannerInterface
 {
     private:
-        //todo static const bool ACTIVE_HIGH;          //logic level of strobe pin: 0=activeLow, 1=activeHigh
-        static const uint8_t SHIFT_LOAD;               //controller's pin number that is connected to shift register's SHIFT_LOAD pin
+        static const uint8_t SHIFT_LOAD;        //controller's pin number that is connected to shift register's SHIFT_LOAD pin
         const uint8_t STROBE_PIN;               //Arduino pin number connected to this row
-        const read_pins_mask_t ROW_END;                //number of keys in row  + 1
+        const read_pins_mask_t ROW_END;         //bitwise, 1 bit marks positioned after last key of row
         const uint8_t BYTE_COUNT;               //number of bytes to read from shift registers
     public:
         RowScanner_SPIShiftRegisters(const uint8_t STROBE_PIN, uint8_t KEY_COUNT);
