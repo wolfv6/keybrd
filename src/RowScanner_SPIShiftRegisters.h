@@ -21,6 +21,12 @@ The shift registers are active high:
     10k pull-down resistors are grounded
     connect controller's MISO pin to shift register's QH pin
 
+The shift register needs 5 wires.
+In addition, each row needs to be connected to a strobe pin from controller.
+The two parts of a split keyboard can be connected by one of:
+ * eSATA cable (has 7 wires, good for 2 rows)
+ * Ethernet cable (has 8 wires, good for 3 rows)
+
 */
 class RowScanner_SPIShiftRegisters : public RowScannerInterface
 {

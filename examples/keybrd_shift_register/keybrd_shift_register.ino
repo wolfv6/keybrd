@@ -104,7 +104,7 @@ const uint8_t KEY_R0_COUNT = sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0);
 Row_ShiftRegisters row_R0(8, ptrsKeys_R0, KEY_R0_COUNT);
 */
 
-//prints 0 1 2 3 4 5 6 7 8, microseconds_per_scan=87
+//prints 0 1 2 3 4 5 6 7 8, microseconds_per_scan=87 with SAMPLE_COUNT 4
 Key* ptrsKeys_R0[] = { &s_0, &s_z, &s_z, &s_z, &s_1, &s_z, &s_z, &s_z,
                        &s_2, &s_z, &s_z, &s_z, &s_3, &s_z, &s_z, &s_z,
                        &s_4, &s_z, &s_z, &s_z, &s_5, &s_z, &s_z, &s_z,
@@ -163,5 +163,5 @@ void loop()
 
 //delay(100);
 //Keyboard.println("");
-debug.print_microseconds_per_scan();
+//debug.print_microseconds_per_scan();
 }

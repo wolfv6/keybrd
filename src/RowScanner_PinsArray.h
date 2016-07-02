@@ -14,10 +14,10 @@ Constructor is in RowScanner_PinsArray.cpp
 class RowScanner_PinsArray : public RowScannerInterface
 {
     private:
-        static const bool ACTIVE_HIGH;          //logic level of strobe pin: 0=activeLow, 1=activeHigh
-        const uint8_t STROBE_PIN;               //Arduino pin number connected to this row
-        const uint8_t* const READ_PINS;               //array of read pin numbers
-        const uint8_t READ_PIN_COUNT;           //number of read pins
+        static const bool ACTIVE_HIGH;        //logic level of strobe pin: 0=activeLow, 1=activeHigh
+        const uint8_t STROBE_PIN;             //Arduino pin number connected to this row
+        const uint8_t* const READ_PINS;       //array of read pin numbers
+        const uint8_t READ_PIN_COUNT;         //number of read pins
     public:
         RowScanner_PinsArray(const uint8_t STROBE_PIN,
                 const uint8_t READ_PINS[], const uint8_t READ_PIN_COUNT);

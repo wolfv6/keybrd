@@ -35,7 +35,6 @@ read_pins_t RowScanner_SPIShiftRegisters::scan(read_pins_mask_t& rowEnd)
     digitalWrite(STROBE_PIN, LOW);
 
     rowEnd = ROW_END;
-    //rowEnd = 1 << 8;
 
     //clear unpowered pins (for testing bb) todo
     rowState &= 0b01010001000100010001000100010001; //also 31st key
