@@ -32,13 +32,8 @@ read_pins_t RowScanner_SPIShiftRegisters::scan(read_pins_mask_t& rowEnd)
     rowEnd = 1 << KEY_COUNT;
 
     //clear unpowered pins (for testing bb) todo
-    if (BYTE_COUNT == 1) rowState &=                         0b00010001;
-    if (BYTE_COUNT == 2) rowState &=                 0b0001000100010001;
-    if (BYTE_COUNT == 3) rowState &=         0b000100010001000100010001;
-    if (BYTE_COUNT == 4) rowState &= 0b01010001000100010001000100010001; //also 31st key
+    rowState &= 0b01010001000100010001000100010001; //also 31st key
 
-//Keyboard.print(" ");//todo
-//Keyboard.print(rowState); //why does rowState change to 1 for both rows? (row pin 8 is unplugged)
     return rowState;
 }
 

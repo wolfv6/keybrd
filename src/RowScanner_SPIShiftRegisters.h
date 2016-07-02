@@ -31,15 +31,13 @@ class RowScanner_SPIShiftRegisters : public RowScannerInterface
 {
     private:
         //todo static const bool ACTIVE_HIGH;          //logic level of strobe pin: 0=activeLow, 1=activeHigh
+        static const uint8_t SHIFT_LOAD;               //controller's pin number that is connected to shift register's SHIFT_LOAD pin
         const uint8_t STROBE_PIN;               //Arduino pin number connected to this row
-        const uint8_t SHIFT_LOAD;               //controller's pin number that is connected to shift register's SHIFT_LOAD pin
         const uint8_t KEY_COUNT;                //number of keys in row
         const uint8_t BYTE_COUNT;               //number of bytes to read from shift registers
     public:
-        RowScanner_SPIShiftRegisters(const uint8_t STROBE_PIN, const uint8_t SHIFT_LOAD,
-                uint8_t KEY_COUNT)
-            : STROBE_PIN(STROBE_PIN), SHIFT_LOAD(SHIFT_LOAD),
-                KEY_COUNT(KEY_COUNT), BYTE_COUNT(ceil (float(KEY_COUNT)/8)) {}
+        RowScanner_SPIShiftRegisters(const uint8_t STROBE_PIN, uint8_t KEY_COUNT)
+            : STROBE_PIN(STROBE_PIN), KEY_COUNT(KEY_COUNT), BYTE_COUNT(ceil (float(KEY_COUNT)/8)) {}
         virtual read_pins_t scan(read_pins_mask_t& rowEnd);
         void begin();
 };
