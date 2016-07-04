@@ -17,29 +17,27 @@ The keybrd library is flexible for designing custom Rows
  * choice of Debouncers
  * choice of Scanners
 
-this example illustrates the custom Row classes from a fictional keybrd_Ext library
-the keybrd_Ext library library is for a split keyboard with a matrix on each hand
-the diagrams show the design decisions made by the developer
+this example illustrates the custom Row classes for a fictional keybrd_Ext extension library
+the keybrd_Ext library is for a split keyboard with a matrix on each hand
+other custom Row classes would have a similar structure
 
-Row_Ext overrides RowBase::keyWasPressed()
+Row_Ext::keyWasPressed() overrides RowBase::keyWasPressed()
 Row_Ext::keyWasPressed() is used to unstick sticky keys
 
 Row_Ext_uC scans the primary matrix
-Row_Ext_uC is a custom class composed of stock keybrd library classes
-
 Row_Ext_ShiftRegisters scans the secondary matrix
-Row_Ext_ShiftRegisters is a custom class composed of stock keybrd library classes
+Row_Ext_uC and Row_Ext_ShiftRegisters are a custom classes composed of stock keybrd library classes
 
 Class inheritance diagram
 ```
 
     	   RowBase
 	         |
-	       Row_Ext                                override RowBase::keyWasPressed()
+	       Row_Ext                                (override RowBase::keyWasPressed() )
           /      \
-    Row_Ext_uC  Row_Ext_ShiftRegisters            inherit Row_Ext::keyWasPressed()
+    Row_Ext_uC  Row_Ext_ShiftRegisters            (inherit Row_Ext::keyWasPressed() )
 
-/home/wolfv/Documents/Arduino/keybrd_proj/keybrd/doc/keybrd_library_developer_guide.md
+
 	            RowScannerInterface
 	              /           \
 	RowScanner_PinsArray  RowScanner_SPIShiftRegisters
@@ -52,12 +50,12 @@ Dependency diagram
 	         ________ Row_Ext_uC[1] _______________
 	        /                     \                \
 	RowScanner_PinsArray[1]  Debouncer_Samples[1]  Key[1..*]
-	  /             \                               |
+	     /          \                               |
 	strobePin[1]  readPins[1..*]                   Code[1..*]
 
 
-              _____ Row_Ext_ShiftRegisters[1] _____________
-	         /                        \                    \
+                _____ Row_Ext_ShiftRegisters[1] ___________
+	           /                        \                  \
     RowScanner_SPIShiftRegisters[1]  Debouncer_Samples[1]  Key[1..*]
 	       /       \                                        |
     strobePin[1]  ROW_END[1]                               Code[1..*]
@@ -68,27 +66,28 @@ Dependency diagram
 
 Keybrd library class inheritance diagram
 ```
-	             RowBase
+	     _______ RowBase ________
 	    /          |             \
 	Row_uC  Row_ShiftRegisters  Row_IOE
 
-	            RowScannerInterface
-	              /          \                     \
+	               _____ RowScannerInterface ______
+	              /            |                   \
 	RowScanner_PinsArray  RowScanner_PinsBitwise  RowScanner_SPIShiftRegisters
+
 
 	IOExpanderPort
 
-	         _______ RowPort _______
-	        /          |            \
-	RowPort_AVR  RowPort_MCP23018  RowPort_PCA9655E     (one RowPort class for each type of IC)
+	    RowPort
+	       |
+	RowPort_PCA9655E                            (one RowPort class for each IOE type)
  
-	          _______ ColPort _______
-	         /          |            \
-	ColPort_AVR  ColPort_MCP23018  ColPort_PCA9655E     (one ColPort class for each type of IC)
+        ColPort
+	       |
+	ColPort_PCA9655E                            (one ColPort class for each IOE type)
  
-	       _____ LED ______
-	      /       |        \
-	LED_AVR  LED_MCP23018  LED_PCA9655E                 (one LED class for each type of IC)
+	       ____ LED ____
+	      /             \
+	LED_PinNumber  LED_PCA9655E
 
 
 	DebouncerInterface
@@ -118,7 +117,7 @@ Keybrd library class inheritance diagram
 	 |
 	 |__________________________________________
 	       \           \            \           \
-	     Code_Sc  Code_Shift  Code_AutoShift  Code_LockLED
+	     Code_Sc  Code_Shift  Code_AutoShift  Code_LEDLock
 	                         /      |      \
 	                  Code_ScS  Code_ScNS  Code_ScNS_00
 
@@ -128,75 +127,48 @@ Keybrd library class inheritance diagram
 
 Example single-layer dependency diagram with LEDs
 ```
-	             matrix[1..*]
-	               |
-	         ___ row_uC[1..*] ________
+	         ___ Row_uC[1..*] ________
 	        /               \         \
-	RowScanner_PinsArray  debouncer  keys[1..*]
-	  /             \                  |
-	strobePin[1]  readPins[1..*]     code[1..*]
-	                                   |
-	                                 LED[1]
-
-```
-
-Example single-layer dependency diagram I/O Expander
-```
-	         ________ row_uC[1..*] _________
-	        /                     \         \
-	RowScanner_PinsArray[1]  debouncer[1]  keys[1..*]
-	  /             \                        |
-	strobePin[1]  readPins[1..*]           code[1..*]
-
-	
-	                 ___ row_IOE[1..*] _________
-	                /             \             \
-	  RowScanner_PinsBitwise[1]  debouncer[1]  keys[1..*]
-	     /         |        \                    |
-	rowPort[1]  rowPin[1]  colPort[1]          code[1..*]
-	     \                /   \
-	      \              /   colPins[1..*]
-	       \            /
-	      IOExpanderPort[0..*] 
+	RowScanner_PinsArray  Debouncer  Keys[1..*] __
+	                                   |          \
+	                                 Code[1..*]  Code_LEDLock[1..*]
+	                                               |
+	                                             LED_PinNumber[1]
 
 ```
 
 Example multi-layer dependency diagram with layer LEDs
 ```
-	                                                    layerStates[1..*]
-	         ________ row_uC[1..*] _____________________/__    |         \
+	                                                    LayerStates[1..*]
+	         ________ Row_uC[1..*] _____________________/__    |         \
 	        /                     \         \          /   \   |          \
-	RowScanner_PinsArray[1]  debouncer[1]  keys[1..*] / code_layer[1..*]  LED[0..*]
-	  /             \                        |       /
-	strobePin[1]  readPins[1..*]           code[1..*]
+	RowScanner_PinsArray[1]  Debouncer[1]  Keys[1..*] / Code_Layer[1..*]  LED_PinNumber[0..*]
+	                                         |       /
+	                                       Code[1..*]
 
 ```
 
-Example multi-layer dependency diagram with shift registers
+Example secondary matrix with shift registers dependency diagram
 ```
-    Row_ShiftRegisters
+	            Row_ShiftRegisters[1..*]
+	             /              \         \
+	RowScanner_ShiftRegisters  Debouncer  Keys[1..*]
+	                                       |
+	                                      Code[1..*]
 
 ```
 
-Example multi-layer dependency diagram with I/O Expander
+Example secondary matrix with I/O Expander dependency diagram with LEDs
 ```
-	                                                    
-	         ________ row_uC[1..*] ________________________     _______layerStates[1..*]
-	        /                     \         \              \   /             |
-	RowScanner_PinsArray[1]  debouncer[1]  keys[1..*]   code_layer[1..*]     |
-	  /             \                        |       ________________________|
-	strobePin[1]  readPins[1..*]           code[1..*]                        |
-	                                                                         |
-	                                                                         |
-	                 ___ row_IOE[1..*] _________                   __________|
-	                /             \             \                 /          |
-	  RowScanner_PinsBitwise[1]  debouncer[1]  keys[1..*]  code_layer[1..*]  |
-	     /         |        \                    |      _____________________|
-	rowPort[1]  rowPin[1]  colPort[1]          code[1..*]
-	     \                /   \
-	      \              /   colPins[1..*]
+	                 ___ Row_IOE[1..*] _________
+	                /             \             \
+	  RowScanner_PinsBitwise[1]  Debouncer[1]  Keys[1..*] __
+	     /         |        \                    |          \
+	RowPort[1]  RowPin[1]  ColPort[1]          Code[1..*]  Code_LEDLock[1..*]
+	     \                /   \                              |
+	      \              /   ColPins[1..*]                 LED[1]
 	       \            /
-	      IOExpanderPort[0..*] 
+	      IOExpanderPort[0..*]
 
 ```
 
@@ -270,7 +242,7 @@ The trace is of a single-layer keybrd scan (no LEDs and no I/O expander).
 Refer to it like a table of contents while reading the keybrd library.
 
 ```
-    Matrix::scan()                              for each row
+    loop()                                      for each row
         RowBase::process()
             RowBase::wait()                         delay time for debounce
             RowScanner_PinsArray::scan()            strobe row on

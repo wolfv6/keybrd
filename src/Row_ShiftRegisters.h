@@ -31,7 +31,7 @@ class Row_ShiftRegisters : public RowBase
         RowDelay rowDelay;
         RowScanner_SPIShiftRegisters scanner;
         Debouncer_4Samples debouncer;
-        //Debouncer_Not debouncer; //tested
+        //Debouncer_Not debouncer; //passed test
     public:
         Row_ShiftRegisters(const uint8_t STROBE_PIN, Key *const ptrsKeys[], uint8_t KEY_COUNT)
             : RowBase(ptrsKeys), scanner(STROBE_PIN, KEY_COUNT) { }
