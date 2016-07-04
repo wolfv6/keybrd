@@ -2,6 +2,7 @@
 #define ROW_H
 
 #include <RowBase.h>
+#include <RowDelay.h>
 #include <RowScanner_PinsArray.h>
 #include <Debouncer_4Samples.h>
 
@@ -29,6 +30,7 @@ Number of colPins should equal number of keys in ptrsKeys_0[] array.
 class Row_uC : public RowBase
 {
     private:
+        RowDelay rowDelay;
         RowScanner_PinsArray scanner;
         Debouncer_4Samples debouncer;
     public:

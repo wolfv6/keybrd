@@ -26,7 +26,7 @@ Layout
 #include <Row_ShiftRegisters.h>
 
 // =============== CONFIGURATION ===============
-const unsigned int RowBase::DELAY_MICROSECONDS = 0; //500
+const unsigned int RowDelay::DELAY_MICROSECONDS = 0; //500
 const bool RowScanner_PinsArray::ACTIVE_HIGH = 0; //left matrix is active low
 const uint8_t RowScanner_SPIShiftRegisters::SHIFT_LOAD = 10;
 

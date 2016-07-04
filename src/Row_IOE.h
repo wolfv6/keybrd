@@ -2,6 +2,7 @@
 #define ROWIOE_H
 
 #include <RowBase.h>
+#include <RowDelay.h>
 #include <RowScanner_PinsBitwise.h>
 #include <Debouncer_4Samples.h>
 
@@ -34,6 +35,7 @@ Number of pins in colPort0 should equal number of keys in ptrsKeys_0[] array.
 class Row_IOE : public RowBase
 {
     private:
+        RowDelay rowDelay;
         RowScanner_PinsBitwise scanner;
         Debouncer_4Samples debouncer;
     public:

@@ -1,40 +1,4 @@
 #include "RowBase.h"
-/* wait() delay's scan to give switches time to debounce.
-This version of wait() is very simple.  More sophisticated versions can override this one.
-
-For fastest response time, wait() should be placed before scan() or after pressRelease()
- (waiting between scan and send would unnecessarily delay send).
-
-DELAY_MICROSECONDS explained
-----------------------------
-A keyboard with a faster scan rate responds faster.
-Follow these step to tune DELAY_MICROSECONDS for maximum scan rate for a given SAMPLE_COUNT:
-Initialize DELAY_MICROSECONDS in your sketch:
-    const unsigned int RowBase::DELAY_MICROSECONDS = 1000;
-Add this to the sketch's loop() function:
-    debug.print_microseconds_per_scan();
-Compile and load the sketch into the microcontroller; microseconds_per_scan is printed every second.
-Adjust the value of DELAY_MICROSECONDS and repeat until:
-    debug.print_microseconds_per_scan() <= DEBOUNCE_TIME / SAMPLE_COUNT
-
-DEBOUNCE_TIME can be obtained from the switch's datasheet.  Some switch bounce times are:
-Cherry MX specifies 5msec bounce time http://www.cherrycorp.com/english/switches/key/mx.htm
-hasu measured Cherry MX bounce times .3ms to 1.4ms http://geekhack.org/index.php?topic=42385.0
-Tactile switch MJTP series bounce 10 ms http://www.apem.com/files/apem/brochures/MJTP_6MM.pdf 
-
-Avoid sampling the switch input at a rate synchronous to events in the environment
- that might create periodic EMI. For instance, 50 and 60 Hz.
-
-The largest allowable DELAY_MICROSECONDS is 65535 (.065535 seconds).
-
-Polling I2C may slow the scan rate enough so that no additional delay is needed:
-    const unsigned int RowBase::DELAY_MICROSECONDS = 0;
-*/
-void RowBase::wait()
-{
-    delayMicroseconds(DELAY_MICROSECONDS);      //delay between Row scans to debounce switches
-}
-
 /*
 pressRelease() calls key's press() or release() function if it was pressed or released.
 Both parameters are bitwise.

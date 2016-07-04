@@ -10,14 +10,10 @@
 class RowBase
 {
     private:
-        static const unsigned int DELAY_MICROSECONDS; //delay between each Row scan for debouncing
         Key *const *const ptrsKeys;             //array of Key pointers
-
         virtual void keyWasPressed();
     protected:
         read_pins_t debounced;                  //bitwise, 1 means pressed, 0 means released
-
-        void wait();
         void pressRelease(const read_pins_mask_t rowEnd, const read_pins_t debouncedChanged);
     public:
         RowBase(Key *const ptrsKeys[]) : ptrsKeys(ptrsKeys), debounced(0) { }
