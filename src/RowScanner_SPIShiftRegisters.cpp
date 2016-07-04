@@ -36,8 +36,8 @@ read_pins_t RowScanner_SPIShiftRegisters::scan(read_pins_mask_t& rowEnd)
 
     rowEnd = ROW_END;
 
-    //clear unpowered pins (for testing bb) todo
-    rowState &= 0b01010001000100010001000100010001; //also 31st key
+    //for testing breadboard, clear unpowered pins
+    rowState &= 0b01010001000100010001000100010001; //todo
 
     return rowState;
 }

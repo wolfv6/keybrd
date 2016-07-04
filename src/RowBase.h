@@ -11,7 +11,7 @@ class RowBase
 {
     private:
         static const unsigned int DELAY_MICROSECONDS; //delay between each Row scan for debouncing
-        Key *const *const ptrsKeys;         //array of Key pointers
+        Key *const *const ptrsKeys;             //array of Key pointers
 
         virtual void keyWasPressed();
     protected:

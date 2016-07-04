@@ -5,9 +5,9 @@ process() scans the row and calls any newly pressed or released keys.
 void RowBase::process()
 {
     //these variables are all bitwise, one bit per key
-    read_pins_t rowState;                           //1 means pressed, 0 means released
-    read_pins_mask_t rowEnd;                            //1 bit marks positioned after last key of row
-    read_pins_t debouncedChanged;                   //1 means debounced changed
+    read_pins_t rowState;                       //1 means pressed, 0 means released
+    read_pins_mask_t rowEnd;                    //1 bit marks positioned after last key of row
+    read_pins_t debouncedChanged;               //1 means debounced changed
 
     wait();
     rowState = scan(rowEnd);
@@ -19,7 +19,7 @@ void RowBase::process()
 This version of wait() is very simple.  More sophisticated versions can override this one.
 
 For fastest response time, wait() should be placed before scan() or after pressRelease()
- (waiting between strobe and send would unnecessarily delay send).
+ (waiting between scan and send would unnecessarily delay send).
 
 DELAY_MICROSECONDS explained
 ----------------------------

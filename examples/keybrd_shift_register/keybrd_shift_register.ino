@@ -1,9 +1,9 @@
 /* keybrd_shift_reg.ino
-tested on Teensy LC and daisy chained 74HC165 shift registers
+Tested on Teensy LC and daisy chained 74HC165 shift registers
 
-the keyboard hardware for this sketch has 4 shift registers,
- with every 4th input pins connected to a pull-down resistor and matrix column.
-unused input pins are not grounded, so add this line to RowScanner_SPIShiftRegisters::scan():
+The keyboard hardware for this sketch has 4 shift registers,
+ with every 4th input pin connected to a pull-down resistor and matrix column, also the 31st key.
+Unused input pins are not grounded, so add this line to RowScanner_SPIShiftRegisters::scan():
     //clear unpowered pins (for testing on breadboard)
     rowState &= 0b01010001000100010001000100010001;
 

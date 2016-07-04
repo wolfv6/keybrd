@@ -20,7 +20,7 @@ Example instantiation of a row:
     const uint8_t COL_PIN_COUNT = sizeof(colPins)/sizeof(*colPins);
 
     Key* const ptrsKeys_0[] = { &k_00, &k_01, &k_02, &k_03, &k_04, &k_05 };
-    Row_DH_uC row_0(21, colPins, COL_PIN_COUNT, ptrsKeys_0);
+    Row_uC row_0(21, colPins, COL_PIN_COUNT, ptrsKeys_0);
 
 Number of colPins should equal number of keys in ptrsKeys_0[] array.
     if a colPin is missing, a key will be unresposive

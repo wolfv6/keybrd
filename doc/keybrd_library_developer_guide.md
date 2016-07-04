@@ -11,20 +11,70 @@ This guide is for the maintainers and developers of the keybrd library and it's 
 It is assumed the reader is familiar with C++ language including pointers, objects, classes, static class variables, composition, aggregation, inheritance, polymorphism, and enum.
 Debouncer and I/O expander use bit manipulation.
 
+## Custom Row classes
+The keybrd library is flexible for designing custom Rows
+ * RowBase functions can be overridden in a derived class
+ * choice of Debouncers
+ * choice of Scanners
+
+this example illustrates the custom Row classes from a fictional keybrd_Ext library
+the keybrd_Ext library library is for a split keyboard with a matrix on each hand
+the diagrams show the design decisions made by the developer
+
+Row_Ext overrides RowBase::keyWasPressed()
+Row_Ext::keyWasPressed() is used to unstick sticky keys
+
+Row_Ext_uC scans the primary matrix
+Row_Ext_uC is a custom class composed of stock keybrd library classes
+
+Row_Ext_ShiftRegisters scans the secondary matrix
+Row_Ext_ShiftRegisters is a custom class composed of stock keybrd library classes
+
+Class inheritance diagram
+```
+
+    	   RowBase
+	         |
+	       Row_Ext                                override RowBase::keyWasPressed()
+          /      \
+    Row_Ext_uC  Row_Ext_ShiftRegisters            inherit Row_Ext::keyWasPressed()
+
+/home/wolfv/Documents/Arduino/keybrd_proj/keybrd/doc/keybrd_library_developer_guide.md
+	            RowScannerInterface
+	              /           \
+	RowScanner_PinsArray  RowScanner_SPIShiftRegisters
+
+```
+
+Dependency diagram
+```
+
+	         ________ Row_Ext_uC[1] _______________
+	        /                     \                \
+	RowScanner_PinsArray[1]  Debouncer_Samples[1]  Key[1..*]
+	  /             \                               |
+	strobePin[1]  readPins[1..*]                   Code[1..*]
+
+
+              _____ Row_Ext_ShiftRegisters[1] _____________
+	         /                        \                    \
+    RowScanner_SPIShiftRegisters[1]  Debouncer_Samples[1]  Key[1..*]
+	       /       \                                        |
+    strobePin[1]  ROW_END[1]                               Code[1..*]
+
+```
+
 ## Class inheritance diagrams
 
 Keybrd library class inheritance diagram
 ```
-	Matrix
-
-	    RowBase
-	    /    \
-	Row_uC  Row_IOE
+	             RowBase
+	    /          |             \
+	Row_uC  Row_ShiftRegisters  Row_IOE
 
 	            RowScannerInterface
-	              /           \
-	RowScanner_PinsArray  RowScanner_PinsBitwise
-
+	              /          \                     \
+	RowScanner_PinsArray  RowScanner_PinsBitwise  RowScanner_SPIShiftRegisters
 
 	IOExpanderPort
 
@@ -119,6 +169,12 @@ Example multi-layer dependency diagram with layer LEDs
 	RowScanner_PinsArray[1]  debouncer[1]  keys[1..*] / code_layer[1..*]  LED[0..*]
 	  /             \                        |       /
 	strobePin[1]  readPins[1..*]           code[1..*]
+
+```
+
+Example multi-layer dependency diagram with shift registers
+```
+    Row_ShiftRegisters
 
 ```
 
