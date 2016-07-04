@@ -155,9 +155,11 @@ void setup()
 
 void loop()
 {
+    //left matrix
     row_L0.process();
     row_L1.process();
 
+    //right matrix
     row_R0.process();
     row_R1.process();
 
