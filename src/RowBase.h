@@ -21,8 +21,6 @@ class RowBase
         void pressRelease(const read_pins_mask_t rowEnd, const read_pins_t debouncedChanged);
     public:
         RowBase(Key *const ptrsKeys[]) : ptrsKeys(ptrsKeys), debounced(0) { }
-        virtual void process();
-        virtual read_pins_t scan(read_pins_mask_t& rowEnd)=0;
-        virtual read_pins_t debounce(const read_pins_t rowState, read_pins_t& debounced)=0;
+        virtual void process()=0;
 };
 #endif

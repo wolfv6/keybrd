@@ -1,20 +1,4 @@
 #include "RowBase.h"
-/*
-process() scans the row and calls any newly pressed or released keys.
-*/
-void RowBase::process()
-{
-    //these variables are all bitwise, one bit per key
-    read_pins_t rowState;                       //1 means pressed, 0 means released
-    read_pins_mask_t rowEnd;                    //1 bit marks positioned after last key of row
-    read_pins_t debouncedChanged;               //1 means debounced changed
-
-    wait();
-    rowState = scan(rowEnd);
-    debouncedChanged = debounce(rowState, debounced);
-    pressRelease(rowEnd, debouncedChanged);
-}
-
 /* wait() delay's scan to give switches time to debounce.
 This version of wait() is very simple.  More sophisticated versions can override this one.
 

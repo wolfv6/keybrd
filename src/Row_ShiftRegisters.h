@@ -34,7 +34,6 @@ class Row_ShiftRegisters : public RowBase
         Row_ShiftRegisters(const uint8_t STROBE_PIN, Key *const ptrsKeys[], uint8_t KEY_COUNT)
             : RowBase(ptrsKeys), scanner(STROBE_PIN, KEY_COUNT) { }
         void begin();
-        read_pins_t scan(read_pins_mask_t& rowEnd);
-        read_pins_t debounce(const read_pins_t rowState, read_pins_t& debounced);
+        void process();
 };
 #endif

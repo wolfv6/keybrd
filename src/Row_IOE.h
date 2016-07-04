@@ -40,7 +40,6 @@ class Row_IOE : public RowBase
         Row_IOE( RowPort& refRowPort, const uint8_t strobePin,
              ColPort& refColPort, Key *const ptrsKeys[])
             : RowBase(ptrsKeys), scanner(refRowPort, strobePin, refColPort) { }
-        read_pins_t scan(read_pins_mask_t& rowEnd);
-        read_pins_t debounce(const read_pins_t rowState, read_pins_t& debounced);
+        void process();
 };
 #endif
