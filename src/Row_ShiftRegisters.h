@@ -2,7 +2,6 @@
 #define ROW_SHIFTREGISTERS_H
 
 #include <RowBase.h>
-#include <RowDelay.h>
 #include <RowScanner_SPIShiftRegisters.h>
 #include <Debouncer_4Samples.h>
 //#include <Debouncer_Not.h>
@@ -28,7 +27,6 @@ Number of pins in colPort0 should equal number of keys in ptrsKeys_0[] array.
 class Row_ShiftRegisters : public RowBase
 {
     private:
-        RowDelay rowDelay;
         RowScanner_SPIShiftRegisters scanner;
         Debouncer_4Samples debouncer;
         //Debouncer_Not debouncer; //passed test

@@ -1,6 +1,6 @@
-#include "RowDelay.h"
+#include "ScanDelay.h"
 
-void RowDelay::delay()
+void ScanDelay::delay()
 {
     delayMicroseconds(DELAY_MICROSECONDS);
 }

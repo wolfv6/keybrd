@@ -94,6 +94,7 @@ Keybrd library class inheritance diagram
 	      |
 	Debouncer_4Samples
 
+    ScanDelay
 
 	LayerStateInterface
 	     |
@@ -244,7 +245,6 @@ Refer to it like a table of contents while reading the keybrd library.
 ```
     loop()                                      for each row
         RowBase::process()
-            RowBase::wait()                         delay time for debounce
             RowScanner_PinsArray::scan()            strobe row on
                                                         for each readPin
                                                             set rowState bit
@@ -257,6 +257,8 @@ Refer to it like a table of contents while reading the keybrd library.
                                                         if rising edge
                 Key_*::press()                              scanCode->press()
                     Code_*::press()                             Keyboard.press(scancode)
+        scanDelay.delay();
+         
 ```
 
 ## The Arduino libraries

@@ -10,7 +10,6 @@ void Row_uC::process()
     read_pins_mask_t rowEnd;                    //1 bit marks positioned after last key of row
     read_pins_t debouncedChanged;               //1 means debounced changed
 
-    rowDelay.delay();
     rowState = scanner.scan(rowEnd);
     debouncedChanged = debouncer.debounce(rowState, debounced);
     pressRelease(rowEnd, debouncedChanged);

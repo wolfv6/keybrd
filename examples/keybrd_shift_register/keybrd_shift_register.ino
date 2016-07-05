@@ -16,6 +16,7 @@ Layout
 // ################## GLOBAL ###################
 // ================= INCLUDES ==================
 #include <Debug.h>
+#include <ScanDelay.h>
 
 //Codes
 #include <Code_Sc.h>
@@ -26,7 +27,7 @@ Layout
 #include <Row_ShiftRegisters.h>
 
 // =============== CONFIGURATION ===============
-const unsigned int RowDelay::DELAY_MICROSECONDS = 0; //500
+ScanDelay scanDelay(9000);
 const bool RowScanner_PinsArray::ACTIVE_HIGH = 0; //left matrix is active low
 const uint8_t RowScanner_SPIShiftRegisters::SHIFT_LOAD = 10;
 
@@ -162,6 +163,8 @@ void loop()
     //right matrix
     row_R0.process();
     row_R1.process();
+
+    scanDelay.delay();
 
 //delay(100);
 //Keyboard.println("");
