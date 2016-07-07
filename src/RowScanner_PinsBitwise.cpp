@@ -3,7 +3,7 @@
 Strobes the row and reads the columns.
 Sets rowEnd and returns rowState.
 */
-ColPort* const RowScanner_PinsBitwise::scan(read_pins_mask_t& rowEnd)
+ColPort* const RowScanner_PinsBitwise::scan()
 {
     //strobe row on
     if (activeHigh)

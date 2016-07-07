@@ -4,14 +4,15 @@ void Row_IOE::process()
 {
     //these variables are all bitwise, one bit per key
     uint8_t rowState;                       //1 means pressed, 0 means released
-    read_pins_mask_t rowEnd;                    //1 bit marks positioned after last key of row
+    //read_pins_mask_t rowEnd;                    //1 bit marks positioned after last key of row
     uint8_t debouncedChanged;               //1 means debounced changed
     ColPort* ptrColPort; //new
+    uint8_t KEY_COUNT; //new
 
-    ptrColPort = scanner.scan(rowEnd);
-    rowState = getRowState(ptrColPort, rowEnd); //new
+    ptrColPort = scanner.scan();
+    rowState = getRowState(ptrColPort, KEY_COUNT); //new
     debouncedChanged = debouncer.debounce(rowState, debounced);
-    pressRelease(rowEnd, debouncedChanged);
+    pressRelease(KEY_COUNT, debouncedChanged);
 }
 
 /*
@@ -21,12 +22,13 @@ rowEnd is a bitwise row mask, one col per bit, where active col bit is 1.
 At end of function, 1 bit marks place immediatly after last key of row.
 rowEnd is a larger type than portMask so that it can not overflow.
 */
-uint8_t Row_IOE::getRowState(ColPort* ptrColPort, read_pins_mask_t& rowEnd)
+uint8_t Row_IOE::getRowState(ColPort* ptrColPort, uint8_t& KEY_COUNT)
 {
     uint8_t rowState = 0;           //bitwise, one key per bit, 1 means key is pressed
     uint8_t portMask;               //bitwise, 1 bit is a colPortState position
+    uint8_t rowEnd;                    //1 bit marks positioned after last key of row todo rename
 
-    rowEnd = 1;
+    KEY_COUNT = 0;
 
     //bitwise colPins, 1 means pin is connected to column
     uint8_t colPins = ptrColPort->getColPins();
@@ -49,6 +51,7 @@ uint8_t Row_IOE::getRowState(ColPort* ptrColPort, read_pins_mask_t& rowEnd)
             }
 
             rowEnd <<= 1;                   //shift rowEnd to next key
+            KEY_COUNT++;
         }
     }
 
