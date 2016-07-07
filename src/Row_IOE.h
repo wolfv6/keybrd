@@ -4,6 +4,7 @@
 #include <RowBase.h>
 #include <RowScanner_PinsBitwise.h>
 #include <Debouncer_4Samples.h>
+#include <ColPort.h>
 
 /* Row_DH_IOE is a row connected to an Input/Output Expander.
 
@@ -41,5 +42,6 @@ class Row_IOE : public RowBase
              ColPort& refColPort, Key *const ptrsKeys[])
             : RowBase(ptrsKeys), scanner(refRowPort, strobePin, refColPort) { }
         void process();
+        uint8_t getRowState(ColPort* refColPort, read_pins_mask_t& rowEnd);
 };
 #endif

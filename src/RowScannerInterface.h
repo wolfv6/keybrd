@@ -8,7 +8,9 @@
 class RowScannerInterface
 {
     public:
-        virtual read_pins_t scan(read_pins_mask_t& rowEnd)=0;
+       // virtual read_pins_t scan(read_pins_mask_t& rowEnd)=0;
+       // todo, remove RowScannerInterface because
+       // some RowScanners will return ColPort e.g. RowScanner_PinsBitwise
 };
 #endif
 
