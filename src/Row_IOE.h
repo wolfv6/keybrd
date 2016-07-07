@@ -39,7 +39,7 @@ class Row_IOE : public RowBase
         Debouncer_4Samples debouncer;
     public:
         Row_IOE( RowPort& refRowPort, const uint8_t strobePin,
-             ColPort& refColPort, Key *const ptrsKeys[], const uint8_t KEY_COUNT)
+             ColPort& refColPort, Key *const ptrsKeys[], const uint8_t KEY_COUNT) //todo if KEY_COUNT is passed in, store it in private
             : RowBase(ptrsKeys), scanner(refRowPort, strobePin, refColPort) { }
         void process();
         uint8_t getRowState(ColPort* ptrColPort, uint8_t& KEY_COUNT);

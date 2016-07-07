@@ -19,7 +19,6 @@ The keybrd library is flexible for designing custom Rows
 
 this example illustrates the custom Row classes for a fictional keybrd_Ext extension library
 the keybrd_Ext library is for a split keyboard with a matrix on each hand
-other custom Row classes would have a similar structure
 
 Row_Ext::keyWasPressed() overrides RowBase::keyWasPressed()
 Row_Ext::keyWasPressed() is used to unstick sticky keys
@@ -38,8 +37,6 @@ Class inheritance diagram
     Row_Ext_uC  Row_Ext_ShiftRegisters            (inherit Row_Ext::keyWasPressed() )
 
 
-	            RowScannerInterface
-	              /           \
 	RowScanner_PinsArray  RowScanner_SPIShiftRegisters
 
 ```
@@ -70,8 +67,7 @@ Keybrd library class inheritance diagram
 	    /          |             \
 	Row_uC  Row_ShiftRegisters  Row_IOE
 
-	               _____ RowScannerInterface ______
-	              /            |                   \
+
 	RowScanner_PinsArray  RowScanner_PinsBitwise  RowScanner_SPIShiftRegisters
 
 

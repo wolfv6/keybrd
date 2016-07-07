@@ -2,14 +2,13 @@
 #define ROWSCANNER_PINSBITWISE_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include <RowScannerInterface.h>
 #include <RowPort.h>
 #include <ColPort.h>
 
 /* RowScanner_PinsBitwise uses bit manipulation to read all pins of one port.
 The maximum keys per row is 8, because ports have a maximum of 8 pins each.
 */
-class RowScanner_PinsBitwise : public RowScannerInterface
+class RowScanner_PinsBitwise
 {
     private:
         RowPort& refRowPort;                //this row's IC port

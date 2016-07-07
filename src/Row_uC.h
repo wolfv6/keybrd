@@ -32,9 +32,9 @@ class Row_uC : public RowBase
         RowScanner_PinsArray scanner;
         Debouncer_4Samples debouncer;
     public:
-        Row_uC(const uint8_t strobePin, const uint8_t readPins[], const uint8_t READ_PIN_COUNT,
-                Key *const ptrsKeys[])
-            : RowBase(ptrsKeys), scanner(strobePin, readPins, READ_PIN_COUNT) { }
+        Row_uC(const uint8_t strobePin, const uint8_t readPins[],
+                Key *const ptrsKeys[], const uint8_t KEY_COUNT)
+            : RowBase(ptrsKeys), scanner(strobePin, readPins, KEY_COUNT) { }
         void process();
 };
 #endif

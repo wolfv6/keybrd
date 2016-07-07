@@ -2,8 +2,8 @@
 #define ROWSCANNER_SPI_SHIFTREGISTERS_H
 #include <Arduino.h>
 #include <inttypes.h>
+#include <config_keybrd.h>
 #include <SPI.h>
-#include <RowScannerInterface.h>
 #include <RowPort.h>
 #include <ColPort.h>
 
@@ -28,7 +28,7 @@ The two parts of a split keyboard can be connected by one of:
  * Ethernet cable (has 8 wires, good for 3 rows)
 
 */
-class RowScanner_SPIShiftRegisters : public RowScannerInterface
+class RowScanner_SPIShiftRegisters
 {
     private:
         static const uint8_t SHIFT_LOAD;        //controller's pin number that is connected to shift register's SHIFT_LOAD pin
