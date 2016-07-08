@@ -4,8 +4,7 @@
 configures column port's configuration and output.
 */
 RowPort_PCA9655E::RowPort_PCA9655E(IOExpanderPort& port)
-    : port(port), configurationByteCommand(port.num + 6), outputByteCommand(port.num + 2)
-{}
+    : port(port), configurationByteCommand(port.num + 6), outputByteCommand(port.num + 2) {}
 
 void RowPort_PCA9655E::begin()
 {
