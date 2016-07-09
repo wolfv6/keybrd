@@ -3,8 +3,7 @@
 /*
 configures column port's configuration, input, and pins.
 */
-ColPort_PCA9655E::ColPort_PCA9655E
-(IOExpanderPort& port, const uint8_t colPins)
+ColPort_PCA9655E::ColPort_PCA9655E (IOExpanderPort& port, const uint8_t colPins)
     : ColPort(colPins), port(port), configurationByteCommand(port.num + 6), inputByteCommand(port.num)
 {}
 

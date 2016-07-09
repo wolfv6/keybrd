@@ -1,12 +1,4 @@
 #include "Debug.h"
-#include "getFreeSRAM.h"
-
-void Debug::print_free_RAM()
-{
-    delay(1000);                                //give OS time to find USB
-    Keyboard.print(F("Free SRAM = "));
-    Keyboard.println( getFreeSRAM() );
-}
 
 void Debug::print_microseconds_per_scan()
 {

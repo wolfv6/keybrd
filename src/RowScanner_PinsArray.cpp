@@ -28,10 +28,7 @@ RowScanner_PinsArray::RowScanner_PinsArray(const uint8_t STROBE_PIN,
 }
 
 /* scan() Strobes the row and reads the columns.
-Sets rowEnd and returns rowState.
-rowEnd is a bitwise row mask, one col per bit, where active col bit is 1.
-At end of function, 1 bit marks place immediatly after last key of row.
-rowEnd is a larger type than portMask so that it can not overflow.
+Sets KEY_COUNT and returns rowState.
 
 https://www.arduino.cc/en/Tutorial/DigitalPins
 https://www.arduino.cc/en/Reference/PinMode
@@ -39,10 +36,10 @@ https://www.arduino.cc/en/Reference/DigitalWrite
 https://www.arduino.cc/en/Reference/DigitalRead
 https://www.arduino.cc/en/Reference/Constants > Digital Pins modes: INPUT, INPUT_PULLUP, and OUTPUT
 */
-read_pins_t RowScanner_PinsArray::scan(read_pins_mask_t& rowEnd)
+read_pins_t RowScanner_PinsArray::scan(uint8_t& keyCount)
 {
-    read_pins_t rowState = 0;                   //bitwise
-    rowEnd = 1;
+    read_pins_t rowState = 0;                   //bitwise, one col per bit, 1 means key is pressed
+    read_pins_t rowMask = 1;                    //bitwise, one col per bit, active col bit is 1
 
     //strobe row on
     if (ACTIVE_HIGH)
@@ -60,9 +57,9 @@ read_pins_t RowScanner_PinsArray::scan(read_pins_mask_t& rowEnd)
     {
         if ( digitalRead(READ_PINS[i]) == ACTIVE_HIGH )
         {
-            rowState |= rowEnd;
+            rowState |= rowMask;
         }
-        rowEnd <<= 1;
+        rowMask <<= 1;
     }
 
     //strobe row off
@@ -75,5 +72,6 @@ read_pins_t RowScanner_PinsArray::scan(read_pins_mask_t& rowEnd)
         digitalWrite(STROBE_PIN, HIGH);
     }
 
+    keyCount = READ_PIN_COUNT;
     return rowState;
 }

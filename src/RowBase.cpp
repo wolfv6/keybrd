@@ -2,13 +2,12 @@
 /*
 pressRelease() calls key's press() or release() function if it was pressed or released.
 Both parameters are bitwise.
-rowEnd bit marks positioned immediatly after last key of row.
 */
 void RowBase::pressRelease(const uint8_t KEY_COUNT, const read_pins_t debouncedChanged)
 {
     read_pins_t isFallingEdge;                  //bitwise, 1 means falling edge
     read_pins_t isRisingEdge;                   //bitwise, 1 means rising edge
-    read_pins_mask_t rowMask;                   //bitwise, active col bit is 1
+    read_pins_t rowMask;                        //bitwise, active col bit is 1
     uint8_t col;                                //index for ptrsKeys[col] array
 
     //bit=1 if last debounced changed from 1 to 0, else bit=0

@@ -15,7 +15,6 @@ in sketch:
     call begin() from setup()
 
 Upto 4 shift registers can be in a daisy chained.
-The maximum keys per row is 31, because Arduino's largest type is 32 bits and rowEnd consumes the last bit.
 
 The shift registers are active high:
     10k pull-down resistors are grounded
@@ -33,11 +32,11 @@ class RowScanner_SPIShiftRegisters
     private:
         static const uint8_t SHIFT_LOAD;        //controller's pin number that is connected to shift register's SHIFT_LOAD pin
         const uint8_t STROBE_PIN;               //Arduino pin number connected to this row
-        const read_pins_mask_t ROW_END;         //bitwise, 1 bit marks positioned after last key of row
         const uint8_t BYTE_COUNT;               //number of bytes to read from shift registers
+        uint8_t KEY_COUNT;
     public:
         RowScanner_SPIShiftRegisters(const uint8_t STROBE_PIN, uint8_t KEY_COUNT);
-        virtual read_pins_t scan(read_pins_mask_t& rowEnd);
+        virtual read_pins_t scan(uint8_t& KEY_COUNT);
         void begin();
 };
 #endif

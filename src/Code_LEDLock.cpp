@@ -59,7 +59,7 @@ This debug code prints "keyboard_leds=0" when scrollLock is pressed:
 */
     if (keyboard_leds & USB_LED_bit)            //if USB_LED_bit is set
     {
-        refLED.off();                      //LED on-off seem inverted, but it works for active high
+        refLED.off();       //LED on-off seem inverted, but it works for active low and active high
     }
     else
     {

@@ -14,7 +14,7 @@ class RowBase
         virtual void keyWasPressed();
     protected:
         read_pins_t debounced;                  //bitwise, 1 means pressed, 0 means released
-        void pressRelease(const read_pins_mask_t rowEnd, const read_pins_t debouncedChanged);
+        void pressRelease(const uint8_t KEY_COUNT, const read_pins_t debouncedChanged);
     public:
         RowBase(Key *const ptrsKeys[]) : ptrsKeys(ptrsKeys), debounced(0) { }
         virtual void process()=0;

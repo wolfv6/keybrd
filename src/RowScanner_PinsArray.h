@@ -7,7 +7,6 @@
 #include <ColPort.h>
 
 /* RowScanner_PinsArray class uses Arduino pin numbers (not port pin numbers).
-The maximum keys per row is 31, because Arduino's largest type is 32 bits and rowEnd consumes the last bit.
 Constructor is in RowScanner_PinsArray.cpp
 */
 class RowScanner_PinsArray
@@ -19,9 +18,8 @@ class RowScanner_PinsArray
         const uint8_t READ_PIN_COUNT;         //number of read pins
     public:
         RowScanner_PinsArray(const uint8_t STROBE_PIN,
-                const uint8_t READ_PINS[], const uint8_t READ_PIN_COUNT);
-        virtual read_pins_t scan(read_pins_mask_t& rowEnd);
-        //read_pins_t getRowState(read_pins_mask_t& rowEnd);
+                const uint8_t READ_PINS[], const uint8_t READ_PIN_COUNT); //todo rename READ_PIN_COUNT to KEY_COUNT ??
+        virtual read_pins_t scan(uint8_t& KEY_COUNT);
 };
 #endif
 

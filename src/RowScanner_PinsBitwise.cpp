@@ -1,7 +1,6 @@
 #include "RowScanner_PinsBitwise.h"
 /*
 Strobes the row and reads the columns.
-Sets rowEnd and returns rowState.
 */
 ColPort* const RowScanner_PinsBitwise::scan()
 {
@@ -29,6 +28,5 @@ ColPort* const RowScanner_PinsBitwise::scan()
         refRowPort.setActivePinHigh(strobePin);
     }
    
-//    return getRowState(refColPort, rowEnd);
     return &refColPort;
 }

@@ -2,7 +2,7 @@
 
 //constructor
 RowScanner_SPIShiftRegisters::RowScanner_SPIShiftRegisters(const uint8_t STROBE_PIN, uint8_t KEY_COUNT)
-    : STROBE_PIN(STROBE_PIN), ROW_END(1 << KEY_COUNT), BYTE_COUNT(ceil (float(KEY_COUNT)/8))
+    : STROBE_PIN(STROBE_PIN), BYTE_COUNT(ceil (float(KEY_COUNT)/8)), KEY_COUNT(KEY_COUNT)
 {
     //configure controller to communicate with shift register matrix
     pinMode(STROBE_PIN, OUTPUT);
@@ -16,9 +16,9 @@ void RowScanner_SPIShiftRegisters::begin()
 }
 
 /*
-Sets rowEnd and returns rowState.
+Sets keyCount and returns rowState.
 */
-read_pins_t RowScanner_SPIShiftRegisters::scan(read_pins_mask_t& rowEnd)
+read_pins_t RowScanner_SPIShiftRegisters::scan(uint8_t& keyCount)
 {
     read_pins_t rowState = 0;
 
@@ -34,10 +34,10 @@ read_pins_t RowScanner_SPIShiftRegisters::scan(read_pins_mask_t& rowEnd)
     //strobe row off
     digitalWrite(STROBE_PIN, LOW);
 
-    rowEnd = ROW_END;
+    keyCount = KEY_COUNT;
 
-    //for testing breadboard, clear unpowered pins
-    rowState &= 0b01010001000100010001000100010001; //todo
+    //for testing on breadboard, clear unpowered pins
+    rowState &= 0b11110001000100010001000100010001; //todo
 
     return rowState;
 }
