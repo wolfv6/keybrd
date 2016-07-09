@@ -8,7 +8,7 @@ If your 8-bit AVR is running low on memory, using a smaller type saves SRAM.
 Using smaller types on a 32-bit uC (Teensy LC) would accomplish nothing.
 */
 
-/* Uncomment a typedef read_pins_t that covers all col pins of the RowScanner object with the most col pins i.e.
+/* Uncomment a typedef read_pins_t size that covers all col pins of all RowScanner objects i.e.
     For RowScanner_PinsArray, RowScanner_PinsArray::READ_PIN_COUNT
     For RowScanner_SPIShiftRegisters, RowScanner_SPIShiftRegisters::KEY_COUNT
     For RowScanner_PinsBitwise, cover the last 1 bit in RowScanner_PinsBitwise::strobePin

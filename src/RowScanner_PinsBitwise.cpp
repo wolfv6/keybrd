@@ -5,13 +5,13 @@ Strobes the row and reads the columns.
 ColPort* const RowScanner_PinsBitwise::scan()
 {
     //strobe row on
-    if (activeHigh)
+    if (STROBE_ON == LOW)
     {
-        refRowPort.setActivePinHigh(strobePin);
+        refRowPort.setActivePinLow(strobePin);
     }
     else //activeLow
     {
-        refRowPort.setActivePinLow(strobePin);
+        refRowPort.setActivePinHigh(strobePin);
     }
     delayMicroseconds(3);                       //time to stablize voltage
 
@@ -19,13 +19,13 @@ ColPort* const RowScanner_PinsBitwise::scan()
     refColPort.read();
 
     //strobe row off
-    if (activeHigh)
+    if (STROBE_ON == LOW)
     {
-        refRowPort.setActivePinLow(strobePin);
+        refRowPort.setActivePinHigh(strobePin);
     }
     else //activeLow
     {
-        refRowPort.setActivePinHigh(strobePin);
+        refRowPort.setActivePinLow(strobePin);
     }
    
     return &refColPort;

@@ -19,7 +19,7 @@ class RowScanner_PinsBitwise
             ColPort& refColPort)
             : refRowPort(refRowPort), strobePin(strobePin),
               refColPort(refColPort) {}
-        static const bool activeHigh;       //logic level of strobe pin: 0=activeLow, 1=activeHigh
+        static const bool STROBE_ON;        //logic level of strobe on, active state, HIGH or LOW
         virtual ColPort* const scan();
 };
 #endif

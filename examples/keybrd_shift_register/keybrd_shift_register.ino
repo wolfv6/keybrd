@@ -30,7 +30,11 @@ Layout
 
 // =============== CONFIGURATION ===============
 ScanDelay scanDelay(9000);
-const bool RowScanner_PinsArray::ACTIVE_HIGH = 0; //left matrix is active low
+
+//active state of left matrix
+const bool RowScanner_PinsArray::STROBE_ON = LOW;
+const bool RowScanner_PinsArray::STROBE_OFF = HIGH;
+
 const uint8_t RowScanner_SPIShiftRegisters::SHIFT_LOAD = 10;
 
 Debug debug;
