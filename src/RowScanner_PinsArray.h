@@ -12,11 +12,11 @@ Constructor is in RowScanner_PinsArray.cpp
 class RowScanner_PinsArray
 {
     private:
-        static const bool STROBE_ON;          //logic level of strobe on, HIGH or LOW
-        static const bool STROBE_OFF;         //logic level of strobe off, HIGH or LOW
-        const uint8_t STROBE_PIN;             //Arduino pin number connected to this row
-        const uint8_t* const READ_PINS;       //array of read pin numbers
-        const uint8_t READ_PIN_COUNT;         //number of read pins
+        static const bool STROBE_ON;            //logic level of strobe on, HIGH or LOW
+        static const bool STROBE_OFF;           //logic level of strobe off, complement of STROBE_ON
+        const uint8_t STROBE_PIN;               //Arduino pin number connected to this row
+        const uint8_t* const READ_PINS;         //array of read pin numbers
+        const uint8_t READ_PIN_COUNT;           //number of read pins
     public:
         RowScanner_PinsArray(const uint8_t STROBE_PIN,
                 const uint8_t READ_PINS[], const uint8_t READ_PIN_COUNT); //todo rename READ_PIN_COUNT to KEY_COUNT ??

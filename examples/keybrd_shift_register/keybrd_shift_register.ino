@@ -37,6 +37,10 @@ const bool RowScanner_PinsArray::STROBE_OFF = HIGH;
 
 const uint8_t RowScanner_SPIShiftRegisters::SHIFT_LOAD = 10;
 
+//active state of right matrix
+const bool RowScanner_SPIShiftRegisters::STROBE_ON = LOW;
+const bool RowScanner_SPIShiftRegisters::STROBE_OFF = HIGH;
+
 Debug debug;
 
 // ================= LEFT PINS =================
@@ -144,7 +148,7 @@ Key* ptrsKeys_R0[] = { &s_0, &s_z, &s_z, &s_z, &s_1, &s_z, &s_z, &s_z,
                        &s_4, &s_z, &s_z, &s_z, &s_5, &s_z, &s_z, &s_z,
                        &s_6, &s_z, &s_z, &s_z, &s_3, &s_4, &s_5, &s_6 };
 const uint8_t KEY_R0_COUNT = sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0);
-Row_ShiftRegisters row_R0(8, ptrsKeys_R0, KEY_R0_COUNT);
+Row_ShiftRegisters row_R0(0, ptrsKeys_R0, KEY_R0_COUNT);
 
 //prints a b c d u v w x
 Key* ptrsKeys_R1[] = { &s_a, &s_z, &s_z, &s_z, &s_b, &s_z, &s_z, &s_z,
@@ -152,7 +156,7 @@ Key* ptrsKeys_R1[] = { &s_a, &s_z, &s_z, &s_z, &s_b, &s_z, &s_z, &s_z,
                        &s_e, &s_z, &s_z, &s_z, &s_f, &s_z, &s_z, &s_z,
                        &s_g, &s_z, &s_z, &s_z, &s_u, &s_v, &s_w, &s_x };
 const uint8_t KEY_R1_COUNT = sizeof(ptrsKeys_R1)/sizeof(*ptrsKeys_R1);
-Row_ShiftRegisters row_R1(9, ptrsKeys_R1, KEY_R1_COUNT);
+Row_ShiftRegisters row_R1(1, ptrsKeys_R1, KEY_R1_COUNT);
 
 // ################### MAIN ####################
 void setup()

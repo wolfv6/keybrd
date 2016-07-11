@@ -23,7 +23,7 @@ read_pins_t RowScanner_SPIShiftRegisters::scan(uint8_t& keyCount)
     read_pins_t rowState = 0;
 
     //strobe row on
-    digitalWrite(STROBE_PIN, HIGH);
+    digitalWrite(STROBE_PIN, STROBE_ON);
     delayMicroseconds(3);                       //time to stablize voltage
 
     //read all the column pins
@@ -32,7 +32,7 @@ read_pins_t RowScanner_SPIShiftRegisters::scan(uint8_t& keyCount)
     SPI.transfer(&rowState, BYTE_COUNT);
 
     //strobe row off
-    digitalWrite(STROBE_PIN, LOW);
+    digitalWrite(STROBE_PIN, STROBE_OFF);
 
     keyCount = KEY_COUNT;
 
