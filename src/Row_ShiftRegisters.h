@@ -31,7 +31,7 @@ class Row_ShiftRegisters : public Row
         Debouncer_4Samples debouncer;
         //Debouncer_Not debouncer; //passed test
     public:
-        Row_ShiftRegisters(const uint8_t STROBE_PIN, Key *const ptrsKeys[], uint8_t READ_PIN_COUNT)
+        Row_ShiftRegisters(const uint8_t STROBE_PIN, uint8_t READ_PIN_COUNT, Key *const ptrsKeys[])
             : Row(ptrsKeys), scanner(STROBE_PIN, READ_PIN_COUNT) { }
         void begin();
         void process();

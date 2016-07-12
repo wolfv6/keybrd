@@ -3,7 +3,7 @@
 pressRelease() calls key's press() or release() function if it was pressed or released.
 Both parameters are bitwise.
 */
-void Row::pressRelease(const uint8_t READ_PIN_COUNT, const read_pins_t debouncedChanged)
+void Row::pressRelease(const uint8_t readPinCount, const read_pins_t debouncedChanged)
 {
     read_pins_t isFallingEdge;                  //bitwise, 1 means falling edge
     read_pins_t isRisingEdge;                   //bitwise, 1 means rising edge
@@ -16,7 +16,7 @@ void Row::pressRelease(const uint8_t READ_PIN_COUNT, const read_pins_t debounced
     //bit=1 if last debounced changed from 0 to 1, else bit=0
     isRisingEdge = debouncedChanged & debounced;
 
-    for (readMask=1, i=0; i < READ_PIN_COUNT; readMask<<=1, i++) //for each key in row
+    for (readMask=1, i=0; i < readPinCount; readMask<<=1, i++) //for each key in row
     {
         //release before press avoids impossible key sequence
         if (readMask & isFallingEdge)            //if key was released
