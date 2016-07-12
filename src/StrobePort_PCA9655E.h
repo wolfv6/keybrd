@@ -1,10 +1,10 @@
-#ifndef ROWPORT_PCA9655E_H
-#define ROWPORT_PCA9655E_H
+#ifndef STROBEPORT_PCA9655E_H
+#define STROBEPORT_PCA9655E_H
 #include <Arduino.h>
 #include <inttypes.h>
 #include <Wire.h>
-#include <RowPort.h>
-#include "IOExpanderPort.h"
+#include <StrobePort.h>
+#include "IOEPort.h"
 
 /* One PCA9655E I/O expander port connected to matrix rows.
 
@@ -14,12 +14,12 @@ This should normally be called only once.
 Instantiation
  ------------
 Example instantiation for row port 0:
-    IOExpanderPort port0(0, 0);
-    RowPort_PCA9655E rowPort0(port0);
+    IOEPort port0(0, 0);
+    StrobePort_PCA9655E rowPort0(port0);
 
 Example instantiation for row port 1:
-    IOExpanderPort port1(1, 0);
-    RowPort_PCA9655E rowPort1(port1);
+    IOEPort port1(1, 0);
+    StrobePort_PCA9655E rowPort1(port1);
 
 Diode orientation
  ----------------
@@ -32,16 +32,16 @@ PCA9655E data sheet
  http://www.onsemi.com/pub_link/Collateral/PCA9655E-D.PDF
 */
 
-class RowPort_PCA9655E : public RowPort
+class StrobePort_PCA9655E : public StrobePort
 {
     private:
-        IOExpanderPort& port;
+        IOEPort& port;
         const uint8_t configurationByteCommand;
         const uint8_t outputByteCommand;
 
     public:
         //The constructor initialization list is in .cpp
-        RowPort_PCA9655E(IOExpanderPort& port);
+        StrobePort_PCA9655E(IOEPort& port);
         void begin();
 
         virtual void setActivePinLow(const uint8_t activePin); //activePin is a port mask

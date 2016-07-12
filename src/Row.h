@@ -1,22 +1,22 @@
-#ifndef ROWBASE_H
-#define ROWBASE_H
+#ifndef ROW_H
+#define ROW_H
 #include <Arduino.h>
 #include <inttypes.h>
 #include <config_keybrd.h>
 #include <Key.h>
 
-/* RowBase is an abstract base class.
+/* Row is an abstract base class.
 */
-class RowBase
+class Row
 {
     private:
         Key *const *const ptrsKeys;             //array of Key pointers
         virtual void keyWasPressed();
     protected:
         read_pins_t debounced;                  //bitwise, 1 means pressed, 0 means released
-        void pressRelease(const uint8_t KEY_COUNT, const read_pins_t debouncedChanged);
+        void pressRelease(const uint8_t READ_PIN_COUNT, const read_pins_t debouncedChanged);
     public:
-        RowBase(Key *const ptrsKeys[]) : ptrsKeys(ptrsKeys), debounced(0) { }
+        Row(Key *const ptrsKeys[]) : ptrsKeys(ptrsKeys), debounced(0) { }
         virtual void process()=0;
 };
 #endif

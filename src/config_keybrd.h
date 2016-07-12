@@ -9,9 +9,9 @@ Using smaller types on a 32-bit uC (Teensy LC) would accomplish nothing.
 */
 
 /* Uncomment a typedef read_pins_t size that covers all col pins of all RowScanner objects i.e.
-    For RowScanner_PinsArray, RowScanner_PinsArray::READ_PIN_COUNT
-    For RowScanner_SPIShiftRegisters, RowScanner_SPIShiftRegisters::KEY_COUNT
-    For RowScanner_PinsBitwise, cover the last 1 bit in RowScanner_PinsBitwise::strobePin
+    For Scanner_uC, Scanner_uC::READ_PIN_COUNT
+    For Scanner_ShiftRegs74HC165, Scanner_ShiftRegs74HC165::READ_PIN_COUNT
+    For Scanner_Port, cover the last 1 bit in Scanner_Port::strobePin
 */
 //typedef uint8_t read_pins_t;
 //typedef uint16_t read_pins_t;

@@ -1,24 +1,24 @@
-#include "ColPort_PCA9655E.h"
+#include "ReadPort_PCA9655E.h"
 
 /*
 configures column port's configuration, input, and pins.
 */
-ColPort_PCA9655E::ColPort_PCA9655E (IOExpanderPort& port, const uint8_t colPins)
-    : ColPort(colPins), port(port), configurationByteCommand(port.num + 6), inputByteCommand(port.num)
+ReadPort_PCA9655E::ReadPort_PCA9655E (IOEPort& port, const uint8_t readPins)
+    : ReadPort(readPins), port(port), configurationByteCommand(port.num + 6), inputByteCommand(port.num)
 {}
 
-void ColPort_PCA9655E::begin()
+void ReadPort_PCA9655E::begin()
 {
     Wire.beginTransmission(port.ADDR);
     Wire.write(configurationByteCommand);
-    Wire.write(colPins);    //0=configure as output (for LED), 1=configure as input (for read)
+    Wire.write(readPins);    //0=configure as output (for LED), 1=configure as input (for read)
     Wire.endTransmission();
 }
 
 /*
 Saves all port-pin values to portState.
 */
-void ColPort_PCA9655E::read()
+void ReadPort_PCA9655E::read()
 {
     Wire.beginTransmission(port.ADDR);
     Wire.write(inputByteCommand);               //input immediately before requestFrom

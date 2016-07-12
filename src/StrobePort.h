@@ -1,13 +1,13 @@
-#ifndef ROWPORT_H
-#define ROWPORT_H
+#ifndef STROBEPORT_H
+#define STROBEPORT_H
 #include <Arduino.h>
 #include <inttypes.h>
 
 /*
-RowPort is an abstract base class.
+StrobePort is an abstract base class.
 Port classes are the keybrd library's interface to microcontoller ports or I/O expander ports.
 */
-class RowPort
+class StrobePort
 {
     public:
         virtual void setActivePinHigh(const uint8_t activePin)=0;

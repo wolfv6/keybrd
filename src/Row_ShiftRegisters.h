@@ -1,8 +1,8 @@
 #ifndef ROW_SHIFTREGISTERS_H
 #define ROW_SHIFTREGISTERS_H
 
-#include <RowBase.h>
-#include <RowScanner_SPIShiftRegisters.h>
+#include <Row.h>
+#include <Scanner_ShiftRegs74HC165.h>
 #include <Debouncer_4Samples.h>
 //#include <Debouncer_Not.h>
 
@@ -10,10 +10,10 @@
 
 Instantiation
 -------------
-Definition of DELAY_MICROSECONDS is explained in RowBase.cpp.
+Definition of DELAY_MICROSECONDS is explained in Row.cpp.
 Example instantiation of a row:
 
-    const unsigned int RowBase::DELAY_MICROSECONDS = 1000;
+    const unsigned int Row::DELAY_MICROSECONDS = 1000;
 
     todo
 
@@ -24,15 +24,15 @@ Number of pins in colPort0 should equal number of keys in ptrsKeys_0[] array.
     if a pin is missing, a key will be unresposive
     if a Key pointer is missing, the keyboard will fail in an unprdictable way
 */
-class Row_ShiftRegisters : public RowBase
+class Row_ShiftRegisters : public Row
 {
     private:
-        RowScanner_SPIShiftRegisters scanner;
+        Scanner_ShiftRegs74HC165 scanner;
         Debouncer_4Samples debouncer;
         //Debouncer_Not debouncer; //passed test
     public:
-        Row_ShiftRegisters(const uint8_t STROBE_PIN, Key *const ptrsKeys[], uint8_t KEY_COUNT)
-            : RowBase(ptrsKeys), scanner(STROBE_PIN, KEY_COUNT) { }
+        Row_ShiftRegisters(const uint8_t STROBE_PIN, Key *const ptrsKeys[], uint8_t READ_PIN_COUNT)
+            : Row(ptrsKeys), scanner(STROBE_PIN, READ_PIN_COUNT) { }
         void begin();
         void process();
 };

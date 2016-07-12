@@ -1,12 +1,12 @@
-#include "RowPort_PCA9655E.h"
+#include "StrobePort_PCA9655E.h"
 
 /*
 configures column port's configuration and output.
 */
-RowPort_PCA9655E::RowPort_PCA9655E(IOExpanderPort& port)
+StrobePort_PCA9655E::StrobePort_PCA9655E(IOEPort& port)
     : port(port), configurationByteCommand(port.num + 6), outputByteCommand(port.num + 2) {}
 
-void RowPort_PCA9655E::begin()
+void StrobePort_PCA9655E::begin()
 {
     Wire.beginTransmission(port.ADDR);
     Wire.write(configurationByteCommand);
@@ -18,7 +18,7 @@ void RowPort_PCA9655E::begin()
 sets activePin pin output to low, does not reset the other pins because they might be used by LEDs.
 activePin is port mask, where active pin is 1.
 */
-void RowPort_PCA9655E::setActivePinLow(const uint8_t activePin)
+void StrobePort_PCA9655E::setActivePinLow(const uint8_t activePin)
 {
     Wire.beginTransmission(port.ADDR);
     Wire.write(outputByteCommand);
@@ -30,7 +30,7 @@ void RowPort_PCA9655E::setActivePinLow(const uint8_t activePin)
 sets activePin pin output to high.
 activePin is port mask, where active pin is 1.
 */
-void RowPort_PCA9655E::setActivePinHigh(const uint8_t activePin)
+void StrobePort_PCA9655E::setActivePinHigh(const uint8_t activePin)
 {
     Wire.beginTransmission(port.ADDR);
     Wire.write(outputByteCommand);

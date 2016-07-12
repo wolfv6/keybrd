@@ -3,11 +3,11 @@ Tested on Teensy LC and daisy chained 74HC165 shift registers
 
 The keyboard hardware for this sketch has 4 shift registers,
  with every 4th input pin connected to a pull-down resistor and matrix column, also the 31st key.
-Unused input pins are not grounded, so add this line to RowScanner_SPIShiftRegisters::scan():
+Unused input pins are not grounded, so add this line to Scanner_ShiftRegs74HC165::scan():
     //clear unpowered pins (for testing on breadboard)
     rowState &= 0b11110001000100010001000100010001; //todo
 
-Layout
+  Layout                 Layout
 | Left  | **0**|**1**| | Right |**0**|**1**|**2**|**3**|**4**|**5**|**6**|**7**|**8**|
 |:-----:|------|-----| |:-----:|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | **0** |capLck|  a  | | **0** |  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |
@@ -32,20 +32,20 @@ Layout
 ScanDelay scanDelay(9000);
 
 //active state of left matrix
-const bool RowScanner_PinsArray::STROBE_ON = LOW;
-const bool RowScanner_PinsArray::STROBE_OFF = HIGH;
+const bool Scanner_uC::STROBE_ON = LOW;
+const bool Scanner_uC::STROBE_OFF = HIGH;
 
-const uint8_t RowScanner_SPIShiftRegisters::SHIFT_LOAD = 10;
+const uint8_t Scanner_ShiftRegs74HC165::SHIFT_LOAD = 10;
 
 //active state of right matrix
-const bool RowScanner_SPIShiftRegisters::STROBE_ON = LOW;
-const bool RowScanner_SPIShiftRegisters::STROBE_OFF = HIGH;
+const bool Scanner_ShiftRegs74HC165::STROBE_ON = LOW;
+const bool Scanner_ShiftRegs74HC165::STROBE_OFF = HIGH;
 
 Debug debug;
 
 // ================= LEFT PINS =================
 uint8_t readPins[] = {14, 15};
-uint8_t KEY_COUNT = sizeof(readPins)/sizeof(*readPins);
+uint8_t READ_PIN_COUNT = sizeof(readPins)/sizeof(*readPins);
 
 // ==================== LEDs ===================
 LED_PinNumber LED1(16);
@@ -98,48 +98,48 @@ Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED1);
 
 // ================= LEFT ROWS =================
 Key* ptrsKeys_L0[] = { &o_capsLock, &s_a };
-Row_uC row_L0(0, readPins, ptrsKeys_L0, KEY_COUNT);
+Row_uC row_L0(0, readPins, ptrsKeys_L0, READ_PIN_COUNT);
 
 Key* ptrsKeys_L1[] = { &s_b, &s_c };
-Row_uC row_L1(1, readPins, ptrsKeys_L1, KEY_COUNT);
+Row_uC row_L1(1, readPins, ptrsKeys_L1, READ_PIN_COUNT);
 
 // ================= RIGHT ROWS ================
 //typedef should be large in /home/wolfv/Documents/Arduino/keybrd_proj/keybrd/src/config_keybrd.h
-//Row_ShiftRegisters(STROBE_PIN, ptrsKeys[], KEY_COUNT)
+//Row_ShiftRegisters(STROBE_PIN, ptrsKeys[], READ_PIN_COUNT)
 //the s_z are place holders and should not print
 
 /*
 //prints 0 1
 Key* ptrsKeys_R0[] = { &s_0, &s_z, &s_z, &s_z, &s_1, &s_z, &s_z, &s_z };
-const uint8_t KEY_R0_COUNT = sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0);
-Row_ShiftRegisters row_R0(8, ptrsKeys_R0, KEY_R0_COUNT);
+const uint8_t READ_PIN_COUNT_R0 = sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0);
+Row_ShiftRegisters row_R0(8, ptrsKeys_R0, READ_PIN_COUNT_R0);
 
 //prints a b
 Key* ptrsKeys_R1[] = { &s_a, &s_z, &s_z, &s_z, &s_b, &s_z, &s_z, &s_z };
-const uint8_t KEY_R1_COUNT = sizeof(ptrsKeys_R1)/sizeof(*ptrsKeys_R1);
-Row_ShiftRegisters row_R1(9, ptrsKeys_R1, KEY_R1_COUNT);
+const uint8_t READ_PIN_COUNT_R1 = sizeof(ptrsKeys_R1)/sizeof(*ptrsKeys_R1);
+Row_ShiftRegisters row_R1(9, ptrsKeys_R1, READ_PIN_COUNT_R1);
 */
 /*
 //prints 0 1 2
 Key* ptrsKeys_R0[] = { &s_0, &s_z, &s_z, &s_z, &s_1, &s_z, &s_z, &s_z,
                        &s_2, &s_z, &s_z, &s_z };
-const uint8_t KEY_R0_COUNT = sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0);
-Row_ShiftRegisters row_R0(8, ptrsKeys_R0, KEY_R0_COUNT);
+const uint8_t READ_PIN_COUNT_R0 = sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0);
+Row_ShiftRegisters row_R0(8, ptrsKeys_R0, READ_PIN_COUNT_R0);
 */
 /*
 //prints 0 1 2 3
 Key* ptrsKeys_R0[] = { &s_0, &s_z, &s_z, &s_z, &s_1, &s_z, &s_z, &s_z,
                        &s_2, &s_z, &s_z, &s_z, &s_3, &s_z, &s_z, &s_z };
-const uint8_t KEY_R0_COUNT = sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0);
-Row_ShiftRegisters row_R0(8, ptrsKeys_R0, KEY_R0_COUNT);
+const uint8_t READ_PIN_COUNT_R0 = sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0);
+Row_ShiftRegisters row_R0(8, ptrsKeys_R0, READ_PIN_COUNT_R0);
 */
 /*
 //prints 0 1 2 3 4 5
 Key* ptrsKeys_R0[] = { &s_0, &s_z, &s_z, &s_z, &s_1, &s_z, &s_z, &s_z,
                        &s_2, &s_z, &s_z, &s_z, &s_3, &s_z, &s_z, &s_z,
                        &s_4, &s_z, &s_z, &s_z, &s_5, &s_z, &s_z, &s_z };
-const uint8_t KEY_R0_COUNT = sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0);
-Row_ShiftRegisters row_R0(8, ptrsKeys_R0, KEY_R0_COUNT);
+const uint8_t READ_PIN_COUNT_R0 = sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0);
+Row_ShiftRegisters row_R0(8, ptrsKeys_R0, READ_PIN_COUNT_R0);
 */
 
 //prints 0 1 2 3 3 4 5 6, microseconds_per_scan=87 with SAMPLE_COUNT 4
@@ -147,16 +147,16 @@ Key* ptrsKeys_R0[] = { &s_0, &s_z, &s_z, &s_z, &s_1, &s_z, &s_z, &s_z,
                        &s_2, &s_z, &s_z, &s_z, &s_3, &s_z, &s_z, &s_z,
                        &s_4, &s_z, &s_z, &s_z, &s_5, &s_z, &s_z, &s_z,
                        &s_6, &s_z, &s_z, &s_z, &s_3, &s_4, &s_5, &s_6 };
-const uint8_t KEY_R0_COUNT = sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0);
-Row_ShiftRegisters row_R0(0, ptrsKeys_R0, KEY_R0_COUNT);
+const uint8_t READ_PIN_COUNT_R0 = sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0);
+Row_ShiftRegisters row_R0(0, ptrsKeys_R0, READ_PIN_COUNT_R0);
 
 //prints a b c d u v w x
 Key* ptrsKeys_R1[] = { &s_a, &s_z, &s_z, &s_z, &s_b, &s_z, &s_z, &s_z,
                        &s_c, &s_z, &s_z, &s_z, &s_d, &s_z, &s_z, &s_z,
                        &s_e, &s_z, &s_z, &s_z, &s_f, &s_z, &s_z, &s_z,
                        &s_g, &s_z, &s_z, &s_z, &s_u, &s_v, &s_w, &s_x };
-const uint8_t KEY_R1_COUNT = sizeof(ptrsKeys_R1)/sizeof(*ptrsKeys_R1);
-Row_ShiftRegisters row_R1(1, ptrsKeys_R1, KEY_R1_COUNT);
+const uint8_t READ_PIN_COUNT_R1 = sizeof(ptrsKeys_R1)/sizeof(*ptrsKeys_R1);
+Row_ShiftRegisters row_R1(1, ptrsKeys_R1, READ_PIN_COUNT_R1);
 
 // ################### MAIN ####################
 void setup()

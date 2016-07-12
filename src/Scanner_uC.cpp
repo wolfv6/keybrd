@@ -1,8 +1,8 @@
-#include "RowScanner_PinsArray.h"
+#include "Scanner_uC.h"
 
 /* constructor
 */
-RowScanner_PinsArray::RowScanner_PinsArray(const uint8_t STROBE_PIN,
+Scanner_uC::Scanner_uC(const uint8_t STROBE_PIN,
         const uint8_t READ_PINS[], const uint8_t READ_PIN_COUNT)
     : STROBE_PIN(STROBE_PIN), READ_PINS(READ_PINS), READ_PIN_COUNT(READ_PIN_COUNT)
 {
@@ -20,7 +20,7 @@ RowScanner_PinsArray::RowScanner_PinsArray(const uint8_t STROBE_PIN,
         mode = INPUT;                   //requires external pull-down resistor
     }
 
-    //configure cols
+    //configure read pins
     for (uint8_t i=0; i < READ_PIN_COUNT; i++)
     {
         pinMode(READ_PINS[i], mode);
@@ -28,7 +28,7 @@ RowScanner_PinsArray::RowScanner_PinsArray(const uint8_t STROBE_PIN,
 }
 
 /* scan() Strobes the row and reads the columns.
-Sets KEY_COUNT and returns rowState.
+Sets READ_PIN_COUNT and returns rowState.
 
 https://www.arduino.cc/en/Tutorial/DigitalPins
 https://www.arduino.cc/en/Reference/PinMode
@@ -36,26 +36,28 @@ https://www.arduino.cc/en/Reference/DigitalWrite
 https://www.arduino.cc/en/Reference/DigitalRead
 https://www.arduino.cc/en/Reference/Constants > Digital Pins modes: INPUT, INPUT_PULLUP, and OUTPUT
 */
-read_pins_t RowScanner_PinsArray::scan(uint8_t& keyCount)
+read_pins_t Scanner_uC::scan(uint8_t& readPinCount)
 {
     read_pins_t rowState = 0;                   //bitwise, one col per bit, 1 means key is pressed
-    read_pins_t rowMask = 1;                    //bitwise, one col per bit, active col bit is 1
+    read_pins_t readMask = 1;                   //bitwise, one col per bit, active col bit is 1
 
+    //strobe row on
     digitalWrite(STROBE_PIN, STROBE_ON);
     delayMicroseconds(3);                       //time to stablize voltage
 
-    //read all the column pins
+    //read all the read pins
     for (uint8_t i=0; i < READ_PIN_COUNT; i++)
     {
         if ( digitalRead(READ_PINS[i]) == STROBE_ON )
         {
-            rowState |= rowMask;
+            rowState |= readMask;
         }
-        rowMask <<= 1;
+        readMask <<= 1;
     }
 
+    //strobe row off
     digitalWrite(STROBE_PIN, STROBE_OFF);
 
-    keyCount = READ_PIN_COUNT;
+    readPinCount = READ_PIN_COUNT;
     return rowState;
 }
