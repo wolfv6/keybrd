@@ -36,7 +36,7 @@ https://www.arduino.cc/en/Reference/DigitalWrite
 https://www.arduino.cc/en/Reference/DigitalRead
 https://www.arduino.cc/en/Reference/Constants > Digital Pins modes: INPUT, INPUT_PULLUP, and OUTPUT
 */
-read_pins_t Scanner_uC::scan(uint8_t& readPinCount)
+read_pins_t Scanner_uC::scan()
 {
     read_pins_t rowState = 0;                   //bitwise, one col per bit, 1 means key is pressed
     read_pins_t readMask = 1;                   //bitwise, one col per bit, active col bit is 1
@@ -58,6 +58,6 @@ read_pins_t Scanner_uC::scan(uint8_t& readPinCount)
     //strobe row off
     digitalWrite(STROBE_PIN, STROBE_OFF);
 
-    readPinCount = READ_PIN_COUNT;
+   // readPinCount = READ_PIN_COUNT;
     return rowState;
 }

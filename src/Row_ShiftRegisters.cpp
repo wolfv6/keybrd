@@ -4,12 +4,12 @@ void Row_ShiftRegisters::process()
 {
     //these variables are all bitwise, one bit per key
     read_pins_t rowState;                       //1 means pressed, 0 means released
-    uint8_t readPinCount;
+    //uint8_t readPinCount;
     read_pins_t debouncedChanged;               //1 means debounced changed
 
-    rowState = scanner.scan(readPinCount);
+    rowState = scanner.scan();
     debouncedChanged = debouncer.debounce(rowState, debounced);
-    pressRelease(readPinCount, debouncedChanged);
+    pressRelease(READ_PIN_COUNT, debouncedChanged);
 }
 
 void Row_ShiftRegisters::begin()

@@ -2,7 +2,7 @@
 
 //constructor
 Scanner_ShiftRegs74HC165::Scanner_ShiftRegs74HC165(const uint8_t STROBE_PIN, uint8_t READ_PIN_COUNT)
-    : STROBE_PIN(STROBE_PIN), BYTE_COUNT(ceil (float(READ_PIN_COUNT)/8)), READ_PIN_COUNT(READ_PIN_COUNT)
+    : STROBE_PIN(STROBE_PIN), BYTE_COUNT(ceil (float(READ_PIN_COUNT)/8))
 {
     //configure controller to communicate with shift register matrix
     pinMode(STROBE_PIN, OUTPUT);
@@ -18,7 +18,7 @@ void Scanner_ShiftRegs74HC165::begin()
 /*
 Sets readPinCount and returns rowState.
 */
-read_pins_t Scanner_ShiftRegs74HC165::scan(uint8_t& readPinCount)
+read_pins_t Scanner_ShiftRegs74HC165::scan()
 {
     read_pins_t rowState = 0;
 
@@ -34,7 +34,7 @@ read_pins_t Scanner_ShiftRegs74HC165::scan(uint8_t& readPinCount)
     //strobe row off
     digitalWrite(STROBE_PIN, STROBE_OFF);
 
-    readPinCount = READ_PIN_COUNT;
+  //  readPinCount = READ_PIN_COUNT;
 
     //for testing on breadboard, clear unpowered pins
     rowState &= 0b11110001000100010001000100010001; //todo

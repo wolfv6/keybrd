@@ -19,8 +19,8 @@ class Scanner_uC
         const uint8_t READ_PIN_COUNT;           //number of read pins
     public:
         Scanner_uC(const uint8_t STROBE_PIN,
-                const uint8_t READ_PINS[], const uint8_t READ_PIN_COUNT); //todo rename READ_PIN_COUNT to READ_PIN_COUNT ??
-        virtual read_pins_t scan(uint8_t& READ_PIN_COUNT);
+                const uint8_t READ_PINS[], const uint8_t READ_PIN_COUNT);
+        virtual read_pins_t scan();
 };
 #endif
 

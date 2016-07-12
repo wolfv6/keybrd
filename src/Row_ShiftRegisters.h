@@ -30,9 +30,10 @@ class Row_ShiftRegisters : public Row
         Scanner_ShiftRegs74HC165 scanner;
         Debouncer_4Samples debouncer;
         //Debouncer_Not debouncer; //passed test
+        const uint8_t READ_PIN_COUNT;           //number of read pins
     public:
         Row_ShiftRegisters(const uint8_t STROBE_PIN, uint8_t READ_PIN_COUNT, Key *const ptrsKeys[])
-            : Row(ptrsKeys), scanner(STROBE_PIN, READ_PIN_COUNT) { }
+            : Row(ptrsKeys), scanner(STROBE_PIN, READ_PIN_COUNT), READ_PIN_COUNT(READ_PIN_COUNT) { }
         void begin();
         void process();
 };
