@@ -15,38 +15,18 @@ void StrobePort_PCA9655E::begin()
 }
 
 /*
-sets activePin pin output to low, does not reset the other pins because they might be used by LEDs.
-activePin is port mask, where active pin is 1.
+pin is bitwise, where pin being strobed is 1.
+level is HIGH or LOW.
 */
-void StrobePort_PCA9655E::setActivePinLow(const uint8_t activePin)
-{
-    Wire.beginTransmission(port.ADDR);
-    Wire.write(outputByteCommand);
-    Wire.write(port.outputVal &= ~activePin);
-    Wire.endTransmission();
-}
-
-/*
-sets activePin pin output to high.
-activePin is port mask, where active pin is 1.
-*/
-void StrobePort_PCA9655E::setActivePinHigh(const uint8_t activePin)
-{
-    Wire.beginTransmission(port.ADDR);
-    Wire.write(outputByteCommand);
-    Wire.write(port.outputVal |= activePin);
-    Wire.endTransmission();
-    //todo delayMicroseconds(1500); still 4*bb w/o debouncer prints IOE rows sporadically
-}
 void StrobePort_PCA9655E::write(const uint8_t pin, const bool level)
 {
     if (level == LOW)
     {
-        port.outputVal &= ~pin;
+        port.outputVal &= ~pin; //set pin output to low, do not reset the other pins because LEDs
     }
     else 
     {
-        port.outputVal |= pin;
+        port.outputVal |= pin; //set pin output to high
     }
 
     Wire.beginTransmission(port.ADDR);
