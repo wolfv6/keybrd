@@ -38,3 +38,19 @@ void StrobePort_PCA9655E::setActivePinHigh(const uint8_t activePin)
     Wire.endTransmission();
     //todo delayMicroseconds(1500); still 4*bb w/o debouncer prints IOE rows sporadically
 }
+void StrobePort_PCA9655E::write(const uint8_t pin, const bool level)
+{
+    if (level == LOW)
+    {
+        port.outputVal &= ~pin;
+    }
+    else 
+    {
+        port.outputVal |= pin;
+    }
+
+    Wire.beginTransmission(port.ADDR);
+    Wire.write(outputByteCommand);
+    Wire.write(port.outputVal);
+    Wire.endTransmission();
+}

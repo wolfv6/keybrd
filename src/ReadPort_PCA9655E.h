@@ -40,6 +40,6 @@ class ReadPort_PCA9655E : public ReadPort
         void begin();
 
         //read port and store result in portState
-        virtual void read();
+        virtual uint8_t read();
 };
 #endif

@@ -44,7 +44,8 @@ class StrobePort_PCA9655E : public StrobePort
         StrobePort_PCA9655E(IOEPort& port);
         void begin();
 
-        virtual void setActivePinLow(const uint8_t activePin); //activePin is a port mask
-        virtual void setActivePinHigh(const uint8_t activePin);
+        virtual void setActivePinLow(const uint8_t activePin); //activePin is a port mask todo delete
+        virtual void setActivePinHigh(const uint8_t activePin); //todo delete also in StrobePort.h
+        virtual void write(const uint8_t pin, const bool level);
 };
 #endif

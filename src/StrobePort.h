@@ -12,5 +12,6 @@ class StrobePort
     public:
         virtual void setActivePinHigh(const uint8_t activePin)=0;
         virtual void setActivePinLow(const uint8_t activePin)=0;
+        virtual void write(const uint8_t pin, const bool level)=0;
 };
 #endif

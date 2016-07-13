@@ -16,8 +16,7 @@ class ReadPort
         ReadPort(const uint8_t readPins): readPins(readPins), portState(0) {}
 
         //read port and store it's pins values in portState
-        virtual void read()=0;
+        virtual uint8_t read()=0;
         uint8_t getColPins();
-        uint8_t getPortState();
 };
 #endif
