@@ -11,7 +11,7 @@ PCA9655E does not have internal pull-up resistors (PCA9535E does).
 
 Instantiation
  ------------
-readPins parameter is port's bitwise pin configuration
+READ_PINS parameter is port's bitwise pin configuration
     1=configure as input (for pins connected to column)
     0=configure as output (for LED or not connected to a column)
 
@@ -22,7 +22,7 @@ Example instantiation for column port 1, with pins 2 and 3 connected to columns:
     IOEPort port1(1, 0);
     ReadPort_PCA9655E colPort1(port1, 2<<0 | 1<<3 );
 
-readPins are read from pin 0 on up.
+READ_PINS are read from pin 0 on up.
 
 Diode orientation
  ----------------
@@ -36,7 +36,7 @@ class ReadPort_PCA9655E : public ReadPort
         const uint8_t inputByteCommand;
     public:
         //The constructor initialization list is in .cpp
-        ReadPort_PCA9655E(IOEPort& port, const uint8_t readPins);
+        ReadPort_PCA9655E(IOEPort& port, const uint8_t READ_PINS);
         void begin();
 
         //read port and store result in portState

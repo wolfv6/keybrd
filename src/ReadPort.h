@@ -10,12 +10,11 @@ Port classes are the keybrd library's interface to microcontoller ports or I/O e
 class ReadPort
 {
     protected:
-        const uint8_t readPins;                  //bitwise pin configuration, 1 means read column
-        uint8_t portState;                      //bitwise pin values, which is set in read()
+        const uint8_t READ_PINS;                  //bitwise pin configuration, 1 means read column
     public:
-        ReadPort(const uint8_t readPins): readPins(readPins), portState(0) {}
+        ReadPort(const uint8_t READ_PINS): READ_PINS(READ_PINS) {}
 
-        //read port and store it's pins values in portState
+        //read port and return readState
         virtual uint8_t read()=0;
 };
 #endif

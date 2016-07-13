@@ -28,7 +28,7 @@ Scanner_uC::Scanner_uC(const uint8_t STROBE_PIN,
 }
 
 /* scan() Strobes the row and reads the columns.
-Sets READ_PIN_COUNT and returns rowState.
+Sets READ_PIN_COUNT and returns readState.
 
 https://www.arduino.cc/en/Tutorial/DigitalPins
 https://www.arduino.cc/en/Reference/PinMode
@@ -38,7 +38,7 @@ https://www.arduino.cc/en/Reference/Constants > Digital Pins modes: INPUT, INPUT
 */
 read_pins_t Scanner_uC::scan()
 {
-    read_pins_t rowState = 0;                   //bitwise, one col per bit, 1 means key is pressed
+    read_pins_t readState = 0;                   //bitwise, one col per bit, 1 means key is pressed
     read_pins_t readMask = 1;                   //bitwise, one col per bit, active col bit is 1
 
     //strobe row on
@@ -50,7 +50,7 @@ read_pins_t Scanner_uC::scan()
     {
         if ( digitalRead(READ_PINS[i]) == STROBE_ON )
         {
-            rowState |= readMask;
+            readState |= readMask;
         }
         readMask <<= 1;
     }
@@ -59,5 +59,5 @@ read_pins_t Scanner_uC::scan()
     digitalWrite(STROBE_PIN, STROBE_OFF);
 
    // readPinCount = READ_PIN_COUNT;
-    return rowState;
+    return readState;
 }

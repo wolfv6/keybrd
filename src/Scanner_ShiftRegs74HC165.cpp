@@ -16,11 +16,11 @@ void Scanner_ShiftRegs74HC165::begin()
 }
 
 /*
-Sets readPinCount and returns rowState.
+returns readState.
 */
 read_pins_t Scanner_ShiftRegs74HC165::scan()
 {
-    read_pins_t rowState = 0;
+    read_pins_t readState = 0;
 
     //strobe row on
     digitalWrite(STROBE_PIN, STROBE_ON);
@@ -29,16 +29,14 @@ read_pins_t Scanner_ShiftRegs74HC165::scan()
     //read all the column pins
     digitalWrite(SHIFT_LOAD, LOW);              //load parallel inputs to the register
     digitalWrite(SHIFT_LOAD, HIGH);             //shift the data toward a serial output
-    SPI.transfer(&rowState, BYTE_COUNT);
+    SPI.transfer(&readState, BYTE_COUNT);
 
     //strobe row off
     digitalWrite(STROBE_PIN, STROBE_OFF);
 
-  //  readPinCount = READ_PIN_COUNT;
-
     //for testing on breadboard, clear unpowered pins
-    rowState &= 0b11110001000100010001000100010001; //todo
+    readState &= 0b11110001000100010001000100010001; //todo
 
-    return rowState;
+    return readState;
 }
 

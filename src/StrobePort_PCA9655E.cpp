@@ -16,17 +16,18 @@ void StrobePort_PCA9655E::begin()
 
 /*
 pin is bitwise, where pin being strobed is 1.
-level is HIGH or LOW.
+value is HIGH or LOW.
+Does not reset the other pins because LEDs could be using some of the pins.
 */
-void StrobePort_PCA9655E::write(const uint8_t pin, const bool level)
+void StrobePort_PCA9655E::write(const uint8_t pin, const bool value)
 {
-    if (level == LOW)
+    if (value == LOW)                           //if active low
     {
-        port.outputVal &= ~pin; //set pin output to low, do not reset the other pins because LEDs
+        port.outputVal &= ~pin;                 //set pin output to low
     }
-    else 
+    else                                        //if active high
     {
-        port.outputVal |= pin; //set pin output to high
+        port.outputVal |= pin;                  //set pin output to high
     }
 
     Wire.beginTransmission(port.ADDR);

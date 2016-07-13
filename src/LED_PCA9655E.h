@@ -7,7 +7,7 @@
 #include "IOEPort.h"
 
 /* A LED_PCA9655E object is an PCA9655E pin that is connected to an LED indicator light.
-Input/Ouput Direction configuration is set to ouput in row_Port_PCA9655E.begin() and col_Port_PCA9655E.begin().
+Input/Ouput Direction configuration are set to ouput in StrobePort_PCA9655E.begin() and ReadPort_PCA9655E.begin().
 */
 class LED_PCA9655E: public LED
 {
