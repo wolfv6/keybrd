@@ -18,6 +18,7 @@ void StrobePort_PCA9655E::begin()
 pin is bitwise, where pin being strobed is 1.
 value is HIGH or LOW.
 Does not reset the other pins because LEDs could be using some of the pins.
+Syntax is similar to Arduino DigitalWrite().
 */
 void StrobePort_PCA9655E::write(const uint8_t pin, const bool value)
 {

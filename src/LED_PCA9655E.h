@@ -4,7 +4,7 @@
 #include <inttypes.h>
 #include <Wire.h>
 #include <LED.h>
-#include "IOEPort.h"
+#include <StrobePort_PCA9655E.h>
 
 /* A LED_PCA9655E object is an PCA9655E pin that is connected to an LED indicator light.
 Input/Ouput Direction configuration are set to ouput in StrobePort_PCA9655E.begin() and ReadPort_PCA9655E.begin().
@@ -12,13 +12,14 @@ Input/Ouput Direction configuration are set to ouput in StrobePort_PCA9655E.begi
 class LED_PCA9655E: public LED
 {
     private:
-        IOEPort& port;
-        const uint8_t outputByteCommand;        //General Purpose Input/Ouput register address
+        //IOEPort& port;
+        //const uint8_t outputByteCommand;        //General Purpose Input/Ouput register address
+        StrobePort_PCA9655E& refPort;
         const uint8_t pin;                      //bitwise pin to LED
 
     public:
-        LED_PCA9655E(IOEPort& port, const uint8_t pin)
-            : port(port), outputByteCommand(port.num + 2), pin(pin) {}
+        LED_PCA9655E(StrobePort_PCA9655E& refPort, const uint8_t pin)
+            : refPort(refPort), pin(pin) {}
 
         virtual void on();
         virtual void off();

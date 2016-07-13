@@ -2,16 +2,10 @@
 
 void LED_PCA9655E::on()
 {
-    Wire.beginTransmission(port.ADDR);
-    Wire.write(outputByteCommand);
-    Wire.write(port.outputVal |= pin);            //set pin high
-    Wire.endTransmission();
+    refPort.write(pin, HIGH);
 }
 
 void LED_PCA9655E::off()
 {
-    Wire.beginTransmission(port.ADDR);
-    Wire.write(outputByteCommand);
-    Wire.write(port.outputVal &= ~pin);           //set pin low
-    Wire.endTransmission();
+    refPort.write(pin, LOW);
 }
