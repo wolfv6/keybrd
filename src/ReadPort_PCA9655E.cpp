@@ -27,4 +27,9 @@ void ReadPort_PCA9655E::read()
     Wire.requestFrom(port.ADDR, 1u);            //request one byte from input port
 
     portState = Wire.read();
+/*if (portState)//todo
+{
+    Keyboard.print(" portState=");
+    Keyboard.print(portState);
+}*/
 }

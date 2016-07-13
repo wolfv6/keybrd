@@ -18,6 +18,6 @@ class Scanner_Port
     public:
         Scanner_Port(StrobePort &refStrobePort, const uint8_t strobePin, ReadPort& refReadPort)
             : refStrobePort(refStrobePort), strobePin(strobePin), refReadPort(refReadPort) {}
-        virtual ReadPort* const scan();
+        uint8_t scan();
 };
 #endif
