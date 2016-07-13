@@ -13,9 +13,9 @@ Using smaller types on a 32-bit uC (Teensy LC) would accomplish nothing.
     For Scanner_ShiftRegs74HC165, Scanner_ShiftRegs74HC165::READ_PIN_COUNT
     For Scanner_Port, cover the last 1 bit in Scanner_Port::strobePin
 */
-//typedef uint8_t read_pins_t;
+typedef uint8_t read_pins_t;
 //typedef uint16_t read_pins_t;
-typedef uint32_t read_pins_t;
+//typedef uint32_t read_pins_t;
 
 /* SAMPLE_COUNT = 4 is very reliable for a keyboard.
 Split keyboards with a long connecting wire or in environment with

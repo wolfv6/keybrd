@@ -44,7 +44,6 @@ class Scanner_ShiftRegs74HC165
         static const bool STROBE_OFF;           //logic level of strobe off, complement of active state
         const uint8_t STROBE_PIN;               //Arduino pin number connected to this row
         const uint8_t BYTE_COUNT;               //number of bytes to read from shift registers
-        //uint8_t READ_PIN_COUNT;
     public:
         Scanner_ShiftRegs74HC165(const uint8_t STROBE_PIN, uint8_t READ_PIN_COUNT);
         virtual read_pins_t scan();

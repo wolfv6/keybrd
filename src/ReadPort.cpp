@@ -7,7 +7,5 @@ uint8_t ReadPort::getColPins()
 
 uint8_t ReadPort::getPortState()
 {
-//todo Keyboard.print(" portState=");
-//Keyboard.print(portState);
     return portState;
 }
