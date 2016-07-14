@@ -1,5 +1,6 @@
 #ifndef SCANNER_UC_H
 #define SCANNER_UC_H
+
 #include <Arduino.h>
 #include <inttypes.h>
 #include <config_keybrd.h>

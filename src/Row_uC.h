@@ -10,10 +10,9 @@
 Instantiation
 -------------
 Definition of DELAY_MICROSECONDS is explained in Row.cpp.
-Example instantiation of a row:
+Example instantiation of a Row_uC:
 
-    const unsigned int Row::DELAY_MICROSECONDS = 1000;
-    const bool Scanner_uC::STROBE_ON = LOW;   //logic level of strobe on
+    const bool Scanner_uC::STROBE_ON = LOW;   //logic level of strobe on, active low
     const bool Scanner_uC::STROBE_OFF = HIGH; //logic level of strobe off
 
     const uint8_t readPins[] = {0,1,2,3,7,8};
@@ -24,14 +23,14 @@ Example instantiation of a row:
 
 Number of readPins should equal number of keys in ptrsKeys_0[] array.
     if a readPins is missing, a key will be unresposive
-    if a Key pointer is missing, the keyboard will fail in an unprdictable way
+    if a Key pointer is missing, the keyboard will fail in an unpredictable way
 */
 class Row_uC : public Row
 {
     private:
         Scanner_uC scanner;
         Debouncer_Samples debouncer;
-        const uint8_t READ_PIN_COUNT;           //number of read pins
+        const uint8_t READ_PIN_COUNT;
     public:
         Row_uC(const uint8_t strobePin, const uint8_t READ_PINS[], const uint8_t READ_PIN_COUNT,
                 Key *const ptrsKeys[])

@@ -1,5 +1,6 @@
-#ifndef DEBOUNCER_4SAMPLES_H
-#define DEBOUNCER_4SAMPLES_H
+#ifndef DEBOUNCER_SAMPLES_H
+#define DEBOUNCER_SAMPLES_H
+
 #include <Arduino.h>
 #include <inttypes.h>
 #include <config_keybrd.h>

@@ -1,13 +1,13 @@
 #include "Row.h"
 /*
-send() calls key's press() or release() function if it was pressed or released.
+send() calls key's press() or release() function if key was pressed or released.
 Both parameters are bitwise.
 */
 void Row::send(const uint8_t readPinCount, const read_pins_t debouncedChanged)
 {
     read_pins_t isFallingEdge;                  //bitwise, 1 means falling edge
     read_pins_t isRisingEdge;                   //bitwise, 1 means rising edge
-    read_pins_t readMask;                       //bitwise, active read bit is 1
+    read_pins_t readMask;                       //bitwise, active bit is 1
     uint8_t i;                                  //index for ptrsKeys[i] array
 
     //bit=1 if last debounced changed from 1 to 0, else bit=0
@@ -34,5 +34,5 @@ void Row::send(const uint8_t readPinCount, const read_pins_t debouncedChanged)
             
 void Row::keyWasPressed()
 {
-    //empty in Row class.  To unstick sticky keys, override keyWasPressed() in derived class.
+    //empty in Row class.  To unstick sticky keys, override keyWasPressed() in derived Row class.
 }

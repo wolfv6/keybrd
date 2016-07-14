@@ -1,5 +1,6 @@
 #ifndef ROWSCANNER_SHIFTREGS74HC165_H
 #define ROWSCANNER_SHIFTREGS74HC165_H
+
 #include <Arduino.h>
 #include <inttypes.h>
 #include <config_keybrd.h>
@@ -8,12 +9,8 @@
 #include <PortRead.h>
 
 /* Scanner_ShiftRegs74HC165 reads shift registers.
-shift registers 74HC165 is Parallel-In-Serial-Out (PISO)
-Upto 4 shift registers can be in a daisy chained.
-
-In sketch:
-    const uint8_t Scanner_ShiftRegs74HC165::SHIFT_LOAD = 10;
-    call begin() from setup()
+shift registers 74HC165 are Parallel-In-Serial-Out (PISO)
+Upto 4 shift registers can be in a daisy chained for a total of 32 read pins.
 
 For active low:
     const bool Scanner_ShiftRegs74HC165::STROBE_ON = LOW;
@@ -27,7 +24,7 @@ For active high:
     //shift register parallel input pins have 10k pull-down resistors grounded
     //controller's MISO pin is connected to shift register's serial output (QH) pin
 
-In addition, each row needs to be connected to a strobe pin from controller.
+In addition, each row needs to be connected to a strobe pin from the controller.
 
  todo move this to tutorial
 The shift register needs 5 wires.
@@ -45,7 +42,7 @@ class Scanner_ShiftRegs74HC165
         const uint8_t STROBE_PIN;               //Arduino pin number connected to this row
         const uint8_t BYTE_COUNT;               //number of bytes to read from shift registers
     public:
-        Scanner_ShiftRegs74HC165(const uint8_t STROBE_PIN, uint8_t READ_PIN_COUNT);
+        Scanner_ShiftRegs74HC165(const uint8_t STROBE_PIN, const uint8_t READ_PIN_COUNT);
         virtual read_pins_t scan();
         void begin();
 };

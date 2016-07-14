@@ -204,16 +204,15 @@ Example Code_Layered class names:
 
 ## Style guide
 Following the style guide makes it easier for the next programmer to understand your code.
-* For class names, see above section "Class naming conventions"
-* For member names, use camelCase starting with lowercase letter.
+* For class names, see above section "Class naming conventions".
+* Member names use camelCase starting with lowercase letter.
 * Use constants rather than macros, except for header guards.
-* For constant names that could be macros, use ALL_CAPS_AND_UNDERSCORE.
-    * **ITEM_COUNT** is a constant number of items.
-    * **itemCount** is a variable number of items.
-* Use header guards CLASS_NAME_H.
-* Prefix pointer name with "ptr" e.g. ptrRow =  &row;
-* Name arrays using the plural of element name e.g. Row* const = ptrsRows { &row0,  &row1 };
-* Pass arrays using array notation rather than pointer notation.  Use
+* Global const names and static const names use ALL_CAPS_AND_UNDERSCORE.
+* Macros use ALL_CAPS_AND_UNDERSCORE and have _MACRO suffix e.g. SAMPLE_COUNT_MACRO
+* Header guards have _H suffix e.g. #ifndef FILE_NAME_H
+* Pointer names are prefixed with "ptr" e.g. ptrRow =  &row;
+* Arrays names use the plural of element name e.g. Row* const = ptrsRows { &row0,  &row1 };
+* Pass arrays using array notation rather than pointer notation:
 ```
         void printArray(char[] array);
     not
@@ -222,8 +221,8 @@ Following the style guide makes it easier for the next programmer to understand 
 * In constructor's initialization list, use same names for fields and constructor parameters.
 * Do not use new or malloc (making memory leaks impossible).
 * Document class interface in .h file, above the class declaration.
-* Code should be self-documenting.  The only comments should be things that may need clarification.  A simple function with a good name needs no comment.
-* Code is automatically formated before being pushed to the keybrd repository.
+* Code should be self-documenting.  A simple function with a good name needs no comment.
+* Code is automatically formatted before being pushed to the keybrd repository.
   The [astyle_cpp](astyle_cpp) file specifies the format:
     * Allman style indentation
     * indent 4 spaces

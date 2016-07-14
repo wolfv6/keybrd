@@ -15,12 +15,12 @@ void Scanner_ShiftRegs74HC165::begin()
     digitalWrite(SHIFT_LOAD, HIGH);
 }
 
-/*
-returns readState.
+/* scan() strobes the row's STROBE_PIN and retuns state of the shift register's input pins.
+Bitwise variables are 1 bit per key.
 */
 read_pins_t Scanner_ShiftRegs74HC165::scan()
 {
-    read_pins_t readState = 0;
+    read_pins_t readState = 0;                  //bitwise, 1 means key is pressed, 0 means released
 
     //strobe row on
     digitalWrite(STROBE_PIN, STROBE_ON);
@@ -35,7 +35,7 @@ read_pins_t Scanner_ShiftRegs74HC165::scan()
     digitalWrite(STROBE_PIN, STROBE_OFF);
 
     //for testing on breadboard, clear unpowered pins
-    readState &= 0b11110001000100010001000100010001; //todo
+    readState &= 0b11110001000100010001000100010001; //todo delete this line
 
     return readState;
 }

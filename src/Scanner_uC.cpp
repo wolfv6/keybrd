@@ -1,5 +1,13 @@
 #include "Scanner_uC.h"
 
+/* Scanner_uC functions call Arduino's Digital Pins functions
+https://www.arduino.cc/en/Tutorial/DigitalPins
+https://www.arduino.cc/en/Reference/PinMode
+https://www.arduino.cc/en/Reference/DigitalWrite
+https://www.arduino.cc/en/Reference/DigitalRead
+https://www.arduino.cc/en/Reference/Constants > Digital Pins modes: INPUT, INPUT_PULLUP, and OUTPUT
+*/
+
 /* constructor
 */
 Scanner_uC::Scanner_uC(const uint8_t STROBE_PIN,
@@ -13,9 +21,9 @@ Scanner_uC::Scanner_uC(const uint8_t STROBE_PIN,
 
     if (STROBE_ON == LOW)               //if active low
     {
-        mode = INPUT_PULLUP;            //uses internal pull-up resistor
+        mode = INPUT_PULLUP;            //use internal pull-up resistor
     }
-    else
+    else                                //if active high
     {
         mode = INPUT;                   //requires external pull-down resistor
     }
@@ -27,19 +35,13 @@ Scanner_uC::Scanner_uC(const uint8_t STROBE_PIN,
     }
 }
 
-/* scan() Strobes the row and reads the columns.
-Sets READ_PIN_COUNT and returns readState.
-
-https://www.arduino.cc/en/Tutorial/DigitalPins
-https://www.arduino.cc/en/Reference/PinMode
-https://www.arduino.cc/en/Reference/DigitalWrite
-https://www.arduino.cc/en/Reference/DigitalRead
-https://www.arduino.cc/en/Reference/Constants > Digital Pins modes: INPUT, INPUT_PULLUP, and OUTPUT
+/* scan() strobes the row's STROBE_PIN and retuns state of READ_PINS.
+Bitwise variables are 1 bit per key.
 */
 read_pins_t Scanner_uC::scan()
 {
-    read_pins_t readState = 0;                   //bitwise, one col per bit, 1 means key is pressed
-    read_pins_t readMask = 1;                   //bitwise, one col per bit, active col bit is 1
+    read_pins_t readState = 0;                  //bitwise, 1 means key is pressed, 0 means released
+    read_pins_t readMask = 1;                   //bitwise, active bit is 1
 
     //strobe row on
     digitalWrite(STROBE_PIN, STROBE_ON);
@@ -58,6 +60,5 @@ read_pins_t Scanner_uC::scan()
     //strobe row off
     digitalWrite(STROBE_PIN, STROBE_OFF);
 
-   // readPinCount = READ_PIN_COUNT;
     return readState;
 }
