@@ -29,13 +29,13 @@ SAMPLE_COUNT = 4 is very reliable for a keyboard.
 Split keyboards with a long connecting wire or in environment with
 strong electromagnetic interference (EMI) may need a larger SAMPLE_COUNT for reliability.
 */
-#include "Debouncer_4Samples.h"
+#include "Debouncer_Samples.h"
 
 /* debounce() sets debounced and returns debouncedChanged.  All variables are bitwise.
 For parameters, 1 means pressed, 0 means released.
 For return, 1 means debounced changed.
 */
-read_pins_t Debouncer_4Samples::debounce(const read_pins_t rawSignal, read_pins_t& debounced)
+read_pins_t Debouncer_Samples::debounce(const read_pins_t rawSignal, read_pins_t& debounced)
 {
     read_pins_t previousDebounced;                  //bitwise, 1 means pressed, 0 means released
     read_pins_t all_1 = ~0;                         //bitwise

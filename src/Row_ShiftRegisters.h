@@ -3,7 +3,7 @@
 
 #include <Row.h>
 #include <Scanner_ShiftRegs74HC165.h>
-#include <Debouncer_4Samples.h>
+#include <Debouncer_Samples.h>
 //#include <Debouncer_Not.h>
 
 /* Row_DH_IOE is a row connected to an Input/Output Expander.
@@ -28,7 +28,7 @@ class Row_ShiftRegisters : public Row
 {
     private:
         Scanner_ShiftRegs74HC165 scanner;
-        Debouncer_4Samples debouncer;
+        Debouncer_Samples debouncer;
         //Debouncer_Not debouncer; //passed test
         const uint8_t READ_PIN_COUNT;           //number of read pins
     public:

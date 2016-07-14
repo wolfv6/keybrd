@@ -11,5 +11,5 @@ void Row_uC::process()
 
     readState = scanner.scan();
     debouncedChanged = debouncer.debounce(readState, debounced);
-    pressRelease(READ_PIN_COUNT, debouncedChanged);
+    send(READ_PIN_COUNT, debouncedChanged);
 }

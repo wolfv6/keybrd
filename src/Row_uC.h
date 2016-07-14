@@ -3,7 +3,7 @@
 
 #include <Row.h>
 #include <Scanner_uC.h>
-#include <Debouncer_4Samples.h>
+#include <Debouncer_Samples.h>
 
 /* Row_uC is a row connected to a micro controller.
 
@@ -30,7 +30,7 @@ class Row_uC : public Row
 {
     private:
         Scanner_uC scanner;
-        Debouncer_4Samples debouncer;
+        Debouncer_Samples debouncer;
         const uint8_t READ_PIN_COUNT;           //number of read pins
     public:
         Row_uC(const uint8_t strobePin, const uint8_t READ_PINS[], const uint8_t READ_PIN_COUNT,

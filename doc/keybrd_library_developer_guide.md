@@ -246,7 +246,7 @@ Refer to it like a table of contents while reading the keybrd library.
                                                             set rowState bit
                                                     strobe row off
             Debouncer_4Samples::debounce()          debounce
-            Row::pressRelease()                 for each key in row
+            Row::send()                         for each key in row
                                                         if falling edge
                 Key_*::release()                            scanCode->release()
                     Code_*::release()                           Keyboard.release(scancode)

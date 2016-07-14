@@ -1,9 +1,9 @@
 #include "Row.h"
 /*
-pressRelease() calls key's press() or release() function if it was pressed or released.
+send() calls key's press() or release() function if it was pressed or released.
 Both parameters are bitwise.
 */
-void Row::pressRelease(const uint8_t readPinCount, const read_pins_t debouncedChanged)
+void Row::send(const uint8_t readPinCount, const read_pins_t debouncedChanged)
 {
     read_pins_t isFallingEdge;                  //bitwise, 1 means falling edge
     read_pins_t isRisingEdge;                   //bitwise, 1 means rising edge
