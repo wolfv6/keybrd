@@ -3,8 +3,8 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <config_keybrd.h>
-#include <StrobePort.h>
-#include <ReadPort.h>
+#include <PortWrite.h>
+#include <PortRead.h>
 
 /* Scanner_uC class uses Arduino pin numbers (not port pin numbers).
 Constructor is in Scanner_uC.cpp

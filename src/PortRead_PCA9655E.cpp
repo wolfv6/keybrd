@@ -1,13 +1,13 @@
-#include "ReadPort_PCA9655E.h"
+#include "PortRead_PCA9655E.h"
 
 /*
 configures column port's configuration, input, and pins.
 */
-ReadPort_PCA9655E::ReadPort_PCA9655E (IOEPort& port, const uint8_t READ_PINS)
-    : ReadPort(READ_PINS), port(port), configurationByteCommand(port.num + 6), inputByteCommand(port.num)
+PortRead_PCA9655E::PortRead_PCA9655E (PortIOE& port, const uint8_t READ_PINS)
+    : PortRead(READ_PINS), port(port), configurationByteCommand(port.num + 6), inputByteCommand(port.num)
 {}
 
-void ReadPort_PCA9655E::begin()
+void PortRead_PCA9655E::begin()
 {
     Wire.beginTransmission(port.ADDR);
     Wire.write(configurationByteCommand);
@@ -18,7 +18,7 @@ void ReadPort_PCA9655E::begin()
 /*
 Saves all port-pin values to portState.
 */
-uint8_t ReadPort_PCA9655E::read()
+uint8_t PortRead_PCA9655E::read()
 {
     Wire.beginTransmission(port.ADDR);
     Wire.write(inputByteCommand);               //input immediately before requestFrom

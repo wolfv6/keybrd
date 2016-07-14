@@ -71,15 +71,15 @@ Keybrd library class inheritance diagram
 	Scanner_uC  Scanner_Port  Scanner_ShiftRegs74HC165
 
 
-	IOEPort
+	PortIOE
 
-	    StrobePort
+	    PortWrite
 	       |
-	StrobePort_PCA9655E                         (one StrobePort class for each IOE type)
+	PortWrite_PCA9655E                         (one PortWrite class for each IOE type)
  
-        ReadPort
+        PortRead
 	       |
-	ReadPort_PCA9655E                           (one ReadPort class for each IOE type)
+	PortRead_PCA9655E                           (one PortRead class for each IOE type)
  
 	       ____ LED ____
 	      /             \
@@ -159,13 +159,13 @@ Example secondary matrix with I/O Expander dependency diagram with LEDs
 ```
 	                 ___ Row_IOE[1..*] _________
 	                /             \             \
-	      __ Scanner_Port[1] _   Debouncer[1]  Keys[1..*] __
-	     /           |        \                  |          \
-	StrobePort[1]  RowPin[1]  ReadPort[1]      Code[1..*]  Code_LEDLock[1..*]
+	       _ Scanner_Port[1] _   Debouncer[1]  Keys[1..*] __
+	      /          |        \                  |          \
+	PortWrite[1]   RowPin[1]  PortRead[1]      Code[1..*]  Code_LEDLock[1..*]
 	      \                   /   \                          |
 	       \                 /   ColPins[1..*]             LED[1]
 	        \               /
-	          IOEPort[0..*]
+	          PortIOE[0..*]
 
 ```
 

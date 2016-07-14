@@ -4,8 +4,8 @@
 #include <inttypes.h>
 #include <config_keybrd.h>
 #include <SPI.h>
-#include <StrobePort.h>
-#include <ReadPort.h>
+#include <PortWrite.h>
+#include <PortRead.h>
 
 /* Scanner_ShiftRegs74HC165 reads shift registers.
 shift registers 74HC165 is Parallel-In-Serial-Out (PISO)

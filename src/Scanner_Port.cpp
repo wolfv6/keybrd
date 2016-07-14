@@ -7,15 +7,15 @@ uint8_t Scanner_Port::scan()
     uint8_t readState;
 
     //strobe row on
-    refStrobePort.write(STROBE_PIN, STROBE_ON);
+    refPortWrite.write(STROBE_PIN, STROBE_ON);
     delayMicroseconds(3);                       //time to stablize voltage
 
     //read the port pins
-    readState = refReadPort.read();
+    readState = refPortRead.read();
 
     //strobe row off
-    refStrobePort.write(STROBE_PIN, STROBE_OFF);
+    refPortWrite.write(STROBE_PIN, STROBE_OFF);
    
-    //return refReadPort.getPortState();
+    //return refPortRead.getPortState();
     return readState;
 }

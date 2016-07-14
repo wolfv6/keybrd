@@ -1,12 +1,16 @@
-#include "StrobePort_PCA9655E.h"
+#include "PortWrite_PCA9655E.h"
 
 /*
 configures column port's configuration and output.
 */
-StrobePort_PCA9655E::StrobePort_PCA9655E(IOEPort& port)
+PortWrite_PCA9655E::PortWrite_PCA9655E(PortIOE& port)
     : port(port), configurationByteCommand(port.num + 6), outputByteCommand(port.num + 2) {}
 
-void StrobePort_PCA9655E::begin()
+/*
+If PortRead_PCA9655E is instantiated on the same port, do not use PortWrite_PCA9655E::begin().
+Use PortRead_PCA9655E::begin() instead.  Otherwise READ_PINS could be overwritten.
+*/
+void PortWrite_PCA9655E::begin()
 {
     Wire.beginTransmission(port.ADDR);
     Wire.write(configurationByteCommand);
@@ -20,7 +24,7 @@ value is HIGH or LOW.
 Does not reset the other pins because LEDs could be using some of the pins.
 Syntax is similar to Arduino DigitalWrite().
 */
-void StrobePort_PCA9655E::write(const uint8_t pin, const bool value)
+void PortWrite_PCA9655E::write(const uint8_t pin, const bool value)
 {
     if (value == LOW)                           //if active low
     {
