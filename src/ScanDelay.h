@@ -8,14 +8,14 @@
 DELAY_MICROSECONDS explained
 ----------------------------
 A keyboard with a faster scan rate responds faster.
-Follow these step to tune DELAY_MICROSECONDS for maximum scan rate for a given SAMPLE_COUNT:
+Follow these step to tune DELAY_MICROSECONDS for maximum scan rate for a given SAMPLE_COUNT_MACRO:
 Intantiate DELAY_MICROSECONDS in your sketch:
     ScanDelay scanDelay(1000);
 Add this to the sketch's loop() function:
     debug.print_microseconds_per_scan();
 Compile and load the sketch into the microcontroller; microseconds_per_scan is printed every second.
 Adjust the value of DELAY_MICROSECONDS and repeat until:
-    debug.print_microseconds_per_scan() <= DEBOUNCE_TIME / SAMPLE_COUNT
+    debug.print_microseconds_per_scan() <= DEBOUNCE_TIME / SAMPLE_COUNT_MACRO
 
 DEBOUNCE_TIME can be obtained from the switch's datasheet.  Some switch bounce times are:
 Cherry MX specifies 5msec bounce time http://www.cherrycorp.com/english/switches/key/mx.htm

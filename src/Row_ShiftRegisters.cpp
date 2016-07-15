@@ -17,5 +17,5 @@ void Row_ShiftRegisters::process()
 
     readState = scanner.scan();
     debouncedChanged = debouncer.debounce(readState, debounced);
-    send(READ_PIN_COUNT, debouncedChanged);
+    send(readPinCount, debouncedChanged);
 }

@@ -3,7 +3,6 @@
 This sketch:
     is a simple 1-layer keyboard
     runs on the first two rows and columns of a breadboard keyboard
-    is annotated with a walk-through narrative
 
 This layout table shows how keys are arranged on the keyboard:
 

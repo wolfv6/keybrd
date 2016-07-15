@@ -45,7 +45,7 @@ The basic breadboard has 4 switches and a microcontroller.
 
 The key matrix has two rows and two columns.
 Breadboard bus strips are used as matrix rows.
-Short bare wires connect terminal strips into matrix columns.
+Short wires connect terminal strips into matrix columns.
 Switch-diode pairs connect rows to columns.
 
 The green rectangle on the right is the Teensy 2.0 microcontroller.
@@ -63,8 +63,8 @@ Breadboard keyboard assembly instructions:
  * diodes 22 to 24 mm total end-to-end length, and save the cut offs for steps 2 and 3
 2. Insert parts into the breadboard as shown in the picture.
  * Teensy LC on the terminal strip labeled 1
- * switch leads oriented so that they will connect diodes to columns
  * diode cut offs connect terminal strips into columns
+ * switch leads are oriented to connect diodes to columns
  * diodes are orient with cathode (banded end) towards the row (bus strip)
 3. Insert jumper wires connecting Teensy2 to the matrix rows and columns.
  * follow pin connections table (below) and consult pinout diagram in

@@ -9,16 +9,16 @@
 
 Instantiation
 -------------
-Definition of DELAY_MICROSECONDS is explained in Row.cpp.
+Scanner_ShiftRegs74HC165.h has instructions for hardware and setting active state.
 Example instantiation of a Row_ShiftRegisters:
 
     const uint8_t Scanner_ShiftRegs74HC165::SHIFT_LOAD = 10;
-    const bool Scanner_ShiftRegs74HC165::STROBE_ON = LOW;    //logic level of strobe on, active low
-    const bool Scanner_ShiftRegs74HC165::STROBE_OFF = HIGH;  //logic level of strobe off
+    const bool Scanner_ShiftRegs74HC165::STROBE_ON = LOW;    //active low
+    const bool Scanner_ShiftRegs74HC165::STROBE_OFF = HIGH;
 
     Key* const ptrsKeys_0[] = { &k_00, &k_01, &k_02, &k_03, &k_04, &k_05 };
-    uint8_t READ_PIN_COUNT_0 = sizeof(ptrsKeys_0)/sizeof(*ptrsKeys_0);
-    Row_ShiftRegisters row_0(1, READ_PIN_COUNT_0, ptrsKeys_0);
+    uint8_t readPinCount_0 = sizeof(ptrsKeys_0)/sizeof(*ptrsKeys_0);
+    Row_ShiftRegisters row_0(1, readPinCount_0, ptrsKeys_0);
 
 call begin() from sketch setup():
     void setup()
@@ -28,19 +28,19 @@ call begin() from sketch setup():
         row_0.begin();
     }
 
-READ_PIN_COUNT should equal number of keys in ptrsKeys_0[] array.
-    if READ_PIN_COUNT is too small, a key will be unresposive
-    if READ_PIN_COUNT is too large, the keyboard will fail in an unpredictable way
+readPinCount should equal number of keys in ptrsKeys_0[] array.
+    if readPinCount is too small, a key will be unresponsive
+    if readPinCount is too large, the keyboard will fail in an unpredictable way
 */
 class Row_ShiftRegisters : public Row
 {
     private:
         Scanner_ShiftRegs74HC165 scanner;
         Debouncer_Samples debouncer;
-        const uint8_t READ_PIN_COUNT;           //number of read pins
+        const uint8_t readPinCount;           //number of read pins
     public:
-        Row_ShiftRegisters(const uint8_t STROBE_PIN, const uint8_t READ_PIN_COUNT, Key *const ptrsKeys[])
-            : Row(ptrsKeys), scanner(STROBE_PIN, READ_PIN_COUNT), READ_PIN_COUNT(READ_PIN_COUNT) { }
+        Row_ShiftRegisters(const uint8_t strobePin, const uint8_t readPinCount, Key *const ptrsKeys[])
+            : Row(ptrsKeys), scanner(strobePin, readPinCount), readPinCount(readPinCount) { }
         void begin();
         void process();
 };

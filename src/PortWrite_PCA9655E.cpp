@@ -7,8 +7,8 @@ PortWrite_PCA9655E::PortWrite_PCA9655E(PortIOE& port)
     : port(port), configurationByteCommand(port.num + 6), outputByteCommand(port.num + 2) {}
 
 /*
-If PortRead_PCA9655E is instantiated on the same port, do not use PortWrite_PCA9655E::begin().
-Use PortRead_PCA9655E::begin() instead.  Otherwise READ_PINS could be overwritten.
+If PortRead_PCA9655E is instantiated on the same port, do NOT use PortWrite_PCA9655E::begin().
+Otherwise readPins could be overwritten.
 */
 void PortWrite_PCA9655E::begin()
 {

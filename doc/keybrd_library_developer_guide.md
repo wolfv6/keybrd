@@ -2,7 +2,7 @@ keybrd Library Developer's Guide
 ================================
 This guide if for maintaining and writing new classes for the keybrd library and its extension libraries.
 The most common reason for new classes are:
-* Port classes for micro controller or I/O expanders
+* Port classes for I/O expanders
 * custom layer schemes for multi-layer keyboards
 * experimental features
 
@@ -207,8 +207,8 @@ Following the style guide makes it easier for the next programmer to understand 
 * For class names, see above section "Class naming conventions".
 * Member names use camelCase starting with lowercase letter.
 * Use constants rather than macros, except for header guards.
-* Global const names and static const names use ALL_CAPS_AND_UNDERSCORE.
-* Macros use ALL_CAPS_AND_UNDERSCORE and have _MACRO suffix e.g. SAMPLE_COUNT_MACRO
+* Global const names and static const names use ALL_CAPS_WITH_UNDERSCORE.
+* Macros use ALL_CAPS_WITH_UNDERSCORE and have _MACRO suffix e.g. SAMPLE_COUNT_MACRO
 * Header guards have _H suffix e.g. #ifndef FILE_NAME_H
 * Pointer names are prefixed with "ptr" e.g. ptrRow =  &row;
 * Arrays names use the plural of element name e.g. Row* const = ptrsRows { &row0,  &row1 };

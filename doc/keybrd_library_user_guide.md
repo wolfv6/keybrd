@@ -131,7 +131,7 @@ Compile and load workflow:
     you might need to press and release the pushbutton on the Teensy circuit board.
 
 ## Example keybrd sketches
-Example keybrd sketches are in the [examples](../examples/) directory.
+Example keybrd sketches are in the examples and tutorials directories.
 Extension libraries have their example sketches similarly located.
 
 The example sketch names use the following conventions.
@@ -143,15 +143,30 @@ where
 * **feature** is a distinguishing feature of the keybrd sketch e.g. breadboard, LED, sound, Dvorak
 * **version** is the sketch's version number
 
-The first field are mandatory, the remaining fields are optional.
+The first field are mandatory, the version optional.
 
-## Diode orientation
-The physical martix rows and columns on a keyboard can be in any direction or shape.
-[diode](https://en.wikipedia.org/wiki/Diode) orientation is specified in [Matrix.h](https://github.com/wolfv6/keybrd/blob/master/src/Matrix.h)
+## Active state and diode orientation
+Active state is set in the sketch by static variables STROBE_ON and STROBE_OFF.
+The following instructions are for setting active state for a Scanner_uC class.
+Scanner_ShiftRegs74HC165 and Scanner_Port classes is similar.
+
+For active low
+* Use internal pull-down resistors.
+* Orient diodes with cathode (banded end) towards the write pins (row)
+* Use these two lines in the sketch:
+    const bool Scanner_uC::STROBE_ON = LOW;
+    const bool Scanner_uC::STROBE_OFF = HIGH;
+
+For active high
+* Use external 10k pull-down resistors.
+* Orient diodes with cathode (banded end) towards the read pins.
+* Use these two lines in the sketch:
+    const bool Scanner_uC::STROBE_ON = HIGH;
+    const bool Scanner_uC::STROBE_OFF = LOW;
 
 ![Diode](https://github.com/wolfv6/keybrd/blob/master/tutorials/images/120px-Diode_pinout_en_fr.svg.png)
 
-Diagram is of typical through-the-hole diode in same alignment as diode symbol.
+Diagram is of typical through-the-hole [diode](https://en.wikipedia.org/wiki/Diode) in same alignment as diode symbol.
 Cross bar and band depict the cathode.
 
 ## Troubleshooting check list

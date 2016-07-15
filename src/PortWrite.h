@@ -5,7 +5,7 @@
 
 /*
 PortWrite is an abstract base class.
-Port classes are the keybrd library's interface to microcontoller ports or I/O expander ports.
+Port classes are the keybrd library's interface to microcontroller ports or I/O expander ports.
 */
 class PortWrite
 {

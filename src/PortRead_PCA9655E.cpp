@@ -3,20 +3,20 @@
 /*
 configures column port's configuration, input, and pins.
 */
-PortRead_PCA9655E::PortRead_PCA9655E (PortIOE& port, const uint8_t READ_PINS)
-    : PortRead(READ_PINS), port(port), configurationByteCommand(port.num + 6), inputByteCommand(port.num)
+PortRead_PCA9655E::PortRead_PCA9655E (PortIOE& port, const uint8_t readPins)
+    : PortRead(readPins), port(port), configurationByteCommand(port.num + 6), inputByteCommand(port.num)
 {}
 
 void PortRead_PCA9655E::begin()
 {
     Wire.beginTransmission(port.ADDR);
     Wire.write(configurationByteCommand);
-    Wire.write(READ_PINS);    //0=configure as output (for LED), 1=configure as input (for read)
+    Wire.write(readPins);    //0=configure as output (for LED), 1=configure as input (for read)
     Wire.endTransmission();
 }
 
 /*
-Saves all port-pin values to portState.
+returns port value
 */
 uint8_t PortRead_PCA9655E::read()
 {

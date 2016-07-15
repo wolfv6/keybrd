@@ -9,17 +9,17 @@
 
 Instantiation
 -------------
-Definition of DELAY_MICROSECONDS is explained in Row.cpp.
+keybrd_library_developer_guide.md has instructions for ## Active state and diode orientation
 Example instantiation of a Row_uC:
 
     const bool Scanner_uC::STROBE_ON = LOW;   //logic level of strobe on, active low
     const bool Scanner_uC::STROBE_OFF = HIGH; //logic level of strobe off
 
     const uint8_t readPins[] = {0,1,2,3,7,8};
-    const uint8_t READ_PIN_COUNT = sizeof(readPins)/sizeof(*readPins);
+    const uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
 
     Key* const ptrsKeys_0[] = { &k_00, &k_01, &k_02, &k_03, &k_04, &k_05 };
-    Row_uC row_0(21, readPins, READ_PIN_COUNT, ptrsKeys_0);
+    Row_uC row_0(21, readPins, readPinCount, ptrsKeys_0);
 
 Number of readPins should equal number of keys in ptrsKeys_0[] array.
     if a readPins is missing, a key will be unresposive
@@ -30,12 +30,12 @@ class Row_uC : public Row
     private:
         Scanner_uC scanner;
         Debouncer_Samples debouncer;
-        const uint8_t READ_PIN_COUNT;
+        const uint8_t readPinCount;
     public:
-        Row_uC(const uint8_t strobePin, const uint8_t READ_PINS[], const uint8_t READ_PIN_COUNT,
+        Row_uC(const uint8_t strobePin, const uint8_t readPins[], const uint8_t readPinCount,
                 Key *const ptrsKeys[])
-            : Row(ptrsKeys), scanner(strobePin, READ_PINS, READ_PIN_COUNT),
-            READ_PIN_COUNT(READ_PIN_COUNT) { }
+            : Row(ptrsKeys), scanner(strobePin, readPins, readPinCount),
+            readPinCount(readPinCount) { }
         void process();
 };
 #endif

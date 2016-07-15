@@ -7,12 +7,12 @@
 #include <DebouncerInterface.h>
 
 /* Debouncer_Samples
-Configuration: #define SAMPLE_COUNT in config_keybrd.h
+Configuration: #define SAMPLE_COUNT_MACRO in config_keybrd.h
 */
 class Debouncer_Samples : public DebouncerInterface
 {
     private:
-        read_pins_t samples[SAMPLE_COUNT];          //bitwise, one bit per key, most recent readings
+        read_pins_t samples[SAMPLE_COUNT_MACRO]; //bitwise, one bit per key, most recent readings
         uint8_t samplesIndex;                   //samples[] current write index
     public:
         Debouncer_Samples(): samplesIndex(0) {}

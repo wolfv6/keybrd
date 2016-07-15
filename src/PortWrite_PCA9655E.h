@@ -7,12 +7,12 @@
 #include "PortIOE.h"
 
 /* One PCA9655E I/O expander port connected to matrix rows.
+PCA9655E does not have internal pull-up resistors (PCA9535E does).
 
 begin() configures column port's configuration and output.
-This should normally be called only once.
-
-If PortRead_PCA9655E is instantiated on the same port, do not use PortWrite_PCA9655E::begin().
-Use PortRead_PCA9655E::begin() instead.  Otherwise READ_PINS could be overwritten.
+This should normally be called once in sketch's setup().
+If PortRead_PCA9655E is instantiated on the same port, do NOT use PortWrite_PCA9655E::begin().
+Otherwise readPins could be overwritten.
 
 Instantiation
  ------------
@@ -26,9 +26,7 @@ Example instantiation for row port 1:
 
 Diode orientation
  ----------------
-PCA9655E does not have internal pull-up resistors, external pull-down resistors are required.
-
-Rows, columns, and diode orientation are explained in Matrix.h
+Diode orientation is explained in keybrd_library_user_guide.md > Diode orientation
 
 PCA9655E data sheet
  ----------------
