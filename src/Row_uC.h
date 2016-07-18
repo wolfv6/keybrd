@@ -33,9 +33,9 @@ class Row_uC : public Row
         const uint8_t readPinCount;
     public:
         Row_uC(const uint8_t strobePin, const uint8_t readPins[], const uint8_t readPinCount,
-                Key *const ptrsKeys[])
+               Key* const ptrsKeys[])
             : Row(ptrsKeys), scanner(strobePin, readPins, readPinCount),
-            readPinCount(readPinCount) { }
+              readPinCount(readPinCount) { }
         void process();
 };
 #endif

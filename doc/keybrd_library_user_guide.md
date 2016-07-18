@@ -1,9 +1,7 @@
 keybrd Library User's Guide
 ===========================
-keybrd is an open source library for creating custom-keyboard firmware.
-The resulting keyboard firmware is compatible with standard USB keyboard drivers.
-
-This guide shows how to
+keybrd is a library for creating custom-keyboard firmware.
+This guide shows how to:
 * set up the Arduino development environment
 * install the keybrd library
 * compile and load keybrd firmware
@@ -11,16 +9,19 @@ This guide shows how to
 The Arduino development environment is free and simple as possible.
 Its easy for novice programmers to setup and learn.
 
-## Who this guide is for
+Who this guide is for
+---------------------
 This guide is for anyone who wants to use the keybrd library to develop keyboard firmware.
 
 A reader with programming experience, but no C++ experience, would understand the tutorials well enough to modify existing keybrd sketches.
 An experienced C++ programmer would be able to write original sketches and classes.
 
-The library is written in the C++ language and uses pointers, objects, classes, static class variables, aggregation, inheritance, and enum.
+The library is written in the C++ language.
+keybrd sketches use keybrd classes, objects pointers, aggregation, and static class variables.
 
-## Microcontroller board requirements
-The keybrd library works with Teensy and Arduino boards.
+Microcontroller board requirements
+----------------------------------
+The keybrd library works with Teensy and Arduino compatible boards.
 
 [Teensy LC](https://www.pjrc.com/teensy/teensyLC.html) has 8K RAM, which is more than enough memory for any keyboard.
 
@@ -28,7 +29,8 @@ keybrd has been tested on the DodoHand keyboard with Teensy 2.0 and PCA9655E I/O
 
 Teensy LC is preferred over the older Teensy 2.0 for it's larger memory capacity and lower price.
 
-## Getting started with Teensy, Arduino IDE, and keybrd
+Getting started with Teensy, Arduino IDE, and keybrd
+----------------------------------------------------
 The Arduino IDE is used to
 
 1. edit sketches
@@ -43,7 +45,7 @@ Teensyduino is a software add-on for the Arduino IDE that allows it to compile t
 The following install and setup steps create an Arduino development environment for keybrd sketches.
 
 ### Install Arduino IDE and Teensyduino
-The following install steps are modified from the [Teensyduino download page](https://www.pjrc.com/teensy/td_download.html)
+The following install steps are modified from the [Teensyduino download page](https://www.pjrc.com/teensy/td_download.html).
 
 For Linux:
 
@@ -63,37 +65,38 @@ For Linux:
    Run the teensyduino installer and fill the form fields:
 
        Arduino location to install Teensyduino: /opt/arduino-1.x.x 
-       Libraries to Install: None
+       Libraries to Install: keybrd
 
 4. Launch Arduino IDE from /opt/arduino-1.x.x/arduino
 
+<!-- todo no longer needed, delete after testing Arduino library manager
 ### Download and unpack keybrd-master.zip into your Arduino directory
-<!-- todo update after testing Arduino library manager
-link from tutorial 7 ## Publishing
+link from tutorial 8 ## Publishing
     https://www.arduino.cc/en/Guide/Libraries
      * Installing Additional Arduino Libraries
      * Using the Library Manager
- -->
 
 Down load keybrd-master.zip from the [Download ZIP](https://github.com/wolfv6/keybrd) button.
 
 Unpack keybrd-master.zip into your Arduino directory on your system (default location is ~/Documents/Arduino/).
+ -->
 
-### Install keybrd library and keybrd extension libraries
-<!-- todo update after testing Arduino library manager -->
-
+### Install keybrd extension libraries
 The keybrd library contains the foundation classes for creating a keyboard firmware.
 For emphasis, it is sometimes referred to as the "core keybrd library".
 
 keybrd extension libraries contain additional classes that extend the keyboard library.
 keybrd extension library names are prefixed with "keybrd_".
 
-The Arduino IDE looks for libraries in Arduino/libraries/.
-For example, the DodoHand keyboard requires that the core keybrd library and the keybrd_DH extension library be installed:
-* Arduino/libraries/keybrd/
-* Arduino/libraries/keybrd_DH/
+Instructions for installing Arduino libraries are at: http://www.arduino.cc/en/Guide/Libraries
 
-A keybrd extension library allows classes to be shared by multiple sketches without polluting the core keybrd library with classes that other keyboards can not use.
+A Sketchbook is a folder that the Arduino IDE uses to store sketches and libraries.
+The default location for Arduino libraries is ~/Documents/Arduino/libraries/.
+
+For example, the DodoHand keyboard requires the core keybrd library and the keybrd_DH extension library.
+After installing the libraries, my Arduino directory looks like this:
+* ~/Documents/Arduino/libraries/keybrd/
+* ~/Documents/Arduino/libraries/keybrd_DH/
 
 ### Setup Arduino IDE for compiling keybrd firmware
 From the Arduino IDE tool bar, select: 
@@ -104,33 +107,28 @@ These are optional:
 * File > Preferences > Compiler warnings: All
 * File > Preferences > check: Use external editor
 
-A Sketchbook is a folder that the Arduino IDE uses to store sketches and libraries.
-The default location for [Arduino libraries](https://www.arduino.cc/en/Guide/Libraries) is in
-
-    ~/Documents/Arduino/libraries/
-
 ### Compile and load keybrd sketch
 If it isn't already plugged in, plug the USB cable into the computer and controller.
 
 > CAUTION: It is possible to loose control of your keyboard when running a keybrd sketch.
-> If the keybrd sketch has a mouse object, it is also possible to loose control of your mouse.
+> If the keybrd sketch has a mouse object, it is possible to loose control of your mouse too.
 > USB keyboard protocol is capable of spewing characters and mouse commands at up to 500 per second.
 > Take the following precautions before uploading an untested keybrd sketch to a controller:
 > * Save all files and close dangerous applications.
 > * Park the cursor in an editor opened to a test file.
 >   That way you can immediately see if the controller starts spewing characters.
 > * Be prepared to turn off the controller:
->   turn off Teensy Loader's green "Auto" button and push Teensy's reset button
->   if that fails, unplug Teensy USB
+>   turn off Teensy Loader's green "Auto" button and push Teensy's reset button or unplug Teensy USB.
 
 Compile and load workflow:
  1. Open a keybrd sketch in the Arduino IDE.
  2. Prepare for loosing control of keyboard and mouse.
  3. On the Arduino IDE, click the Upload button.
- 4. The Teensy boot loader window opens;
-    you might need to press and release the pushbutton on the Teensy circuit board.
+ 4. The Teensy boot loader window opens
+    (you might need to press and release the pushbutton on the Teensy circuit board).
 
-## Example keybrd sketches
+Example keybrd sketches
+-----------------------
 Example keybrd sketches are in the examples and tutorials directories.
 Extension libraries have their example sketches similarly located.
 
@@ -140,18 +138,16 @@ The example sketch names use the following conventions.
 
 where
 * **keybrd** is the library name e.g. keybrd, keybrd_DH
-* **feature** is a distinguishing feature of the keybrd sketch e.g. breadboard, LED, sound, Dvorak
-* **version** is the sketch's version number
+* **feature** is a distinguishing feature of the keybrd sketch e.g. keyboard name, sound, Dvorak
+* **version** is the sketch's version number (optional)
 
-The first field are mandatory, the version optional.
-
-## Active state and diode orientation
+Active state and diode orientation
+----------------------------------
 Active state is set in the sketch by variables STROBE_ON and STROBE_OFF.
-The following instructions are for setting active state for a Scanner_uC class.
-Scanner_ShiftRegs74HC165 and Scanner_Port classes is similar.
+The following instructions are for setting active state for a Scanner_uC class
+(Scanner_ShiftRegs74HC165 and Scanner_Port classes is similar).
 
 For active low:
-* Use internal pull-down resistors.
 * Orient diodes with cathode (banded end) towards the write pins (row)
 * Use these two lines in the sketch:
 ```
@@ -168,61 +164,48 @@ For active high:
     const bool Scanner_uC::STROBE_OFF = LOW;
 ```
 
-![Diode](../tutorials/keybrd_1_breadboard_images/120px-Diode_pinout_en_fr.svg.png)
-
-Diagram is of typical through-the-hole [diode](https://en.wikipedia.org/wiki/Diode) in same alignment as diode symbol.
-Cross bar and band depict the cathode.
-
-## Troubleshooting check list
-The following is a listing of items to check when a new keybrd sketch or keyboard is having trouble.
+Troubleshooting check list
+--------------------------
+The following is a listing of items to check when a new keybrd sketch or keyboard hardware is having trouble.
 
 Development-environment items to check:
 * If the keyboard has an I/O expander, power cycle (replug the USB) after loading the HEX file.
-* If compile error: 'KEY_A' was not declared in this scope
-
-  From the Arduino IDE tool bar, select: Tools > USB Type > Keyboard + Mouse + Joystick
+* For compile error:
+```
+    'KEY_A' was not declared in this scope
+```
+  Where 'KEY_A' could be any scan code.
+  Fix this from the Arduino IDE tool bar: Tools > USB Type > Keyboard + Mouse + Joystick
 
 Sketch items to check:
-* For each row, number of keys in Row should equal number of colPort pins.
-In this example, row_0 has six colPort pins in ptrsColPorts, and six keys in ptrsKeys_0:
+* For each row, number of read pins in Row should equal number of keys.
+In this example, row_0 has 2 read pins and 2 keys:
 ```
-    ColPort_AVR colPortB(DDRB, PORTB, PINB, 1<<0 | 1<<1 | 1<<2 | 1<<3 );
-    ColPort_AVR colPortD(DDRD, PORTD, PIND, 1<<2 | 1<<3 );
+    uint8_t readPins[] = {14, 15};
+    uint8_t READ_PIN_COUNT = sizeof(readPins)/sizeof(*readPins);
 
-    ColPort* const ptrsColPorts[] = { &colPortB, &colPortD };
-    const uint8_t COL_PORT_COUNT = sizeof(ptrsColPorts)/sizeof(*ptrsColPorts);
-
-    const Key* const ptrsKeys_0[] = { &k_00, &k_01, &k_02, &k_03, &k_04, &k_05 };
-    Row row_0(ptrsKeys_0, &rowPortF, 1<<0, ptrsColPorts, COL_PORT_COUNT);
+    Key* ptrsKeys_0[] = { &s_a, &s_b };
+    Row_uC row_0(0, readPins, READ_PIN_COUNT, ptrsKeys_0);
 ```
-* Some of the constructors take array-element-count arguments, make sure that the correct counts are passed to the constructors.  Or use sizeof() like this example:
-```
-    Row* const ptrsRows[] = { &row0, &row1, &row2, &row3 };
-    const uint8_t ROW_COUNT = sizeof(ptrsRows)/sizeof(*ptrsRows);
-    Matrix matrix(ptrsRows, ROW_COUNT, 1);
-```
+* Some of the constructors take array-element-count arguments, make sure that the correct counts are passed to the constructors.  Or use sizeof() like the preceding example.
 * For multi-layered keyboards, the number of codes in each Key_Layered should equal the number of layers.
 
 Hardware items to check:
 * Connections
 * Diode orientation
-* 5 volts across power and ground
-* To validate keyboard hardware, modify the simple single-layer keybrd sketch from the tutorial.
+* 3.3 or 5 volts across power and ground
+* To validate keyboard hardware, modify the simple [keybrd_1_breadboard.ino](../tutorials/keybrd_1_breadboard/keybrd_1_breadboard.ino) sketch.
 
-<!-- todo after teensy LC bb, link to minimal keybrd sketch
-[minimal keybrd sketch](blob/master/tutorials/keybrd_2_single-layer_annotated/keybrd_2_single-layer_annotated.ino).
- -->
-
-## Keybrd nomenclature
+Keybrd nomenclature
+-------------------
 **[scancode](http://en.wikipedia.org/wiki/Scancode)** -
 Is a 16-bit integer assigned to a key position on a keyboard.
 The keyboard sends a scancode to the computer for every key press and release.
 
-**[Layers](http://deskthority.net/wiki/Layer)** -
-are key bindings provided by the keyboard firmware.
-The standard [IBM PC keyboard](http://en.wikipedia.org/wiki/IBM_PC_keyboard) has one layer.
-Many compact keyboards have an additional [Fn layer](http://en.wikipedia.org/wiki/Fn_key).
-The [Neo layout](http://neo-layout.org/index_en.html) has 6 layers.
+**[layers](http://deskthority.net/wiki/Layer)** - are key bindings provided by the keyboard firmware.  For example,
+* The classic [IBM PC keyboard](http://en.wikipedia.org/wiki/IBM_PC_keyboard) has one layer.
+* Many compact keyboards have an additional [Fn layer](http://en.wikipedia.org/wiki/Fn_key).
+* The [Neo layout](http://neo-layout.org/index_en.html) has 6 layers.
 
 **Layer id** - is an integer assigned to a layer.
 

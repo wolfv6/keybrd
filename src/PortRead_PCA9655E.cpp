@@ -5,7 +5,7 @@ configures column port's configuration, input, and pins.
 */
 PortRead_PCA9655E::PortRead_PCA9655E (PortIOE& port, const uint8_t readPins)
     : PortRead(readPins), port(port),
-    configurationByteCommand(port.num + 6), inputByteCommand(port.num)
+      configurationByteCommand(port.num + 6), inputByteCommand(port.num)
 {}
 
 void PortRead_PCA9655E::begin()

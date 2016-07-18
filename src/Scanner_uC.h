@@ -20,7 +20,7 @@ class Scanner_uC
         const uint8_t readPinCount;             //number of read pins
     public:
         Scanner_uC(const uint8_t strobePin,
-                const uint8_t readPins[], const uint8_t readPinCount);
+                   const uint8_t readPins[], const uint8_t readPinCount);
         virtual read_pins_t scan();
 };
 #endif

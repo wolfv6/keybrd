@@ -33,11 +33,12 @@ In addition, each row needs to be connected to a strobe pin from the controller.
 class Scanner_ShiftRegs74HC165
 {
     private:
-        static const uint8_t SHIFT_LOAD;        //controller's pin number that is connected to shift register's SHIFT_LOAD pin
-        static const bool STROBE_ON;            //logic level of strobe on, active state HIGH or LOW
-        static const bool STROBE_OFF;           //logic level of strobe off, complement of active state
-        const uint8_t strobePin;               //Arduino pin number connected to this row
-        const uint8_t byte_count;               //number of bytes to read from shift registers
+        static const uint8_t SHIFT_LOAD;    //controller's pin number that is
+                                            // connected to shift register's SHIFT_LOAD pin
+        static const bool STROBE_ON;        //logic level of strobe on, active state HIGH or LOW
+        static const bool STROBE_OFF;       //logic level of strobe off, complement of active state
+        const uint8_t strobePin;            //Arduino pin number connected to this row
+        const uint8_t byte_count;           //number of bytes to read from shift registers
     public:
         Scanner_ShiftRegs74HC165(const uint8_t strobePin, const uint8_t readPinCount);
         virtual read_pins_t scan();

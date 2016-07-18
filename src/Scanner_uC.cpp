@@ -11,7 +11,7 @@ https://www.arduino.cc/en/Reference/Constants > Digital Pins modes: INPUT, INPUT
 /* constructor
 */
 Scanner_uC::Scanner_uC(const uint8_t strobePin,
-        const uint8_t readPins[], const uint8_t readPinCount)
+                       const uint8_t readPins[], const uint8_t readPinCount)
     : strobePin(strobePin), readPins(readPins), readPinCount(readPinCount)
 {
     uint8_t mode;

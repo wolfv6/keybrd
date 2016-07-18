@@ -35,8 +35,8 @@ uint8_t readPins[] = {14, 15};
 uint8_t READ_PIN_COUNT = sizeof(readPins)/sizeof(*readPins);
 
 /* ==================== LEDs ===================
-The LED_uC constructor parameter is for an Aduino pin that is connected to an LED.
-LED_uC objects are passed to other objects that want to turn the LED on or off.
+The LED_uC constructor parameter is for an Aduino pin number that is connected to an LED.
+LED objects are passed to other objects that want to turn the LED on or off.
 In this example, the LED_uC objects are named after the states they indicate.
 
 The prtsLayerLEDs[] array contains one LED per layer, it is used to indicate the current layer.
@@ -60,7 +60,7 @@ LayerState_LED layerState(prtsLayerLEDs);
 Code_LayerHold l_fn(FN, layerState);
 
 /* ---------------- SCAN CODES -----------------
-When a Code_LEDLock object is pressed, it sends a scancodes and updates the its LED.
+When a Code_LEDLock object is pressed, it sends its scancode and updates the its LED.
 Scancodes can be one of KEY_CAPS_LOCK, KEY_SCROLL_LOCK, or KEY_NUM_LOCK.
 For example, when o_capsLock is pressed, it sends KEY_CAPS_LOCK scancode and updates LED_CapsLck.
 */

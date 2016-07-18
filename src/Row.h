@@ -15,10 +15,10 @@ class Row
         virtual void keyWasPressed();
     protected:
         read_pins_t debounced;                  //bitwise state of keys after debouncing
-                                                // 1 means pressed, 0 means released
+        // 1 means pressed, 0 means released
         void send(const uint8_t readPinCount, const read_pins_t debouncedChanged);
     public:
-        Row(Key *const ptrsKeys[]) : ptrsKeys(ptrsKeys), debounced(0) { }
+        Row(Key* const ptrsKeys[]) : ptrsKeys(ptrsKeys), debounced(0) { }
         virtual void process()=0;
 };
 #endif

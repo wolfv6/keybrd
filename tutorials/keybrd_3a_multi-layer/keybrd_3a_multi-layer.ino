@@ -11,7 +11,7 @@ This sketch:
 
 Each cell in the table's body represents a key.
 The layered keys in row 0 have two layers; one character for each layer.
-Letters 'a' and 'b' are on the normal layer.  Numbers '1' and '2' are one the fn layer.
+Letters 'a' and 'b' are on the normal layer.  Numbers '1' and '2' are on the fn layer.
 Holding the fn key down makes it the active layer.  Releasing the fn key restores the normal layer.
 */
 // ################## GLOBAL ###################
@@ -52,8 +52,8 @@ LayerState layerState;
 /*
 NORMAL=0 and FN=1.  LayerState's default layer id is 0.
 The Code_LayerHold constructor has two parameters:
- 1) the layer that will be active while the key is held down. 
- 2) the LayerState
+ 1) the layer that will be active while the key is held down.
+ 2) a LayerState
 When l_fn is pressed, it tells layerState to change the active layer to 1.
 When l_fn is released, it tells layerState that layer 1 is released, and layerState restores the default layer.
 */
@@ -72,7 +72,7 @@ The Key_LayeredKeysArray constructor takes one array of Code pointers - one Code
 Key_LayeredKeysArray uses layer id numbers as array indexes.
 Thus Key_LayeredKeysArray calls the Code corresponding to the active layer id.
 
-The Key object names in this sketch start with a "k_" followed by matrix-row-column coordinates.
+The Key object names in this sketch start with a "k_" followed by row-column coordinates.
 */
 Key* const ptrsCodes_01[] = { &s_a, &s_1 };
 Key_LayeredKeysArray k_01(ptrsCodes_01);
@@ -94,8 +94,8 @@ It then uses the layer id as an array index to send the scancode for the active 
 Here we pack Key pointers into row objects.
 
 Codes are a kind of Key that only have one layer.
-So rows can contain a mix of multi-layered keys and codes.
-Arrays ptrsKeys_0[] and ptrsKeys_1[] contain both Key pointers and Code pointers.
+So rows can contain a mix of codes and multi-layered keys.
+Arrays ptrsKeys_0[] and ptrsKeys_1[] contain both Code pointers and Key pointers.
 */
 Key* const ptrsKeys_0[] = { &s_shift, &k_01 };
 Row_uC row_0(0, readPins, READ_PIN_COUNT, ptrsKeys_0);

@@ -2,6 +2,9 @@
 
 void Debug::printMicrosecondsPerScan()
 {
+    static unsigned long nextTime = 0;
+    static unsigned int scanCount = 0;
+
     if (millis() >= nextTime)
     {
         Keyboard.print(1000000/scanCount);      //print microseconds per scan
@@ -13,6 +16,9 @@ void Debug::printMicrosecondsPerScan()
 }
 void Debug::printScansPerSecond()
 {
+    static unsigned long nextTime = 0;
+    static unsigned int scanCount = 0;
+
     if (millis() >= nextTime)
     {
         Keyboard.print(scanCount);              //print scans per second

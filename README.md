@@ -1,10 +1,12 @@
 keybrd library for creating keyboard firmware
-====================================================
+=============================================
 keybrd library is an open source library for creating custom-keyboard firmware.
+The keybrd library allows keyboard designers to develop and publish their firmware simply as possible.
 The resulting keyboard firmware is compatible with standard USB keyboard drivers.
 
 keybrd library can support any keyboard configuration:
 * one-piece
+* split with shift registers
 * split with I/O expander
 * single-layer
 * multiple-layer
@@ -16,35 +18,40 @@ Multiple-layer keyboards can write symbols without using the shift key:
 keybrd library leverages the Arduino environment to create keyboard firmware.
 The Arduino development environment is free, and easy for novice programmers to setup and learn.
 
-The keybrd library has been tested on the Teensy 2.0 microcontroller, MCP23018 I/O expander, and PCA9655E I/O expander.
+The keybrd library has been tested on Teensy LC, Teensy 2.0, 74HC165 shift registers, and PCA9655E I/O expander.
 
-> The public API should not be considered stable.
-> Currently the keybrd library is limited to 8x8 matrices, which is enough for compact split keyboards.
+> The keybrd library is in Beta testing.  The public API should not be considered stable.
 
 Example minimal keybrd sketch
 -----------------------------
-<!-- todo after teensy LC bb, copy and remove annotations from keybrd_single-layer_2_annotated.ino -->
-A [minimal keybrd sketch](tutorials/keybrd_2_single-layer_annotated/keybrd_2_single-layer_annotated.ino).
-has about 50 lines of code and runs on a 4-key keyboard.
-It runs on a breadboard and has rows, columns, and diodes just like the big keyboards.
+A [minimal keybrd sketch](/tutorials/keybrd_1_breadboard/keybrd_1_breadboard.ino)
+is 40 lines of code for a 4-key keyboard.
 The sketch is small because the keybrd library takes care of the low-level details.
+It runs the breadboard keyboard in this picture.
 
-The keybrd tutorial 1 shows how to make a breadboard keyboard.
-The remaining [keybrd tutorials](tutorials) show how to create custom keybrd firmware.
+<img src="tutorials/keybrd_1_breadboard/breadboard_keyboard_2x2.JPG" title="breadboard keyboard" alt="breadboard keyboard" style="height:290px;width:328px;">
 
 Example complex keybrd sketch
 -----------------------------
-The keybrd_DH emulates the DataHand keyboard.
-It has 72 keys, 4 layers, 6 sub-layers, 2 matrices, 8 LEDs, and blinking LEDs.
-The keybrd_DH and its instantiation files contain about 800 lines of code.
+keybrd_DH and its instantiation files contain about 800 lines of code.
+It emulates the DataHand keyboard.
+The layout has 52 keys, 4 layers, 6 sub-layers, 2 matrices, 8 LEDs, and blinking LEDs.
 
+[keybrd_DH_library_developer_guide.md](https://github.com/wolfv6/keybrd_DH/blob/master/doc/keybrd_DH_library_developer_guide.md)<br>
 [mainSketch.ino](https://github.com/wolfv6/keybrd_DH/blob/master/examples/keybrd_DH/mainSketch.cpp)<br>
-[instantiations_ports.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_ports.h)<br>
-[instantiations_LEDs.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_LEDs.h)<br>
-[instantiations_codes.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_codes.h)<br>
-[instantiations_matrix.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_matrix.h)
+[instantiations_pins.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_pins.h)<br>
+[instantiations_scancodes.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_scancodes.h)<br>
+[instantiations_layercodes.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_layercodes.h)<br>
+[instantiations_rows_L.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_rows_L.h)<br>
+[instantiations_rows_R.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_rows_R.h)
+
+![hweller](images/datahand.jpg "DataHand")
 
 Support
 -------
 [Guides](doc) and [tutorials](tutorials) are provided.
-Please ask a questions in [issues](https://github.com/wolfv6/Keybrd/issues) if something is not clear.
+
+keybrd tutorial_1 shows how to make a breadboard keyboard.
+The remaining [keybrd tutorials](tutorials) show how to create custom keybrd firmware.
+
+Please ask questions in [keybrd library for keyboard firmware](geekhack todo) thread if something is not clear.

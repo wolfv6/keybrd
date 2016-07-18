@@ -31,7 +31,7 @@ void Row::send(const uint8_t readPinCount, const read_pins_t debouncedChanged)
         }
     }
 }
-            
+
 void Row::keyWasPressed()
 {
     //empty in Row class.  To unstick sticky keys, override keyWasPressed() in derived Row class.

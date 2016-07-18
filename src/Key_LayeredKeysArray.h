@@ -14,11 +14,11 @@ the Key object of the active layer is called.
 class Key_LayeredKeysArray : public Key
 {
     private:
-        Key *const *const ptrsKeys;             //array of Key pointers, one Key per layer
+        Key*const *const ptrsKeys;             //array of Key pointers, one Key per layer
         uint8_t layer;                          //active layer when key was pressed
         static LayerStateInterface& refLayerState;
     public:
-        Key_LayeredKeysArray(Key *const ptrsKeys[]): ptrsKeys(ptrsKeys) {}
+        Key_LayeredKeysArray(Key* const ptrsKeys[]): ptrsKeys(ptrsKeys) {}
         virtual void press();
         virtual void release();
 };

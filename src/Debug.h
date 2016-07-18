@@ -5,10 +5,6 @@
 
 class Debug
 {
-    private:
-        unsigned long nextTime = 0;
-        unsigned int scanCount = 0;
-
     public:
         void printMicrosecondsPerScan();        //print microseconds per scan every second
         void printScansPerSecond();             //print scans per second every second

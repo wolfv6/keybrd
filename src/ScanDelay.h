@@ -20,7 +20,7 @@ Adjust the value of DELAY_MICROSECONDS and repeat until:
 DEBOUNCE_TIME can be obtained from the switch's datasheet.  Some switch bounce times are:
 Cherry MX specifies 5msec bounce time http://www.cherrycorp.com/english/switches/key/mx.htm
 hasu measured Cherry MX bounce times .3ms to 1.4ms http://geekhack.org/index.php?topic=42385.0
-Tactile switch MJTP series bounce 10 ms http://www.apem.com/files/apem/brochures/MJTP_6MM.pdf 
+Tactile switch MJTP series bounce 10 ms http://www.apem.com/files/apem/brochures/MJTP_6MM.pdf
 
 The largest allowable DELAY_MICROSECONDS is 65535 (65.535 ms).
 

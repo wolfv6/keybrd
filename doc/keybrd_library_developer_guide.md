@@ -1,36 +1,39 @@
 keybrd Library Developer's Guide
 ================================
 This guide if for maintaining and writing new classes for the keybrd library and its extension libraries.
-The most common reason for new classes are:
-* Port classes for I/O expanders
+The most common reason for adding new classes are:
+* I/O expander classes
 * custom layer schemes for multi-layer keyboards
 * experimental features
 
-## Who this guide is for
+Who this guide is for
+---------------------
 This guide is for the maintainers and developers of the keybrd library and it's extensions.
 It is assumed the reader is familiar with C++ language including pointers, objects, classes, static class variables, composition, aggregation, inheritance, polymorphism, and enum.
-Debouncer and I/O expander use bit manipulation.
+Row, Scanner, and Debouncer classes use bit manipulation.
 
-## Custom Row classes
-The keybrd library is flexible for designing custom Rows
- * Row functions can be overridden in a derived class
- * choice of Debouncers
- * choice of Scanners
+Custom Row classes
+------------------
+Row classes are central to the keybrd library.
+Row is an abstract base class that allows flexibility for designing derived Row classes:
+* Row functions can be overridden in a derived class
+* choice of Debouncers
+* choice of Scanners
 
-this example illustrates the custom Row classes for a fictional keybrd_Ext extension library
-the keybrd_Ext library is for a split keyboard with a matrix on each hand
+This example illustrates the custom Row classes for a fictional keybrd_Ext extension library.
+The keybrd_Ext library is for a split keyboard with sticky keys and a matrix on each hand.
 
-Row_Ext::keyWasPressed() overrides Row::keyWasPressed()
+Row_Ext::keyWasPressed() overrides Row::keyWasPressed()<br>
 Row_Ext::keyWasPressed() is used to unstick sticky keys
 
-Row_Ext_uC scans the primary matrix
-Row_Ext_ShiftRegisters scans the secondary matrix
-Row_Ext_uC and Row_Ext_ShiftRegisters are a custom classes composed of stock keybrd library classes
+Row_Ext_uC and Row_Ext_ShiftRegisters are a custom classes composed of stock keybrd library classes.<br>
+Row_Ext_uC uses Scanner_uC to scan the primary matrix.<br>
+Row_Ext_ShiftRegisters uses Scanner_ShiftRegs74HC165 to scan the secondary matrix.
 
 Class inheritance diagram
 ```
 
-    	   Row
+    	    Row
 	         |
 	       Row_Ext                                (override Row::keyWasPressed() )
           /      \
@@ -44,22 +47,23 @@ Class inheritance diagram
 Dependency diagram
 ```
 
-	         ________ Row_Ext_uC[1] _______________
-	        /                     \                \
-	Scanner_uC[1]  Debouncer_Samples[1]  Key[1..*]
-	     /          \                               |
-	strobePin[1]  readPins[1..*]                   Code[1..*]
+	         ________ Row_Ext_uC[1] ______________
+	        /            |                        \
+	Scanner_uC[1]  Debouncer_Samples[1]           Key[1..*]
+	     /                                         |
+	strobePin[1]                                  Code[1..*]
 
 
-                _____ Row_Ext_ShiftRegisters[1] ________
-	           /                        \               \
+            _________ Row_Ext_ShiftRegisters[1] ________
+	       /                            \               \
     Scanner_ShiftRegs74HC165[1]  Debouncer_Samples[1]  Key[1..*]
-	       /       \                                     |
-    strobePin[1]  ROW_END[1]                           Code[1..*]
+	      |                                             |
+    strobePin[1]                                       Code[1..*]
 
 ```
 
-## Class inheritance diagrams
+Class inheritance diagrams
+--------------------------
 
 Keybrd library class inheritance diagram
 ```
@@ -71,7 +75,7 @@ Keybrd library class inheritance diagram
 	Scanner_uC  Scanner_Port  Scanner_ShiftRegs74HC165
 
 
-	PortIOE
+	    PortIOE
 
 	    PortWrite
 	       |
@@ -81,14 +85,14 @@ Keybrd library class inheritance diagram
 	       |
 	PortRead_PCA9655E                           (one PortRead class for each IOE type)
  
-	       ____ LED ____
-	      /             \
-	LED_PinNumber  LED_PCA9655E
+	    _ LED _
+	   /       \
+	LED_uC    LED_PCA9655E
 
 
 	DebouncerInterface
 	      |
-	Debouncer_4Samples
+	Debouncer_Samples
 
     ScanDelay
 
@@ -115,14 +119,15 @@ Keybrd library class inheritance diagram
 	 |__________________________________________
 	       \           \            \           \
 	     Code_Sc  Code_Shift  Code_AutoShift  Code_LEDLock
-	                         /      |      \
-	                  Code_ScS  Code_ScNS  Code_ScNS_00
+	                             /      \
+	                        Code_ScS  Code_ScNS
 
 ```
 
-## Dependency diagrams
+Dependency diagrams
+-------------------
 
-Example single-layer dependency diagram with LEDs
+Dependency diagram of example single-layer keyboard with LEDs
 ```
 	        _ Row_uC[1..*] _
 	       /      |         \
@@ -134,7 +139,7 @@ Example single-layer dependency diagram with LEDs
 
 ```
 
-Example multi-layer dependency diagram with layer LEDs
+Dependency diagram of example multi-layer keyboard with layer LEDs
 ```
 	                                          LayerStates[1..*]
 	         ________ Row_uC[1..*] ___________/__    |         \
@@ -145,7 +150,7 @@ Example multi-layer dependency diagram with layer LEDs
 
 ```
 
-Example secondary matrix with shift registers dependency diagram
+Dependency diagram of example secondary matrix with shift registers
 ```
 	              Row_ShiftRegisters[1..*]
 	             /              \         \
@@ -155,7 +160,7 @@ Example secondary matrix with shift registers dependency diagram
 
 ```
 
-Example secondary matrix with I/O Expander dependency diagram with LEDs
+Dependency diagram of example secondary matrix with I/O Expander and LEDs
 ```
 	                 ___ Row_IOE[1..*] _________
 	                /             \             \
@@ -169,7 +174,8 @@ Example secondary matrix with I/O Expander dependency diagram with LEDs
 
 ```
 
-## Class naming conventions
+Class naming conventions
+------------------------
 Class names start with upper case letter.
 Most derived-class names start with the base class name followed by "_" and a name e.g.
 ```
@@ -181,7 +187,8 @@ Most derived-class names start with the base class name followed by "_" and a na
 This convention leads to class names that convey information about the classes inheritance.
 Underscore delineates base class name and sub-class name.  Capital letters delineate words.
 
-## Layer-class naming conventions
+Layer-class naming conventions
+------------------------------
 *Code_Layer* class names are concatenations of "Code_", "Layer" or layer name, and persistence.
 Example persistences are:
 * "Lock" - layer remains active after the layer key is released
@@ -202,7 +209,8 @@ Example Code_Layered class names:
 * Code_LayeredScSc
 * Key_LayeredKeysArray
 
-## Style guide
+Style guide
+-----------
 Following the style guide makes it easier for the next programmer to understand your code.
 * For class names, see above section "Class naming conventions".
 * Member names use camelCase starting with lowercase letter.
@@ -211,7 +219,7 @@ Following the style guide makes it easier for the next programmer to understand 
 * Macros use ALL_CAPS_WITH_UNDERSCORE and have _MACRO suffix e.g. SAMPLE_COUNT_MACRO
 * Header guards have _H suffix e.g. #ifndef FILE_NAME_H
 * Pointer names are prefixed with "ptr" e.g. ptrRow =  &row;
-* Arrays names use the plural of element name e.g. Row* const = ptrsRows { &row0,  &row1 };
+* Arrays names use the plural of the element name e.g. Row* const = ptrsRows { &row0,  &row1 };
 * Pass arrays using array notation rather than pointer notation:
 ```
         void printArray(char[] array);
@@ -219,7 +227,7 @@ Following the style guide makes it easier for the next programmer to understand 
         void printArray( char* array);
 ```
 * In constructor's initialization list, use same names for fields and constructor parameters.
-* Do not use new or malloc (making memory leaks impossible).
+* Do not use new or malloc (make memory leaks impossible).
 * Document class interface in .h file, above the class declaration.
 * Code should be self-documenting.  A simple function with a good name needs no comment.
 * Code is automatically formatted before being pushed to the keybrd repository.
@@ -231,32 +239,34 @@ Following the style guide makes it easier for the next programmer to understand 
 
   <!-- http://stackoverflow.com/questions/2198241/best-practice-for-c-function-commenting -->
 
-## Trace of keybrd scan
+Trace of keybrd scan
+--------------------
 Arduino does not have a debugger.
 So here is the next best thing; a list of functions in the order that they are called.
-The trace is of a single-layer keybrd scan (no LEDs and no I/O expander).
+The trace is of a one-row single-layer keybrd scan.
 Refer to it like a table of contents while reading the keybrd library.
 
 ```
     loop()                                      for each row
         Row::process()
-            Scanner_uC::scan()            strobe row on
+            Scanner_uC::scan()                      strobe row on
                                                         for each readPin
-                                                            set rowState bit
+                                                            set readState bit
                                                     strobe row off
-            Debouncer_4Samples::debounce()          debounce
+            Debouncer_Samples::debounce()           debounce
             Row::send()                         for each key in row
-                                                        if falling edge
-                Key_*::release()                            scanCode->release()
-                    Code_*::release()                           Keyboard.release(scancode)
-                                                        if rising edge
-                Key_*::press()                              scanCode->press()
-                    Code_*::press()                             Keyboard.press(scancode)
+                                                    if falling edge
+                Key_*::release()                        scanCode->release()
+                    Code_*::release()                       Keyboard.release(scancode)
+                                                    if rising edge
+                Key_*::press()                          scanCode->press()
+                    Code_*::press()                         Keyboard.press(scancode)
         scanDelay.delay();
          
 ```
 
-## The Arduino libraries
+The Arduino libraries
+---------------------
 The keybrd libraries compile on the Arduino IDE and make extensive use of the following [Arduino libraries](https://www.arduino.cc/en/Reference/Libraries):
 
     #include <Arduino.h>

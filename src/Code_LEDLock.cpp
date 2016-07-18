@@ -16,14 +16,14 @@ Code_LEDLock::Code_LEDLock(const uint16_t scancode, LED& refLED)
     case KEY_SCROLL_LOCK:
         USB_LED_bit = 1<<2;
         break;
-    /* guessing at these case names:
-    case KEY_COMPOSE:                           //for separate accent keys
-        USB_LED_bit = 1<<3; break;
-        break;
-    case KEY_KANA:                              //for Japanese keyboards
-        USB_LED_bit = 1<<4; break;
-        break;
-    */
+        /* guessing at these case names:
+        case KEY_COMPOSE:                           //for separate accent keys
+            USB_LED_bit = 1<<3; break;
+            break;
+        case KEY_KANA:                              //for Japanese keyboards
+            USB_LED_bit = 1<<4; break;
+            break;
+        */
     }
 }
 
@@ -51,12 +51,12 @@ TMK firmware, which is not Arduino, uses variable "usb_led" instead of "keyboard
 */
 void Code_LEDLock::updateLED() const
 {
-/* KEY_SCROLL_LOCK is not working on Linux with Teensy2.0.
-This debug code prints "keyboard_leds=0" when scrollLock is pressed:
-    Keyboard.print(F(" keyboard_leds="));
-    Keyboard.print(keyboard_leds); //KEY_NUM_LOCK:1, KEY_CAPS_LOCK:2, KEY_SCROLL_LOCK:0
-    Keyboard.print(" ");
-*/
+    /* KEY_SCROLL_LOCK is not working on Linux with Teensy2.0.
+    This debug code prints "keyboard_leds=0" when scrollLock is pressed:
+        Keyboard.print(F(" keyboard_leds="));
+        Keyboard.print(keyboard_leds); //KEY_NUM_LOCK:1, KEY_CAPS_LOCK:2, KEY_SCROLL_LOCK:0
+        Keyboard.print(" ");
+    */
     if (keyboard_leds & USB_LED_bit)            //if USB_LED_bit is set
     {
         refLED.off();       //LED on-off seem inverted, but it works for active low and active high

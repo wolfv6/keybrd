@@ -14,15 +14,14 @@ This layout table shows how keys are arranged on the keyboard:
 The layout's row and column numbers are in the headers.
 Each cell in the table's body represents a key.
 
-The sketch is annotated with a walk-through narrative enclosed in comment blocks.
+The following sketch is annotated with a walk-through narrative enclosed in comment blocks.
 Each comment block explains the next one or two lines of code.
 
 keybrd objects are instantiated under the "GLOBAL" heading.
 The keyboard runs at the end of the sketch, under the "MAIN" heading.
 */
 // ################## GLOBAL ###################
-// ================= INCLUDES ==================
-/*
+/* ================= INCLUDES ==================
 All the includes in this sketch are to keybrd library classes.
 */
 #include <ScanDelay.h>
@@ -43,7 +42,7 @@ STROBE_ON and STROBE_OFF define the logic levels for the strobe.
 "Active low" means that if a switch is pressed (active), the read pin is low.
 To make this sketch active low, STROBE_ON should be LOW (tutorial 6 coveres this in more detail).
 */
-const bool Scanner_uC::STROBE_ON = LOW; //set matrix for active low
+const bool Scanner_uC::STROBE_ON = LOW; //set scanner for active low
 const bool Scanner_uC::STROBE_OFF = HIGH;
 
 /* ================= PINS =================
@@ -51,7 +50,8 @@ Micro-controller 14 and 15 are connected to the matrix columns.
 These readPins detect which keys are pressed while a row is strobed.
 
 sizeof() is used to compute the number of array elements.
-This eliminates the risk of forgetting to update the count after adding or removing an element.
+This eliminates the risk of forgetting to update the count
+after adding or removing an element from the array.
 */
 uint8_t readPins[] = {14, 15};
 uint8_t READ_PIN_COUNT = sizeof(readPins)/sizeof(*readPins);
@@ -69,11 +69,11 @@ Code_Sc s_c(KEY_C);
 Code_Sc s_shift(MODIFIERKEY_LEFT_SHIFT);
 
 /* =================== ROWS ====================
-Here we pack Code objects into row objects.
+Here we pack Code objects into Row objects.
 The Row objects names in this sketch start with a "row_" followed by a row number.
 
 Row_uC constructor has four parameters:
- 1) stobePin connected to the row.
+ 1) strobePin connected to the row.
  2) readPins[] connected to the colums.
  3) the number of readPins.
  4) ptrsKeys[] containing all the Code objects of the row, one Code object per key.
@@ -95,7 +95,7 @@ void setup()
 
 /*
 loop() continually scans the matrix, one row at a time.
-Each row object strobes the strobePin and reads the readPins.
+Each row object strobes its strobePin and reads the readPins.
 And when a key press is detected, the row sends the key's scancode.
 
 scanDelay creates time intervals between matrix scans.

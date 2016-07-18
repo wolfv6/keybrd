@@ -16,6 +16,6 @@ uint8_t Scanner_Port::scan()
 
     //strobe off
     refPortWrite.write(strobePin, STROBE_OFF);
-   
+
     return readState;
 }

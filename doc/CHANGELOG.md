@@ -1,24 +1,34 @@
-# Change Log for keybrd library
+Change Log for keybrd library
+=============================
 All notable changes to the keybrd project will be documented in this file.
 This project adheres to Semantic Versioning 2.0.0(http://semver.org/).
 
-keybrd version 0.x.x is for initial development. The public API should not be considered stable.
+keybrd version 0.x.x is for initial development.
 keybrd version 1.0.0 will be released when the public API is stable.
 
-## Unreleased
-## 0.5.0 (2016-07-18)
+<!-- Unreleased
+------------------ -->
+
+0.5.0 (2016-07-19)
+------------------
 * Enhancements
+  * Update tutorials
+  * Add tutorials for shift registers, LEDs, active high
 
 * Backward incompatible changes
+  * Add 32x32 matrix capability to Row_uC
+  * Add STROBE_ON and STROBE_OFF to scanner class, to set active state
   * Rename classes
 
-## 0.4.1 (2016-06-21)
+0.4.1 (2016-06-21)
+------------------
 * Enhancements
   * Add config_keybrd.h for size configurations.
   * Add RowScanner_SPI-ShiftRegisters for compact split keyboards up to 32 keys per matrix.
   * Add LED_PinNumber for controlling indicator lights by pin number.
 
-## 0.4.0 (2016-06-10)
+0.4.0 (2016-06-10)
+------------------
 * Enhancements
   * Add Row_uC
   * Add Row_IOE
@@ -36,12 +46,14 @@ keybrd version 1.0.0 will be released when the public API is stable.
   * Move scanner and debouncer into their own classes.
   * Remove Port arrays
 
-## 0.3.1 (2016-06-02)
+0.3.1 (2016-06-02)
+------------------
 * Enhancements
   * Add RowBase class
   * Add Row::debounce()
 
-## 0.3.0 (2016-05-09)
+0.3.0 (2016-05-09)
+------------------
 * Enhancements
   * Add Tutorials
 
@@ -51,14 +63,16 @@ keybrd version 1.0.0 will be released when the public API is stable.
     * Moved sketches to examples directory
   * Replace Key_Layered dependency on LayerManager with LayerState class
 
-## 0.2.0 (2016-02-25)
+0.2.0 (2016-02-25)
+------------------
 * Enhancements
   * Add Port classes for micro-controllers and I/O expanders
   * Add DH_2565 sketch with DataHand layout
   * Add Sticky mouse button (SMB) for DataHand layout
   * Add Supporting documentation
 
-## 0.1.0 (2015-02-10)
+0.1.0 (2015-02-10)
+------------------
 * Enhancements
   * The library runs on Teensy 2.0 microcontroller and MCP23018 I/O expander
   * Limited to 8x8 matrix, which is enough for compact or split keyboards

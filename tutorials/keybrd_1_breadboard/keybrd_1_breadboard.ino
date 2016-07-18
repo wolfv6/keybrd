@@ -1,16 +1,10 @@
-/* keybrd_6_active_high.ino
-
-This sketch:
-    is the tutorial 1 sketch with STROBE_ON/STROBE_OFF values swapped
-    is active high 1-layer keyboard
-    runs on the first two rows and columns of a active-high breadboard keyboard
+/* keybrd_1_breadboard.ino
 
 | Layout | **0** | **1** |
 |:------:|-------|-------|
 |  **0** | 1     | a     |
 |  **1** | b     | c     |
 */
-
 // ################## GLOBAL ###################
 // ================= INCLUDES ==================
 #include <ScanDelay.h>
@@ -20,17 +14,11 @@ This sketch:
 // ============ SPEED CONFIGURATION ============
 ScanDelay scanDelay(9000);
 
-/* ================ ACTIVE STATE ===============
-STROBE_ON and STROBE_OFF define the logic levels for the strobe.
-"Active high" means that if a switch is pressed (active), the read pin is high.
-To make this sketch active high, STROBE_ON should be HIGH.
+// ================ ACTIVE STATE ===============
+const bool Scanner_uC::STROBE_ON = LOW;
+const bool Scanner_uC::STROBE_OFF = HIGH;
 
-Compared active low, STROBE_ON/STROBE_OFF values swapped.
-*/
-const bool Scanner_uC::STROBE_ON = HIGH; //set matrix for active high
-const bool Scanner_uC::STROBE_OFF = LOW;
-
-// ================= PINS =================
+// =================== PINS ====================
 uint8_t readPins[] = {14, 15};
 uint8_t READ_PIN_COUNT = sizeof(readPins)/sizeof(*readPins);
 

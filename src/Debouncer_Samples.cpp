@@ -19,7 +19,7 @@ Output from keybrd/examples/debounce_unit_test.cpp with SAMPLE_COUNT_MACRO 4:
     isFallingEdge:             000000000000000000001
     isRisingEdge:              000000000001000000000
 There is a latency equal to SAMPLE_COUNT_MACRO, between button press and debounced signal.
- 
+
 samples[SAMPLE_COUNT_MACRO] is a ring buffer.  samplesIndex is it's current write index.
 SAMPLE_COUNT_MACRO is the number of consecutive equal samples needed to debounce.
 SAMPLE_COUNT_MACRO is a macro because it defines samples[SAMPLE_COUNT_MACRO] array size at compile time.
