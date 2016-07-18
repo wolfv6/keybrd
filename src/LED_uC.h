@@ -4,12 +4,12 @@
 #include <inttypes.h>
 #include <LED.h>
 
-/* A LED_uC object is an Aduino pin that is used to power an LED on and off.
+/* A LED_uC turns LED on and off.
 */
 class LED_uC: public LED
 {
     private:
-        const uint8_t pin;
+        const uint8_t pin;                      //Aduino pin that is connected to an LED
 
     public:
         LED_uC(const uint8_t pin): pin(pin)

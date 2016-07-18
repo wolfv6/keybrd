@@ -4,7 +4,7 @@
 #include <inttypes.h>
 #include <LayerStateInterface.h>
 
-/* basic LayerState for keyboard.
+/* Basic LayerState for keyboard.
 When pressed, Code_Layer objects call LayerState functions lock() or hold().
 When pressed, Layered objects call LayerState function getActiveLayer().
 */

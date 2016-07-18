@@ -6,10 +6,14 @@ When you finish this tutorial you will be able to be able to modify a 2-matrix k
 The breadboard in this picture models a split keyboard.
 ![breadboard keyboard with 2 rows and 4 columns of keys](images/breadboard_keyboard_2x5_labeled.jpg "2x5 breadboard keyboard")
 
-The breadboard has four bus strips used as rows.
-Two rows connected to a microcontroller, and two rows connected to a I/O expander.
+The breadboard's four bus strips are used as rows.
+Two rows (blue bus strips) are connected to the microcontroller.
+Two rows (red bus strips) are connected to the shift registers.
 
-The I/O expander has a small notch on one end, which identifies the end with pin 1.
+The breadboard's four bus strips are used as rows.
+Two rows connect to a microcontroller, and two rows connected to a I/O expander.
+
+The I/O expander has a small notch on one end, which identifies pin 1.
 In the picture, pin 1 is on the right end.
 
 The microcontroller and I/O expander are connected by 4 jumper wires:
@@ -18,7 +22,7 @@ The microcontroller and I/O expander are connected by 4 jumper wires:
 * Serial CLock signal (SCL)
 * Serial DAta signal (SDA)
 
-A decoupling capacitor on the power pin dampens noise coming in through the power wire.
+A decoupling capacitor on the power pin dampens noise coming in through the power and ground wires.
 
 The microcontroller and I/O expander communicate via [I2C](http://en.wikipedia.org/wiki/I%C2%B2C) bus, which consists of two signals: SCL and SDA.
 Two resistors pull-up voltage on the SCL and SDA.

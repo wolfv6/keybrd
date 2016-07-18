@@ -5,7 +5,7 @@ The keyboard hardware for this sketch has 4 shift registers,
  with every 4th input pin connected to a pull-down resistor and matrix column, also the 31st key.
 Unused input pins are not grounded, so add this line to Scanner_ShiftRegs74HC165::scan():
     //clear unpowered pins (for testing on breadboard)
-    rowState &= 0b11110001000100010001000100010001; //todo
+    rowState &= 0b11110001000100010001000100010001;
 
   Layout                 Layout
 | Left  | **0**|**1**| | Right |**0**|**1**|**2**|**3**|**4**|**5**|**6**|**7**|**8**|
@@ -31,13 +31,13 @@ Unused input pins are not grounded, so add this line to Scanner_ShiftRegs74HC165
 // =============== CONFIGURATION ===============
 ScanDelay scanDelay(9000);
 
-//active state of left matrix
+//set left matrix for active low
 const bool Scanner_uC::STROBE_ON = LOW;
 const bool Scanner_uC::STROBE_OFF = HIGH;
 
 const uint8_t Scanner_ShiftRegs74HC165::SHIFT_LOAD = 10;
 
-//active state of right matrix
+//set right matrix for active low
 const bool Scanner_ShiftRegs74HC165::STROBE_ON = LOW;
 const bool Scanner_ShiftRegs74HC165::STROBE_OFF = HIGH;
 
@@ -50,22 +50,6 @@ uint8_t READ_PIN_COUNT = sizeof(readPins)/sizeof(*readPins);
 // ==================== LEDs ===================
 LED_uC LED1(16);
 
-//sometimes OS takes 6 seconds to recongnize keyboard, LED blinks from the begining
-void wait()
-{
-    for (uint8_t count = 0; count < 6; count++)
-    {
-        //print count
-        Keyboard.print(count);
-        Keyboard.print(F(" "));
-
-        //blink LED
-        LED1.on();
-        delay(500);
-        LED1.off();
-        delay(500);
-    }
-}
 // =================== CODES ===================
 Code_Sc s_a(KEY_A);
 Code_Sc s_b(KEY_B);
@@ -159,7 +143,7 @@ void setup()
     row_R0.begin();
     row_R1.begin();
 
-    wait();
+    debug.wait_for_OS(LED1, 6);
     Keyboard.println(F("keybrd_shift_reg.ino"));
 }
 

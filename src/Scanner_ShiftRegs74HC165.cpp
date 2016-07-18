@@ -34,9 +34,6 @@ read_pins_t Scanner_ShiftRegs74HC165::scan()
     //strobe row off
     digitalWrite(strobePin, STROBE_OFF);
 
-    //for testing on breadboard, clear unpowered pins
-    readState &= 0b11110001000100010001000100010001; //todo delete this line
-
     return readState;
 }
 

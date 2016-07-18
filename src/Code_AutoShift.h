@@ -10,7 +10,7 @@ Example initialization:
     const Code_Shift s_shift(MODIFIERKEY_LEFT_SHIFT);
     const Code_Shift *const ptrsS[] = { &s_shift };
     const Code_Shift *const *const Code_AutoShift::ptrsShifts = ptrsS;
-    const uint8_t Code_AutoShift::shiftCount = sizeof(ptrsShifts)/sizeof(*ptrsShifts);
+    const uint8_t Code_AutoShift::shiftCount = sizeof(ptrsS)/sizeof(*ptrsS);
 The two Code_Shift pointer arrays (ptrsShifts and ptrsS) must have distinct names.
 
 Automatic shifting is usful on multi-layered keyboards.

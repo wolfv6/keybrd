@@ -146,25 +146,29 @@ where
 The first field are mandatory, the version optional.
 
 ## Active state and diode orientation
-Active state is set in the sketch by static variables STROBE_ON and STROBE_OFF.
+Active state is set in the sketch by variables STROBE_ON and STROBE_OFF.
 The following instructions are for setting active state for a Scanner_uC class.
 Scanner_ShiftRegs74HC165 and Scanner_Port classes is similar.
 
-For active low
+For active low:
 * Use internal pull-down resistors.
 * Orient diodes with cathode (banded end) towards the write pins (row)
 * Use these two lines in the sketch:
+```
     const bool Scanner_uC::STROBE_ON = LOW;
     const bool Scanner_uC::STROBE_OFF = HIGH;
+```
 
-For active high
-* Use external 10k pull-down resistors.
+For active high:
+* Add an external 10k pull-down resistor to each read pin.
 * Orient diodes with cathode (banded end) towards the read pins.
 * Use these two lines in the sketch:
+```
     const bool Scanner_uC::STROBE_ON = HIGH;
     const bool Scanner_uC::STROBE_OFF = LOW;
+```
 
-![Diode](https://github.com/wolfv6/keybrd/blob/master/tutorials/images/120px-Diode_pinout_en_fr.svg.png)
+![Diode](../tutorials/keybrd_1_breadboard_images/120px-Diode_pinout_en_fr.svg.png)
 
 Diagram is of typical through-the-hole [diode](https://en.wikipedia.org/wiki/Diode) in same alignment as diode symbol.
 Cross bar and band depict the cathode.
