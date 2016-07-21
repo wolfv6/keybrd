@@ -2,7 +2,6 @@ keybrd library for creating keyboard firmware
 =============================================
 keybrd library is an open source library for creating custom-keyboard firmware.
 The keybrd library allows keyboard designers to develop and publish their firmware simply as possible.
-The resulting keyboard firmware is compatible with standard USB keyboard drivers.
 
 keybrd library can support any keyboard configuration:
 * one-piece
@@ -19,6 +18,7 @@ keybrd library leverages the Arduino environment to create keyboard firmware.
 The Arduino development environment is free, and easy for novice programmers to setup and learn.
 
 The keybrd library has been tested on Teensy LC, Teensy 2.0, 74HC165 shift registers, and PCA9655E I/O expander.
+The resulting keyboard firmware is compatible with standard USB keyboard drivers.
 
 > The keybrd library is in Beta testing.  The public API should not be considered stable.
 
@@ -51,7 +51,7 @@ Support
 -------
 [Guides](doc) and [tutorials](tutorials) are provided.
 
-keybrd tutorial_1 shows how to make a breadboard keyboard.
+keybrd tutorial_1 shows how to build a breadboard keyboard.
 The remaining [keybrd tutorials](tutorials) show how to create custom keybrd firmware.
 
 Please ask questions in [keybrd library for keyboard firmware](geekhack todo) thread if something is not clear.
