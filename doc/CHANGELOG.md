@@ -9,11 +9,11 @@ keybrd version 1.0.0 will be released when the public API is stable.
 <!-- Unreleased
 ------------------ -->
 
-0.5.0 (2016-07-19)
+0.5.0 (2016-07-22)
 ------------------
 * Enhancements
   * Update tutorials
-  * Add tutorials for shift registers, LEDs, active high
+  * Add tutorials for LEDs, active high
 
 * Backward incompatible changes
   * Add 32x32 matrix capability to Row_uC
