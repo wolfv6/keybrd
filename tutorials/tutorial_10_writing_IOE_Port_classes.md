@@ -1,13 +1,13 @@
-Tutorial 10 - writing your own port classes
+Tutorial 10 - writing IOE Port classes
 ===========================================
 Port classes are the keybrd library's interface to I/O expander ports.
 
-To write your own port classes:
+To write your own Port class:
 
-1. Get a copy of the controller or I/O expander datasheet.
+1. Get a copy of the I/O expander datasheet.
 2. Study other keybrd Port classes.
 
-For example, the keybrd_DH library use these keybrd classes for its PCA9655E I/O:
+For example, the keybrd_DH library uses these keybrd classes for its PCA9655E I/O expander:
 * PortWrite_PCA9655E
 * PortRead_PCA9655E
 * LED_PCA9655E
