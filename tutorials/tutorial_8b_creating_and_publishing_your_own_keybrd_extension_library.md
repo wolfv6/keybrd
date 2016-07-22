@@ -37,10 +37,10 @@ Add your keybrd library to the Keyboard/Keypads sublist:
 Publishing on GitHub with listing on Arduino Library-Manager and Arduino Playground LibraryList
 -----------------------------------------------------------------------------------------------
 The advantage of using GitHub is that users can submit pull requests.
-The advantage of using Arduino Library-Manager is that users can install your library through the Arduino IDE.
+The advantage of using Arduino Library-Manager is that users can easily find and install your library through the Arduino IDE.
 
 Arduino Library-Manager is particular about the directory structures it accepts.
-Your keybrd extension library should have a library.properties file and a src folder, placed like this:
+A library.properties file and a src folder need to be placed in your keybrd extension library like this:
 
     keybrd_MyKeyboard/
         library.properties
@@ -58,8 +58,7 @@ Your keybrd extension library should have a library.properties file and a src fo
             class2.h
             ..
             instantiations_codes.h
-            instantiations_ports.h
-            instantiations_matrix.h
+            instantiations_rows.h
 
 The library.properties file is described in
     https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5:-Library-specification
@@ -73,7 +72,7 @@ Example library.properties file:
     sentence=An extension to the keybrd library for the MyKeyboard.
     paragraph=This library demonstrates my feature.
     category=Device Control
-    url= (instert your github repo URL for keybrd_MyKeyboard)
+    url= (instert your MyKeyboard github repo URL here)
     architectures=*
 ```
 

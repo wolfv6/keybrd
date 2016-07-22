@@ -48,7 +48,7 @@ Electrostatic discharge (ESD) safety
 Static electricity can damage a microcontroller in ways that are hard to trouble shoot.
 
 I live in a desert on a carpeted floor and get zapped by door knobs regularly.
-Whenever I handle microcontrollers I:
+Here is the ESD precaution I take whenever I handle a microcontroller:
 
 1. Touch the bare metal on the back of my desktop computer (its grounded).
 2. Then while still touching to the computer, touch the metal USB connector case on the microcontroller.

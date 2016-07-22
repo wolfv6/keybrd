@@ -29,8 +29,6 @@ is 40 lines of code for a 4-key keyboard.
 The sketch is small because the keybrd library takes care of the low-level details.
 It runs the breadboard keyboard in this picture.
 
-<img src="tutorials/keybrd_1_breadboard/breadboard_keyboard_2x2.JPG" title="breadboard keyboard" alt="breadboard keyboard" style="height:290px;width:328px;">
-
 <img src="tutorials/keybrd_1_breadboard/breadboard_keyboard_2x2.JPG" title="breadboard keyboard" alt="breadboard keyboard" height="290" width="328">
 
 Example complex keybrd sketch
