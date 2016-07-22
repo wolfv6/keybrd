@@ -1,24 +1,15 @@
 Tutorial 8b - creating and publishing your own keybrd extension library
 =======================================================================
 Publishing and listing your keybrd extension library allows others to find and install your library.
-The keybrd extension library name should start with "keybrd_" so that it is easy for people to find.
+The keybrd extension library name should start with "keybrd_" so that it is easy for other people to find.
 
-The directory structure of the library depends on where it will be listed.
+There are two ways to publish and list an Arduino library.
 
 Publishing anywhere with listing on Arduino Playground LibraryList
 ------------------------------------------------------------------
-Arduino Playground LibraryList can list a library with any directory structure.
-The directory structure of your keybrd extension library can be as simple as:
+Publishing your keybrd extension library with the following directory structure makes it easy for others to understand.
 
     keybrd_MyKeyboard/
-        class1.cpp
-        class1.h
-        class2.cpp
-        class2.h
-        ..
-        instantiations_codes.h
-        instantiations_ports.h
-        instantiations_matrix.h
         doc/
             keybrd_MyKeyboard_guide
         examples/
@@ -26,13 +17,21 @@ The directory structure of your keybrd extension library can be as simple as:
                 keybrd_MyKeyboard1.ino
             keybrd_MyKeyboard2/
                 keybrd_MyKeyboard2.ino
+        class1.cpp
+        class1.h
+        class2.cpp
+        class2.h
+        ..
+        instantiations_codes.h
+        instantiations_rows.h
 
-[Arduino playground](http://playground.arduino.cc/) is a wiki.
-Instructions for listing a library on the Arduino playgound LibraryList are at:
-    http://playground.arduino.cc/Code/Library#Sharing
+When your ready to list your keybrd extension library, go to the [Arduino Playground keybrd page](http://playground.arduino.cc/Main/keybrd).
+Arduino playground is a wiki.
+Links on how to edit the wiki are on the bottom left under "Participate".
 
-Add your keybrd library to the Keyboard/Keypads sublist:
-    http://playground.arduino.cc/Main/InterfacingWithHardware#keyb
+You can also add a picture of a keyboard that uses your keybrd extension library.
+Uploading files to the Playground is not allowed for standard users.
+So if you want to add a picture, it will need to be hosted somewhere else.
 
 Publishing on GitHub with listing on Arduino Library-Manager and Arduino Playground LibraryList
 -----------------------------------------------------------------------------------------------
@@ -79,10 +78,30 @@ Example library.properties file:
 Instructions for listing a library on Arduino Library Manager are at:
     https://github.com/arduino/Arduino/wiki/Library-Manager-FAQ
 
-[Arduino playground](http://playground.arduino.cc/) is a wiki.
-After it has been accepted into the Arduino IDE Library Manager, add your library to the Arduino Playground LibraryList.
-Sign in at http://playground.arduino.cc/Main/LibraryList and add keybrd libraries to Keyboard/Keypads sublist:
-    http://playground.arduino.cc/Main/InterfacingWithHardware#keyb
+After it has been accepted into the Arduino IDE Library Manager, add your keybrd extension library to the [Arduino Playground keybrd page](http://playground.arduino.cc/Main/keybrd).
+Arduino playground is a wiki.
+Links on how to edit the wiki are on the bottom left under "Participate".
+
+You can also add a picture of a keyboard that uses your keybrd extension library.
+Uploading files to the Playground is not allowed for standard users.
+So if you want to add a picture, it will need to be hosted somewhere else.
+
+To publish a new release of a library that is already listed on Arduino Library Manager
+
+1. Update the version in your library.properties file:
+
+    version=0.5.0
+    
+2. Commit
+3. Create an annotated tag with the version number:
+
+    $ git tag -a v0.5.0 -m "version 0.5.0"
+
+4. Push:
+
+    $ git push -u --tags origin master
+
+Arduino will eventually publish your new release.
 
 <br>
 <a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">keybrd tutorial</span> by <a xmlns:cc="https://creativecommons.org/ns" href="https://github.com/wolfv6/keybrd" property="cc:attributionName" rel="cc:attributionURL">Wolfram Volpi</a> is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="https://creativecommons.org/ns" href="https://github.com/wolfv6/keybrd/issues/new" rel="cc:morePermissions">https://github.com/wolfv6/keybrd/issues/new</a>.

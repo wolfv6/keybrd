@@ -52,15 +52,15 @@ A healthy project needs the perspective of many people.
 * Documentation - Suggest a clarification, simplification, correction, or other improvement.
 We need the perspective of people new to the project to see these things.
 Sometimes just changing a word or two makes a big difference.
-* [What we currently need from keybrd users](todo geekhack) lists tasks for the keybrd project's current stage of development.
+* [Current user contributions](todo geekhack) highlights contributions that are needed for the keybrd project's current stage of development.
 
 Text file documentation style guide:
 * Use Markdown with a .md suffix.
 * "Underline" first-level (=) and second-level (-) headings (because easier to read in plain text).
 * Capitalize first letter of headings (no extra capitalization in headings).
 
-Submitting a Pull Request
+Submitting a pull request
 -------------------------
-Pull Request is the preferred way to contribute code and documentation.
+Pull request is the preferred way to contribute code and documentation.
 If you want to contribute some other way, please make a request in the [GitHub issues](https://github.com/wolfv6/Keybrd/issues).
 

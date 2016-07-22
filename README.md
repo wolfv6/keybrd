@@ -3,12 +3,13 @@ keybrd library for creating keyboard firmware
 keybrd library is an open source library for creating custom-keyboard firmware.
 The keybrd library allows keyboard designers to develop and publish their firmware simply as possible.
 
-keybrd library can support any keyboard configuration:
+keybrd library supports any keyboard configuration:
 * one-piece
 * split with shift registers
 * split with I/O expander
 * single-layer
 * multiple-layer
+* LED indicator lights
 
 Multiple-layer keyboards can write symbols without using the shift key:
 
@@ -54,4 +55,4 @@ Support
 keybrd tutorial_1 shows how to build a breadboard keyboard.
 The remaining [keybrd tutorials](tutorials) show how to create custom keybrd firmware.
 
-Please ask questions in [keybrd library for keyboard firmware](geekhack todo) thread if something is not clear.
+Please ask questions in [keybrd firmware library](geekhack todo) thread if something is not clear.
