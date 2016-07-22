@@ -17,7 +17,7 @@ Compared to PCBs, breadboard keyboards make learning faster because:
 * A small keyboard is easier to trouble shoot
 
 Breadboard keyboards are useful for:
-* learning keyboard electronics - micro controller, key matrix, diode, shift registers, I/O expander
+* learning keyboard electronics - microcontroller, key matrix, diode, shift registers, I/O expander
 * learning the firmware development workflow
 * prototyping circuits before making a PCB
 
@@ -25,15 +25,15 @@ Arduino simulation software is an alternative to breadboards; I haven't tried th
 
 Breadboard keyboard starter kit
 -------------------------------
-The parts needed to build the tutorial Breadboard Keyboards are listed in [breadboard_keyboard_supplies.ods](breadboard_keyboard_supplies.ods).
+The parts needed to build the tutorial breadboard keyboards are listed in [breadboard_keyboard_supplies.ods](breadboard_keyboard_supplies.ods).
 
-The tutorials use a Teensy LC controller, but any Arduino-compatible controller with SRAM should work.
+The tutorials use a Teensy LC controller, but any Arduino-compatible controller with at least 2 KB SRAM should work.
 
 You will need two tools:
 * Wire cutters
 * A multi-meter for trouble shooting
 
-Wire striper and lead forming tool are optional.
+Wire striper, lead-forming tool, and Anti-static mat are optional.
 
 How a breadboard works
 ----------------------
@@ -43,13 +43,30 @@ To understand the breadboard keyboard you will need to know the internal parts o
 
 These are explained in [How to Use a Breadboard](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard)
 
+Electrostatic discharge (ESD) safety
+------------------------------------
+Static electricity can damage a microcontroller in ways that are hard to trouble shoot.
+
+I live in a desert on a carpeted floor and get zapped by door knobs regularly.
+Whenever I handle microcontrollers I:
+
+1. Touch the bare metal on the back of my desktop computer (its grounded).
+2. Then while still touching to the computer, touch the metal USB connector case on the microcontroller.
+
+Anti-static mat or anti-static wristband are also effective.
+Being tethered by an anti-static wristband can be inconvenient (wireless antistatic wrist straps are a scam).
+
+Not everyone needs to take ESD precautions:
+* http://forum.arduino.cc/index.php?topic=4643.0
+* https://forums.adafruit.com/viewtopic.php?f=8&t=12128
+
 Building a basic breadboard keyboard
 ------------------------------------
 The basic breadboard keyboard has 4 switches.
 
 ![basic breadboard keyboard](keybrd_1_breadboard/breadboard_keyboard_2x2.JPG "basic breadboard keyboard")
 
-A Teensy LC microcontroller in on the left.
+A Teensy LC microcontroller is on the left.
 A key matrix with 4 switches is to the right.
 
 The key matrix has two two columns.
@@ -82,7 +99,7 @@ Breadboard keyboard assembly instructions:
   * Teensy LC is on the left
   * switch leads are oriented to connect diodes to columns (pictured below)
   * diode cut offs connect terminal strips into columns
-  * diodes connect switches to blue buses, orient with cathode (banded end) towards the row (bus strip)
+  * diodes connect switches to blue buses; orient diodes with cathode (banded end) towards the row (bus strip)
 
  ![switch orientation](keybrd_1_breadboard/switch_orientation.JPG "switch orientation")
 
@@ -117,11 +134,11 @@ This excellent article explains how key matrix, diodes, and ghosting work:
 
 In the article:
 
-    output pins power columns and input pins detect the power on rows.
+> Output pins power columns and input pins detect the power on rows.
 
 The breadboard keyboards in this series of tutorials do it the other way:
 
-    output pins power rows and input pins detect the power on columns.
+> Output pins power rows and input pins detect the power on columns.
 
 The keybrd library uses the word "strobe".
 Strobe pins are output pins connected to rows.

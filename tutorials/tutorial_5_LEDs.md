@@ -79,7 +79,7 @@ Exercises
 ---------
 1) In this exercise you will calculate the minimum current limiting resistance needed for your output pin and LED.
 
-For your micro controller, find:
+For your microcontroller, find:
 * Supply Voltage coming out of the output pins
 * Current (mA) capacity of the output pins
 

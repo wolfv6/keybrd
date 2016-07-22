@@ -9,22 +9,21 @@ The most common reason for adding new classes are:
 Who this guide is for
 ---------------------
 This guide is for the maintainers and developers of the keybrd library and it's extensions.
-It is assumed the reader is familiar with C++ language including pointers, objects, classes, static class variables, composition, aggregation, inheritance, polymorphism, and enum.
+It is assumed the reader is familiar with the C++ language including pointers, objects, classes, static class variables, composition, aggregation, inheritance, polymorphism, and enum.
 Row, Scanner, and Debouncer classes use bit manipulation.
 
 Custom Row classes
 ------------------
 Row classes are central to the keybrd library.
-Row is an abstract base class that allows flexibility for designing derived Row classes:
+Row is an abstract base class that allows flexibility in designing derived Row classes:
 * Row functions can be overridden in a derived class
 * choice of Debouncers
 * choice of Scanners
 
 This example illustrates the custom Row classes for a fictional keybrd_Ext extension library.
-The keybrd_Ext library is for a split keyboard with sticky keys and a matrix on each hand.
+The keybrd_Ext library is for a split keyboard with a matrix on each hand and sticky keys.
 
-Row_Ext::keyWasPressed() overrides Row::keyWasPressed()<br>
-Row_Ext::keyWasPressed() is used to unstick sticky keys
+Row_Ext::keyWasPressed() overrides Row::keyWasPressed() which is used to unstick sticky keys.
 
 Row_Ext_uC and Row_Ext_ShiftRegisters are a custom classes composed of stock keybrd library classes.<br>
 Row_Ext_uC uses Scanner_uC to scan the primary matrix.<br>
@@ -189,6 +188,8 @@ Underscore delineates base class name and sub-class name.  Capital letters delin
 
 Layer-class naming conventions
 ------------------------------
+Layer classes are explained in [tutorial_3a_multi-layer_keyboard.md](../tutorials/tutorial_3a_multi-layer_keyboard.md).
+
 *Code_Layer* class names are concatenations of "Code_", "Layer" or layer name, and persistence.
 Example persistences are:
 * "Lock" - layer remains active after the layer key is released

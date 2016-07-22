@@ -5,7 +5,7 @@
 #include <Scanner_uC.h>
 #include <Debouncer_Samples.h>
 
-/* Row_uC is a row connected to a micro controller.
+/* Row_uC is a row connected to a microcontroller.
 
 Instantiation
 -------------

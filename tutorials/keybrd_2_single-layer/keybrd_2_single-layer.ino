@@ -46,7 +46,7 @@ const bool Scanner_uC::STROBE_ON = LOW; //set scanner for active low
 const bool Scanner_uC::STROBE_OFF = HIGH;
 
 /* ================= PINS =================
-Micro-controller 14 and 15 are connected to the matrix columns.
+Microcontroller 14 and 15 are connected to the matrix columns.
 These readPins detect which keys are pressed while a row is strobed.
 
 sizeof() is used to compute the number of array elements.

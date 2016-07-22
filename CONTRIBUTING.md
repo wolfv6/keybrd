@@ -36,7 +36,7 @@ Git commit message style guide:
 * Limit the first line to 72 characters summary
 * Second line should be empty, followed by body of the commit message
 * Use the imperative present tense (use "Add feature", not "Added feature", not "Adds feature")
-* Reference an improvement suggestion or bug report
+* Reference an improvement suggestion, bug report, or planned_features
 * Sometimes a bulleted list is a good format to convey the changes of a commit
 
 User contributions

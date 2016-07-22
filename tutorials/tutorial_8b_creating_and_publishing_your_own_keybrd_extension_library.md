@@ -73,7 +73,7 @@ Example library.properties file:
     sentence=An extension to the keybrd library for the MyKeyboard.
     paragraph=This library demonstrates my feature.
     category=Device Control
-    url= (github repo URL for keybrd_MyKeyboard)
+    url= (instert your github repo URL for keybrd_MyKeyboard)
     architectures=*
 ```
 

@@ -24,8 +24,8 @@ You have three versions of LED indicators you are experimenting with:
 Example 2.
 You use Colemak and want QWERTY users to to try your new keyboard design.
 So you publish your keybrd extension library with two versions of instantiations_matrix.h:
-* instantiations_matrix_colemak.h
-* instantiations_matrix_QWERTY.h
+* instantiations_rows_colemak.h
+* instantiations_rows_QWERTY.h
 
 <br>
 <a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">keybrd tutorial</span> by <a xmlns:cc="https://creativecommons.org/ns" href="https://github.com/wolfv6/keybrd" property="cc:attributionName" rel="cc:attributionURL">Wolfram Volpi</a> is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="https://creativecommons.org/ns" href="https://github.com/wolfv6/keybrd/issues/new" rel="cc:morePermissions">https://github.com/wolfv6/keybrd/issues/new</a>.

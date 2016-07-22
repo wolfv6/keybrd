@@ -21,13 +21,9 @@ keybrd sketches use keybrd classes, objects pointers, aggregation, and static cl
 
 Microcontroller board requirements
 ----------------------------------
-The keybrd library works with Teensy and Arduino compatible boards.
+The keybrd library works with Teensy and Arduino compatible boards with at least 2 KB SRAM.
 
-[Teensy LC](https://www.pjrc.com/teensy/teensyLC.html) has 8K RAM, which is more than enough memory for any keyboard.
-
-keybrd has been tested on the DodoHand keyboard with Teensy 2.0 and PCA9655E I/O expander using the keybrd_DH sketch.
-
-Teensy LC is preferred over the older Teensy 2.0 for it's larger memory capacity and lower price.
+[Teensy LC](https://www.pjrc.com/teensy/teensyLC.html) is the preferred board for the keybrd library and is used in the tutorials.  Teensy LC has 8 KB SRAM, which is enough memory for any keyboard.
 
 Getting started with Teensy, Arduino IDE, and keybrd
 ----------------------------------------------------
@@ -42,7 +38,7 @@ Teensyduino is a software add-on for the Arduino IDE that allows it to compile t
 [Teensy Getting Started](http://www.pjrc.com/teensy/first_use.html) is a good way to familiarize yourself with Teensy.
 [Arduino Development Environment](http://arduino.cc/en/guide/Environment) is a brief description.
 
-The following install and setup steps create an Arduino development environment for keybrd sketches.
+The following steps create an Arduino development environment for keybrd sketches.
 
 ### Install Arduino IDE and Teensyduino
 The following install steps are modified from the [Teensyduino download page](https://www.pjrc.com/teensy/td_download.html).
@@ -90,10 +86,9 @@ keybrd extension library names are prefixed with "keybrd_".
 
 Instructions for installing Arduino libraries are at: http://www.arduino.cc/en/Guide/Libraries
 
-A Sketchbook is a folder that the Arduino IDE uses to store sketches and libraries.
 The default location for Arduino libraries is ~/Documents/Arduino/libraries/.
 
-For example, the DodoHand keyboard requires the core keybrd library and the keybrd_DH extension library.
+For example, the DodoHand keyboard requires the core keybrd library and the keybrd_DH extension library be installed.
 After installing the libraries, my Arduino directory looks like this:
 * ~/Documents/Arduino/libraries/keybrd/
 * ~/Documents/Arduino/libraries/keybrd_DH/
@@ -138,7 +133,7 @@ The example sketch names use the following conventions.
 
 where
 * **keybrd** is the library name e.g. keybrd, keybrd_DH
-* **feature** is a distinguishing feature of the keybrd sketch e.g. keyboard name, sound, Dvorak
+* **feature** is a distinguishing feature of the keybrd sketch e.g. keyboard name, sound, layout
 * **version** is the sketch's version number (optional)
 
 Active state and diode orientation
@@ -149,7 +144,7 @@ The following instructions are for setting active state for a Scanner_uC class
 
 For active low:
 * Orient diodes with cathode (banded end) towards the write pins (row)
-* Use these two lines in the sketch:
+* Define strobe on and strobe off in the sketch like this:
 ```
     const bool Scanner_uC::STROBE_ON = LOW;
     const bool Scanner_uC::STROBE_OFF = HIGH;
@@ -158,7 +153,7 @@ For active low:
 For active high:
 * Add an external 10k pull-down resistor to each read pin.
 * Orient diodes with cathode (banded end) towards the read pins.
-* Use these two lines in the sketch:
+* Define strobe on and strobe off in the sketch like this:
 ```
     const bool Scanner_uC::STROBE_ON = HIGH;
     const bool Scanner_uC::STROBE_OFF = LOW;
@@ -175,7 +170,7 @@ Development-environment items to check:
     'KEY_A' was not declared in this scope
 ```
   Where 'KEY_A' could be any scan code.
-  Fix this from the Arduino IDE tool bar: Tools > USB Type > Keyboard + Mouse + Joystick
+  Fix this error from the Arduino IDE tool bar: Tools > USB Type > Keyboard + Mouse + Joystick
 
 Sketch items to check:
 * For each row, number of read pins in Row should equal number of keys.
@@ -191,9 +186,9 @@ In this example, row_0 has 2 read pins and 2 keys:
 * For multi-layered keyboards, the number of codes in each Key_Layered should equal the number of layers.
 
 Hardware items to check:
-* Connections
-* Diode orientation
+* Continuity of connections
 * 3.3 or 5 volts across power and ground
+* Diode orientation
 * To validate keyboard hardware, modify the simple [keybrd_1_breadboard.ino](../tutorials/keybrd_1_breadboard/keybrd_1_breadboard.ino) sketch.
 
 Keybrd nomenclature

@@ -40,7 +40,7 @@ keybrd version 1.0.0 will be released when the public API is stable.
 
 * Backward incompatible changes
   * Change uC from scanning port arrays to scanning Arduino pins, thereby adding support for:
-    * Arduino boards, Teensy 3, and Teensy LC micro controllers
+    * Arduino boards, Teensy 3, and Teensy LC microcontrollers
     * up to 31x31 matrix capability
   * Change IOE from scanning port arrays to scanning single ports.
   * Move scanner and debouncer into their own classes.
@@ -66,7 +66,7 @@ keybrd version 1.0.0 will be released when the public API is stable.
 0.2.0 (2016-02-25)
 ------------------
 * Enhancements
-  * Add Port classes for micro-controllers and I/O expanders
+  * Add Port classes for microcontrollers and I/O expanders
   * Add DH_2565 sketch with DataHand layout
   * Add Sticky mouse button (SMB) for DataHand layout
   * Add Supporting documentation

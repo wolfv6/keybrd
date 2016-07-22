@@ -1,6 +1,6 @@
 Tutorial 3a - multi-layer keyboard
 ==================================
-When you finish this tutorial you will be able to be able to modify a multi-layer keybrd sketch to write your very own multi-layer keyboard design.
+When you finish this tutorial you will be able to be able to modify a multi-layer keybrd sketch to write your very own multi-layer keyboard firmware.
 
 Multi-layer nomenclature
 ------------------------
