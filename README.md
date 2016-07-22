@@ -55,4 +55,4 @@ Support
 keybrd tutorial_1 shows how to build a breadboard keyboard.
 The remaining [keybrd tutorials](tutorials) show how to create custom keybrd firmware.
 
-Please ask questions in [keybrd firmware library](geekhack todo) thread if something is not clear.
+Please ask questions in [keybrd firmware library](https://geekhack.org/index.php?topic=83599.0) thread if something is not clear.

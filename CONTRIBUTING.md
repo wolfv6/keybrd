@@ -52,7 +52,7 @@ A healthy project needs the perspective of many people.
 * Documentation - Suggest a clarification, simplification, correction, or other improvement.
 We need the perspective of people new to the project to see these things.
 Sometimes just changing a word or two makes a big difference.
-* [Current user contributions](todo geekhack) highlights contributions that are needed for the keybrd project's current stage of development.
+* [Current user contributions](https://geekhack.org/index.php?topic=83599.0) highlights contributions that are needed for the keybrd project's current stage of development.
 
 Text file documentation style guide:
 * Use Markdown with a .md suffix.
