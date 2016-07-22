@@ -51,7 +51,7 @@ I live in a desert on a carpeted floor and get zapped by door knobs regularly.
 Here is the ESD precaution I take whenever I handle a microcontroller:
 
 1. Touch the bare metal on the back of my desktop computer (its grounded).
-2. Then while still touching to the computer, touch the metal USB connector case on the microcontroller.
+2. Then touch the metal USB connector case on the microcontroller.
 
 Anti-static mat or anti-static wristband are also effective.
 Being tethered by an anti-static wristband can be inconvenient (wireless antistatic wrist straps are a scam).
