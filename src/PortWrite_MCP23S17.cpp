@@ -1,32 +1,31 @@
 #include "PortWrite_MCP23S17.h"
 
+/* writePort() sets registerAddr to data.
+*/
 void PortWrite_MCP23S17::writePort(const uint8_t registerAddr, const uint8_t data)
 {
-    //slower clock
-    //SPI.beginTransaction(SPISettings (SPI_CLOCK_DIV8, MSBFIRST, SPI_MODE0)); //control SPI bus todo move to begin()
-    digitalWrite(SS, LOW);              //enable Slave Select
-      SPI.transfer(port.ADDR << 1);     //write command
-      SPI.transfer(registerAddr);       //register address to write data to
-      SPI.transfer(data);               //data
-    digitalWrite(SS, HIGH);             //disable Slave Select
-    //SPI.endTransaction();               //release the SPI bus
+    digitalWrite(SS, LOW);                      //enable Slave Select
+      SPI.transfer(port.ADDR << 1);             //write command
+      SPI.transfer(registerAddr);               //register address to write data to
+      SPI.transfer(data);                       //data
+    digitalWrite(SS, HIGH);                     //disable Slave Select
 }    
 
-/*
-If PortRead_MCP23S17 is instantiated on the same port, do NOT use PortWrite_MCP23S17::begin().
-Otherwise readPins could be overwritten.
+/* begin() should be called once from sketch in setup().
+PortRead_MCP23S17 and PortWrite_MCP23S17 should be on seperate ports on the same MCP23S17.
 Output pins can be used for strobe pins and LEDs.
-
-SPI.endTransaction() is not called because keyboard only has one SPI device, so no need to release the SPI bus
 */
 void PortWrite_MCP23S17::begin()
 {
-    pinMode(SS, OUTPUT);                //configure controller's Slave Select pin to output
-    digitalWrite(SS, HIGH);             //disable Slave Select
+    pinMode(SS, OUTPUT);                        //configure controller's Slave Select pin to output
+    digitalWrite(SS, HIGH);                     //disable Slave Select
     SPI.begin();
-    SPI.beginTransaction(SPISettings (SPI_CLOCK_DIV8, MSBFIRST, SPI_MODE0)); //control SPI bus
+    SPI.beginTransaction(SPISettings (SPI_CLOCK_DIV8, MSBFIRST, SPI_MODE0)); //control SPI bus todo is slow clock needed?
 
-    writePort(port.num, 0);             //configure port direction (port.num) to output (0)
+    writePort(port.num, 0);                     //configure port direction (port.num) to output (0)
+
+    //SPI.endTransaction() is not called to release the SPI bus
+    // because keyboard only has one SPI device.
 }
 
 /*

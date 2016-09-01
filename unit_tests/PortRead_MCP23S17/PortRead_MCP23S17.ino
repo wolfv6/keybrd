@@ -9,24 +9,22 @@ http://arduino.stackexchange.com/questions/28792/reading-an-mcp23s17-i-o-expande
 */
 #include "PortIOE.h"
 #include "PortRead_MCP23S17.h"
-#include "PortWrite_MCP23S17.h"
 
 const uint8_t PortIOE::ADDR = 0x20;             //MCP23S17 address, all 3 ADDR pins are grounded
 PortIOE portB(1, 0);
 
-PortRead_MCP23S17 portBRead(portB);
-PortWrite_MCP23S17 portBWrite(portB);           //PortBWrite needed for begin()
+PortRead_MCP23S17 portBRead(portB, ~0);
 
 void setup()
 {
     uint8_t portBState;                         //bit wise
 
     delay(6000);
-    portBWrite.begin();
+    portBRead.begin();
 
     portBState = portBRead.read();
     Keyboard.print("portBState = ");
-    Keyboard.println(portBState, BIN);          //should print 10101010
+    Keyboard.println(portBState, BIN);          //prints 10101010
 }
 
 void loop() { }

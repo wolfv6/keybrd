@@ -16,7 +16,7 @@ To write a new Port class:
    Write very simple read and write examples for your I/O expander.
    Simple SPI I/O expander examples:
     todo link, pictures
-    /home/wolfv/Documents/Arduino/demo/IOE_MCP23S17_read/
+    /home/wolfv/Documents/Arduino/demo/IOE_MCP23S17_read/ todo internal pull-up resistors
     /home/wolfv/Documents/Arduino/demo/IOE_MCP23S17_write/
    Simple I2C I/O expander examples:
     todo link, pictures

@@ -186,6 +186,8 @@ Most derived-class names start with the base class name followed by "_" and a na
 This convention leads to class names that convey information about the classes inheritance.
 Underscore delineates base class name and sub-class name.  Capital letters delineate words.
 
+Interface class names end with "Interface".
+
 Layer-class naming conventions
 ------------------------------
 Layer classes are explained in [tutorial_3a_multi-layer_keyboard.md](../tutorials/tutorial_3a_multi-layer_keyboard.md).
