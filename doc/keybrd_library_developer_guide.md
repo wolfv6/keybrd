@@ -27,7 +27,7 @@ Row_Ext::keyWasPressed() overrides Row::keyWasPressed() which is used to unstick
 
 Row_Ext_uC and Row_Ext_ShiftRegisters are a custom classes composed of stock keybrd library classes.<br>
 Row_Ext_uC uses Scanner_uC to scan the primary matrix.<br>
-Row_Ext_ShiftRegisters uses Scanner_ShiftRegs74HC165 to scan the secondary matrix.
+Row_Ext_ShiftRegisters uses Scanner_ShiftRegs74HC165 to scan the peripheral matrix.
 
 Class inheritance diagram
 ```
@@ -68,7 +68,7 @@ Keybrd library class inheritance diagram
 ```
 	     ________ Row ___________
 	    /          |             \
-	Row_uC  Row_ShiftRegisters  Row_IOE (to be added)
+	Row_uC  Row_ShiftRegisters  Row_IOE (todo to be added)
 
 
 	Scanner_uC  Scanner_Port  Scanner_ShiftRegs74HC165
@@ -78,7 +78,7 @@ Keybrd library class inheritance diagram
 
 	    PortWrite
 	       |
-	PortWrite_PCA9655E                         (one PortWrite class for each IOE type)
+	PortWrite_PCA9655E                          (one PortWrite class for each IOE type)
  
         PortRead
 	       |
@@ -115,9 +115,9 @@ Keybrd library class inheritance diagram
 	 |      |                     |
 	 |   Code_LayeredScSc      Code_LayeredCodeSc
 	 |
-	 |__________________________________________
-	       \           \            \           \
-	     Code_Sc  Code_Shift  Code_AutoShift  Code_LEDLock
+	 |_________________________________________________________
+	       \           \            \           \              \
+	     Code_Sc  Code_Shift  Code_AutoShift  Code_LEDLock  Code_Null
 	                             /      \
 	                        Code_ScS  Code_ScNS
 
@@ -149,7 +149,7 @@ Dependency diagram of example multi-layer keyboard with layer LEDs
 
 ```
 
-Dependency diagram of example secondary matrix with shift registers
+Dependency diagram of example peripheral matrix with shift registers
 ```
 	              Row_ShiftRegisters[1..*]
 	             /              \         \
@@ -159,17 +159,17 @@ Dependency diagram of example secondary matrix with shift registers
 
 ```
 
-Dependency diagram of example secondary matrix with I/O Expander and LEDs
+Dependency diagram of example peripheral matrix with I/O Expander and LEDs
 ```
-	                 ___ Row_IOE[1..*] _________
-	                /             \             \
-	       _ Scanner_Port[1] _   Debouncer[1]  Keys[1..*] __
-	      /          |        \                  |          \
-	PortWrite[1]   RowPin[1]  PortRead[1]      Code[1..*]  Code_LEDLock[1..*]
-	      \                   /   \                          |
-	       \                 /   ColPins[1..*]             LED[1]
-	        \               /
-	          PortIOE[0..*]
+	                 _____ Row_IOE[1..*] _________
+	                /               \             \
+	        __ Scanner_Port[1] __   Debouncer[1]  Keys[1..*] __
+	       /          |          \                  |          \
+	PortWrite[1]  strobePin[1]  PortRead[1]      Code[1..*]  Code_LEDLock[1..*]
+	       \                   /   \                            |
+	        \                 /   ColPins[1..*]              LED[1]
+	         \               /
+	           PortIOE[0..*]
 
 ```
 
@@ -243,7 +243,7 @@ Following the style guide makes it easier for the next programmer to understand 
 Trace of keybrd scan
 --------------------
 Arduino does not have a debugger.
-So here is the next best thing; a list of functions in the order that they are called.
+So here is a list of functions in the order that they are called.
 The trace is of a one-row single-layer keybrd scan.
 Refer to it like a table of contents while reading the keybrd library.
 

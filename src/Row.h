@@ -14,8 +14,7 @@ class Row
         Key *const *const ptrsKeys;             //array of Key pointers
         virtual void keyWasPressed();
     protected:
-        read_pins_t debounced;                  //bitwise state of keys after debouncing
-        // 1 means pressed, 0 means released
+        read_pins_t debounced;      //bitwise state of keys after debouncing, 1=pressed, 0=released
         void send(const uint8_t readPinCount, const read_pins_t debouncedChanged);
     public:
         Row(Key* const ptrsKeys[]) : ptrsKeys(ptrsKeys), debounced(0) { }

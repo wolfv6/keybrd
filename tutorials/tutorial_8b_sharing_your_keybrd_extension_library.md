@@ -1,12 +1,12 @@
-Tutorial 8b - creating and publishing your own keybrd extension library
-=======================================================================
+Tutorial 8b - sharing your keybrd extension library
+===================================================
 Publishing and listing your keybrd extension library allows others to find and install your library.
 The keybrd extension library name should start with "keybrd_" so that it is easy for other people to find.
 
 There are two ways to publish and list an Arduino library.
 
-Publishing anywhere with listing on Arduino Playground LibraryList
-------------------------------------------------------------------
+Publish anywhere and list on Arduino Playground
+-----------------------------------------------
 Publishing your keybrd extension library with the following directory structure makes it easy for others to understand.
 
     keybrd_MyKeyboard/
@@ -25,16 +25,13 @@ Publishing your keybrd extension library with the following directory structure 
         instantiations_codes.h
         instantiations_rows.h
 
-When your ready to list your keybrd extension library, go to the [Arduino Playground keybrd page](http://playground.arduino.cc/Main/keybrd).
+When your ready to list your keybrd extension library,
+ add a link and short description of your keybrd extension library to the [Arduino Playground keybrd page](http://playground.arduino.cc/Main/keybrd) under "keybrd extension libraries".
 Arduino playground is a wiki.
 Links on how to edit the wiki are on the bottom left under "Participate".
 
-You can also add a picture of a keyboard that uses your keybrd extension library.
-Uploading files to the Playground is not allowed for standard users.
-So if you want to add a picture, it will need to be hosted somewhere else.
-
-Publishing on GitHub with listing on Arduino Library-Manager and Arduino Playground LibraryList
------------------------------------------------------------------------------------------------
+Publish on GitHub and list on Arduino Library-Manager and Arduino Playground
+----------------------------------------------------------------------------
 The advantage of using GitHub is that users can submit pull requests.
 The advantage of using Arduino Library-Manager is that users can easily find and install your library through the Arduino IDE.
 
@@ -78,13 +75,10 @@ Example library.properties file:
 Instructions for listing a library on Arduino Library Manager are at:
     https://github.com/arduino/Arduino/wiki/Library-Manager-FAQ
 
-After it has been accepted into the Arduino IDE Library Manager, add your keybrd extension library to the [Arduino Playground keybrd page](http://playground.arduino.cc/Main/keybrd).
+After it has been accepted into the Arduino IDE Library Manager,
+ add a link and short description of your keybrd extension library to the [Arduino Playground keybrd page](http://playground.arduino.cc/Main/keybrd) under "keybrd extension libraries".
 Arduino playground is a wiki.
 Links on how to edit the wiki are on the bottom left under "Participate".
-
-You can also add a picture of a keyboard that uses your keybrd extension library.
-Uploading files to the Playground is not allowed for standard users.
-So if you want to add a picture, it will need to be hosted somewhere else.
 
 To publish a new release of a library that is already listed on Arduino Library Manager
 

@@ -13,7 +13,7 @@ shift registers 74HC165 are Parallel-In-Serial-Out (PISO)
 Upto 4 shift registers can be in a daisy chained for a total of 32 read pins.
 
 For active low:
-Shift register parallel input pins have 10k pull-down resistors powered
+Shift register parallel input pins have 10k pull-up resistors powered
 Orient diodes with cathode (banded end) towards the write pins (row)
 Controller's MISO pin is connected to shift register's complementary serial output (/QH) pin
 Use these two lines in the sketch:

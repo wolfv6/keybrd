@@ -32,7 +32,7 @@ Code_Sc s_c(KEY_C);
 Key* ptrsKeys_0[] = { &s_1, &s_a };
 Row_uC row_0(0, readPins, READ_PIN_COUNT, ptrsKeys_0);
 
-Key* ptrsKeys_1[] = { &s_b, &s_c  };
+Key* ptrsKeys_1[] = { &s_b, &s_c };
 Row_uC row_1(1, readPins, READ_PIN_COUNT, ptrsKeys_1);
 
 // ################### MAIN ####################

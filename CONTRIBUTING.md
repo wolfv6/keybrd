@@ -7,8 +7,9 @@ Improvement suggestions
 We need to know what improvements to the keybrd library would help you create your keyboard design.
 Before requesting an improvement, please check [planned_features list](doc/planned_features.md)
 
-Submit improvement suggestions to [GitHub issues](https://github.com/wolfv6/Keybrd/issues).
-* The issue title should start with "suggestion:" followed by a descriptive title
+Submit improvement suggestions to [GitHub issues](https://github.com/wolfv6/Keybrd/issues)
+or [geekhack thread](https://geekhack.org/index.php?topic=83599.0).
+<!-- * The issue title should start with "suggestion:" followed by a descriptive title -->
 * Provide a use case
 * Explain why the improvement is useful
 * Site other product examples where this improvement exists
@@ -16,6 +17,8 @@ Submit improvement suggestions to [GitHub issues](https://github.com/wolfv6/Keyb
 Bug reports
 -----------
 A bug report is the first step in making the keybrd library work the way it's supposed to work.
+Submit bug reports to [GitHub issues](https://github.com/wolfv6/Keybrd/issues)
+or [geekhack thread](https://geekhack.org/index.php?topic=83599.0).
 
 Please provide enough information so we can reproduce the bug behaviour!
 * Complete sketch (copy & paste, attachment, or a link to the code)
@@ -52,7 +55,7 @@ A healthy project needs the perspective of many people.
 * Documentation - Suggest a clarification, simplification, correction, or other improvement.
 We need the perspective of people new to the project to see these things.
 Sometimes just changing a word or two makes a big difference.
-* [Current user contributions](https://geekhack.org/index.php?topic=83599.0) highlights contributions that are needed for the keybrd project's current stage of development.
+* [Current user contributions](https://geekhack.org/index.php?topic=83599.msg2223776#msg2223776) highlights contributions that are needed for the keybrd project's current stage of development.
 
 Text file documentation style guide:
 * Use Markdown with a .md suffix.
