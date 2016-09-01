@@ -12,10 +12,7 @@ Details are in config_key.h
 */
 class PortRead
 {
-    protected:
-        const uint8_t readPins;                  //bitwise pin configuration, 1 means read pin
     public:
-        PortRead(const uint8_t readPins): readPins(readPins) {}
         virtual uint8_t read()=0;
 };
 #endif

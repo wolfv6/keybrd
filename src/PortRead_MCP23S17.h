@@ -31,12 +31,9 @@ class PortRead_MCP23S17 : public PortRead
         PortIOE& port;
     public:
 /*
-todo not all PortRead_ classes need a readPins
-    move PortRead::readPins from PortRead to PortRead_PCA9655E
-    remove PortRead(0) initialization from this constructor
 */
         //The constructor initialization list is in .cpp
-        PortRead_MCP23S17(PortIOE& port) : PortRead(0), port(port) {}
+        PortRead_MCP23S17(PortIOE& port) : port(port) {}
         virtual uint8_t read();
 };
 #endif

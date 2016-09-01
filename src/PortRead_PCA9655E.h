@@ -29,6 +29,7 @@ class PortRead_PCA9655E : public PortRead
 {
     private:
         PortIOE& port;
+        const uint8_t readPins;                  //bitwise pin configuration, 1 means read pin
         const uint8_t configurationByteCommand;
         const uint8_t inputByteCommand;
     public:
