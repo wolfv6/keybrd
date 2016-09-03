@@ -29,20 +29,20 @@ void PortWrite_MCP23S17::begin()
 }
 
 /*
-pin is bitwise, where pin being strobed is 1.
-strobe is HIGH or LOW (for active high or active low).
+strobePin is bitwise, where pin being strobed is 1.
+pinLogicLevel is HIGH or LOW.
 port.outputVal can be shared by LEDs.
 The functions does not reset the other pins so that they can be used for LEDs.
 */
-void PortWrite_MCP23S17::write(const uint8_t pin, const bool strobe)
+void PortWrite_MCP23S17::write(const uint8_t strobePin, const uint8_t pinLogicLevel)
 {
-    if (strobe == LOW)                          //if active low
+    if (pinLogicLevel == LOW)
     {
-        port.outputVal &= ~pin;                 //set pin output to low
+        port.outputVal &= ~strobePin;           //set strobePin output to low
     }
-    else                                        //if active high
+    else
     {
-        port.outputVal |= pin;                  //set pin output to high
+        port.outputVal |= strobePin;            //set strobePin output to high
     }
 
     writePort(port.num + 0x12, port.outputVal);  //set GPIO port pins for stobe and LEDs

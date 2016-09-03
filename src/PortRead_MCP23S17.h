@@ -5,12 +5,13 @@
 #include <SPI.h>
 #include <PortRead.h>
 #include "PortIOE.h"
+#include "Scanner_Port.h"
 
 /* One MCP23S17 I/O expander port connected to matrix columns.
 
 Instantiation todo
  ------------
-pullUp parameter is port's bitwise pin configuration
+readPins parameter is port's bitwise pin configuration
     1=configure as input (for pins connected to column)
     0=configure as output (for LED or not connected to a column)
 
@@ -21,17 +22,17 @@ Example instantiation for column port 1, with pins 2 and 3 connected to columns:
     PortIOE port1(1, 0);
     PortRead_MCP23S17 colPort1(port1, 2<<0 | 1<<3 );
 
-pullUp are read from pin 0 on up.
+readPins are read from pin 0 on up.
 
 */
 class PortRead_MCP23S17 : public PortRead
 {
     private:
         PortIOE& port;
-        const uint8_t pullUp;                   //bitwise, 1 means internal pull-up resistor enabled
+        const uint8_t readPins;                 //bitwise, 1 means internal pull-up resistor enabled
     public:
-        PortRead_MCP23S17(PortIOE& port, const uint8_t pullUp) : port(port), pullUp(pullUp) {}
-        void begin();
+        PortRead_MCP23S17(PortIOE& port, const uint8_t readPins) : port(port), readPins(readPins) {}
+        void begin(const uint8_t strobeOn);
         virtual uint8_t read();
 };
 #endif

@@ -4,26 +4,36 @@
 PortRead_MCP23S17::begin() is not needed because port direction is already configured to input by default.
 SPI bus is configured in PortWrite_MCP23S17::begin().
 */
-void PortRead_MCP23S17::begin()
+void PortRead_MCP23S17::begin(const uint8_t strobeOn)
 {
+    uint8_t pullUp;                             //bitwise, 1 means internal pull-up resistor enabled
+
+    if (strobeOn == LOW)                        //if active low
+    {
+        pullUp = readPins;
+    }
+    else
+    {
+        pullUp = 0;
+    }
+
     pinMode(SS, OUTPUT);                        //configure controller's Slave Select pin to output
     digitalWrite(SS, HIGH);                     //disable Slave Select
     SPI.begin();
     SPI.beginTransaction(SPISettings (SPI_CLOCK_DIV8, MSBFIRST, SPI_MODE0)); //control SPI bus todo is slow clock needed?
-    digitalWrite(SS, LOW);                      //enable Slave Select
 
+    digitalWrite(SS, LOW);                      //enable Slave Select
       SPI.transfer(port.ADDR << 1);             //write command
       SPI.transfer(port.num);                   //configure IODIR
-      SPI.transfer(pullUp);                     //0=output (for LED), 1=input (for read)
-
+      SPI.transfer(readPins);                   //0=output (for LED), 1=input (for read)
     digitalWrite(SS, LOW);                      //enable Slave Select
-    digitalWrite(SS, HIGH);                     //disable Slave Select
 
+    digitalWrite(SS, HIGH);                     //disable Slave Select
       SPI.transfer(port.ADDR << 1);             //write command
       SPI.transfer(port.num + 0x0C);            //configure GPPU
       SPI.transfer(pullUp);                     //0=pull-up disabled (for LED), 1=pull-up enabled (for read)
-
     digitalWrite(SS, HIGH);                     //disable Slave Select
+
     //SPI.endTransaction() is not called to release the SPI bus
     // because keyboard only has one SPI device.
 }
