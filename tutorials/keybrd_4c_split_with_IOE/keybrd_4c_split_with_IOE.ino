@@ -39,7 +39,7 @@ uint8_t readPins[] = {14, 15};
 const bool Scanner_Port::STROBE_ON = HIGH;      //active high
 const bool Scanner_Port::STROBE_OFF = LOW;
 
-const uint8_t PortIOE::ADDR = 0x18;
+const uint8_t PortIOE::DEVICE_ADDR = 0x18;
 
 // ------------------ PORT 1 -------------------
 PortIOE port1_R(1, 0);

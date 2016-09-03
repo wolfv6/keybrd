@@ -14,7 +14,7 @@ http://arduino.stackexchange.com/questions/28792/reading-an-mcp23s17-i-o-expande
 const bool Scanner_Port::STROBE_ON = LOW;
 const bool Scanner_Port::STROBE_OFF = HIGH;
 
-const uint8_t PortIOE::ADDR = 0x20;             //MCP23S17 address, all 3 ADDR pins are grounded
+const uint8_t PortIOE::DEVICE_ADDR = 0x20;      //MCP23S17 address, all 3 ADDR pins are grounded
 PortIOE portB(1, 0);
 
 PortRead_MCP23S17 portBRead(portB, ~0);

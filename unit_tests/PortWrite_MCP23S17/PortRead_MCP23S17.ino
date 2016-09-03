@@ -11,7 +11,7 @@ MCP23S17 on 3.3v does not output enough power to reliable light LEDs
 #include "PortIOE.h"
 #include "PortWrite_MCP23S17.h"
 
-const uint8_t PortIOE::ADDR = 0x20;             //MCP23S17 address, all 3 ADDR pins are grounded
+const uint8_t PortIOE::DEVICE_ADDR = 0x20;      //MCP23S17 address, all 3 ADDR pins are grounded
 PortIOE portA(0, 0);
 
 PortWrite_MCP23S17 portAWrite(portA);           //PortAWrite needed for begin()

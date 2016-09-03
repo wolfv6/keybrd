@@ -5,7 +5,7 @@
 void PortWrite_MCP23S17::writePort(const uint8_t registerAddr, const uint8_t data)
 {
     digitalWrite(SS, LOW);                      //enable Slave Select
-      SPI.transfer(port.ADDR << 1);             //write command
+      SPI.transfer(port.DEVICE_ADDR << 1);             //write command
       SPI.transfer(registerAddr);               //register address to write data to
       SPI.transfer(data);                       //data
     digitalWrite(SS, HIGH);                     //disable Slave Select
