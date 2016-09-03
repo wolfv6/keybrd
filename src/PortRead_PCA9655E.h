@@ -30,11 +30,9 @@ class PortRead_PCA9655E : public PortReadInterface
     private:
         PortIOE& port;
         const uint8_t readPins;                  //bitwise pin configuration, 1 means read pin
-        const uint8_t configurationByteCommand;
-        const uint8_t inputByteCommand;
     public:
-        //The constructor initialization list is in .cpp
-        PortRead_PCA9655E(PortIOE& port, const uint8_t readPins);
+        PortRead_PCA9655E (PortIOE& port, const uint8_t readPins)
+            : port(port), readPins(readPins) {}
         void begin();
         virtual uint8_t read();
 };

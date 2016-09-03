@@ -31,6 +31,8 @@ Diode orientation is explained in keybrd_library_user_guide.md > Diode orientati
 MCP23S17 data sheet
  ----------------
  http://www.onsemi.com/pub_link/Collateral/MCP23S17-D.PDF
+
+WARNING: This class hardcodes Slave Select to Arduino Pin 10 to avoid the speed penalty of digitalWrite
 */
 
 class PortWrite_MCP23S17 : public PortWriteInterface
