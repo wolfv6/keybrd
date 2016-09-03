@@ -1,7 +1,6 @@
 #include "PortRead_MCP23S17.h"
 
 /*
-PortRead_MCP23S17::begin() is not needed because port direction is already configured to input by default.
 SPI bus is configured in PortWrite_MCP23S17::begin().
 */
 void PortRead_MCP23S17::begin(const uint8_t strobeOn)
