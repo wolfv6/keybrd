@@ -172,6 +172,11 @@ Development-environment items to check:
   Where 'KEY_A' could be any scan code.
   Fix this error from the Arduino IDE tool bar: Tools > USB Type > Keyboard + Mouse + Joystick
 
+* If last line in Arduino IDE says "Low memory available",
+  second-to-last line should say "leaving 100 bytes for local variables" or more bytes.
+* In keybrd/src/config_keybrd.h file, read_pins_t defaults to uint32_t.
+  If more memory is needed, 8-bit controllers can use uint8_t.
+
 Sketch items to check:
 * For each row, number of read pins in Row should equal number of keys.
 In this example, row_0 has 2 read pins and 2 keys:
