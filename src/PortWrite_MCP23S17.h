@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <SPI.h>
-#include <PortWrite.h>
+#include <PortWriteInterface.h>
 #include "PortIOE.h"
 
 /* One MCP23S17 I/O expander port connected to matrix rows.
@@ -33,7 +33,7 @@ MCP23S17 data sheet
  http://www.onsemi.com/pub_link/Collateral/MCP23S17-D.PDF
 */
 
-class PortWrite_MCP23S17 : public PortWrite
+class PortWrite_MCP23S17 : public PortWriteInterface
 {
     private:
         PortIOE& port;

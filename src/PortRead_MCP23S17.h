@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <SPI.h>
-#include <PortRead.h>
+#include <PortReadInterface.h>
 #include "PortIOE.h"
 #include "Scanner_Port.h"
 
@@ -25,7 +25,7 @@ Example instantiation for column port 1, with pins 2 and 3 connected to columns:
 readPins are read from pin 0 on up.
 
 */
-class PortRead_MCP23S17 : public PortRead
+class PortRead_MCP23S17 : public PortReadInterface
 {
     private:
         PortIOE& port;

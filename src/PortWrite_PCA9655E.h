@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <Wire.h>
-#include <PortWrite.h>
+#include <PortWriteInterface.h>
 #include "PortIOE.h"
 
 /* One PCA9655E I/O expander port connected to matrix rows.
@@ -33,7 +33,7 @@ PCA9655E data sheet
  http://www.onsemi.com/pub_link/Collateral/PCA9655E-D.PDF
 */
 
-class PortWrite_PCA9655E : public PortWrite
+class PortWrite_PCA9655E : public PortWriteInterface
 {
     private:
         PortIOE& port;

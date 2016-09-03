@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <Wire.h>
-#include <PortRead.h>
+#include <PortReadInterface.h>
 #include "PortIOE.h"
 
 /* One PCA9655E I/O expander port connected to matrix columns.
@@ -25,7 +25,7 @@ Example instantiation for column port 1, with pins 2 and 3 connected to columns:
 readPins are read from pin 0 on up.
 
 */
-class PortRead_PCA9655E : public PortRead
+class PortRead_PCA9655E : public PortReadInterface
 {
     private:
         PortIOE& port;
