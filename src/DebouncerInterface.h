@@ -3,7 +3,7 @@
 
 #include <config_keybrd.h>
 
-/* DebouncerInterface is an interface class.
+/* 
 debounce() takes rawSignal and returns debounced signal.  Signals are bitwise.
 */
 class DebouncerInterface

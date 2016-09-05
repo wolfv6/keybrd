@@ -18,13 +18,10 @@ class Scanner_Port
         static const bool STROBE_ON;        //HIGH or LOW logic level of strobe on, active state
         static const bool STROBE_OFF;       //logic level of strobe off, complement of STROBE_ON
         PortWriteInterface& refPortWrite;            //the IC port containing the strobePin
-        const uint8_t strobePin;            //bitwise, 1 indicates IC pin connected to this row
         PortReadInterface& refPortRead;              //the IC's read port
     public:
-        Scanner_Port(PortWriteInterface &refPortWrite, const uint8_t strobePin,
-              PortReadInterface& refPortRead)
-            : refPortWrite(refPortWrite), strobePin(strobePin),
-              refPortRead(refPortRead) {}
-        uint8_t scan();
+        Scanner_Port(PortWriteInterface &refPortWrite, PortReadInterface& refPortRead)
+            : refPortWrite(refPortWrite), refPortRead(refPortRead) {}
+        uint8_t scan(const uint8_t strobePin);
 };
 #endif

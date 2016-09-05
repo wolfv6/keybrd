@@ -3,7 +3,7 @@
 /* scan() strobes the row's strobePin and retuns state of port's input pins.
 Bitwise variables are 1 bit per key.
 */
-uint8_t Scanner_Port::scan()
+uint8_t Scanner_Port::scan(const uint8_t strobePin)
 {
     uint8_t readState;                          //bitwise, 1 means key is pressed, 0 means released
 

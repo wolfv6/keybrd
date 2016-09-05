@@ -1,4 +1,28 @@
 #include "Row.h"
+
+/* constructor
+*/
+Row::Row(ScannerInterface& refScanner, const uint8_t strobePin,
+        Key* const ptrsKeys[], const uint8_t readPinCount)
+    : refScanner(refScanner), strobePin(strobePin),
+    ptrsKeys(ptrsKeys), readPinCount(readPinCount), debounced(0)
+{
+    refScanner.begin(strobePin);
+}
+
+/* process() scans the row and calls any newly pressed or released keys.
+Bitwise variables are 1 bit per key.
+*/
+void Row::process()
+{
+    read_pins_t readState;                      //bitwise, 1 means key is pressed, 0 means released
+    read_pins_t debouncedChanged;               //bitwise, 1 means debounced changed
+
+    readState = refScanner.scan(strobePin);
+    debouncedChanged = debouncer.debounce(readState, debounced);
+    send(readPinCount, debouncedChanged);
+}
+
 /*
 send() calls key's press() or release() function if key was pressed or released.
 Both parameters are bitwise.

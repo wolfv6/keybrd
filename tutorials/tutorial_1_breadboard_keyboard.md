@@ -99,7 +99,7 @@ Breadboard keyboard assembly instructions:
   * Teensy LC is on the left
   * switch leads are oriented to connect diodes to columns (pictured below)
   * diode cut offs connect terminal strips into columns
-  * diodes connect switches to blue buses; orient diodes with cathode (banded end) towards the row (bus strip)
+  * diodes connect switches to rows; orient diodes with cathode (banded end) towards the row (blue bus strip)
 
  ![switch orientation](keybrd_1_breadboard/switch_orientation.JPG "switch orientation")
 

@@ -4,24 +4,23 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <config_keybrd.h>
-#include <PortWriteInterface.h>
-#include <PortReadInterface.h>
+#include <ScannerInterface.h>
+//#include <PortWriteInterface.h>todo not needed?
+//#include <PortReadInterface.h>
 
 /* Scanner_uC class uses Arduino pin numbers (not port pin numbers).
-Constructor is in Scanner_uC.cpp
+Limit number of readPins to size of read_pins_t, which is defined in config_keybrd.h
 */
-class Scanner_uC
+class Scanner_uC : public ScannerInterface
 {
     private:
-        static const bool STROBE_ON;            //logic level of strobe on, HIGH or LOW
-        static const bool STROBE_OFF;           //logic level of strobe off, complement of STROBE_ON
-        const uint8_t strobePin;                //Arduino pin number connected to this row
+        const bool strobeOn;                    //logic level of strobe on, HIGH or LOW
+        const bool strobeOff;                   //logic level of strobe off, complement of strobeOn
         const uint8_t* const readPins;          //array of read pin numbers
-        const uint8_t readPinCount;             //number of read pins
+        const uint8_t readPinCount;             //number of readPins
     public:
-        Scanner_uC(const uint8_t strobePin,
-                   const uint8_t readPins[], const uint8_t readPinCount);
-        virtual read_pins_t scan();
+        Scanner_uC(const bool strobeOn, const uint8_t readPins[], const uint8_t readPinCount);
+        void begin(const uint8_t strobePin);
+        virtual read_pins_t scan(const uint8_t strobePin);
 };
 #endif
-

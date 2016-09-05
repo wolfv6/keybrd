@@ -10,47 +10,51 @@ https://www.arduino.cc/en/Reference/Constants > Digital Pins modes: INPUT, INPUT
 
 /* constructor
 */
-Scanner_uC::Scanner_uC(const uint8_t strobePin,
-                       const uint8_t readPins[], const uint8_t readPinCount)
-    : strobePin(strobePin), readPins(readPins), readPinCount(readPinCount)
+Scanner_uC::Scanner_uC(const bool strobeOn, const uint8_t readPins[], const uint8_t readPinCount)
+    : strobeOn(strobeOn), strobeOff(!strobeOn), readPins(readPins), readPinCount(readPinCount)
 {
     uint8_t mode;
 
-    //configure row
-    pinMode(strobePin, OUTPUT);
-
-    if (STROBE_ON == LOW)               //if active low
-    {
-        mode = INPUT_PULLUP;            //use internal pull-up resistor
-    }
-    else                                //if active high
-    {
-        mode = INPUT;                   //requires external pull-down resistor
-    }
-
     //configure read pins
+    if (strobeOn == LOW)                        //if active low
+    {
+        mode = INPUT_PULLUP;                    //use internal pull-up resistor
+    }
+    else                                        //if active high
+    {
+        mode = INPUT;                           //requires external pull-down resistor
+    }
+
     for (uint8_t i=0; i < readPinCount; i++)
     {
         pinMode(readPins[i], mode);
     }
 }
 
+/*
+Configure row-strobe pin to output.
+*/
+void Scanner_uC::begin(const uint8_t strobePin)
+{
+    pinMode(strobePin, OUTPUT);
+}
+
 /* scan() strobes the row's strobePin and retuns state of readPins.
 Bitwise variables are 1 bit per key.
 */
-read_pins_t Scanner_uC::scan()
+read_pins_t Scanner_uC::scan(const uint8_t strobePin)
 {
     read_pins_t readState = 0;                  //bitwise, 1 means key is pressed, 0 means released
     read_pins_t readMask = 1;                   //bitwise, active bit is 1
 
     //strobe row on
-    digitalWrite(strobePin, STROBE_ON);
+    digitalWrite(strobePin, strobeOn);
     delayMicroseconds(3);                       //time to stablize voltage
 
     //read all the read pins
     for (uint8_t i=0; i < readPinCount; i++)
     {
-        if ( digitalRead(readPins[i]) == STROBE_ON )
+        if ( digitalRead(readPins[i]) == strobeOn )
         {
             readState |= readMask;
         }
@@ -58,7 +62,7 @@ read_pins_t Scanner_uC::scan()
     }
 
     //strobe row off
-    digitalWrite(strobePin, STROBE_OFF);
+    digitalWrite(strobePin, strobeOff);
 
     return readState;
 }
