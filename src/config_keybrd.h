@@ -11,7 +11,7 @@ Using smaller types on a 32-bit uC (Teensy LC) would accomplish nothing.
 /* Use a read_pins_t size that covers all read pins of all RowScanner objects i.e.
     For Scanner_uC, Scanner_uC::readPinCount
     For Scanner_ShiftRegs74HC165, Scanner_ShiftRegs74HC165::readPinCount
-    For Scanner_Port, cover the last 1 bit in Scanner_Port::strobePin
+    For Scanner_IOE, cover the last 1 bit in Scanner_IOE::strobePin
 */
 typedef uint8_t read_pins_t;
 //typedef uint16_t read_pins_t;

@@ -7,10 +7,10 @@
 */
 // ################## GLOBAL ###################
 // ================= INCLUDES ==================
-#include <Scanner_uC.h>
 #include <ScanDelay.h>
 #include <Code_Sc.h>
 #include <Row.h>
+#include <Scanner_uC.h>
 
 // ============ SPEED CONFIGURATION ============
 ScanDelay scanDelay(9000);

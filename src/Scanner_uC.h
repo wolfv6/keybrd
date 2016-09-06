@@ -5,8 +5,6 @@
 #include <inttypes.h>
 #include <config_keybrd.h>
 #include <ScannerInterface.h>
-//#include <PortWriteInterface.h>todo not needed?
-//#include <PortReadInterface.h>
 
 /* Scanner_uC class uses Arduino pin numbers (not port pin numbers).
 Limit number of readPins to size of read_pins_t, which is defined in config_keybrd.h
@@ -20,7 +18,7 @@ class Scanner_uC : public ScannerInterface
         const uint8_t readPinCount;             //number of readPins
     public:
         Scanner_uC(const bool strobeOn, const uint8_t readPins[], const uint8_t readPinCount);
-        void begin(const uint8_t strobePin);
+        void init(const uint8_t strobePin);
         virtual read_pins_t scan(const uint8_t strobePin);
 };
 #endif

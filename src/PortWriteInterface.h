@@ -12,6 +12,7 @@ Details are in config_key.h
 class PortWriteInterface
 {
     public:
+        virtual void begin()=0;
         virtual void write(const uint8_t pin, const bool level)=0;
 };
 #endif

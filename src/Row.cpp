@@ -1,13 +1,14 @@
 #include "Row.h"
 
 /* constructor
+init() is called once for each row.
 */
 Row::Row(ScannerInterface& refScanner, const uint8_t strobePin,
         Key* const ptrsKeys[], const uint8_t readPinCount)
     : refScanner(refScanner), strobePin(strobePin),
     ptrsKeys(ptrsKeys), readPinCount(readPinCount), debounced(0)
 {
-    refScanner.begin(strobePin);
+    refScanner.init(strobePin);
 }
 
 /* process() scans the row and calls any newly pressed or released keys.

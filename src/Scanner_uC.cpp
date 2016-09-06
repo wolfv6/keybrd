@@ -31,10 +31,10 @@ Scanner_uC::Scanner_uC(const bool strobeOn, const uint8_t readPins[], const uint
     }
 }
 
-/*
+/* init() is called once for each row from Row constructor.
 Configure row-strobe pin to output.
 */
-void Scanner_uC::begin(const uint8_t strobePin)
+void Scanner_uC::init(const uint8_t strobePin)
 {
     pinMode(strobePin, OUTPUT);
 }

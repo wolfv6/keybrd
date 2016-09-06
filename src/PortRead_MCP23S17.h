@@ -5,7 +5,7 @@
 #include <SPI.h>
 #include <PortReadInterface.h>
 #include "PortIOE.h"
-#include "Scanner_Port.h"
+#include "Scanner_IOE.h"
 
 /* One MCP23S17 I/O expander port connected to matrix columns.
 

@@ -10,39 +10,37 @@
 // ================= INCLUDES ==================
 #include <ScanDelay.h>
 #include <Code_Sc.h>
+#include <Row.h>
 
 //left matrix
-#include <Row_uC.h>
+#include <Scanner_uC.h>
 
 //right matrix
-#include <Row_IOE.h>
 #include <PortIOE.h>
 #include <PortWrite_PCA9655E.h>
 #include <PortRead_PCA9655E.h>
+#include <Scanner_IOE.h>
 
 // ============ SPEED CONFIGURATION ============
 ScanDelay scanDelay(9000);
 
-// =============== LEFT uC MATRIX ==============
-const bool Scanner_uC::STROBE_ON = HIGH;       //active high
-const bool Scanner_uC::STROBE_OFF = LOW;
-
+// ================ LEFT SCANNER ===============
 uint8_t readPins_L[] = {0, 1};
+uint8_t readPinCount_L = sizeof(readPins_L)/sizeof(*readPins_L);
 
-// ============== RIGHT IOE MATRIX =============
-const bool Scanner_Port::STROBE_ON = HIGH;      //active high
-const bool Scanner_Port::STROBE_OFF = LOW;
+Scanner_uC scanner_L(HIGH, readPins_L, readPinCount_L);
 
+// =============== RIGHT SCANNER ===============
 const uint8_t PortIOE::DEVICE_ADDR = 0x18;
 
-// ------------------ PORT 1 -------------------
-PortIOE port1_R(1, 0);
-PortWrite_PCA9655E portWrite1_R(port1_R);
+PortIOE port_R1(1, 0);
+PortWrite_PCA9655E portWrite_R1(port_R1);
 
-// ------------------ PORT 0 -------------------
-PortIOE port0_R(0, 0);
-PortWrite_PCA9655E portWrite0_R(port0_R);
-PortRead_PCA9655E portRead0_R(port0_R, 1<<0 | 1<<1 );
+PortIOE port_R0(0, 0);
+//PortWrite_PCA9655E portWrite_R0(port_R0); for LEDs
+PortRead_PCA9655E portRead_R0(port_R0, 1<<0 | 1<<1 );
+
+Scanner_IOE scanner_R(HIGH, portWrite_R1, portRead_R0);
 
 // =================== CODES ===================
 Code_Sc s_a(KEY_A);
@@ -59,28 +57,26 @@ Code_Sc s_4(KEY_4);
 // ---------------- LEFT ROWS ------------------
 Key* ptrsKeys_L0[] = { &s_1, &s_2 };
 uint8_t KEY_COUNT_L0 = sizeof(ptrsKeys_L0)/sizeof(*ptrsKeys_L0);
-Row_uC row_L0(21, readPins_L, KEY_COUNT_L0, ptrsKeys_L0);
+Row row_L0(scanner_L, 21, ptrsKeys_L0, KEY_COUNT_L0);
 
 Key* ptrsKeys_L1[] = { &s_a, &s_b };
 uint8_t KEY_COUNT_L1 = sizeof(ptrsKeys_L1)/sizeof(*ptrsKeys_L1);
-Row_uC row_L1(20, readPins_L, KEY_COUNT_L1, ptrsKeys_L1);
+Row row_L1(scanner_L, 20, ptrsKeys_L1, KEY_COUNT_L1);
 
 // ---------------- RIGHT ROWS -----------------
 Key* ptrsKeys_R0[] = { &s_3,  &s_4 };
 uint8_t KEY_COUNT_R0 = sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0);
-Row_IOE row_R0(portWrite1_R, 1<<0, portRead0_R, KEY_COUNT_R0, ptrsKeys_R0);
+Row row_R0(scanner_R, 1<<0, ptrsKeys_R0, KEY_COUNT_R0);
 
 Key* ptrsKeys_R1[] = { &s_c,  &s_d };
 uint8_t KEY_COUNT_R1 = sizeof(ptrsKeys_R1)/sizeof(*ptrsKeys_R1);
-Row_IOE row_R1(portWrite1_R, 1<<1, portRead0_R, KEY_COUNT_R1, ptrsKeys_R1);
+Row row_R1(scanner_R, 1<<1, ptrsKeys_R1, KEY_COUNT_R1);
 
 // ################### MAIN ####################
 void setup()
 {
     Keyboard.begin();
-    Wire.begin();                               //Wire.begin() must be called before port begin()
-    portWrite1_R.begin();
-    portRead0_R.begin();
+    scanner_R.begin();
 }
 
 void loop()
