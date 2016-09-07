@@ -19,8 +19,8 @@ The right matrix has 2 shift registers daisy chained.
 #include <Row.h>
 
 //Right matrix
-#include <SPI.h>//needed?? todo
-#include <Scanner_ShiftRegs74HC165.h>
+//#include <SPI.h>//needed?? todo
+#include <Scanner_ShiftRegsPISOSingleRow.h>
 
 // =============== CONFIGURATION ===============
 ScanDelay scanDelay(9000);
@@ -62,7 +62,7 @@ Row row_L1(scanner_L, 1, ptrsKeys_L1, KEY_COUNT_L1);
 
 // =============== RIGHT MATRIX ================
 //use slaveSelect pin SS (Arduino pin 10) for fastest scan
-Scanner_ShiftRegs74HC165 scanner_R(HIGH, SS, 14); //active HIGH
+Scanner_ShiftRegsPISOSingleRow scanner_R(HIGH, SS, 2); //active HIGH
 
 //rows
 Key* ptrsKeys_R0[] = { &s_6, &s_5, &s_4, &s_3,  //shift register on right
