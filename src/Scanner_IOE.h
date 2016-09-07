@@ -28,6 +28,6 @@ class Scanner_IOE : public ScannerInterface
             refPortWrite(refPortWrite), refPortRead(refPortRead) {}
         void init(const uint8_t strobePin);
         void begin();
-        uint8_t scan(const uint8_t strobePin);
+        read_pins_t scan(const uint8_t strobePin);
 };
 #endif

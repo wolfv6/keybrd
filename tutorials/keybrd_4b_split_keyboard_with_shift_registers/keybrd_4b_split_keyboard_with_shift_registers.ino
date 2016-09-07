@@ -4,10 +4,10 @@ Tested on Teensy LC and two 74HC165 shift registers.
 The right matrix has 2 shift registers daisy chained.
 
   Layout          Layout
-| Left  |**0**  | Right |**0**|**1**|**2**|**3**|**4**|**5**|**6**|**7**|
-|:-----:|-----| |:-----:|-----|-----|-----|-----|-----|-----|-----|-----|
-| **0** |  x  | | **0** |  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |
-| **1** |  y  | | **1** |  a  |  b  |  c  |  d  |  e  |  f  |  g  |  h  |
+| Left  |**0**| | Right |**0**|**1**|**2**|**3**|**4**|**5**|**6**|
+|:-----:|-----| |:-----:|-----|-----|-----|-----|-----|-----|-----|
+| **0** |  x  | | **0** |  0  |  1  |  2  |  3  |  4  |  5  |  6  |
+| **1** |  y  | | **1** |  a  |  b  |  c  |  d  |  e  |  f  |  g  |
 */
 // ################## GLOBAL ###################
 // ================= INCLUDES ==================
@@ -15,11 +15,12 @@ The right matrix has 2 shift registers daisy chained.
 #include <Code_Sc.h>
 
 //Left matrix
-#include <Row_uC.h>
+#include <Scanner_uC.h>
+#include <Row.h>
 
 //Right matrix
-#include <SPI.h>
-#include <Row_ShiftRegisters.h>
+#include <SPI.h>//needed?? todo
+#include <Scanner_ShiftRegs74HC165.h>
 
 // =============== CONFIGURATION ===============
 ScanDelay scanDelay(9000);
@@ -45,42 +46,37 @@ Code_Sc s_5(KEY_5);
 Code_Sc s_6(KEY_6);
 
 // =============== LEFT MATRIX =================
-//set left matrix for active low
-const bool Scanner_uC::STROBE_ON = LOW;
-const bool Scanner_uC::STROBE_OFF = HIGH;
+uint8_t readPins_L[] = {14};
+uint8_t readPinCount_L = sizeof(readPins_L)/sizeof(*readPins_L);
 
-//column pin
-uint8_t readPins[] = {14};
-uint8_t READ_PIN_COUNT = sizeof(readPins)/sizeof(*readPins);
+Scanner_uC scanner_L(LOW, readPins_L, readPinCount_L); //active LOW
 
 //rows
 Key* ptrsKeys_L0[] = { &s_x };
-Row_uC row_L0(0, readPins, READ_PIN_COUNT, ptrsKeys_L0);
+uint8_t KEY_COUNT_L0 = sizeof(ptrsKeys_L0)/sizeof(*ptrsKeys_L0);
+Row row_L0(scanner_L, 0, ptrsKeys_L0, KEY_COUNT_L0);
 
 Key* ptrsKeys_L1[] = { &s_y };
-Row_uC row_L1(1, readPins, READ_PIN_COUNT, ptrsKeys_L1);
+uint8_t KEY_COUNT_L1 = sizeof(ptrsKeys_L1)/sizeof(*ptrsKeys_L1);
+Row row_L1(scanner_L, 1, ptrsKeys_L1, KEY_COUNT_L1);
 
 // =============== RIGHT MATRIX ================
-//set matrix to active high
-const bool Scanner_ShiftRegs74HC165::STROBE_ON = HIGH;
-const bool Scanner_ShiftRegs74HC165::STROBE_OFF = LOW;
-
-//chip select pin
-const uint8_t Scanner_ShiftRegs74HC165::SHIFT_LOAD = 10;
+//use slaveSelect pin SS (Arduino pin 10) for fastest scan
+Scanner_ShiftRegs74HC165 scanner_R(HIGH, SS, 14); //active HIGH
 
 //rows
-Key* ptrsKeys_R0[] = { &s_6, &s_5, &s_4, &s_3,  //shift regiser on right
+Key* ptrsKeys_R0[] = { &s_6, &s_5, &s_4, &s_3,  //shift register on right
                        &s_c, &s_d, &s_e, &s_f,
-                       &s_2, &s_1, &s_0, &s_g,  //shift regiser on left
+                       &s_2, &s_1, &s_0, &s_g,  //shift register on left
                        &s_a, &s_b };            //unused input pins are grounded
-Row_ShiftRegisters row_R0(0, sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0), ptrsKeys_R0);
+Row row_R0(scanner_R, 0, ptrsKeys_R0, sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0));
 
 // ################### MAIN ####################
 void setup()
 {
     Keyboard.begin();
-    SPI.begin();
-    row_R0.begin();
+    SPI.begin();//todo move to begin()
+    scanner_R.begin();
 }
 
 void loop()

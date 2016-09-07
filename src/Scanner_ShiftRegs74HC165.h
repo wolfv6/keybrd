@@ -5,6 +5,7 @@
 #include <inttypes.h>
 #include <config_keybrd.h>
 #include <SPI.h>
+#include <ScannerInterface.h>
 #include <PortWriteInterface.h>
 #include <PortReadInterface.h>
 
@@ -17,31 +18,32 @@ Shift register parallel input pins have 10k pull-up resistors powered
 Orient diodes with cathode (banded end) towards the write pins (row)
 Controller's MISO pin is connected to shift register's complementary serial output (/QH) pin
 Use these two lines in the sketch:
-    const bool Scanner_ShiftRegs74HC165::STROBE_ON = LOW;
-    const bool Scanner_ShiftRegs74HC165::STROBE_OFF = HIGH;
+    const bool Scanner_ShiftRegs74HC165::strobeOn = LOW;
+    const bool Scanner_ShiftRegs74HC165::strobeOff = HIGH;
 
 For active high:
 Shift register parallel input pins have 10k pull-down resistors grounded
 Orient diodes with cathode (banded end) towards the read pins.
 Controller's MISO pin is connected to shift register's serial output (QH) pin
 Use these two lines in the sketch:
-    const bool Scanner_ShiftRegs74HC165::STROBE_ON = HIGH;
-    const bool Scanner_ShiftRegs74HC165::STROBE_OFF = LOW;
+    const bool Scanner_ShiftRegs74HC165::strobeOn = HIGH;
+    const bool Scanner_ShiftRegs74HC165::strobeOff = LOW;
 
 In addition, each row needs to be connected to a strobe pin from the controller.
 */
-class Scanner_ShiftRegs74HC165
+class Scanner_ShiftRegs74HC165 : public ScannerInterface
 {
     private:
-        static const uint8_t SHIFT_LOAD;    //controller's pin number that is
-                                            // connected to shift register's SHIFT_LOAD pin
-        static const bool STROBE_ON;        //logic level of strobe on, active state HIGH or LOW
-        static const bool STROBE_OFF;       //logic level of strobe off, complement of active state
-        const uint8_t strobePin;            //Arduino pin number connected to this row
+        const bool strobeOn;         //logic level of strobe on, active state HIGH or LOW
+        const bool strobeOff;        //logic level of strobe off, complement of active state
+        const uint8_t slaveSelect;    //controller's pin number that is
+                                            // connected to shift register's SHIFT-LOAD pin
         const uint8_t byte_count;           //number of bytes to read from shift registers
     public:
-        Scanner_ShiftRegs74HC165(const uint8_t strobePin, const uint8_t readPinCount);
-        virtual read_pins_t scan();
+        Scanner_ShiftRegs74HC165(const bool strobeOn, const uint8_t slaveSelect,
+                const uint8_t readPinCount);
+        void init(const uint8_t strobePin);
         void begin();
+        virtual read_pins_t scan(const uint8_t strobePin);
 };
 #endif
