@@ -13,9 +13,9 @@ Using smaller types on a 32-bit uC (Teensy LC) would accomplish nothing.
     For Scanner_ShiftRegs74HC165, Scanner_ShiftRegs74HC165::readPinCount
     For Scanner_IOE, cover the last 1 bit in Scanner_IOE::strobePin
 */
-//typedef uint8_t read_pins_t;
+typedef uint8_t read_pins_t;
 //typedef uint16_t read_pins_t;
-typedef uint32_t read_pins_t;
+//typedef uint32_t read_pins_t;
 
 /* SAMPLE_COUNT_MACRO is used in Debouncer_Samples.h
 SAMPLE_COUNT_MACRO = 4 is very reliable for a keyboard.

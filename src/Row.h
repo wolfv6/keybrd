@@ -16,18 +16,20 @@ strobePin has one of two formats:
 class Row
 {
     private:
+        virtual void keyWasPressed();
+    protected:
+        void send(const uint8_t readPinCount, const read_pins_t debouncedChanged);
         ScannerInterface& refScanner;
         const uint8_t strobePin;                //pin connected to this row (details above)
+    private:
         Key *const *const ptrsKeys;             //array of Key pointers
+    protected:
         const uint8_t readPinCount;             //number of read pins
         Debouncer_Samples debouncer;
-        virtual void keyWasPressed();
-    protected://todo is protected needed?
         read_pins_t debounced;      //bitwise state of keys after debouncing, 1=pressed, 0=released
-        void send(const uint8_t readPinCount, const read_pins_t debouncedChanged);
     public:
         Row(ScannerInterface& refScanner, const uint8_t strobePin,
                 Key* const ptrsKeys[], const uint8_t readPinCount);
-        void process();
+        virtual void process();
 };
 #endif
