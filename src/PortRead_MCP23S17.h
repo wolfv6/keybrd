@@ -4,6 +4,7 @@
 #include <inttypes.h>
 #include <SPI.h>
 #include <PortReadInterface.h>
+#include "PortMCP23S17.h"
 #include "PortIOE.h"
 #include "Scanner_IOE.h"
 
@@ -15,7 +16,7 @@ Arduino Pin 10 avoids the speed penalty of digitalWrite.
 Instantiation
  ------------
 readPins parameter is port's bitwise pin configuration
-    1=configure as input (for pins connected to column)
+    1=configure as input (for read pins connected to column)
     0=configure as output (for LED or not connected to a column)
 readPins are read from pin 0 on up.
 
@@ -32,7 +33,7 @@ MCP23S17 data sheet
  ------------------
  http://www.onsemi.com/pub_link/Collateral/MCP23S17-D.PDF
 */
-class PortRead_MCP23S17 : public PortReadInterface
+class PortRead_MCP23S17 : public PortReadInterface, public PortMCP23S17
 {
     private:
         PortIOE& port;

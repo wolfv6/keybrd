@@ -14,17 +14,9 @@ void PortRead_MCP23S17::begin(const uint8_t strobeOn)
         pullUp = 0;
     }
 
-    digitalWrite(SS, LOW);                      //enable Slave Select
-      SPI.transfer(port.DEVICE_ADDR << 1);      //write command
-      SPI.transfer(port.num);                   //configure IODIR
-      SPI.transfer(readPins);                   //0=output (for LED), 1=input (for read)
-    digitalWrite(SS, HIGH);                     //enable Slave Select
-
-    digitalWrite(SS, LOW);                      //disable Slave Select
-      SPI.transfer(port.DEVICE_ADDR << 1);      //write command
-      SPI.transfer(port.num + 0x0C);            //configure GPPU
-      SPI.transfer(pullUp);                     //0=pull-up disabled (for LED), 1=pull-up enabled (for read)
-    digitalWrite(SS, HIGH);                     //disable Slave Select
+    push(port.DEVICE_ADDR << 1, port.num, readPins); //write, configure IODIR, 0=output, 1=input
+    push(port.DEVICE_ADDR << 1, port.num + 0x0C, pullUp); //write, configure GPPU,
+                                                          //0=pull-up disabled, 1=pull-up enabled
 }
 
 /* read() returns portState.

@@ -4,6 +4,7 @@
 #include <inttypes.h>
 #include <SPI.h>
 #include <PortWriteInterface.h>
+#include "PortMCP23S17.h"
 #include "PortIOE.h"
 
 /* One MCP23S17 I/O expander port connected to matrix rows.
@@ -28,11 +29,10 @@ MCP23S17 data sheet
  http://www.onsemi.com/pub_link/Collateral/MCP23S17-D.PDF
 */
 
-class PortWrite_MCP23S17 : public PortWriteInterface
+class PortWrite_MCP23S17 : public PortWriteInterface, public PortMCP23S17
 {
     private:
         PortIOE& port;
-        void push(const uint8_t registerAddr, const uint8_t data);
     public:
         PortWrite_MCP23S17(PortIOE& port) : port(port) {}
         void begin();
