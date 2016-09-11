@@ -29,9 +29,11 @@ class PortRead_MCP23S17 : public PortReadInterface
 {
     private:
         PortIOE& port;
+        uint8_t pullUp;                         //bitwise, 1 means internal pull-up resistor enabled
         const uint8_t readPins;                 //bitwise, 1 means internal pull-up resistor enabled
     public:
-        PortRead_MCP23S17(PortIOE& port, const uint8_t readPins) : port(port), readPins(readPins) {}
+        PortRead_MCP23S17(PortIOE& port, const uint8_t readPins)
+            : port(port), readPins(readPins) {}
         void begin(const uint8_t strobeOn);
         virtual uint8_t read();
 };

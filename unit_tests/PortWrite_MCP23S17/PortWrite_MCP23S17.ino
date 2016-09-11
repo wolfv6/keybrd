@@ -1,9 +1,10 @@
-/* unit test for PortRead_MCP23S17
+/* unit test for PortWrite_MCP23S17
+Picture of hardware is in unit_tests/PortRead_MCP23S17/PortRead_MCP23S17_bb.JPG
 The setup is an MCP23S17 I/O expander on a Teensy LC controller.
 MCP23S17 port-A GPIO pins are not connected to anything.
 Port-A GPIO-pin ouputs alternate between 0 and 3.3 volts.
 
-Use a volt meter to measure port-A GPIO-pin ouputs.
+Use a volt meter to measure port-A GPIO-pin outputs.
 MCP23S17 on 3.3v does not output enough power to reliable light LEDs
     LED lights w/o resistor
     LED not light with 56 ohm resistor
@@ -16,7 +17,7 @@ PortIOE portA(0, 0);
 
 PortWrite_MCP23S17 portAWrite(portA);           //PortAWrite needed for begin()
 
-const uint8_t GPIOA = 0x12;                     //LEDs are on port A
+//const uint8_t GPIOA = 0x12;                     //LEDs are on port A
 
 void setup()
 {

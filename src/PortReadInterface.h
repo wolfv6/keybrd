@@ -12,7 +12,7 @@ Details are in config_key.h
 class PortReadInterface
 {
     public:
-        virtual void begin()=0;
+        virtual void begin(const uint8_t strobeOn)=0;
         virtual uint8_t read()=0;
 };
 #endif

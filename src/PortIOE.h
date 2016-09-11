@@ -24,24 +24,13 @@ For example, I2C address with AD2=GND AD1=SCL AD0=SCL,
 http://playground.arduino.cc/Main/WireLibraryDetailedReference
 The PCA9655E data sheet is on http://www.onsemi.com/pub_link/Collateral/PCA9655E-D.PDF
 
-portNumber: If the I/O expander uses port letters, use 0 instead of A, use 1 instead of B.
-outputVal: For pins that are connected to active low rows, set outputVal bit to 1.
-           Set all other outputVal bits to 0.
-
-Example instantiation for port0 with active low rows on all pins:
-    PortIOE port0(0, ~0);
-
-Example instantiation for portA with active low rows on pins 0,1,2:
-    PortIOE portA(0, 1<<0 | 1<<1 | 1<<2 );
-
-Example instantiation for portB with active high rows on pins 0,1,2:
-    PortIOE portB(1, 0);
+portNumber: If the I/O expander uses port letters, use 0 inplace of A, use 1 inplace of B.
 */
 struct PortIOE
 {
     static const uint8_t DEVICE_ADDR;
     const uint8_t num;                          //port number
-    uint8_t outputVal;                          //bitwise value of output register
+    uint8_t outputVal;                          //bitwise value of output register for LEDs
 
     PortIOE(const uint8_t portNumber, uint8_t outputVal)
         : num(portNumber), outputVal(outputVal) {}

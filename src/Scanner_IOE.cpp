@@ -1,22 +1,22 @@
 #include "Scanner_IOE.h"
 
-/* Row constructor calls every Scanner's init().
+/* init() is called once for each row from Row constructor.
 */
 void Scanner_IOE::init(const uint8_t strobePin)
 {
-    //emty function
+    //empty
 }
 
 /* begin() should be called once from sketch setup().
 */
 void Scanner_IOE::begin()
 {
-    Wire.begin();
-    refPortWrite.begin();
-    refPortRead.begin();
+    refPortWrite.begin();                       //configures SPI bus
+    refPortRead.begin(strobeOn);
 }
 
-/* scan() strobes the row's strobePin and retuns state of port's input pins.
+/* scan() is called on every iteration of sketch loop().
+scan() strobes the row's strobePin and retuns state of port's input pins.
 Bitwise variables are 1 bit per key.
 */
 read_pins_t Scanner_IOE::scan(const uint8_t strobePin)
@@ -33,5 +33,9 @@ read_pins_t Scanner_IOE::scan(const uint8_t strobePin)
     //strobe off
     refPortWrite.write(strobePin, strobeOff);
 
+    if (strobeOn == LOW)                        //if active low
+    {
+        readState = ~readState;
+    }
     return readState;
 }

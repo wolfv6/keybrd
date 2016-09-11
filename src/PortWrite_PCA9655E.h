@@ -41,6 +41,6 @@ class PortWrite_PCA9655E : public PortWriteInterface
         PortWrite_PCA9655E(PortIOE& port) : port(port) {}
         void begin();
 
-        virtual void write(const uint8_t pin, const bool level);
+        virtual void write(const uint8_t strobePin, const bool pinLogicLevel);
 };
 #endif

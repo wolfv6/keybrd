@@ -21,7 +21,7 @@ The Row "strobePin" parameter is ignored.
 In the above example, the "strobePin" argument is 0, but it doesn't matter what value is given.
 
 There are three Scanner_ShiftRegsPISOSingleRow parameters.
-"strobeOn" paramter is active state HIGH or LOW.
+"strobeOn" paramter is ignored, but should be active state HIGH or LOW required by ScannerInterface.
 
 "slaveSelect" paramter can be any controller pin connected to shift register's SHIFT-LOAD pin.
 slaveSelect pin SS (Arduino pin 10) has the fastest scan.

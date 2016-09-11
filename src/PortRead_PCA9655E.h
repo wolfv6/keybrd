@@ -33,7 +33,7 @@ class PortRead_PCA9655E : public PortReadInterface
     public:
         PortRead_PCA9655E (PortIOE& port, const uint8_t readPins)
             : port(port), readPins(readPins) {}
-        void begin();
+        void begin(const uint8_t strobeOn);
         virtual uint8_t read();
 };
 #endif

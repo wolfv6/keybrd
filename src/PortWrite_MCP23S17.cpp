@@ -5,13 +5,13 @@
 void PortWrite_MCP23S17::writePort(const uint8_t registerAddr, const uint8_t data)
 {
     digitalWrite(SS, LOW);                      //enable Slave Select
-      SPI.transfer(port.DEVICE_ADDR << 1);             //write command
+      SPI.transfer(port.DEVICE_ADDR << 1);      //write command
       SPI.transfer(registerAddr);               //register address to write data to
       SPI.transfer(data);                       //data
     digitalWrite(SS, HIGH);                     //disable Slave Select
 }    
 
-/* begin() should be called once from sketch in setup().
+/* begin() is called from Scanner_IOE::begin().  Initiates SPI bus and configures write pins.
 PortRead_MCP23S17 and PortWrite_MCP23S17 should be on seperate ports on the same MCP23S17.
 Output pins can be used for strobe pins and LEDs.
 */
@@ -21,20 +21,18 @@ void PortWrite_MCP23S17::begin()
     digitalWrite(SS, HIGH);                     //disable Slave Select
     SPI.begin();
     SPI.beginTransaction(SPISettings (SPI_CLOCK_DIV8, MSBFIRST, SPI_MODE0)); //control SPI bus todo is slow clock needed?
+    //SPI.endTransaction() not called to release SPI bus because keyboard only has one SPI device.
 
     writePort(port.num, 0);                     //configure port direction (port.num) to output (0)
-
-    //SPI.endTransaction() is not called to release the SPI bus
-    // because keyboard only has one SPI device.
 }
 
 /*
 strobePin is bitwise, where pin being strobed is 1.
 pinLogicLevel is HIGH or LOW.
 port.outputVal can be shared by LEDs.
-The functions does not reset the other pins so that they can be used for LEDs.
+The function does not reset the other pins so that they can be used for LEDs.
 */
-void PortWrite_MCP23S17::write(const uint8_t strobePin, const uint8_t pinLogicLevel)
+void PortWrite_MCP23S17::write(const uint8_t strobePin, const bool pinLogicLevel)
 {
     if (pinLogicLevel == LOW)
     {
@@ -45,5 +43,5 @@ void PortWrite_MCP23S17::write(const uint8_t strobePin, const uint8_t pinLogicLe
         port.outputVal |= strobePin;            //set strobePin output to high
     }
 
-    writePort(port.num + 0x12, port.outputVal);  //set GPIO port pins for stobe and LEDs
+    writePort(port.num + 0x12, port.outputVal); //set GPIO port pins for strobe and LEDs
 }

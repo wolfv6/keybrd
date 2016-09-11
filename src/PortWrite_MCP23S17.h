@@ -43,6 +43,6 @@ class PortWrite_MCP23S17 : public PortWriteInterface
     public:
         PortWrite_MCP23S17(PortIOE& port) : port(port) {}
         void begin();
-        virtual void write(const uint8_t pin, const uint8_t level);
+        virtual void write(const uint8_t pin, const bool pinLogicLevel);
 };
 #endif

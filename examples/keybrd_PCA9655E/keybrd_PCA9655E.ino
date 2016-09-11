@@ -37,7 +37,7 @@ PortIOE port_R1(1, 0);
 PortWrite_PCA9655E portWrite_R1(port_R1);
 
 PortIOE port_R0(0, 0);
-//PortWrite_PCA9655E portWrite_R0(port_R0); for LEDs
+//PortWrite_PCA9655E portWrite_R0(port_R0);     //for LEDs
 PortRead_PCA9655E portRead_R0(port_R0, 1<<0 | 1<<1 );
 
 Scanner_IOE scanner_R(HIGH, portWrite_R1, portRead_R0);

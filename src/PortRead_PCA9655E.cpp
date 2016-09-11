@@ -1,6 +1,8 @@
 #include "PortRead_PCA9655E.h"
 
-void PortRead_PCA9655E::begin()
+/*
+*/
+void PortRead_PCA9655E::begin(const uint8_t strobeOn)
 {
     Wire.beginTransmission(port.DEVICE_ADDR);
     Wire.write(port.num + 6);                   //configuration byte command

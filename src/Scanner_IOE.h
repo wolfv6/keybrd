@@ -3,7 +3,6 @@
 
 #include <Arduino.h>
 #include <inttypes.h>
-#include <Wire.h>
 #include <ScannerInterface.h>
 #include <PortWriteInterface.h>
 #include <PortReadInterface.h>
