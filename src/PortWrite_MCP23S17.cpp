@@ -12,7 +12,7 @@ void PortWrite_MCP23S17::begin()
     SPI.beginTransaction(SPISettings (5000000, MSBFIRST, SPI_MODE0)); //control SPI bus, 5 MHz
     //SPI.endTransaction() not called to release SPI bus because keyboard only has one SPI device.
 
-    push(port.DEVICE_ADDR << 1, port.num, 0);   //configure port direction (port.num) to output (0)
+    transfer(port.DEVICE_ADDR << 1, port.num, 0); //configure port direction (port.num) to output (0)
 }
 
 /* write() sets pin output to logicLevel.
@@ -31,5 +31,5 @@ void PortWrite_MCP23S17::write(const uint8_t pin, const bool logicLevel)
         port.outputVal |= pin;                  //set pin output to high
     }
 
-    push(port.DEVICE_ADDR << 1, port.num + 0x12, port.outputVal); //set GPIO port pin to outputVal
+    transfer(port.DEVICE_ADDR << 1, port.num + 0x12, port.outputVal); //set GPIO port to outputVal
 }

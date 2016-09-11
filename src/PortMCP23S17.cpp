@@ -1,12 +1,16 @@
 #include "PortMCP23S17.h"
 
-/* push() writes data to registerAddr.
+/* transfer() writes data to registerAddr, reads portSate from registerAddr, and returns portState.
 */
-void PortMCP23S17::push(const uint8_t command, const uint8_t registerAddr, const uint8_t data)
+uint8_t PortMCP23S17::transfer(const uint8_t command, const uint8_t registerAddr, const uint8_t data)
 {
+    uint8_t portState;                          //bit wise
+
     digitalWrite(SS, LOW);                      //enable Slave Select
       SPI.transfer(command);                    //write command todo also read command?
       SPI.transfer(registerAddr);               //register address to write data to
-      SPI.transfer(data);                       //write the data
+      portState = SPI.transfer(data);           //write data, read portState
     digitalWrite(SS, HIGH);                     //disable Slave Select
+
+    return portState;
 }

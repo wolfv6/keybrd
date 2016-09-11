@@ -7,6 +7,6 @@
 class PortMCP23S17
 {
     protected:
-        void push(const uint8_t command, const uint8_t registerAddr, const uint8_t data);
+        uint8_t transfer(const uint8_t command, const uint8_t registerAddr, const uint8_t data);
 };
 #endif
