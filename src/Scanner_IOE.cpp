@@ -11,7 +11,7 @@ void Scanner_IOE::init(const uint8_t strobePin)
 */
 void Scanner_IOE::begin()
 {
-    refPortWrite.begin();                       //configures SPI bus
+    refPortWrite.begin();                       //configure SPI bus
     refPortRead.begin(strobeOn);
 }
 

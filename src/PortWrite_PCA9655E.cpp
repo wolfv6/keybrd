@@ -1,8 +1,7 @@
 #include "PortWrite_PCA9655E.h"
 
-/*
-If PortRead_PCA9655E is instantiated on the same port, do NOT use PortWrite_PCA9655E::begin().
-Otherwise readPins could be overwritten.
+/* begin() is called from Scanner_IOE::begin().
+Configures write pins to output.
 */
 void PortWrite_PCA9655E::begin()
 {
@@ -10,25 +9,24 @@ void PortWrite_PCA9655E::begin()
 
     Wire.beginTransmission(port.DEVICE_ADDR);
     Wire.write(port.num + 6);                   //configuration byte command
-    Wire.write(0);                              //0=configure as output (for strobe pins and LED)
+    Wire.write(0);                              //configure all pins as output
     Wire.endTransmission();
 }
 
-/*
-strobePin is bitwise, where pin being strobed is 1.
-pinLogicLevel is HIGH or LOW.
-Does not reset the other pins because LEDs could be using some of the pins.
-Syntax is similar to Arduino DigitalWrite().
+/* write() sets pin output to logicLevel.
+pin is bitwise, where pin being strobed is 1.
+logicLevel is HIGH or LOW.
+write() does not overwrite the other pins.
 */
-void PortWrite_PCA9655E::write(const uint8_t strobePin, const bool pinLogicLevel)
+void PortWrite_PCA9655E::write(const uint8_t pin, const bool logicLevel)
 {
-    if (pinLogicLevel == LOW)                   //if strobePin low
+    if (logicLevel == LOW)                      //if pin low
     {
-        port.outputVal &= ~strobePin;           //set pin output to low
+        port.outputVal &= ~pin;                 //set pin output to low
     }
     else                                        //if strobestrobe high
     {
-        port.outputVal |= strobePin;            //set pin output to high
+        port.outputVal |= pin;                  //set pin output to high
     }
 
     Wire.beginTransmission(port.DEVICE_ADDR);

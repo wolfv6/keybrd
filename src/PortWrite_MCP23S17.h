@@ -7,42 +7,35 @@
 #include "PortIOE.h"
 
 /* One MCP23S17 I/O expander port connected to matrix rows.
-MCP23S17 does not have internal pull-up resistors (PCA9535E does).
+write() can output logiclevel to strobePin, one LED pin, or multiple pins.
 
-begin() configures column port's configuration and output.
-This should normally be called once in sketch's setup().
-If PortRead_MCP23S17 is instantiated on the same port, do NOT use PortWrite_MCP23S17::begin().
-Otherwise readPins could be overwritten.
+This class has Slave Select hardcoded to Arduino Pin 10.
+Arduino Pin 10 avoids the speed penalty of digitalWrite.
 
 Instantiation
  ------------
-Example instantiation for row port 0:
-    PortIOE port0(0, 0);
-    PortWrite_MCP23S17 rowPort0(port0);
-
-Example instantiation for row port 1:
-    PortIOE port1(1, 0);
-    PortWrite_MCP23S17 rowPort1(port1);
+Example instantiation:
+    const uint8_t PortIOE::DEVICE_ADDR = 0x20;      //MCP23S17 address, all 3 ADDR pins are grounded
+    PortIOE port_B(1);
+    PortWrite_MCP23S17 portWrite_B(port_B);
 
 Diode orientation
  ----------------
 Diode orientation is explained in keybrd_library_user_guide.md > Diode orientation
 
 MCP23S17 data sheet
- ----------------
+ ------------------
  http://www.onsemi.com/pub_link/Collateral/MCP23S17-D.PDF
-
-WARNING: This class hardcodes Slave Select to Arduino Pin 10 to avoid the speed penalty of digitalWrite
 */
 
 class PortWrite_MCP23S17 : public PortWriteInterface
 {
     private:
         PortIOE& port;
-        void writePort(const uint8_t registerAddr, const uint8_t data);
+        void push(const uint8_t registerAddr, const uint8_t data);
     public:
         PortWrite_MCP23S17(PortIOE& port) : port(port) {}
         void begin();
-        virtual void write(const uint8_t pin, const bool pinLogicLevel);
+        virtual void write(const uint8_t pin, const bool logicLevel);
 };
 #endif

@@ -7,22 +7,14 @@
 #include "PortIOE.h"
 
 /* One PCA9655E I/O expander port connected to matrix rows.
-PCA9655E does not have internal pull-up resistors (PCA9535E does).
-
-begin() configures column port's configuration and output.
-This should normally be called once in sketch's setup().
-If PortRead_PCA9655E is instantiated on the same port, do NOT use PortWrite_PCA9655E::begin().
-Otherwise readPins could be overwritten.
+write() can output logiclevel to strobePin, one LED pin, or multiple pins.
 
 Instantiation
  ------------
-Example instantiation for row port 0:
-    PortIOE port0(0, 0);
+Example instantiation:
+    const uint8_t PortIOE::DEVICE_ADDR = 0x20;      //PCA9655E address, all 3 ADDR pins are grounded
+    PortIOE port0(0);
     PortWrite_PCA9655E rowPort0(port0);
-
-Example instantiation for row port 1:
-    PortIOE port1(1, 0);
-    PortWrite_PCA9655E rowPort1(port1);
 
 Diode orientation
  ----------------
@@ -41,6 +33,6 @@ class PortWrite_PCA9655E : public PortWriteInterface
         PortWrite_PCA9655E(PortIOE& port) : port(port) {}
         void begin();
 
-        virtual void write(const uint8_t strobePin, const bool pinLogicLevel);
+        virtual void write(const uint8_t pin, const bool logicLevel);
 };
 #endif

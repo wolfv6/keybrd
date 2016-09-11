@@ -14,16 +14,20 @@ Instantiation
 readPins parameter is port's bitwise pin configuration
     1=configure as input (for pins connected to column)
     0=configure as output (for LED or not connected to a column)
-
-Example instantiation for column port 0, with pins 2 and 3 connected to columns:
-    PortIOE port0(0, 0);
-    PortRead_PCA9655E colPort0(port0, 2<<0 | 1<<3 );
-Example instantiation for column port 1, with pins 2 and 3 connected to columns:
-    PortIOE port1(1, 0);
-    PortRead_PCA9655E colPort1(port1, 2<<0 | 1<<3 );
-
 readPins are read from pin 0 on up.
 
+Example instantiation for column port 1, with pins 2 and 3 connected to columns:
+    const uint8_t PortIOE::DEVICE_ADDR = 0x20;      //PCA9655E address, all 3 ADDR pins are grounded
+    PortIOE port1(1);
+    PortRead_PCA9655E colPort1(port1, 1<<2 | 1<<3 );
+
+Diode orientation
+ ----------------
+Diode orientation is explained in keybrd_library_user_guide.md > Diode orientation
+
+PCA9655E data sheet
+ ----------------
+ http://www.onsemi.com/pub_link/Collateral/PCA9655E-D.PDF
 */
 class PortRead_PCA9655E : public PortReadInterface
 {

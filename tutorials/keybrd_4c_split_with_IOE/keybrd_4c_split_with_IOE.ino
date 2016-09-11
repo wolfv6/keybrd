@@ -32,10 +32,10 @@ Scanner_uC scanner_L(LOW, readPins, readPinCount);
 // =============== RIGHT SCANNER ===============
 const uint8_t PortIOE::DEVICE_ADDR = 0x20;      //MCP23S17 address, all 3 ADDR pins are grounded
 
-PortIOE port_A(0, 0);
+PortIOE port_A(0);
 PortRead_MCP23S17 portRead_A(port_A, 1<<0 | 1<<1 );
 
-PortIOE port_B(1, 0);
+PortIOE port_B(1);
 //PortWrite_MCP23S17 portWrite_B(port_B);     //for LEDs
 PortWrite_MCP23S17 portWrite_B(port_B);
 
@@ -92,5 +92,4 @@ void loop()
     scanDelay.delay();
     //debug.print_scans_per_second();
     //debug.print_microseconds_per_scan();
-delay(100); //todo
 }

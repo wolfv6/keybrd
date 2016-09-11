@@ -9,21 +9,28 @@
 
 /* One MCP23S17 I/O expander port connected to matrix columns.
 
-Instantiation todo
+This class has Slave Select hardcoded to Arduino Pin 10.
+Arduino Pin 10 avoids the speed penalty of digitalWrite.
+
+Instantiation
  ------------
 readPins parameter is port's bitwise pin configuration
     1=configure as input (for pins connected to column)
     0=configure as output (for LED or not connected to a column)
-
-Example instantiation for column port 0, with pins 2 and 3 connected to columns:
-    PortIOE port0(0, 0);
-    PortRead_MCP23S17 colPort0(port0, 2<<0 | 1<<3 );
-Example instantiation for column port 1, with pins 2 and 3 connected to columns:
-    PortIOE port1(1, 0);
-    PortRead_MCP23S17 colPort1(port1, 2<<0 | 1<<3 );
-
 readPins are read from pin 0 on up.
 
+Example instantiation with port-A pins 0 and 1 connected to Scanner_IOE columns:
+    const uint8_t PortIOE::DEVICE_ADDR = 0x20;      //MCP23S17 address, all 3 ADDR pins are grounded
+    PortIOE port_A(0);
+    PortRead_MCP23S17 portRead_A(port_A, 1<<0 | 1<<1 );
+
+Diode orientation
+ ----------------
+Diode orientation is explained in keybrd_library_user_guide.md > Diode orientation
+
+MCP23S17 data sheet
+ ------------------
+ http://www.onsemi.com/pub_link/Collateral/MCP23S17-D.PDF
 */
 class PortRead_MCP23S17 : public PortReadInterface
 {

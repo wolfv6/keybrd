@@ -6,7 +6,7 @@
 
 PortIOE contains outputVal, the value of a port's output register.
 outputVal is used for port manipulation by classes PortWrite and LED.
-One port's outputVal can be shared by one PortWrite object and multiple LED objects.
+One port's outputVal can be shared by strobe pins and multiple LED pins.
 
 PortIOE is only used by I/O expander port classes.
 AVR port classes do not need a similar class because PORTx is global in the Arduino library.
@@ -32,7 +32,7 @@ struct PortIOE
     const uint8_t num;                          //port number
     uint8_t outputVal;                          //bitwise value of output register for LEDs
 
-    PortIOE(const uint8_t portNumber, uint8_t outputVal)
-        : num(portNumber), outputVal(outputVal) {}
+    PortIOE(const uint8_t portNumber)
+        : num(portNumber), outputVal(0) {}
 };
 #endif

@@ -8,8 +8,9 @@
 #include <PortReadInterface.h>
 
 /* Scanner_IOE uses bit manipulation to read all pins of one port.
-The ports are normally from an I/O Expander, but could also be ports from an AVR uC.
 The maximum keys per row is 8, because ports have a maximum of 8 pins each.
+
+begin() should be called once from sketch setup().
 
 keybrd_library_developer_guide.md has instructions for ## Active state and diode orientation
 */
