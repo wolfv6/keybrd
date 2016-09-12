@@ -18,18 +18,18 @@ class Row
     private:
         virtual void keyWasPressed();
     protected:
-        void send(const uint8_t readPinCount, const read_pins_t debouncedChanged);
+        void send(const uint8_t keyCount, const read_pins_t debouncedChanged);
         ScannerInterface& refScanner;
         const uint8_t strobePin;                //pin connected to this row (details above)
     private:
         Key *const *const ptrsKeys;             //array of Key pointers
     protected:
-        const uint8_t readPinCount;             //number of read pins
+        const uint8_t keyCount;                 //number of read pins
         Debouncer_Samples debouncer;
-        read_pins_t debounced;      //bitwise state of keys after debouncing, 1=pressed, 0=released
+        read_pins_t debounced;                  //bitwise state of keys after debouncing, 1=pressed, 0=released
     public:
         Row(ScannerInterface& refScanner, const uint8_t strobePin,
-                Key* const ptrsKeys[], const uint8_t readPinCount);
+                Key* const ptrsKeys[], const uint8_t keyCount);
         virtual void process();
 };
 #endif

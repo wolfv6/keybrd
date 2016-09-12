@@ -66,12 +66,11 @@ Class inheritance diagrams
 
 Keybrd library class inheritance diagram
 ```
-	     ________ Row ___________
+    Row
+
+	     ___ ScannerInterface ___
 	    /          |             \
-	Row_uC  Row_ShiftRegisters  Row_IOE (todo to be added)
-
-
-	Scanner_uC  Scanner_Port  Scanner_ShiftRegs74HC165
+	Scanner_uC  Scanner_IOE  Scanner_ShiftRegsPISO
 
 
 	    PortIOE

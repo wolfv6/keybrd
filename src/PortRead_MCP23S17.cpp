@@ -1,7 +1,7 @@
 #include "PortRead_MCP23S17.h"
 
 /* begin() is called from Scanner_IOE::begin().
-Configures port to to read (input with pullup enabled).
+Configures read pins to input with pullup enabled.
 */
 void PortRead_MCP23S17::begin(const uint8_t strobeOn)
 {

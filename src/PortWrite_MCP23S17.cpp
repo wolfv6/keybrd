@@ -1,8 +1,10 @@
 #include "PortWrite_MCP23S17.h"
 
 /* begin() is called from Scanner_IOE::begin().
-Initiates SPI bus and configures write pins to output.
+Initiates SPI bus and configures port pins to output.
 MCP23S17 SPI interface is 10 MHz max.
+The electrical limitation to bus speed is bus capacitance and the length of the wires involved.
+Longer wires require lower clock speeds. 
 */
 void PortWrite_MCP23S17::begin()
 {

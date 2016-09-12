@@ -33,14 +33,14 @@ Scanner_uC scanner_L(HIGH, readPins_L, readPinCount_L);
 // =============== RIGHT SCANNER ===============
 const uint8_t PortIOE::DEVICE_ADDR = 0x18;
 
-PortIOE port_R1(1, 0);
-PortWrite_PCA9655E portWrite_R1(port_R1);
+PortIOE port_1(1);
+PortWrite_PCA9655E portWrite_1(port_1);
 
-PortIOE port_R0(0, 0);
-//PortWrite_PCA9655E portWrite_R0(port_R0);     //for LEDs
-PortRead_PCA9655E portRead_R0(port_R0, 1<<0 | 1<<1 );
+PortIOE port_0(0);
+//PortWrite_PCA9655E portWrite_R0(port_0);     //for LEDs
+PortRead_PCA9655E portRead_0(port_0, 1<<0 | 1<<1 );
 
-Scanner_IOE scanner_R(HIGH, portWrite_R1, portRead_R0);
+Scanner_IOE scanner_R(HIGH, portWrite_1, portRead_0);
 
 // =================== CODES ===================
 Code_Sc s_a(KEY_A);

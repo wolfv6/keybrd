@@ -1,7 +1,7 @@
 #include "PortRead_PCA9655E.h"
 
 /* begin() is called from Scanner_IOE::begin().
-Configures port to to read (input).
+Configures read pins to input.
 */
 void PortRead_PCA9655E::begin(const uint8_t strobeOn)
 {

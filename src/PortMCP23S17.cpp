@@ -7,7 +7,7 @@ uint8_t PortMCP23S17::transfer(const uint8_t command, const uint8_t registerAddr
     uint8_t portState;                          //bit wise
 
     digitalWrite(SS, LOW);                      //enable Slave Select
-      SPI.transfer(command);                    //write command todo also read command?
+      SPI.transfer(command);                    //write or read command
       SPI.transfer(registerAddr);               //register address to write data to
       portState = SPI.transfer(data);           //write data, read portState
     digitalWrite(SS, HIGH);                     //disable Slave Select

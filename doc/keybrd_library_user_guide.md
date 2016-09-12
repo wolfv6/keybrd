@@ -65,18 +65,6 @@ For Linux:
 
 4. Launch Arduino IDE from /opt/arduino-1.x.x/arduino
 
-<!-- todo no longer needed, delete after testing Arduino library manager
-### Download and unpack keybrd-master.zip into your Arduino directory
-link from tutorial 8 ## Publishing
-    https://www.arduino.cc/en/Guide/Libraries
-     * Installing Additional Arduino Libraries
-     * Using the Library Manager
-
-Down load keybrd-master.zip from the [Download ZIP](https://github.com/wolfv6/keybrd) button.
-
-Unpack keybrd-master.zip into your Arduino directory on your system (default location is ~/Documents/Arduino/).
- -->
-
 ### Install keybrd extension libraries
 The keybrd library contains the foundation classes for creating a keyboard firmware.
 For emphasis, it is sometimes referred to as the "core keybrd library".

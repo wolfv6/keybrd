@@ -8,10 +8,11 @@ void Scanner_IOE::init(const uint8_t strobePin)
 }
 
 /* begin() should be called once from sketch setup().
+Initiates communication protocal and configs ports.
 */
 void Scanner_IOE::begin()
 {
-    refPortWrite.begin();                       //configure SPI bus
+    refPortWrite.begin();
     refPortRead.begin(strobeOn);
 }
 

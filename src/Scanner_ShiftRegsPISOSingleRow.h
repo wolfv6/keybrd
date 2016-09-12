@@ -35,7 +35,7 @@ There is only one row, and it is permanently active.
 Switches are connected to shift-register parallel-input pins (diodes are not needed) and row.
 
 For active low:
-Shift-register parallel-input pins need 10k pull-up resistors powered.
+Shift-register parallel-input pins need 10k Ohm pull-up resistors powered.
 Switches connect powered row to parallel-input pins.
 Controller's MISO pin is connected to shift register's complementary serial output (/QH) pin
 

@@ -31,7 +31,7 @@ Each row needs to be connected to a strobe pin from the controller.
 Switche and diode in series are connected to shift-register parallel-input pins and strobed row.
 
 For active low:
-Shift-register parallel-input pins need 10k pull-up resistors powered.
+Shift-register parallel-input pins need 10k Ohm pull-up resistors powered.
 Orient diodes with cathode (banded end) towards the write pins (row)
 Controller's MISO pin is connected to shift register's complementary serial output (/QH) pin
 
