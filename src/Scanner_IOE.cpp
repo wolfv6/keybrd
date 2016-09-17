@@ -17,12 +17,12 @@ void Scanner_IOE::begin()
 }
 
 /* scan() is called on every iteration of sketch loop().
-strobePin is bitwise, 1 means that row pin is active.
+strobePin is a bit pattern, 1 means that row pin is active.
 scan() strobes the row's strobePin and retuns state of port's input pins.
 */
 read_pins_t Scanner_IOE::scan(const uint8_t strobePin)
 {
-    uint8_t readState;                          //bitwise, 1 means key is pressed, 0 means released
+    uint8_t readState;                          //bits, 1 means key is pressed, 0 means released
 
     //strobe on
     refPortWrite.write(strobePin, strobeOn);

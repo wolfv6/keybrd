@@ -17,7 +17,7 @@ PortRead_MCP23S17 portBRead(portB, ~0);
 
 void setup()
 {
-    uint8_t portBState;                         //bit wise
+    uint8_t portBState;                         //bit pattern
 
     delay(6000);
     portBRead.begin(LOW);

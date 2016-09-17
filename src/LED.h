@@ -1,7 +1,7 @@
 #ifndef LED_H
 #define LED_H
 
-/* LED is an abstract base class
+/* LED is an interface class
 Each LED object is an IC pin that is used to power an LED on and off.
 */
 class LED

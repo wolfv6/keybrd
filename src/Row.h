@@ -12,7 +12,7 @@
 /*
 strobePin has one of two formats:
  * if refScanner a Scanner_uC, then strobePin is an Arduino pin number connected to this row
- * otherwise strobePin is bitwise, 1 indicating an IC pin connected to this row
+ * otherwise strobePin is bit pattern, 1 indicating an IC pin connected to this row
 */
 class Row
 {
@@ -28,7 +28,7 @@ class Row
         const uint8_t keyCount;                 //number of read pins
         //Debouncer_Samples debouncer;
         Debouncer_Not debouncer; //todo
-        read_pins_t debounced;                  //bitwise state of keys after debouncing, 1=pressed, 0=released
+        read_pins_t debounced; //bit pattern, state of keys after debouncing, 1=pressed, 0=released
     public:
         Row(ScannerInterface& refScanner, const uint8_t strobePin,
                 Key* const ptrsKeys[], const uint8_t keyCount);

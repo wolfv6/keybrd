@@ -18,7 +18,7 @@ void PortWrite_MCP23S17::begin()
 }
 
 /* write() sets pin output to logicLevel.
-pin is bitwise, where pin being set is 1.
+pin is bit pattern, where pin being set is 1.
 logicLevel is HIGH or LOW.
 write() does not overwrite the other pins.
 */

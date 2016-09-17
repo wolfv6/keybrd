@@ -26,11 +26,11 @@ Keybrd library class inheritance diagram
 
     PortIOE
 
-	              PortWrite
+	           PortWriteInterface
 	              /        \
 	PortWrite_PCA9655E  PortWrite_MCP23S17            (one PortWrite class for each IOE type)
  
-                  PortRead
+              PortReadInterface
 	             /        \
 	PortRead_PCA9655E  PortRead_MCP23S17              (one PortRead class for each IOE type)
  
@@ -50,12 +50,10 @@ Keybrd library class inheritance diagram
 	LayerState
 
 
-	Key __
+	Key
+	 |____
 	 |    \
 	 |   Key_LayeredKeysArray
-	 |_____________________
-	 |     \               \
-	 |   Code_LayerLock  Code_LayerHold
 	 |
 	 |___________________________
 	 |     \                     \
@@ -64,6 +62,10 @@ Keybrd library class inheritance diagram
 	 |   Key_LayeredScSc      Key_LayeredCodeSc
 	 |
 	Code
+	 |_____________________
+	 |     \               \
+	 |   Code_LayerLock  Code_LayerHold
+	 |
 	  \________________________________________________________
 	       \           \            \           \              \
 	     Code_Sc  Code_Shift  Code_AutoShift  Code_LEDLock  Code_Null
@@ -79,7 +81,7 @@ Dependency diagram of example single-layer keyboard with LEDs
 ```
 	        ____ Row ______
 	       /      |        \
-	Scanner_uC  Debouncer  Keys __
+	Scanner_uC  Debouncer  Key ___
 	      |                 |     \
 	readPins               Code  Code_LEDLock
 	                               |
@@ -89,12 +91,12 @@ Dependency diagram of example single-layer keyboard with LEDs
 
 Dependency diagram of example multi-layer keyboard with layer LEDs
 ```
-	                                 LayerStates
-	         ___________ Row _______/__   |     \
-	        /           /  \       /   \  |      \
-	Scanner_uC  Debouncer  Keys   / Code_Layer  LED_PinNumber
-	       |                 \   /
-	  readPins                Code
+	                                          LayerStates
+	         ___________ Row ________________/__   |     \
+	        /        /            \         /   \  |      \
+	Scanner_uC  Debouncer  Key_LayeredKeys / Code_Layer  LED_PinNumber
+	       |                           \  /
+	  readPins                         Code
 
 ```
 
@@ -102,7 +104,7 @@ Dependency diagram of example shift registers Row
 ```
 	                  _______ Row _______
 	                 /         |         \
-	RowScanner_ShiftRegsPISO  Debouncer  Keys
+	RowScanner_ShiftRegsPISO  Debouncer  Key
 	                                      |
 	                                     Code
 
@@ -110,9 +112,9 @@ Dependency diagram of example shift registers Row
 
 Dependency diagram of example I/O expander matrix with LEDs
 ```
-	                 _________ Row _________
-	                /             \         \
-	        __ Scanner_IOE __   Debouncer  Keys 
+	                 _________ Row ________
+	                /             \        \
+	        __ Scanner_IOE __   Debouncer  Key
 	       /       |         \             /  \
 	strobePin  PortWrite  PortRead      Code  Code_LEDLock
 	             |   \      /   \              |
@@ -136,6 +138,7 @@ This convention leads to class names that convey information about the classes i
 Underscore delineates base class name and sub-class name.  Capital letters delineate words.
 
 Interface class names end with "Interface".
+Except for Key, because sketches look nicer with short names defining Key[] arrays.
 
 Layer-class naming conventions
 ------------------------------

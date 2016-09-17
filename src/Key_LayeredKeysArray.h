@@ -6,7 +6,7 @@
 #include <Key.h>
 
 /* Class Key_LayeredKeysArray contains an array of Key pointers, one pointer per layer.
-Codes are a kind of Key, so the Key pointers can point to Codes as well.
+Codes are a kind of Key, so the Key pointers can point to Codes or Keys.
 
 When the key is pressed, active layer is retreived from refLayerState and
 the Key object of the active layer is called.

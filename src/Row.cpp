@@ -12,12 +12,12 @@ Row::Row(ScannerInterface& refScanner, const uint8_t strobePin,
 }
 
 /* process() scans the row and calls any newly pressed or released keys.
-Bitwise variables are 1 bit per key.
+Bit pattern variables are 1 bit per key.
 */
 void Row::process()
 {
-    read_pins_t readState;                      //bitwise, 1 means key is pressed, 0 means released
-    read_pins_t debouncedChanged;               //bitwise, 1 means debounced changed
+    read_pins_t readState;                      //bits, 1 means key is pressed, 0 means released
+    read_pins_t debouncedChanged;               //bits, 1 means debounced changed
 
     readState = refScanner.scan(strobePin);
     debouncedChanged = debouncer.debounce(readState, debounced);
@@ -26,13 +26,13 @@ void Row::process()
 
 /*
 send() calls key's press() or release() function if key was pressed or released.
-Parameter debouncedChanged is bitwise.
+Parameter debouncedChanged is bit a pattern.
 */
 void Row::send(const uint8_t keyCount, const read_pins_t debouncedChanged)
 {
-    read_pins_t isFallingEdge;                  //bitwise, 1 means falling edge
-    read_pins_t isRisingEdge;                   //bitwise, 1 means rising edge
-    read_pins_t readPosition;                   //bitwise, active bit is 1
+    read_pins_t isFallingEdge;                  //bits, 1 means falling edge
+    read_pins_t isRisingEdge;                   //bits, 1 means rising edge
+    read_pins_t readPosition;                   //bits, active bit is 1
     uint8_t i;                                  //index for ptrsKeys[i] array
 
     //bit=1 if last debounced changed from 1 to 0, else bit=0

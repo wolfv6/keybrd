@@ -11,7 +11,7 @@ PCA9655E does not have internal pull-up resistors (PCA9535E does).
 
 Instantiation
  ------------
-readPins parameter is port's bitwise pin configuration
+readPins parameter is bit pattern for port's pin configuration
     1=configure as input (for pins connected to column)
     0=configure as output (for LED or not connected to a column)
 readPins are read from pin 0 on up.
@@ -33,7 +33,7 @@ class PortRead_PCA9655E : public PortReadInterface
 {
     private:
         PortIOE& port;
-        const uint8_t readPins;                  //bitwise pin configuration, 1 means read pin
+        const uint8_t readPins;                  //bit pattern, pin configuration, 1 means read pin
     public:
         PortRead_PCA9655E (PortIOE& port, const uint8_t readPins)
             : port(port), readPins(readPins) {}

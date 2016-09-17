@@ -41,12 +41,12 @@ void Scanner_uC::init(const uint8_t strobePin)
 
 /* scan() is called on every iteration of sketch loop().
 scan() strobes the row's strobePin and retuns state of readPins.
-Bitwise variables are 1 bit per key.
+Bit patterns are 1 bit per key.
 */
 read_pins_t Scanner_uC::scan(const uint8_t strobePin)
 {
-    read_pins_t readState = 0;                  //bitwise, 1 means key is pressed, 0 means released
-    read_pins_t readMask = 1;                   //bitwise, active bit is 1
+    read_pins_t readState = 0;                  //bits, 1 means key is pressed, 0 means released
+    read_pins_t readMask = 1;                   //bits, active bit is 1
 
     //strobe row on
     digitalWrite(strobePin, strobeOn);

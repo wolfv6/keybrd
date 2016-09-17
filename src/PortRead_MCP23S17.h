@@ -15,7 +15,7 @@ Arduino Pin 10 avoids the speed penalty of digitalWrite.
 
 Instantiation
  ------------
-readPins parameter is port's bitwise pin configuration
+readPins parameter is port's bit pattern pin configuration
     1=configure as input (for read pins connected to column)
     0=configure as output (for LED or not connected to a column)
 readPins are read from pin 0 on up.
@@ -37,8 +37,8 @@ class PortRead_MCP23S17 : public PortReadInterface, public PortMCP23S17
 {
     private:
         PortIOE& port;
-        uint8_t pullUp;                         //bitwise, 1 means internal pull-up resistor enabled
-        const uint8_t readPins;                 //bitwise, 1 means internal pull-up resistor enabled
+        uint8_t pullUp;                         //bits, 1 means internal pull-up resistor enabled
+        const uint8_t readPins;                 //bits, 1 means internal pull-up resistor enabled
     public:
         PortRead_MCP23S17(PortIOE& port, const uint8_t readPins)
             : port(port), readPins(readPins) {}

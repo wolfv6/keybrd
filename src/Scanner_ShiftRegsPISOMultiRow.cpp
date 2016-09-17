@@ -28,11 +28,11 @@ void Scanner_ShiftRegsPISOMultiRow::begin()
 
 /* scan() strobes the row's strobePin and returns state of the shift register's input pins.
 strobePin is Arduino pin number connected to this row.
-Bitwise variables are 1 bit per key.
+Bit patterns are 1 bit per key.
 */
 read_pins_t Scanner_ShiftRegsPISOMultiRow::scan(const uint8_t strobePin)
 {
-    read_pins_t readState = 0;                  //bitwise, 1 means key is pressed, 0 means released
+    read_pins_t readState = 0;                  //bits, 1 means key is pressed, 0 means released
 
     //strobe row on
     digitalWrite(strobePin, strobeOn);

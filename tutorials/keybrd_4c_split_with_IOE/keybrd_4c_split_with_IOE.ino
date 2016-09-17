@@ -89,7 +89,7 @@ The first parameteer of a Row constructor specifies the scanner.
 The second parameter of the Row constructor specifies the Row's strobePin.
 strobePin has one of two formats:
  * if refScanner a Scanner_uC, then strobePin is an Arduino pin number connected to this row
- * otherwise strobePin is bitwise, 1 indicating an IC pin connected to this row
+ * otherwise strobePin is a bit pattern, 1 indicating an IC pin connected to this row
 */
 // ---------------- LEFT ROWS ------------------
 /* The left rows have a Scanner_uC and Arduino pin numbers to strobe.

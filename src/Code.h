@@ -2,8 +2,8 @@
 #define CODE_H
 #include "Key.h"
 
-/* Code is an interface class
-It's derived concrete classes send press and release USB scancodes to the computer.
+/* Code is an abstract base class.
+Each Code object contains one USB scancode and sends the scancode to the computer.
 */
 class Code : public Key
 {

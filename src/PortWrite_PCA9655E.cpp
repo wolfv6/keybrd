@@ -19,7 +19,7 @@ void PortWrite_PCA9655E::begin()
 }
 
 /* write() sets pin output to logicLevel.
-pin is bitwise, where pin being strobed is 1.
+pin is bit pattern, where pin being strobed is 1.
 logicLevel is HIGH or LOW.
 write() does not overwrite the other pins.
 */

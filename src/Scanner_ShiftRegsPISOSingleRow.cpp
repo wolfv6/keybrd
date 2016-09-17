@@ -26,15 +26,15 @@ void Scanner_ShiftRegsPISOSingleRow::begin()
 
 /* scan() returns state of the shift register's input pins.
 No strobe pin is needed, the shift register is wired so the strobe is effectivley always "on".
-Bitwise variables are 1 bit per key.
+Bit patterns are 1 bit per key.
 */
 read_pins_t Scanner_ShiftRegsPISOSingleRow::scan(const uint8_t strobePin)
 {
-    read_pins_t readState = 0;                  //bitwise, 1 means key is pressed, 0 means released
+    read_pins_t readState = 0;                  //bits, 1 means key is pressed, 0 means released
 
     //read all the column pins
-    digitalWrite(slaveSelect, LOW);              //load parallel inputs to the register
-    digitalWrite(slaveSelect, HIGH);             //shift the data toward a serial output
+    digitalWrite(slaveSelect, LOW);             //load parallel inputs to the register
+    digitalWrite(slaveSelect, HIGH);            //shift the data toward a serial output
     SPI.transfer(&readState, byte_count);
 
     return readState;

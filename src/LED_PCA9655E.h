@@ -15,7 +15,7 @@ class LED_PCA9655E: public LED
         //PortIOE& port;
         //const uint8_t outputByteCommand;        //General Purpose Input/Ouput register address
         PortWrite_PCA9655E& refPort;
-        const uint8_t pin;                      //bitwise IOE pin to LED
+        const uint8_t pin;                      //bit pattern, IOE pin to LED
 
     public:
         LED_PCA9655E(PortWrite_PCA9655E& refPort, const uint8_t pin)
