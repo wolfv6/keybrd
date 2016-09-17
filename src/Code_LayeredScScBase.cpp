@@ -1,6 +1,6 @@
-#include "Code_LayeredScScBase.h"
+#include "Key_LayeredScScBase.h"
 
-void Code_LayeredScScBase::pressScancode()
+void Key_LayeredScScBase::pressScancode()
 {
     if (layer)
     {
@@ -14,7 +14,7 @@ void Code_LayeredScScBase::pressScancode()
     Keyboard.press(scancode);
 }
 
-void Code_LayeredScScBase::release()
+void Key_LayeredScScBase::release()
 {
     Keyboard.release(scancode);
 }

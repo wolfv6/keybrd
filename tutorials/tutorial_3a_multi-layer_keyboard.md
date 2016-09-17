@@ -105,8 +105,8 @@ A basic LayerState class is:
 
 Key_Layered classes include:
 * Key_LayeredKeysArray
-* Code_LayeredScSc
-* Code_LayeredCodeSc
+* Key_LayeredScSc
+* Key_LayeredCodeSc
 
 The basic LayerState provided by the keybrd library is sufficient for implementing ordinary layer schemes.
 For experimental layer schemes, you would need to create a custom LayerState class, and possibly custom Code_Layer and Key_Layered classes as well.

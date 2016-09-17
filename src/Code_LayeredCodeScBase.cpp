@@ -1,6 +1,6 @@
-#include "Code_LayeredCodeScBase.h"
+#include "Key_LayeredCodeScBase.h"
 
-void Code_LayeredCodeScBase::pressCode()
+void Key_LayeredCodeScBase::pressCode()
 {
     if (layer)
     {
@@ -12,7 +12,7 @@ void Code_LayeredCodeScBase::pressCode()
     }
 }
 
-void Code_LayeredCodeScBase::release()
+void Key_LayeredCodeScBase::release()
 {
     if (layer)
     {

@@ -1,6 +1,6 @@
-#include "Code_LayeredCodeSc.h"
+#include "Key_LayeredCodeSc.h"
 
-void Code_LayeredCodeSc::press()
+void Key_LayeredCodeSc::press()
 {
     layer = refLayerState.getActiveLayer();
     pressCode();

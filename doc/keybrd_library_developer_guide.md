@@ -53,19 +53,18 @@ Keybrd library class inheritance diagram
 	Key __
 	 |    \
 	 |   Key_LayeredKeysArray
-	 |
-	Code
 	 |_____________________
 	 |     \               \
 	 |   Code_LayerLock  Code_LayerHold
 	 |
 	 |___________________________
 	 |     \                     \
-	 |   Code_LayeredScScBase  Code_LayeredCodeScBase
+	 |   Key_LayeredScScBase  Key_LayeredCodeScBase
 	 |      |                     |
-	 |   Code_LayeredScSc      Code_LayeredCodeSc
+	 |   Key_LayeredScSc      Key_LayeredCodeSc
 	 |
-	 |_________________________________________________________
+	Code
+	  \________________________________________________________
 	       \           \            \           \              \
 	     Code_Sc  Code_Shift  Code_AutoShift  Code_LEDLock  Code_Null
 	                             /      \
@@ -157,9 +156,9 @@ Example LayerState class names:
 * LayerState_DH - main LayerState for the keybrd_DH library
 * LayerState_MF - LayerState for Mouse Function sub-layers in the keybrd_DH library
 
-*Code_Layered* class names start with "Code_Layered" and end with a descriptive name.
-Example Code_Layered class names:
-* Code_LayeredScSc
+*Key_Layered* class names start with "Key_Layered" and end with a descriptive name.
+Example Key_Layered class names:
+* Key_LayeredScSc
 * Key_LayeredKeysArray
 
 Style guide
