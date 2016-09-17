@@ -12,55 +12,6 @@ This guide is for the maintainers and developers of the keybrd library and it's 
 It is assumed the reader is familiar with the C++ language including pointers, objects, classes, static class variables, composition, aggregation, inheritance, polymorphism, and enum.
 Row, Scanner, and Debouncer classes use bit manipulation.
 
-Custom Row classes
-------------------
-Row classes are central to the keybrd library.
-Row is an abstract base class that allows flexibility in designing derived Row classes:
-* Row functions can be overridden in a derived class
-* choice of Debouncers
-* choice of Scanners
-
-This example illustrates the custom Row classes for a fictional keybrd_Ext extension library.
-The keybrd_Ext library is for a split keyboard with a matrix on each hand and sticky keys.
-
-Row_Ext::keyWasPressed() overrides Row::keyWasPressed() which is used to unstick sticky keys.
-
-Row_Ext_uC and Row_Ext_ShiftRegisters are a custom classes composed of stock keybrd library classes.<br>
-Row_Ext_uC uses Scanner_uC to scan the primary matrix.<br>
-Row_Ext_ShiftRegisters uses Scanner_ShiftRegs74HC165 to scan the peripheral matrix.
-
-Class inheritance diagram
-```
-
-    	    Row
-	         |
-	       Row_Ext                                (override Row::keyWasPressed() )
-          /      \
-    Row_Ext_uC  Row_Ext_ShiftRegisters            (inherit Row_Ext::keyWasPressed() )
-
-
-	Scanner_uC  Scanner_ShiftRegs74HC165
-
-```
-
-Dependency diagram
-```
-
-	         ________ Row_Ext_uC[1] ______________
-	        /            |                        \
-	Scanner_uC[1]  Debouncer_Samples[1]           Key[1..*]
-	     /                                         |
-	strobePin[1]                                  Code[1..*]
-
-
-            _________ Row_Ext_ShiftRegisters[1] ________
-	       /                            \               \
-    Scanner_ShiftRegs74HC165[1]  Debouncer_Samples[1]  Key[1..*]
-	      |                                             |
-    strobePin[1]                                       Code[1..*]
-
-```
-
 Class inheritance diagrams
 --------------------------
 
@@ -73,15 +24,15 @@ Keybrd library class inheritance diagram
 	Scanner_uC  Scanner_IOE  Scanner_ShiftRegsPISO
 
 
-	    PortIOE
+    PortIOE
 
-	    PortWrite
-	       |
-	PortWrite_PCA9655E                          (one PortWrite class for each IOE type)
+	              PortWrite
+	              /        \
+	PortWrite_PCA9655E  PortWrite_MCP23S17            (one PortWrite class for each IOE type)
  
-        PortRead
-	       |
-	PortRead_PCA9655E                           (one PortRead class for each IOE type)
+                  PortRead
+	             /        \
+	PortRead_PCA9655E  PortRead_MCP23S17              (one PortRead class for each IOE type)
  
 	    _ LED _
 	   /       \
@@ -127,48 +78,48 @@ Dependency diagrams
 
 Dependency diagram of example single-layer keyboard with LEDs
 ```
-	        _ Row_uC[1..*] _
-	       /      |         \
-	Scanner_uC  Debouncer  Keys[1..*] __
-	                         |          \
-	                       Code[1..*]  Code_LEDLock[1..*]
-	                                     |
-	                                   LED_PinNumber[1]
+	        ____ Row ______
+	       /      |        \
+	Scanner_uC  Debouncer  Keys __
+	      |                 |     \
+	readPins               Code  Code_LEDLock
+	                               |
+	                             LED_PinNumber
 
 ```
 
 Dependency diagram of example multi-layer keyboard with layer LEDs
 ```
-	                                          LayerStates[1..*]
-	         ________ Row_uC[1..*] ___________/__    |         \
-	        /           |         \          /   \   |          \
-	Scanner_uC[1]  Debouncer[1]  Keys[1..*] / Code_Layer[1..*]  LED_PinNumber[0..*]
-	                               |       /
-	                             Code[1..*]
+	                                 LayerStates
+	         ___________ Row _______/__   |     \
+	        /           /  \       /   \  |      \
+	Scanner_uC  Debouncer  Keys   / Code_Layer  LED_PinNumber
+	       |                 \   /
+	  readPins                Code
 
 ```
 
-Dependency diagram of example peripheral matrix with shift registers
+Dependency diagram of example shift registers Row
 ```
-	              Row_ShiftRegisters[1..*]
-	             /              \         \
-	RowScanner_ShiftRegisters  Debouncer  Keys[1..*]
-	                                       |
-	                                      Code[1..*]
+	                  _______ Row _______
+	                 /         |         \
+	RowScanner_ShiftRegsPISO  Debouncer  Keys
+	                                      |
+	                                     Code
 
 ```
 
-Dependency diagram of example peripheral matrix with I/O Expander and LEDs
+Dependency diagram of example I/O expander matrix with LEDs
 ```
-	                 _____ Row_IOE[1..*] _________
-	                /               \             \
-	        __ Scanner_Port[1] __   Debouncer[1]  Keys[1..*] __
-	       /          |          \                  |          \
-	PortWrite[1]  strobePin[1]  PortRead[1]      Code[1..*]  Code_LEDLock[1..*]
-	       \                   /   \                            |
-	        \                 /   ColPins[1..*]              LED[1]
-	         \               /
-	           PortIOE[0..*]
+	                 _________ Row _________
+	                /             \         \
+	        __ Scanner_IOE __   Debouncer  Keys 
+	       /       |         \             /  \
+	strobePin  PortWrite  PortRead      Code  Code_LEDLock
+	             |   \      /   \              |
+	             |    PortIOE  readPins       LED
+	              \___________________________/ \
+                                                pin
 
 ```
 
@@ -246,7 +197,6 @@ Trace of keybrd scan
 Arduino does not have a debugger.
 So here is a list of functions in the order that they are called.
 The trace is of a one-row single-layer keybrd scan.
-Refer to it like a table of contents while reading the keybrd library.
 
 ```
     loop()                                      for each row

@@ -29,7 +29,7 @@ portNumber: If the I/O expander uses port letters, use 0 inplace of A, use 1 inp
 struct PortIOE
 {
     static const uint8_t DEVICE_ADDR;
-    const uint8_t num;                          //port number
+    const uint8_t num;                          //port identification number
     uint8_t outputVal;                          //bitwise value of output register for LEDs
 
     PortIOE(const uint8_t portNumber)

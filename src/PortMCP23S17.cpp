@@ -4,7 +4,7 @@
 */
 uint8_t PortMCP23S17::transfer(const uint8_t command, const uint8_t registerAddr, const uint8_t data)
 {
-    uint8_t portState;                          //bit wise
+    uint8_t portState;                          //bitwise
 
     digitalWrite(SS, LOW);                      //enable Slave Select
       SPI.transfer(command);                    //write or read command

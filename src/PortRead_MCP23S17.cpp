@@ -9,7 +9,7 @@ void PortRead_MCP23S17::begin(const uint8_t strobeOn)
     {
         pullUp = readPins;
     }
-    else
+    else                                        //active high requires external pull-down resistors
     {
         pullUp = 0;
     }

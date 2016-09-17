@@ -7,11 +7,12 @@
 #include <Key.h>
 #include <ScannerInterface.h>
 #include <Debouncer_Samples.h>
+#include <Debouncer_Not.h>
 
 /*
 strobePin has one of two formats:
  * if refScanner a Scanner_uC, then strobePin is an Arduino pin number connected to this row
- * if refScanner a Scanner_IOE, then strobePin is bitwise, 1 indicating IC pin connected to this row
+ * otherwise strobePin is bitwise, 1 indicating an IC pin connected to this row
 */
 class Row
 {
@@ -25,7 +26,8 @@ class Row
         Key *const *const ptrsKeys;             //array of Key pointers
     protected:
         const uint8_t keyCount;                 //number of read pins
-        Debouncer_Samples debouncer;
+        //Debouncer_Samples debouncer;
+        Debouncer_Not debouncer; //todo
         read_pins_t debounced;                  //bitwise state of keys after debouncing, 1=pressed, 0=released
     public:
         Row(ScannerInterface& refScanner, const uint8_t strobePin,

@@ -17,8 +17,8 @@ void Scanner_IOE::begin()
 }
 
 /* scan() is called on every iteration of sketch loop().
+strobePin is bitwise, 1 means that row pin is active.
 scan() strobes the row's strobePin and retuns state of port's input pins.
-Bitwise variables are 1 bit per key.
 */
 read_pins_t Scanner_IOE::scan(const uint8_t strobePin)
 {
@@ -27,6 +27,7 @@ read_pins_t Scanner_IOE::scan(const uint8_t strobePin)
     //strobe on
     refPortWrite.write(strobePin, strobeOn);
     delayMicroseconds(3);                       //time to stabilize voltage
+    //delayMicroseconds(300);                     //todo
 
     //read the port pins
     readState = refPortRead.read();

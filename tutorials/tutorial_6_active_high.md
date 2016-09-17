@@ -70,8 +70,7 @@ By comparing the above tables, one can see what changes need to be made:
 * flip the diodes so that the cathode (banded end) are towards the read pins
 * swap the STROBE_ON and STROBE_OFF values
 
-The red bus is grounded.
-The pull-down resistors plug into the red bus and column read pins.
+The pull-down resistors plug into ground (red bus) and column read pins.
 
 The [keybrd_6_active_highsketch.ino](keybrd_6_active_high/keybrd_6_active_high.ino) is the tutorial 1 sketch with STROBE_ON and STROBE_OFF values swapped.
 

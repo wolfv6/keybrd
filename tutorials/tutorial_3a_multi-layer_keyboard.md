@@ -22,7 +22,7 @@ It will run on the basic breadboard keyboard described in [tutorial_1_breadboard
 
 ![basic breadboard keyboard](keybrd_1_breadboard/breadboard_keyboard_2x2.JPG "basic breadboard keyboard")
 
-Read the sketch annotations to understand how multi-layer keyboards work.
+The sketch annotations explain how multi-layer keyboards work.
 The sketch uses three layer-scheme classes:
 * LayerState
 * Code_LayerHold
@@ -35,11 +35,11 @@ Pseudo code for simple layer scheme
 The following pseudo code is of three keybrd library classes.
 It has just enough detail to show the internal workings of layer schemes.
 
-**Key_Layer** objects change the active layer when pressed.
+**Code_Layer** objects change the active layer when pressed.
 The "layer" variable is a layer id number.
-When a Key_Layer object is pressed, it tells LayerState to update the active layer.
+When a Code_Layer object is pressed, it tells LayerState to update the active layer.
 ```
-class Key_Layer
+class Code_Layer
 {
     int layer;
     LayerState& refLayerState;
@@ -59,7 +59,7 @@ class LayerState
 ```
 
 **Key_LayeredKeysArray** objects contain an array of keys, one key for each layer.
-Key_LayeredKeysArray use layer ids as array indexes.
+Key_LayeredKeysArray objects use layer ids as Key_LayeredKeysArray indexes.
 When a Key_LayeredKeysArray object is pressed, it gets the active layer from LayerState, and sends the corresponding key.
 ```
 class Key_LayeredKeysArray
@@ -73,9 +73,9 @@ class Key_LayeredKeysArray
 
 Dependency diagram
 ```
-         +-----------+
-         | Key_Layer |
-         +-----------+
+         +------------+
+         | Code_Layer |
+         +------------+
                |
                |setActiveLayer()
                |
@@ -96,7 +96,7 @@ Layer-scheme classes
 There are several layer scheme-classes to choose from.
 You can view all the class definitions in the [keybrd library](../src/).
 
-Key_Layer classes include:
+Code_Layer classes include:
 * Code_LayerHold
 * Code_LayerLock
 
@@ -107,10 +107,9 @@ Key_Layered classes include:
 * Key_LayeredKeysArray
 * Code_LayeredScSc
 * Code_LayeredCodeSc
-* Code_LayeredCodeCode
 
 The basic LayerState provided by the keybrd library is sufficient for implementing ordinary layer schemes.
-For experimental layer schemes, you would need to create a custom LayerState class, and possibly Key_Layer and Key_Layered custom layer classes as well.
+For experimental layer schemes, you would need to create a custom LayerState class, and possibly custom Code_Layer and Key_Layered classes as well.
 
 Single-layer Codes
 ------------------

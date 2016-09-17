@@ -1,7 +1,14 @@
 /* keybrd_4c_split_with_IOE.ino
 
+This sketch:
+    is a simple 1-layer keyboard
+    runs on two matrices of a breadboard keyboard
+    is annotated with a walk-through narrative
+
+This layout table shows left and right matrices:
+
 | Left  | **0** | **1** | | Right | **0** | **1** |
-|:-----:|-------|-------| |:-----:|-------|-------|
+|:-----:|-------|-------|-|:-----:|-------|-------|
 | **1** |   1   |   2   | | **1** |   3   |   4   |
 | **0** |   a   |   b   | | **0** |   c   |   d   |
 */
@@ -24,22 +31,44 @@
 ScanDelay scanDelay(9000);
 
 // ================ LEFT SCANNER ===============
+/*
+Left matrix rows work the same as the ones in keybrd_2_single-layer.ino
+*/
 uint8_t readPins[] = {14, 15};
-uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
+const uint8_t READPIN_COUNT = sizeof(readPins)/sizeof(*readPins);
 
-Scanner_uC scanner_L(LOW, readPins, readPinCount);
+Scanner_uC scanner_L(LOW, readPins, READPIN_COUNT);
 
 // =============== RIGHT SCANNER ===============
-const uint8_t PortIOE::DEVICE_ADDR = 0x20;      //MCP23S17 address, all 3 ADDR pins are grounded
+/*
+The right matrix is scanned by an I/O expander.
 
+The I/O expander device address is configured by hardware pins.
+DEVICE_ADDR is a static variable of class PortIOE.
+*/
+const uint8_t PortIOE::DEVICE_ADDR = 0x20;      //MCP23S17 address with all 3 ADDR pins are grounded
+
+todo explain port num and shift notation <<
+/*
+port_B stobes the row while port_A reads the colums.
+
+port_A is assigned port identification number 0.
+port_A is assigned to portRead, which reads port_A pins 0 and 1.
+"<<" (bit shift left) and "|" (or) are bitwise operators.
+Pin numbers to be read are to the right of "1<<" and delimited by "|".
+*/
 PortIOE port_A(0);
-PortRead_MCP23S17 portRead_A(port_A, 1<<0 | 1<<1 );
+PortRead_MCP23S17 portRead(port_A, 1<<0 | 1<<1 );
 
+/*
+port_B is assigned port identification number 1.
+port_B is assigned to portWrite.
+*/
 PortIOE port_B(1);
-//PortWrite_MCP23S17 portWrite_B(port_B);     //for LEDs
-PortWrite_MCP23S17 portWrite_B(port_B);
+//PortWrite_MCP23S17 portWrite(port_B);     //for LEDs todo
+PortWrite_MCP23S17 portWrite(port_B);
 
-Scanner_IOE scanner_R(LOW, portWrite_B, portRead_A);
+Scanner_IOE scanner_R(LOW, portWrite, portRead);
 
 // =================== CODES ===================
 Code_Sc s_a(KEY_A);
@@ -53,7 +82,18 @@ Code_Sc s_3(KEY_3);
 Code_Sc s_4(KEY_4);
 
 // =================== ROWS ====================
+/*
+Left row names contain the letter 'L', while right row names conatain the letter 'R'.
+
+The first parameteer of a Row constructor specifies the scanner.
+The second parameter of the Row constructor specifies the Row's strobePin.
+strobePin has one of two formats:
+ * if refScanner a Scanner_uC, then strobePin is an Arduino pin number connected to this row
+ * otherwise strobePin is bitwise, 1 indicating an IC pin connected to this row
+*/
 // ---------------- LEFT ROWS ------------------
+/* The left rows have a Scanner_uC and Arduino pin numbers to strobe.
+*/
 Key* ptrsKeys_L0[] = { &s_1, &s_2 };
 const uint8_t KEY_COUNT_L0 = sizeof(ptrsKeys_L0)/sizeof(*ptrsKeys_L0);
 Row row_L0(scanner_L, 0, ptrsKeys_L0, KEY_COUNT_L0);
@@ -63,6 +103,9 @@ const uint8_t KEY_COUNT_L1 = sizeof(ptrsKeys_L1)/sizeof(*ptrsKeys_L1);
 Row row_L1(scanner_L, 1, ptrsKeys_L1, KEY_COUNT_L1);
 
 // ---------------- RIGHT ROWS -----------------
+/*
+The right rows have a Scanner_IOE and pin bits to strobe.
+*/
 Key* ptrsKeys_R0[] = { &s_3, &s_4 };
 const uint8_t KEY_COUNT_R0 = sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0);
 Row row_R0(scanner_R, 1<<0, ptrsKeys_R0, KEY_COUNT_R0);

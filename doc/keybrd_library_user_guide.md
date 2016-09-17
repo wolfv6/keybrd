@@ -175,6 +175,9 @@ In this example, row_0 has 2 read pins and 2 keys:
     Key* ptrsKeys_0[] = { &s_a, &s_b };
     Row_uC row_0(0, readPins, READ_PIN_COUNT, ptrsKeys_0);
 ```
+* The scanner should have enough readPins to cover all the keys of the longest row.
+  (rows with fewer keys will have unused read pins)
+* read_pins_t size in keybrd/src/config_keybrd.h file should cover all the read pins.
 * Some of the constructors take array-element-count arguments, make sure that the correct counts are passed to the constructors.  Or use sizeof() like the preceding example.
 * For multi-layered keyboards, the number of codes in each Key_Layered should equal the number of layers.
 

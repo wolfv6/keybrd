@@ -26,9 +26,9 @@ ScanDelay scanDelay(9000);
 
 // ================ LEFT SCANNER ===============
 uint8_t readPins_L[] = {0, 1};
-uint8_t readPinCount_L = sizeof(readPins_L)/sizeof(*readPins_L);
+uint8_t READPIN_COUNT_L = sizeof(readPins_L)/sizeof(*readPins_L);
 
-Scanner_uC scanner_L(HIGH, readPins_L, readPinCount_L);
+Scanner_uC scanner_L(HIGH, readPins_L, READPIN_COUNT_L);
 
 // =============== RIGHT SCANNER ===============
 const uint8_t PortIOE::DEVICE_ADDR = 0x18;

@@ -3,7 +3,7 @@ Tutorial 1 - breadboard keyboard
 In this tutorial, you will build a breadboard keyboard with 4 keys.
 The keyboad will be used in tutorials 2 through 7.
 
-When you finish this tutorial you will have a working keyboard and understand how a key matrix works.
+When you finish this tutorial you will have a working keyboard and an understanding of how a key matrix works.
 
 Why a solderless breadboard keyboard is useful
 ----------------------------------------------
@@ -20,8 +20,6 @@ Breadboard keyboards are useful for:
 * learning keyboard electronics - microcontroller, key matrix, diode, shift registers, I/O expander
 * learning the firmware development workflow
 * prototyping circuits before making a PCB
-
-Arduino simulation software is an alternative to breadboards; I haven't tried that.
 
 Breadboard keyboard starter kit
 -------------------------------
@@ -79,15 +77,15 @@ A short wire connects the bottom row to the microcontroller.
 
 Switch-diode pairs, in series, connect rows to columns.
 
-Tutorials 2 and 3 use the basic breadboard keyboard pictured above.
-Tutorials 4, 5, and 6 will add more components to the basic breadboard keyboard.
+Tutorials 2 and 3 use the same basic breadboard keyboard pictured above.
+Tutorials 4, 5, and 6 add more components to the basic breadboard keyboard.
 Positioning components as shown in the picture will provide space for those components.
 
 Breadboard keyboard assembly instructions:
 
-1. Bend and cut leads to fit breadboard.
-  * tactile-switch-lead
-  * diodes (save the cut offs for steps 2, 3, and tutorial 4)
+1. Shape leads to fit breadboard.
+  * cut tactile-switch leads to length
+  * bend and cut diode leads (save the cut offs for steps 2, 3, and tutorial 4)
 
  ![bend diodes](keybrd_1_breadboard/diodes_bend_en_masse.JPG "bend diodes")
 
@@ -99,7 +97,7 @@ Breadboard keyboard assembly instructions:
   * Teensy LC is on the left
   * switch leads are oriented to connect diodes to columns (pictured below)
   * diode cut offs connect terminal strips into columns
-  * diodes connect switches to rows; orient diodes with cathode (banded end) towards the row (blue bus strip)
+  * diodes connect switches to rows; orient diodes with cathode (banded end) towards the row (blue bus)
 
  ![switch orientation](keybrd_1_breadboard/switch_orientation.JPG "switch orientation")
 
@@ -122,11 +120,11 @@ Follow the [keybrd Library User's Guide](../doc/keybrd_library_user_guide.md) to
 
 Compile and load the [keybrd_1_breadboard.ino](/tutorials/keybrd_1_breadboard/keybrd_1_breadboard.ino) sketch into the keyboard's controller.
 The operating system will take 1 to 6 seconds to recognize the USB keyboard.
-Then pressing the keys should type the characters 1, a, b, c.
+Then pressing the keys should type the characters 1, 2, a, b.
+Congratulations, you have a working keyboard.
 
 How a key matrix works
 ----------------------
-Congratulations, you have a working breadboard keyboard.
 Now we fill in some details of how it all works.
 
 This excellent article explains how key matrix, diodes, and ghosting work:
@@ -140,7 +138,7 @@ The breadboard keyboards in this series of tutorials do it the other way:
 
 > Output pins power rows and input pins detect the power on columns.
 
-The keybrd library uses the word "strobe".
+The keybrd library uses the word "strobe", which means powering one row for a very short time.
 Strobe pins are output pins connected to rows.
 One row at a time is strobed for the purpose of reading input pins.
 

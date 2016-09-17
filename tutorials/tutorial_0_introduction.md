@@ -2,7 +2,7 @@ Tutorial 0 - Introduction
 =========================
 The first two tutorials are intended to be read in sequence:
 * Tutorial 1 builds a breadboard keyboard and covers basic keyboard-hardware knowledge.
-* Tutorial 2 covers basic keybrd sketch knowledge needed to understand the remaining tutorials.
+* Tutorial 2 covers basic keybrd-sketch knowledge needed to understand the remaining tutorials.
 
 Tutorials from 3 up can be read in any order.
 Tutorials 2 through 7 use the keyboard breadboard that was built in tutorial 1.
