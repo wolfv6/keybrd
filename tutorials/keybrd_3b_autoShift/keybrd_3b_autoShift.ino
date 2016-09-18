@@ -22,7 +22,7 @@ Holding the fn key down makes it the active layer.  Releasing the fn key restore
 #include <Code_Shift.h>
 #include <LayerState.h>
 #include <Code_LayerHold.h>
-#include <Key_LayeredKeysArray.h>
+#include <Key_LayeredKeys.h>
 
 //Matrix
 #include <Row_uC.h>
@@ -92,12 +92,12 @@ When the user presses '!' or '@' on the fn layer:
 
 // =================== KEYS ====================
 Key* const ptrsCodes_01[] = { &s_a, &s_exclamation };
-Key_LayeredKeysArray k_01(ptrsCodes_01);
+Key_LayeredKeys k_01(ptrsCodes_01);
 
 Key* const ptrsCodes_11[] = { &s_b, &s_at };
-Key_LayeredKeysArray k_11(ptrsCodes_11);
+Key_LayeredKeys k_11(ptrsCodes_11);
 
-LayerStateInterface& Key_LayeredKeysArray::refLayerState = layerState;
+LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
 
 // =================== ROWS ====================
 Key* const ptrsKeys_0[] = { &s_shift, &k_01 };

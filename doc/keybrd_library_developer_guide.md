@@ -53,7 +53,7 @@ Keybrd library class inheritance diagram
 	Key
 	 |____
 	 |    \
-	 |   Key_LayeredKeysArray
+	 |   Key_LayeredKeys
 	 |
 	 |___________________________
 	 |     \                     \
@@ -162,7 +162,7 @@ Example LayerState class names:
 *Key_Layered* class names start with "Key_Layered" and end with a descriptive name.
 Example Key_Layered class names:
 * Key_LayeredScSc
-* Key_LayeredKeysArray
+* Key_LayeredKeys
 
 Style guide
 -----------

@@ -20,7 +20,7 @@ Holding the fn key down makes it the active layer.  Releasing the fn key restore
 #include <Code_Sc.h>
 #include <LayerState.h>
 #include <Code_LayerHold.h>
-#include <Key_LayeredKeysArray.h>
+#include <Key_LayeredKeys.h>
 
 //Matrix
 #include <Row.h>
@@ -67,23 +67,23 @@ Code_Sc s_shift(MODIFIERKEY_LEFT_SHIFT);
 
 /* =================== KEYS ====================
 Here we pack Codes into keys.
-The Key_LayeredKeysArray constructor takes one array of Code pointers - one Code object per layer.
+The Key_LayeredKeys constructor takes one array of Code pointers - one Code object per layer.
 
 The Key object names in this sketch start with a "k_" followed by row-column coordinates.
 */
 Key* const ptrsCodes_01[] = { &s_a, &s_1 };
-Key_LayeredKeysArray k_01(ptrsCodes_01);
+Key_LayeredKeys k_01(ptrsCodes_01);
 
 Key* const ptrsCodes_11[] = { &s_b, &s_2 };
-Key_LayeredKeysArray k_11(ptrsCodes_11);
+Key_LayeredKeys k_11(ptrsCodes_11);
 
-/* Key_LayeredKeysArray has a reference to layerState.
-Thus Key_LayeredKeysArray can call layerState to get the active layer id.
+/* Key_LayeredKeys has a reference to layerState.
+Thus Key_LayeredKeys can call layerState to get the active layer id.
 */
-LayerStateInterface& Key_LayeredKeysArray::refLayerState = layerState;
+LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
 
 /* HOW LAYERED OBJECTS WORK
-When a Key_LayeredKeysArray object is pressed, it gets the active layer id from layerState.
+When a Key_LayeredKeys object is pressed, it gets the active layer id from layerState.
 It then uses the layer id as an array index to call the Code of the active layer.
 The Code object then sends its scancode over USB.
 */

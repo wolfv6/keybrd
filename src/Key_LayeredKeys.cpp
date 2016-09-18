@@ -1,13 +1,13 @@
-#include "Key_LayeredKeysArray.h"
+#include "Key_LayeredKeys.h"
 
-void Key_LayeredKeysArray::press()
+void Key_LayeredKeys::press()
 {
     layer = refLayerState.getActiveLayer();
 
     ptrsKeys[layer]->press();
 }
 
-void Key_LayeredKeysArray::release()
+void Key_LayeredKeys::release()
 {
     ptrsKeys[layer]->release();
 }

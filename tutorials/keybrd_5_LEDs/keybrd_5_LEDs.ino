@@ -17,7 +17,7 @@ This sketch:
 #include <Code_LEDLock.h>
 #include <LayerState_LED.h>
 #include <Code_LayerHold.h>
-#include <Key_LayeredKeysArray.h>
+#include <Key_LayeredKeys.h>
 
 #include <Row_uC.h>
 #include <ScanDelay.h>
@@ -73,12 +73,12 @@ Code_Sc s_2(KEY_2);
 
 // =================== KEYS ====================
 Key* const ptrsCodes_01[] = { &s_a, &s_1 };
-Key_LayeredKeysArray k_01(ptrsCodes_01);
+Key_LayeredKeys k_01(ptrsCodes_01);
 
 Key* const ptrsCodes_11[] = { &s_b, &s_2 };
-Key_LayeredKeysArray k_11(ptrsCodes_11);
+Key_LayeredKeys k_11(ptrsCodes_11);
 
-LayerStateInterface& Key_LayeredKeysArray::refLayerState = layerState;
+LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
 
 // =================== ROWS ====================
 Key* const ptrsKeys_0[] = { &o_capsLock, &k_01 };

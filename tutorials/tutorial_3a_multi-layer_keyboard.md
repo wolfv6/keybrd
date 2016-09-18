@@ -26,7 +26,7 @@ The sketch annotations explain how multi-layer keyboards work.
 The sketch uses three layer-scheme classes:
 * LayerState
 * Code_LayerHold
-* Key_LayeredKeysArray
+* Key_LayeredKeys
 
 The internal workings of these three classes are revealed in the next section.
 
@@ -58,11 +58,11 @@ class LayerState
 };
 ```
 
-**Key_LayeredKeysArray** objects contain an array of keys, one key for each layer.
-Key_LayeredKeysArray objects use layer ids as Key_LayeredKeysArray indexes.
-When a Key_LayeredKeysArray object is pressed, it gets the active layer from LayerState, and sends the corresponding key.
+**Key_LayeredKeys** objects contain an array of keys, one key for each layer.
+Key_LayeredKeys objects use layer ids as Key_LayeredKeys indexes.
+When a Key_LayeredKeys object is pressed, it gets the active layer from LayerState, and sends the corresponding key.
 ```
-class Key_LayeredKeysArray
+class Key_LayeredKeys
 {
     Key** ptrsKeys;         //array of Key pointers, one Key pointer per layer
     LayerState& refLayerState;
@@ -88,7 +88,7 @@ Dependency diagram
                |getActiveLayer()
                |
     +----------------------+
-    | Key_LayeredKeysArray |
+    | Key_LayeredKeys |
     +----------------------+
 ```
 Layer-scheme classes
@@ -104,7 +104,7 @@ A basic LayerState class is:
 * LayerState
 
 Key_Layered classes include:
-* Key_LayeredKeysArray
+* Key_LayeredKeys
 * Key_LayeredScSc
 * Key_LayeredCodeSc
 
