@@ -2,12 +2,12 @@
 
 void Key_LayeredKeys::press()
 {
-    layer = refLayerState.getActiveLayer();
+    layerId = refLayerState.getActiveLayer();
 
-    ptrsKeys[layer]->press();
+    ptrsKeys[layerId]->press();
 }
 
 void Key_LayeredKeys::release()
 {
-    ptrsKeys[layer]->release();
+    ptrsKeys[layerId]->release();
 }

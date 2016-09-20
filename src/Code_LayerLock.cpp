@@ -2,7 +2,7 @@
 
 void Code_LayerLock::press()
 {
-    refLayerState.lock(layer);
+    refLayerState.lock(layerId);
 }
 
 void Code_LayerLock::release()

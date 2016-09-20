@@ -1,13 +1,19 @@
-/* keybrd_3_multi-layer_annotated.ino
+/* keybrd_3c_sublayerNull.ino
 
 This sketch:
     is firmware for a simple 2-layer keyboard
     runs on the first two rows and columns of a breadboard keyboard
 
-| Layout | **0** | **1** |
-|:------:|-------|-------|
-|  **0** | shift | a  1  |
-|  **1** |  fn   | b  2  |
+| Layout | **0** | **1** | **2** |
+|:------:|:-----:|:-----:|:-----:|
+|  **0** | a - 1 | b =   | c Num |
+|  **1** |Normal | Sym   | Enter |
+
+normal layer keys are a b c
+sym layer keys are brackets [ ] and num
+num layer keys are 6 7
+The num layer key is located on the sym layer
+num layer is active while holding sym+num
 
 Each cell in the table's body represents a key.
 The layered keys in column 1 have two layers; one character for each layer.
@@ -18,7 +24,9 @@ Holding the fn key down makes it the active layer.  Releasing the fn key restore
 // ================= INCLUDES ==================
 //Keys
 #include <Code_Sc.h>
+#include <Code_Null.h>
 #include <LayerState.h>
+#include <Code_LayerLock.h>
 #include <Code_LayerHold.h>
 #include <Key_LayeredKeys.h>
 
@@ -31,7 +39,7 @@ Holding the fn key down makes it the active layer.  Releasing the fn key restore
 ScanDelay scanDelay(9000);
 
 // ================== SCANNER ==================
-uint8_t readPins[] = {14, 15};
+uint8_t readPins[] = {14, 15, 16};
 uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
 
 Scanner_uC scanner(LOW, readPins, readPinCount);
@@ -40,30 +48,37 @@ Scanner_uC scanner(LOW, readPins, readPinCount);
 The CODES section instantiates six codes, one for each item in the layout.
 */
 /* ---------------- LAYER CODE -----------------
-enum assigns id numbers to the layers.
+enum assigns layerId numbers to the layers.
 */
-enum layers { NORMAL, FN };
+enum layers { NORMAL, SYM, NUM };
 
 /* layerState keeps track of the active layer.
 */
 LayerState layerState;
 
 /*
-NORMAL=0 and FN=1.  LayerState's default layer id is 0.
+NORMAL=0 and FN=1.  LayerState's default layerId is 0.
 The Code_LayerHold constructor has two parameters:
- 1) the layer that will be active while the key is held down
+ 1) the layerId that will be active while the key is held down
  2) a LayerState that will keep track of the active layer
 When l_fn is pressed, it tells layerState to change the active layer to 1.
 When l_fn is released, it tells layerState that layer 1 is released, and layerState restores the default layer.
 */
-Code_LayerHold l_fn(FN, layerState);
+Code_LayerLock l_normal(NORMAL, layerState);
+Code_LayerLock l_sym(SYM, layerState);
+Code_LayerHold l_num(NUM, layerState);
 
 // ---------------- SCAN CODES -----------------
 Code_Sc s_a(KEY_A);
 Code_Sc s_b(KEY_B);
+Code_Sc s_c(KEY_C);
+
+Code_Sc s_minus(KEY_MINUS);
+Code_Sc s_equal(KEY_EQUAL);
+Code_Sc s_enter(KEY_ENTER);
+
 Code_Sc s_1(KEY_1);
-Code_Sc s_2(KEY_2);
-Code_Sc s_shift(MODIFIERKEY_LEFT_SHIFT);
+Code_Null code_null;
 
 /* =================== KEYS ====================
 Here we pack Codes into keys.
@@ -71,14 +86,17 @@ The Key_LayeredKeys constructor takes one array of Code pointers - one Code obje
 
 The Key object names in this sketch start with a "k_" followed by row-column coordinates.
 */
-Key* const ptrsCodes_01[] = { &s_a, &s_1 };
+Key* const ptrsCodes_00[] = { &s_a, &s_minus, &s_1 };
+Key_LayeredKeys k_00(ptrsCodes_00);
+
+Key* const ptrsCodes_01[] = { &s_b, &s_equal, &s_equal };
 Key_LayeredKeys k_01(ptrsCodes_01);
 
-Key* const ptrsCodes_11[] = { &s_b, &s_2 };
-Key_LayeredKeys k_11(ptrsCodes_11);
+Key* const ptrsCodes_02[] = { &s_c, &l_num, &code_null };
+Key_LayeredKeys k_02(ptrsCodes_02);
 
 /* Key_LayeredKeys has a reference to layerState.
-Thus Key_LayeredKeys can call layerState to get the active layer id.
+Thus Key_LayeredKeys can call layerState to get the active layerId.
 */
 LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
 
@@ -95,11 +113,11 @@ Codes are a kind of Key that only have one layer.
 So rows can contain a mix of codes and multi-layered keys.
 Arrays ptrsKeys_0[] and ptrsKeys_1[] contain both Code pointers and Key pointers.
 */
-Key* const ptrsKeys_0[] = { &s_shift, &k_01 };
+Key* const ptrsKeys_0[] = { &k_00, &k_01, &k_02 };
 uint8_t keyCount_0 = sizeof(ptrsKeys_0)/sizeof(*ptrsKeys_0);
 Row row_0(scanner, 0, ptrsKeys_0, keyCount_0);
 
-Key* const ptrsKeys_1[] = { &l_fn, &k_11 };
+Key* const ptrsKeys_1[] = { &l_normal, &l_sym, &s_enter };
 uint8_t keyCount_1 = sizeof(ptrsKeys_1)/sizeof(*ptrsKeys_1);
 Row row_1(scanner, 1, ptrsKeys_1, keyCount_1);
 

@@ -8,7 +8,7 @@
 /* Class Key_LayeredCodeSc is a 2-layer code, one object for each layer e.g.
     layer0: ms_up    //mouse up
     layer1: KEY_UP   //up arrow
-When the key is pressed, the active layer is retrieved from refLayerState,
+When the key is pressed, the active layerId is retrieved from refLayerState,
  and the object for the active layer is sent to USB.
 */
 class Key_LayeredCodeSc : public Key_LayeredCodeScBase

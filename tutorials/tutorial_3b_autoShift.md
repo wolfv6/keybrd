@@ -10,7 +10,7 @@ Two keybrd classes use AutoShift:
 * Code_ScS
 * Code_ScNS
 
-The [keybrd_3_autoShift.ino](keybrd_3_autoShift/keybrd_3_autoShift.ino) sketch explains the AutoShift feature.
+The [keybrd_3b_autoShift.ino](keybrd_3b_autoShift/keybrd_3b_autoShift.ino) sketch explains the AutoShift feature.
 It will run on the basic breadboard keyboard described in [tutorial_1_breadboard_keyboard.md](tutorial_1_breadboard_keyboard.md).
 After reading the sketch you too will be able to automatically shifted characters.
 
@@ -18,7 +18,7 @@ After reading the sketch you too will be able to automatically shifted character
 
 Exercises
 ---------
-1) Modify the keybrd_3_autoShift_annotated sketch to make a 3-layer keyboard with a default layer and two Code_LayerHold objects.
+1) Modify the keybrd_3b_autoShift sketch to make a 3-layer keyboard with a default layer and two Code_LayerHold objects.
 
 | Layout | **0** | **1** |
 |:------:|:-----:|:-----:|

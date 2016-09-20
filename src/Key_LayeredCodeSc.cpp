@@ -2,6 +2,6 @@
 
 void Key_LayeredCodeSc::press()
 {
-    layer = refLayerState.getActiveLayer();
+    layerId = refLayerState.getActiveLayer();
     pressCode();
 }

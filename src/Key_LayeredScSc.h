@@ -6,9 +6,9 @@
 #include <Key_LayeredScScBase.h>
 
 /* Class Key_LayeredScSc is composed of two scancodes; "S" stands for Scancode.
-layer is retreived from refLayerState.
-    when layer=0, press sends scancode0
-    when layer=1, press sends scancode1
+layerId is retreived from refLayerState.
+    when layerId=0, press sends scancode0
+    when layerId=1, press sends scancode1
 */
 class Key_LayeredScSc : public Key_LayeredScScBase
 {

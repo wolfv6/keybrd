@@ -2,7 +2,7 @@
 
 void Key_LayeredScScBase::pressScancode()
 {
-    if (layer)
+    if (layerId)
     {
         scancode = scancode1;
     }

@@ -35,61 +35,60 @@ Pseudo code for simple layer scheme
 The following pseudo code is of three keybrd library classes.
 It has just enough detail to show the internal workings of layer schemes.
 
-**Code_Layer** objects change the active layer when pressed.
-The "layer" variable is a layer id number.
+**Code_Layer** objects change the active layer.
 When a Code_Layer object is pressed, it tells LayerState to update the active layer.
 ```
 class Code_Layer
 {
-    int layer;
+    int layerId;
     LayerState& refLayerState;
-    press() { refLayerState.setActiveLayer(layer); }
+    press() { refLayerState.setActiveLayer(layerId); }
 };
 ```
 
-**LayerState** objects keep track of the active layer.
+**LayerState** objects keep track of the activeLayer.
 A LayerState's activeLayer is always up to date.
 ```
 class LayerState
 {
     int activeLayer;
-    setActiveLayer(int layer) { activeLayer = layer; }
+    setActiveLayer(int layerId) { activeLayer = layerId; }
     getActiveLayer() { return activeLayer; }
 };
 ```
 
 **Key_LayeredKeys** objects contain an array of keys, one key for each layer.
-Key_LayeredKeys objects use layer ids as Key_LayeredKeys indexes.
-When a Key_LayeredKeys object is pressed, it gets the active layer from LayerState, and sends the corresponding key.
+Key_LayeredKeys objects use layerIds as Key_LayeredKeys indexes.
+When a Key_LayeredKeys object is pressed, it gets the active layerId from LayerState, and sends the corresponding key.
 ```
 class Key_LayeredKeys
 {
     Key** ptrsKeys;         //array of Key pointers, one Key pointer per layer
     LayerState& refLayerState;
-    press() { layer = refLayerState.getActiveLayer();
-              ptrsKeys[layer]->press(); }
+    press() { layerId = refLayerState.getActiveLayer();
+              ptrsKeys[layerId]->press(); }
 };
 ```
 
 Dependency diagram
 ```
-         +------------+
-         | Code_Layer |
-         +------------+
-               |
-               |setActiveLayer()
-               |
-               v
-         +------------+
-         | LayerState |
-         +------------+
-               ^
-               |
-               |getActiveLayer()
-               |
-    +----------------------+
-    | Key_LayeredKeys |
-    +----------------------+
+       +------------+
+       | Code_Layer |
+       +------------+
+             |
+             |setActiveLayer()
+             |
+             v
+       +------------+
+       | LayerState |
+       +------------+
+             ^
+             |
+             |getActiveLayer()
+             |
+     +-----------------+
+     | Key_LayeredKeys |
+     +-----------------+
 ```
 Layer-scheme classes
 --------------------
@@ -124,7 +123,7 @@ Example single-layer Code classes include:
 
 Exercises
 ---------
-1) Modify the keybrd_3_multi-layer.ino sketch to use two Code_LayerLock objects.
+1) Modify the keybrd_3a_multi-layer.ino sketch to use two Code_LayerLock objects.
 
 | Layout | **0**  | **1**  |
 |:------:|:------:|:------:|

@@ -2,7 +2,7 @@
 
 void Key_LayeredCodeScBase::pressCode()
 {
-    if (layer)
+    if (layerId)
     {
         Keyboard.press(scancode1);
     }
@@ -14,7 +14,7 @@ void Key_LayeredCodeScBase::pressCode()
 
 void Key_LayeredCodeScBase::release()
 {
-    if (layer)
+    if (layerId)
     {
         Keyboard.release(scancode1);
     }

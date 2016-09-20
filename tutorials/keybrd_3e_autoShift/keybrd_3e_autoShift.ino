@@ -1,4 +1,4 @@
-/* keybrd_3_autoShift_annotated.ino
+/* keybrd_3b_autoShift.ino
 
 This sketch:
     is a simple 2-layer keyboard with AutoShift
@@ -25,19 +25,18 @@ Holding the fn key down makes it the active layer.  Releasing the fn key restore
 #include <Key_LayeredKeys.h>
 
 //Matrix
-#include <Row_uC.h>
+#include <Row.h>
+#include <Scanner_uC.h>
 #include <ScanDelay.h>
 
 // ============ SPEED CONFIGURATION ============
 ScanDelay scanDelay(9000);
 
-// ================ ACTIVE STATE ===============
-const bool Scanner_uC::STROBE_ON = LOW;
-const bool Scanner_uC::STROBE_OFF = HIGH;
-
-// =================== PINS ====================
+// ================== SCANNER ==================
 uint8_t readPins[] = {14, 15};
-uint8_t READ_PIN_COUNT = sizeof(readPins)/sizeof(*readPins);
+uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
+
+Scanner_uC scanner(LOW, readPins, readPinCount);
 
 // =================== CODES ===================
 // ---------------- LAYER CODE -----------------
@@ -101,10 +100,14 @@ LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
 
 // =================== ROWS ====================
 Key* const ptrsKeys_0[] = { &s_shift, &k_01 };
-Row_uC row_0(0, readPins, READ_PIN_COUNT, ptrsKeys_0);
+uint8_t keyCount_0 = sizeof(ptrsKeys_0)/sizeof(*ptrsKeys_0);
+Row row_0(scanner, 0, ptrsKeys_0, keyCount_0);
+//Row row_0(0, readPins, READ_PIN_COUNT, ptrsKeys_0);
 
 Key* const ptrsKeys_1[] = { &l_fn,  &k_11 };
-Row_uC row_1(1, readPins, READ_PIN_COUNT, ptrsKeys_1);
+uint8_t keyCount_1 = sizeof(ptrsKeys_1)/sizeof(*ptrsKeys_1);
+Row row_1(scanner, 1, ptrsKeys_1, keyCount_1);
+//Row row_1(1, readPins, READ_PIN_COUNT, ptrsKeys_1);
 
 // ################### MAIN ####################
 void setup()

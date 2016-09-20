@@ -4,11 +4,9 @@
 #include <inttypes.h>
 #include "Code.h"
 
-/* Class Key_LayeredCodeScBase is a 2-layer code, with one object for each layer e.g.
-    layer0: ms_up    //mouse up
-    layer1: KEY_UP   //up arrow
-When the key is pressed, the active layer is retrieved from refLayerState,
- and the object for the active layer is sent to USB.
+/* Class Key_LayeredCodeScBase is an abstract base class for 2-layer keys:
+    if layerId=0, send code0
+    if layerId=1, send scancode1
 */
 class Key_LayeredCodeScBase : public Code
 {
@@ -16,10 +14,10 @@ class Key_LayeredCodeScBase : public Code
         Code& refCode0;
         const uint16_t scancode1;
     protected:
-        bool layer;
+        bool layerId;                           //active layer when key was pressed, 0 or 1
     public:
-        Key_LayeredCodeScBase(Code& refCode0, const uint16_t scancode1, uint8_t layer):
-            refCode0(refCode0), scancode1(scancode1), layer(layer) { }
+        Key_LayeredCodeScBase(Code& refCode0, const uint16_t scancode1, uint8_t layerId):
+            refCode0(refCode0), scancode1(scancode1), layerId(layerId) { }
         virtual void press()=0;
         virtual void release();
         virtual void pressCode();

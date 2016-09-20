@@ -10,11 +10,11 @@
 class Code_LayerHold : public Code
 {
     private:
-        const uint8_t layer;
+        const uint8_t layerId;
         LayerState& refLayerState;
     public:
-        Code_LayerHold(const uint8_t layer, LayerState& refLayerState)
-            : layer(layer), refLayerState(refLayerState) {}
+        Code_LayerHold(const uint8_t layerId, LayerState& refLayerState)
+            : layerId(layerId), refLayerState(refLayerState) {}
         virtual void press();
         virtual void release();
 };

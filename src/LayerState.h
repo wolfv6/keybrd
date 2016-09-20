@@ -13,12 +13,12 @@ class LayerState : public LayerStateInterface
     protected:
         uint8_t activeLayer;                    //currently active layer
         uint8_t lockedLayer;                    //most recently pressed lock layer
-        virtual void setActiveLayer(const uint8_t layer);
+        virtual void setActiveLayer(const uint8_t layerId);
     public:
         LayerState() : activeLayer(0), lockedLayer(0) {}
-        virtual void hold(uint8_t layer);       //set activeLayer
-        virtual void unhold(const uint8_t layer); //restore activeLayer to lockedLayer
-        virtual void lock(uint8_t layer);       //set activeLayer and lock it
+        virtual void hold(uint8_t layerId);       //set activeLayer
+        virtual void unhold(const uint8_t layerId); //restore activeLayer to lockedLayer
+        virtual void lock(uint8_t layerId);       //set activeLayer and lock it
         virtual uint8_t getActiveLayer();
 };
 #endif

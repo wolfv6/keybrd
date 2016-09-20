@@ -1,29 +1,29 @@
 #include "LayerState.h"
 
-void LayerState::hold(const uint8_t layer)
+void LayerState::hold(const uint8_t layerId)
 {
-    setActiveLayer(layer);
+    setActiveLayer(layerId);
 }
 
-void LayerState::unhold(const uint8_t layer)
+void LayerState::unhold(const uint8_t layerId)
 {
-    if (layer == activeLayer);
+    if (layerId == activeLayer);
     {
         setActiveLayer(lockedLayer);
     }
 }
 
-void LayerState::lock(const uint8_t layer)
+void LayerState::lock(const uint8_t layerId)
 {
-    setActiveLayer(layer);
-    lockedLayer = layer;
+    setActiveLayer(layerId);
+    lockedLayer = layerId;
 }
 
 /*Derived classes override setActiveLayer() to also set LED indicator lights e.g. LayerState_LED
 */
-void LayerState::setActiveLayer(const uint8_t layer)
+void LayerState::setActiveLayer(const uint8_t layerId)
 {
-    activeLayer = layer;
+    activeLayer = layerId;
 }
 
 uint8_t LayerState::getActiveLayer()

@@ -1,7 +1,7 @@
 Tutorial 2 - single-layer keyboard
 =======================================
 The easiest way to learn the keyboard library is to read some simple sketches.
-[keybrd_2_single-layer_annotated.ino](keybrd_2_single-layer_annotated/keybrd_2_single-layer_annotated.ino) is a simple sketch with annotations that explain how a keybrd sketch works.
+[keybrd_2_single-layer.ino](keybrd_2_single-layer/keybrd_2_single-layer.ino) is a simple sketch with annotations that explain how a keybrd sketch works.
 The sketch will run on the basic breadboard keyboard described in [tutorial_1_breadboard_keyboard.md](tutorial_1_breadboard_keyboard.md)
 
 After reading the sketch you will be able to modify it to suite your own single-layer keyboard design.

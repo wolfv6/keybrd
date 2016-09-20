@@ -5,9 +5,9 @@ void LayerState_LED::begin()
     ptrsLEDs[getActiveLayer()]->on();
 }
 
-void LayerState_LED::setActiveLayer(const uint8_t layer)
+void LayerState_LED::setActiveLayer(const uint8_t layerId)
 {
     ptrsLEDs[activeLayer]->off();
-    activeLayer = layer;
+    activeLayer = layerId;
     ptrsLEDs[activeLayer]->on();
 }
