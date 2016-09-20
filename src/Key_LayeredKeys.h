@@ -4,22 +4,16 @@
 #include <inttypes.h>
 #include <LayerStateInterface.h>
 #include <Key.h>
+#include <Key_LayeredKeysBase.h>
 
-/* Class Key_LayeredKeys contains an array of Key pointers, one pointer per layer.
-Codes are a kind of Key, so the Key pointers can point to Codes or Keys.
-
-When the key is pressed, active layerId is retreived from refLayerState and
-the Key object of the active layerId is called.
+/* Most of the Key_LayeredKeys functionality is in Key_LayeredKeysBase.
 */
-class Key_LayeredKeys : public Key
+class Key_LayeredKeys : public Key_LayeredKeysBase
 {
     private:
-        Key*const *const ptrsKeys;             //array of Key pointers, one Key per layer
-        uint8_t layerId;                          //active layer when key was pressed
         static LayerStateInterface& refLayerState;
     public:
-        Key_LayeredKeys(Key* const ptrsKeys[]): ptrsKeys(ptrsKeys) {}
-        virtual void press();
-        virtual void release();
+        Key_LayeredKeys(Key* const ptrsKeys[]) : Key_LayeredKeysBase(ptrsKeys) {}
+        virtual uint8_t getActiveLayer();       //get active layer from refLayerState
 };
 #endif

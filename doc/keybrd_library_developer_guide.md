@@ -53,7 +53,10 @@ Keybrd library class inheritance diagram
 	Key
 	 |____
 	 |    \
-	 |   Key_LayeredKeys
+	 |   Key_LayeredKeysBase
+	 |      \____________________
+	 |      /                    \
+	 |   Key_LayeredKeys      Key_LayeredKeys1
 	 |
 	 |___________________________
 	 |     \                     \

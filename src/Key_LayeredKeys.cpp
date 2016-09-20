@@ -1,13 +1,6 @@
 #include "Key_LayeredKeys.h"
 
-void Key_LayeredKeys::press()
+uint8_t Key_LayeredKeys::getActiveLayer()
 {
-    layerId = refLayerState.getActiveLayer();
-
-    ptrsKeys[layerId]->press();
-}
-
-void Key_LayeredKeys::release()
-{
-    ptrsKeys[layerId]->release();
+    return refLayerState.getActiveLayer();
 }
