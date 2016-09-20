@@ -1,13 +1,13 @@
-/* keybrd_3b_multi-layerLock.ino
+/* keybrd_3d_sublayerNestedScSc.ino
 
 This sketch:
     is firmware for a simple 2-layer keyboard
     runs on the first two rows and columns of a breadboard keyboard
 
-| Layout | **0** | **1** |
-|:------:|:-----:|:-----:|
-|  **0** | a  [  | b  ]  |
-|  **1** |normal |  sym  |
+| Layout | **0** | **1** | **2** |
+|:------:|:-----:|:-----:|:-----:|
+|  **0** | a - 1 | b =   | c Num |
+|  **1** |Normal | Sym   | Enter |
 
 normal layer keys are a b c
 sym layer keys are brackets [ ] and num
@@ -24,12 +24,12 @@ Holding the fn key down makes it the active layer.  Releasing the fn key restore
 // ================= INCLUDES ==================
 //Keys
 #include <Code_Sc.h>
-//#include <Code_ScS.h>
-//#include <Code_Null.h>
+#include <Code_Null.h>
 #include <LayerState.h>
 #include <Code_LayerLock.h>
 #include <Code_LayerHold.h>
 #include <Key_LayeredKeys.h>
+#include <Key_LayeredScSc.h>
 
 //Matrix
 #include <Row.h>
@@ -40,7 +40,7 @@ Holding the fn key down makes it the active layer.  Releasing the fn key restore
 ScanDelay scanDelay(9000);
 
 // ================== SCANNER ==================
-uint8_t readPins[] = {14, 15};
+uint8_t readPins[] = {14, 15, 16};
 uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
 
 Scanner_uC scanner(LOW, readPins, readPinCount);
@@ -57,6 +57,7 @@ enum layers { NORMAL, SYM };
 */
 LayerState layerState;
 
+LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
 /*
 NORMAL=0 and FN=1.  LayerState's default layerId is 0.
 The Code_LayerHold constructor has two parameters:
@@ -68,14 +69,26 @@ When l_fn is released, it tells layerState that layer 1 is released, and layerSt
 Code_LayerLock l_normal(NORMAL, layerState);
 Code_LayerLock l_sym(SYM, layerState);
 
+//sublayer
+enum subLayers { SUBSYM, SUBNUM };
+
+LayerState sublayerState;
+
+Code_LayerHold l_num(SUBNUM, sublayerState);
+
+LayerStateInterface& Key_LayeredScSc::refLayerState = sublayerState;
+
 // ---------------- SCAN CODES -----------------
 Code_Sc s_a(KEY_A);
 Code_Sc s_b(KEY_B);
+Code_Sc s_c(KEY_C);
 
-Code_Sc s_leftBracket(KEY_LEFT_BRACE);           //[ ("brace" means curly bracket {})
-Code_Sc s_rightBracket(KEY_RIGHT_BRACE);         //]
+Code_Sc s_minus(KEY_MINUS);
+Code_Sc s_equal(KEY_EQUAL);
+Code_Sc s_enter(KEY_ENTER);
 
-//Code_Null code_null;
+Code_Sc s_1(KEY_1);
+Code_Null code_null;
 
 /* =================== KEYS ====================
 Here we pack Codes into keys.
@@ -83,16 +96,16 @@ The Key_LayeredKeys constructor takes one array of Code pointers - one Code obje
 
 The Key object names in this sketch start with a "k_" followed by row-column coordinates.
 */
-Key* const ptrsCodes_00[] = { &s_a, &s_leftBracket };
+
+Key_LayeredScSc sub_00(KEY_MINUS, KEY_1);
+Key* const ptrsCodes_00[] = { &s_a, &sub_00 };
 Key_LayeredKeys k_00(ptrsCodes_00);
 
-Key* const ptrsCodes_01[] = { &s_b, &s_rightBracket };
+Key* const ptrsCodes_01[] = { &s_b, &s_equal };
 Key_LayeredKeys k_01(ptrsCodes_01);
 
-/* Key_LayeredKeys has a reference to layerState.
-Thus Key_LayeredKeys can call layerState to get the active layerId.
-*/
-LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
+Key* const ptrsCodes_02[] = { &s_c, &l_num };
+Key_LayeredKeys k_02(ptrsCodes_02);
 
 /* HOW LAYERED OBJECTS WORK
 When a Key_LayeredKeys object is pressed, it gets the active layer id from layerState.
@@ -107,11 +120,11 @@ Codes are a kind of Key that only have one layer.
 So rows can contain a mix of codes and multi-layered keys.
 Arrays ptrsKeys_0[] and ptrsKeys_1[] contain both Code pointers and Key pointers.
 */
-Key* const ptrsKeys_0[] = { &k_00, &k_01 };
+Key* const ptrsKeys_0[] = { &k_00, &k_01, &k_02 };
 uint8_t keyCount_0 = sizeof(ptrsKeys_0)/sizeof(*ptrsKeys_0);
 Row row_0(scanner, 0, ptrsKeys_0, keyCount_0);
 
-Key* const ptrsKeys_1[] = { &l_normal, &l_sym };
+Key* const ptrsKeys_1[] = { &l_normal, &l_sym, &s_enter };
 uint8_t keyCount_1 = sizeof(ptrsKeys_1)/sizeof(*ptrsKeys_1);
 Row row_1(scanner, 1, ptrsKeys_1, keyCount_1);
 

@@ -1,4 +1,4 @@
-/* keybrd_3b_autoShift.ino
+/* keybrd_3f_autoShift.ino
 
 This sketch:
     is a simple 2-layer keyboard with AutoShift

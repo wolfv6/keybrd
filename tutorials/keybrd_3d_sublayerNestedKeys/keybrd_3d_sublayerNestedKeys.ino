@@ -29,7 +29,7 @@ Holding the fn key down makes it the active layer.  Releasing the fn key restore
 #include <Code_LayerLock.h>
 #include <Code_LayerHold.h>
 #include <Key_LayeredKeys.h>
-#include <Key_LayeredScSc.h>
+#include <Key_LayeredKeys1.h>
 
 //Matrix
 #include <Row.h>
@@ -76,7 +76,7 @@ LayerState sublayerState;
 
 Code_LayerHold l_num(SUBNUM, sublayerState);
 
-LayerStateInterface& Key_LayeredScSc::refLayerState = sublayerState;
+LayerStateInterface& Key_LayeredKeys1::refLayerState = sublayerState;
 
 // ---------------- SCAN CODES -----------------
 Code_Sc s_a(KEY_A);
@@ -97,8 +97,10 @@ The Key_LayeredKeys constructor takes one array of Code pointers - one Code obje
 The Key object names in this sketch start with a "k_" followed by row-column coordinates.
 */
 
-Key_LayeredScSc sub_00(KEY_MINUS, KEY_1);
-Key* const ptrsCodes_00[] = { &s_a, &sub_00 };
+Key* const ptrsCodes_sub00[] = { &s_minus, &s_1 };
+Key_LayeredKeys1 k_sub00(ptrsCodes_sub00);
+
+Key* const ptrsCodes_00[] = { &s_a, &k_sub00 };
 Key_LayeredKeys k_00(ptrsCodes_00);
 
 Key* const ptrsCodes_01[] = { &s_b, &s_equal };
