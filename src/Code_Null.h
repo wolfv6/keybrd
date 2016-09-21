@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <Code.h>
 
-/* Class Code_Null doesn't do anything.  It is usefull for blank codes.
+/* Class Code_Null doesn't do anything.  It is useful for blank codes.
 */
 class Code_Null: public Code
 {

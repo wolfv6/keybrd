@@ -176,4 +176,4 @@ Code_ScS s_greaterThan(KEY_PERIOD);
 Code_ScS s_question(KEY_SLASH);
 
 // ********** MISC CODES *********
-Code_Null code_null;                            //usefull for blank keys
+Code_Null code_null;                            //useful for blank keys

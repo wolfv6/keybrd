@@ -13,11 +13,27 @@ Multi-layer nomenclature
 
 **active layer** - is the layer currently used by the keyboard.
 
+**default layer** - is the active layer when the keyboard starts up (in class LayerState, default layerId=0).
+
 **layer scheme** - is a system for changing the active layer while typing (a single-layer scheme does not change layers).
+
+Code classes
+------------
+Code objects only have one scancode or code.
+Example single-layer Code classes include:
+* Code_Sc       (used in keybrd_2_single-layer.ino)
+* Code_ScS
+* Code_ScNS
+* Code_Shift
+* Code_LayerHold
+* Code_LayerLock
+
+Single-layer keybrd sketches have one Code object per key.
+Multi-layer keybrd sketches have multiple Code objects per key, one code for each layer.
 
 A simple multi-layer keybrd sketch
 ----------------------------------
-The [keybrd_3a_multi-layer.ino](keybrd_3a_multi-layer/keybrd_3a_multi-layer.ino) sketch is for a simple two-layer keyboard.
+The [keybrd_3a_multi-layerHold.ino](keybrd_3a_multi-layerHold/keybrd_3a_multi-layerHold.ino) sketch is for a simple two-layer keyboard.
 It will run on the basic breadboard keyboard described in [tutorial_1_breadboard_keyboard.md](tutorial_1_breadboard_keyboard.md).
 
 ![basic breadboard keyboard](keybrd_1_breadboard/breadboard_keyboard_2x2.JPG "basic breadboard keyboard")
@@ -107,28 +123,10 @@ Key_Layered classes include:
 * Key_LayeredScSc
 * Key_LayeredCodeSc
 
-The basic LayerState provided by the keybrd library is sufficient for implementing ordinary layer schemes.
-For experimental layer schemes, you would need to create a custom LayerState class, and possibly custom Code_Layer and Key_Layered classes as well.
-
-Single-layer Codes
-------------------
-Most Code objects only have one scancode or code.
-Example single-layer Code classes include:
-* Code_Sc
-* Code_ScS
-* Code_ScNS
-* Code_Shift
-* Code_LayerHold
-* Code_LayerLock
-
 Exercises
 ---------
-1) Modify the keybrd_3a_multi-layer.ino sketch to use two Code_LayerLock objects.
-
-| Layout | **0**  | **1**  |
-|:------:|:------:|:------:|
-|  **0** | a   1  | b   2  |
-|  **1** | layer0 | layer1 |
+Compile and run keybrd_3a_multi-layerHold.ino and keybrd_3b_multi-layerLock.ino
+Notice how Code_LayerHold and Code_LayerLock objects behave.
 
 <br>
 <a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">keybrd tutorial</span> by <a xmlns:cc="https://creativecommons.org/ns" href="https://github.com/wolfv6/keybrd" property="cc:attributionName" rel="cc:attributionURL">Wolfram Volpi</a> is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="https://creativecommons.org/ns" href="https://github.com/wolfv6/keybrd/issues/new" rel="cc:morePermissions">https://github.com/wolfv6/keybrd/issues/new</a>.

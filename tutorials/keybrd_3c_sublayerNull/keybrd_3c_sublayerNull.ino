@@ -1,24 +1,14 @@
 /* keybrd_3c_sublayerNull.ino
 
 This sketch:
-    is firmware for a simple 2-layer keyboard
-    runs on the first two rows and columns of a breadboard keyboard
+    is firmware for layout with 2 layers plus 1 sublayer.
+    runs on the first three columns of a breadboard keyboard
 
 | Layout | **0** | **1** | **2** |
 |:------:|:-----:|:-----:|:-----:|
 |  **0** | a - 1 | b =   | c Num |
 |  **1** |Normal | Sym   | Enter |
 
-normal layer keys are a b c
-sym layer keys are brackets [ ] and num
-num layer keys are 6 7
-The num layer key is located on the sym layer
-num layer is active while holding sym+num
-
-Each cell in the table's body represents a key.
-The layered keys in column 1 have two layers; one character for each layer.
-Letters 'a' and 'b' are on the normal layer.  Numbers '1' and '2' are on the fn layer.
-Holding the fn key down makes it the active layer.  Releasing the fn key restores the normal layer.
 */
 // ################## GLOBAL ###################
 // ================= INCLUDES ==================
@@ -44,29 +34,19 @@ uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
 
 Scanner_uC scanner(LOW, readPins, readPinCount);
 
-/* =================== CODES ===================
-The CODES section instantiates six codes, one for each item in the layout.
-*/
+// =================== CODES ===================
 /* ---------------- LAYER CODE -----------------
-enum assigns layerId numbers to the layers.
+One LayerState object manages all 3 layers.
 */
 enum layers { NORMAL, SYM, NUM };
 
-/* layerState keeps track of the active layer.
-*/
 LayerState layerState;
 
-/*
-NORMAL=0 and FN=1.  LayerState's default layerId is 0.
-The Code_LayerHold constructor has two parameters:
- 1) the layerId that will be active while the key is held down
- 2) a LayerState that will keep track of the active layer
-When l_fn is pressed, it tells layerState to change the active layer to 1.
-When l_fn is released, it tells layerState that layer 1 is released, and layerState restores the default layer.
-*/
 Code_LayerLock l_normal(NORMAL, layerState);
 Code_LayerLock l_sym(SYM, layerState);
 Code_LayerHold l_num(NUM, layerState);
+
+LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
 
 // ---------------- SCAN CODES -----------------
 Code_Sc s_a(KEY_A);
@@ -81,38 +61,31 @@ Code_Sc s_1(KEY_1);
 Code_Null code_null;
 
 /* =================== KEYS ====================
-Here we pack Codes into keys.
-The Key_LayeredKeys constructor takes one array of Code pointers - one Code object per layer.
+When a Key_LayeredKeys is pressed, layerState returns the active layerId,
+which could be any of the layerIds in l_normal, l_sym, l_num.
 
-The Key object names in this sketch start with a "k_" followed by row-column coordinates.
+The layout has one key with 3 layers, and two keys with 2 layers.
+But the layer scheme has 3 layers for all three keys.
+The extra layers are filled with duplicate codes and null codes.
 */
 Key* const ptrsCodes_00[] = { &s_a, &s_minus, &s_1 };
 Key_LayeredKeys k_00(ptrsCodes_00);
 
+/*
+s_equal is duplicated in layer 2.
+*/
 Key* const ptrsCodes_01[] = { &s_b, &s_equal, &s_equal };
 Key_LayeredKeys k_01(ptrsCodes_01);
 
+/*
+code_null occupies layer 2.  Class Code_Null doesn't do anything.  It is useful for blank codes.
+Remember to fill all layers with codes.
+If the code_null were omitted from the array, dereferencing ptrsCodes_02[2] could cause a crash.
+*/
 Key* const ptrsCodes_02[] = { &s_c, &l_num, &code_null };
 Key_LayeredKeys k_02(ptrsCodes_02);
 
-/* Key_LayeredKeys has a reference to layerState.
-Thus Key_LayeredKeys can call layerState to get the active layerId.
-*/
-LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
-
-/* HOW LAYERED OBJECTS WORK
-When a Key_LayeredKeys object is pressed, it gets the active layer id from layerState.
-It then uses the layer id as an array index to call the Code of the active layer.
-The Code object then sends its scancode over USB.
-*/
-
-/* =================== ROWS ====================
-Here we pack Key pointers into row objects.
-
-Codes are a kind of Key that only have one layer.
-So rows can contain a mix of codes and multi-layered keys.
-Arrays ptrsKeys_0[] and ptrsKeys_1[] contain both Code pointers and Key pointers.
-*/
+// =================== ROWS ====================
 Key* const ptrsKeys_0[] = { &k_00, &k_01, &k_02 };
 uint8_t keyCount_0 = sizeof(ptrsKeys_0)/sizeof(*ptrsKeys_0);
 Row row_0(scanner, 0, ptrsKeys_0, keyCount_0);

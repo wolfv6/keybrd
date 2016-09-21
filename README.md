@@ -36,7 +36,7 @@ Example complex keybrd sketch
 -----------------------------
 keybrd_DH and its instantiation files contain about 800 lines of code.
 It emulates the DataHand keyboard.
-The layout has 52 keys, 4 layers, 6 sub-layers, 2 matrices, 8 LEDs, and blinking LEDs.
+Its layout has 52 keys, 3 primary layers, 5 sub-layers, 2 matrices, 8 LEDs, and blinking LEDs.
 
 [keybrd_DH_library_developer_guide.md](https://github.com/wolfv6/keybrd_DH/blob/master/doc/keybrd_DH_library_developer_guide.md)<br>
 [mainSketch.ino](https://github.com/wolfv6/keybrd_DH/blob/master/examples/keybrd_DH/mainSketch.cpp)<br>
