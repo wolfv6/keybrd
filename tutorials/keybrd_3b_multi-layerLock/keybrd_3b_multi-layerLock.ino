@@ -39,7 +39,7 @@ Scanner_uC scanner(LOW, readPins, readPinCount);
 
 // =================== CODES ===================
 // ---------------- LAYER CODE -----------------
-enum layers { ALPHA, SYM };
+enum layerIds { ALPHA, SYM };
 
 LayerState layerState;
 

@@ -5,7 +5,7 @@ Configures read pins to input with pullup enabled.
 */
 void PortRead_MCP23S17::begin(const uint8_t strobeOn)
 {
-    if (strobeOn == LOW)                        //if active low
+    if (strobeOn == LOW)                        //if active low, use internal pull-up resistors
     {
         pullUp = readPins;
     }
@@ -19,8 +19,7 @@ void PortRead_MCP23S17::begin(const uint8_t strobeOn)
                                                           //0=pull-up disabled, 1=pull-up enabled
 }
 
-/* read() returns portState.
-Only portState bits of readPins are valid.
+/* read() returns portState.  Only portState pins with pull resistors are valid.
 */
 uint8_t PortRead_MCP23S17::read()
 {

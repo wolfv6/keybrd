@@ -42,7 +42,7 @@ Scanner_uC scanner(LOW, readPins, readPinCount);
 enum assigns layerId numbers to the layers.
 NORMAL=0 and FN=1.  LayerState's default layerId is 0.
 */
-enum layers { NORMAL, FN };
+enum layerIds { NORMAL, FN };
 
 /*
 layerState keeps track of the active layer.

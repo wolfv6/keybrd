@@ -19,42 +19,38 @@ This sketch:
 #include <Code_LayerHold.h>
 #include <Key_LayeredKeys.h>
 
-#include <Row_uC.h>
+#include <Row.h>
+#include <Scanner_uC.h>
 #include <ScanDelay.h>
 #include <LED_uC.h>
 
 // ============ SPEED CONFIGURATION ============
 ScanDelay scanDelay(9000);
 
-// ================ ACTIVE STATE ===============
-const bool Scanner_uC::STROBE_ON = LOW;
-const bool Scanner_uC::STROBE_OFF = HIGH;
-
-// ================= PINS =================
+// ================== SCANNER ==================
 uint8_t readPins[] = {14, 15};
-uint8_t READ_PIN_COUNT = sizeof(readPins)/sizeof(*readPins);
+uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
+
+Scanner_uC scanner(LOW, readPins, readPinCount);
 
 /* ==================== LEDs ===================
 The LED_uC constructor parameter is for an Aduino pin number that is connected to an LED.
-LED objects are passed to other objects that want to turn the LED on or off.
 In this example, the LED_uC objects are named after the states they indicate.
-
-The prtsLayerLEDs[] array contains one LED per layer, it is used to indicate the current layer.
 */
 LED_uC LED_normal(16);
 LED_uC LED_fn(17);
 LED_uC LED_CapsLck(21);
 
-LED* prtsLayerLEDs[] = { &LED_normal, &LED_fn };
-
 // =================== CODES ===================
 /* ---------------- LAYER CODE -----------------
-LayerState_LED is similar to LayerState, introduced in keybrd_3a_multi-layer.ino, but with LEDs.
-The LayerState_LED turns on the LED of the current layer.
-The active layer is used as an index to dereference the prtsLayerLEDs[] array.
+LayerState_LED is similar to LayerState, introduced in keybrd_3a_multi-layerHold.ino, but with LEDs.
+The LayerState_LED turns on the LED of the active layer.
+The prtsLayerLEDs[] array contains one LED per layer.
+The active layerId is used as an index to dereference the prtsLayerLEDs[] array.
 */
 enum layers { NORMAL, FN };
 
+LED* prtsLayerLEDs[] = { &LED_normal, &LED_fn }; //array index matches enum layerIds
 LayerState_LED layerState(prtsLayerLEDs);
 
 Code_LayerHold l_fn(FN, layerState);
@@ -82,13 +78,15 @@ LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
 
 // =================== ROWS ====================
 Key* const ptrsKeys_0[] = { &o_capsLock, &k_01 };
-Row_uC row_0(0, readPins, READ_PIN_COUNT, ptrsKeys_0);
+uint8_t keyCount_0 = sizeof(ptrsKeys_0)/sizeof(*ptrsKeys_0);
+Row row_0(scanner, 0, ptrsKeys_0, keyCount_0);
 
 Key* const ptrsKeys_1[] = { &l_fn, &k_11 };
-Row_uC row_1(1, readPins, READ_PIN_COUNT, ptrsKeys_1);
+uint8_t keyCount_1 = sizeof(ptrsKeys_1)/sizeof(*ptrsKeys_1);
+Row row_1(scanner, 1, ptrsKeys_1, keyCount_1);
 
 /* ################### MAIN ####################
-layerState.begin() turns on the LED of the initial active layer.
+layerState.begin() turns on the LED of the default layer.
 */
 void setup()
 {

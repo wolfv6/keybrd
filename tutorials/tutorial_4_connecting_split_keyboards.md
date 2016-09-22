@@ -1,4 +1,4 @@
-keybrd Tutorial 4a - Connecting split keyboards
+keybrd Tutorial 4 - Connecting split keyboards
 ===============================================
 Split keyboards have left and right parts:
 * one keyboard half contains the controller and USB port.
@@ -11,10 +11,10 @@ The preferred connection method depends on the number of keys, number of availab
 
 | connection type        | controller pins | wire count | max keys |
 |:----------------------:|:---------------:|:----------:|:--------:|
-| just cable             | 6               | 6          | 9        |
-| just cable             | 7               | 7          | 12       |
-| just cable             | 8               | 8          | 16       |
-| just cable             | 9               | 9          | 20       |
+| just cable             | 3               | 6          | 9        |
+| just cable             | 3               | 7          | 12       |
+| just cable             | 4               | 8          | 16       |
+| just cable             | 4               | 9          | 20       |
 |                        |                 |            |          |
 | 2 PISO shift registers | 3               | 5          | 16       |
 | 3 PISO shift registers | 3               | 5          | 24       |
@@ -49,7 +49,7 @@ There are hundreds of other connectors listed at http://pinouts.ru/
 There are also wireless options if you don't mind adding complexity and maintaining a battery.
 
 The 8-wire "GearIT Cat 6 Ethernet Flat Patch Cable 7 Feet" is very flexible.
-It's available at Walmart if you want to feel the merchandise before you buy.
+It's available at Walmart (9/19/16) if you want to feel the merchandise before you buy.
 All the modular connectors are flat.
 
 For prototyping on perfboards, consider a 0.1” header.

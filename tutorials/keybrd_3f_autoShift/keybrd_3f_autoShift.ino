@@ -40,7 +40,7 @@ Scanner_uC scanner(LOW, readPins, readPinCount);
 
 // =================== CODES ===================
 // ---------------- LAYER CODE -----------------
-enum layers { NORMAL, FN };
+enum layerIds { NORMAL, FN };
 
 LayerState layerState;
 Code_LayerHold l_fn(FN, layerState);

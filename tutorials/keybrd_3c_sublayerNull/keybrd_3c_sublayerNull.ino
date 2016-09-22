@@ -38,7 +38,7 @@ Scanner_uC scanner(LOW, readPins, readPinCount);
 /* ---------------- LAYER CODE -----------------
 One LayerState object manages all 3 layers.
 */
-enum layers { ALPHA, SYM, NUM };
+enum layerIds { ALPHA, SYM, NUM };
 
 LayerState layerState;
 
