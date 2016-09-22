@@ -72,11 +72,11 @@ The Key_LayeredKeys constructor takes one array of Code pointers - one Code obje
 
 The Key object names in this sketch start with a "k_" followed by row-column coordinates.
 */
-Key* const ptrsCodes_00[] = { &s_a, &s_minus };
-Key_LayeredKeys k_00(ptrsCodes_00);
+Key* const ptrsKeys_00[] = { &s_a, &s_minus };
+Key_LayeredKeys k_00(ptrsKeys_00);
 
-Key* const ptrsCodes_01[] = { &s_b, &s_equal };
-Key_LayeredKeys k_01(ptrsCodes_01);
+Key* const ptrsKeys_01[] = { &s_b, &s_equal };
+Key_LayeredKeys k_01(ptrsKeys_01);
 
 /*
 Key_LayeredKeys has a reference to layerState.

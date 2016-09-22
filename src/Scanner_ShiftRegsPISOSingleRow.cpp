@@ -21,6 +21,7 @@ Initializes shift register's shift/load pin.
 */
 void Scanner_ShiftRegsPISOSingleRow::begin()
 {
+    SPI.begin();
     digitalWrite(slaveSelect, HIGH);
 }
 

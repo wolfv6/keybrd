@@ -13,10 +13,10 @@ Two rows (red buses) are connected to the I/O expander.
 
 The I/O expander is a MCP23S17.
 It has a small notch on one end, which identifies pin 1.
-In the picture, pin 1 is on the right end.
+In the picture, pin 1 is on the left end.
 
 The MCP23S17 communicates via SPI protocol, where Teensy LC is the master, and MCP23S17 is slave.
-The Teensy LC and MCP23S17 are connected by 6 jumper wires:
+The Teensy LC and MCP23S17 are connected via 6 jumper wires:
 
 |CONNECTION          |Teensy LC|MCP23S17|
 |:------------------:|---------|--------|

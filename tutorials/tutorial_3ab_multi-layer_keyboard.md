@@ -120,13 +120,21 @@ A basic LayerState class is:
 
 Key_Layered classes include:
 * Key_LayeredKeys
-* Key_LayeredScSc
+* Key_LayeredScSc   (covered in next tutorial)
 * Key_LayeredCodeSc
 
 Exercises
 ---------
-Compile and run keybrd_3a_multi-layerHold.ino and keybrd_3b_multi-layerLock.ino
+1) Compile and run [keybrd_3a_multi-layerHold.ino](keybrd_3a_multi-layerHold/keybrd_3a_multi-layerHold.ino)
+and [keybrd_3b_multi-layerLock.ino](keybrd_3b_multi-layerLock/keybrd_3b_multi-layerLock.ino).
 Notice how Code_LayerHold and Code_LayerLock objects behave.
+
+2) Modify the keybrd_3a_multi-layerHold.ino sketch to make a 3-layer keyboard with two Code_LayerHold keys.
+
+| Layout | **0** | **1** |
+|:------:|:-----:|:-----:|
+|  **0** | a - 1 | b = 2 |
+|  **1** |  sym  |  num  |
 
 <br>
 <a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">keybrd tutorial</span> by <a xmlns:cc="https://creativecommons.org/ns" href="https://github.com/wolfv6/keybrd" property="cc:attributionName" rel="cc:attributionURL">Wolfram Volpi</a> is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="https://creativecommons.org/ns" href="https://github.com/wolfv6/keybrd/issues/new" rel="cc:morePermissions">https://github.com/wolfv6/keybrd/issues/new</a>.

@@ -7,10 +7,10 @@ This sketch:
 | Layout | **0** | **1** |
 |:------:|:-----:|:-----:|
 |  **0** | a  -  | b  =  |
-|  **1** |Normal | Sym   |
+|  **1** | Alpha |  Sym  |
 
-Pressing the "Normal" layer key locks the Normal layer.
-Letters 'a' 'b' are on the Normal layer.
+Pressing the "Alpha" layer key locks the Alpha layer.
+Letters 'a' 'b' are on the Alpha layer.
 
 Pressing the "Sym" layer key locks the Sym layer.
 Symbols '-' '=' are on the Sym layer.
@@ -39,7 +39,7 @@ Scanner_uC scanner(LOW, readPins, readPinCount);
 
 // =================== CODES ===================
 // ---------------- LAYER CODE -----------------
-enum layers { NORMAL, SYM };
+enum layers { ALPHA, SYM };
 
 LayerState layerState;
 
@@ -47,10 +47,10 @@ LayerState layerState;
 The Code_LayerLock constructor has two parameters:
  1) the layerId that becomes the active layer when the key is pressed 
  2) a LayerState that will keep track of the active layer
-When l_normal is pressed, NORMAL becomes the active layer.
+When l_normal is pressed, ALPHA becomes the active layer.
 When l_sym is pressed, SYM becomes the active layer.
 */
-Code_LayerLock l_normal(NORMAL, layerState);
+Code_LayerLock l_normal(ALPHA, layerState);
 Code_LayerLock l_sym(SYM, layerState);
 
 // ---------------- SCAN CODES -----------------
@@ -60,11 +60,11 @@ Code_Sc s_minus(KEY_MINUS);
 Code_Sc s_equal(KEY_EQUAL);
 
 // =================== KEYS ====================
-Key* const ptrsCodes_00[] = { &s_a, &s_minus };
-Key_LayeredKeys k_00(ptrsCodes_00);
+Key* const ptrsKeys_00[] = { &s_a, &s_minus };
+Key_LayeredKeys k_00(ptrsKeys_00);
 
-Key* const ptrsCodes_01[] = { &s_b, &s_equal };
-Key_LayeredKeys k_01(ptrsCodes_01);
+Key* const ptrsKeys_01[] = { &s_b, &s_equal };
+Key_LayeredKeys k_01(ptrsKeys_01);
 
 LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
 

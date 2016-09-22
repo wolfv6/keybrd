@@ -7,7 +7,7 @@ This sketch:
 | Layout | **0** | **1** | **2** |
 |:------:|:-----:|:-----:|:-----:|
 |  **0** | a - 1 | b =   | c Num |
-|  **1** |Normal | Sym   | Enter |
+|  **1** | Alpha |  Sym  | Enter |
 
 */
 // ################## GLOBAL ###################
@@ -36,13 +36,16 @@ Scanner_uC scanner(LOW, readPins, readPinCount);
 
 // =================== CODES ===================
 // ---------------- LAYER CODE -----------------
-enum layers { NORMAL, SYM };
+enum layers { ALPHA, SYM };
 
 LayerState layerState;
 
-Code_LayerLock l_normal(NORMAL, layerState);
+Code_LayerLock l_normal(ALPHA, layerState);
 Code_LayerLock l_sym(SYM, layerState);
 
+/*
+Key_LayeredKeys are associated with layerState.
+*/
 LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
 
 // ---------------- SUBLAYER CODE --------------
@@ -52,6 +55,9 @@ LayerState sublayerState;
 
 Code_LayerHold l_num(SUBNUM, sublayerState);
 
+/*
+Key_LayeredScSc is associated with layerState.
+*/
 LayerStateInterface& Key_LayeredScSc::refLayerState = sublayerState;
 
 // ---------------- SCAN CODES -----------------
@@ -74,18 +80,17 @@ Key_LayeredScSc sub_00(KEY_MINUS, KEY_1);
 
 /*
 k_sub00 is nested in k_00.
-The key k_00 contains code and key for layerIds NORMAL and SYS.
-Notice that k_sub00 is of type Key_LayeredKeys1, while k_00 is of type Key_LayeredKeys.
+The key k_00 contains code and key for layerIds ALPHA and SYM.
 k_sub00 and k_00 are associated with distinct LayerStates.
 */
-Key* const ptrsCodes_00[] = { &s_a, &sub_00 };
-Key_LayeredKeys k_00(ptrsCodes_00);
+Key* const ptrsKeys_00[] = { &s_a, &sub_00 };
+Key_LayeredKeys k_00(ptrsKeys_00);
 
-Key* const ptrsCodes_01[] = { &s_b, &s_equal };
-Key_LayeredKeys k_01(ptrsCodes_01);
+Key* const ptrsKeys_01[] = { &s_b, &s_equal };
+Key_LayeredKeys k_01(ptrsKeys_01);
 
-Key* const ptrsCodes_02[] = { &s_c, &l_num };
-Key_LayeredKeys k_02(ptrsCodes_02);
+Key* const ptrsKeys_02[] = { &s_c, &l_num };
+Key_LayeredKeys k_02(ptrsKeys_02);
 
 // =================== ROWS ====================
 Key* const ptrsKeys_0[] = { &k_00, &k_01, &k_02 };

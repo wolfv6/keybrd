@@ -6,8 +6,8 @@ This sketch:
 
 | Layout | **0** | **1** |
 |:------:|-------|-------|
-|  **0** | shift | a  !  |
-|  **1** | fn    | b  @  |
+|  **0** | a  !  | b  @  |
+|  **1** |  fn   | shift |
 
 The layered keys in row 0 have two layers; one character for each layer.
 Letters 'a' and 'b' are on the normal layer.  Symbols '!' and '@' are one the fn layer.
@@ -74,7 +74,7 @@ const uint8_t Code_AutoShift::shiftCount = sizeof(ptrsS)/sizeof(*ptrsS);
 
 /*
 HOW SHIFT WORKS
-When a shift key is pressed, a standard keyboard driver will temporarily modify the normal action of another key when pressed together.
+When a shift key is pressed, a standard keyboard driver will temporarily modify the action of other scancodes.
     KEY_1 writes '1'
     MODIFIERKEY_LEFT_SHIFT + KEY_1 writes '!'
 
@@ -90,21 +90,21 @@ When the user presses '!' or '@' on the fn layer:
 */
 
 // =================== KEYS ====================
-Key* const ptrsCodes_01[] = { &s_a, &s_exclamation };
-Key_LayeredKeys k_01(ptrsCodes_01);
+Key* const ptrsKeys_00[] = { &s_a, &s_exclamation };
+Key_LayeredKeys k_00(ptrsKeys_00);
 
-Key* const ptrsCodes_11[] = { &s_b, &s_at };
-Key_LayeredKeys k_11(ptrsCodes_11);
+Key* const ptrsKeys_01[] = { &s_b, &s_at };
+Key_LayeredKeys k_01(ptrsKeys_01);
 
 LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
 
 // =================== ROWS ====================
-Key* const ptrsKeys_0[] = { &s_shift, &k_01 };
+Key* const ptrsKeys_0[] = { &k_00, &k_01 };
 uint8_t keyCount_0 = sizeof(ptrsKeys_0)/sizeof(*ptrsKeys_0);
 Row row_0(scanner, 0, ptrsKeys_0, keyCount_0);
 //Row row_0(0, readPins, READ_PIN_COUNT, ptrsKeys_0);
 
-Key* const ptrsKeys_1[] = { &l_fn,  &k_11 };
+Key* const ptrsKeys_1[] = { &l_fn, &s_shift };
 uint8_t keyCount_1 = sizeof(ptrsKeys_1)/sizeof(*ptrsKeys_1);
 Row row_1(scanner, 1, ptrsKeys_1, keyCount_1);
 //Row row_1(1, readPins, READ_PIN_COUNT, ptrsKeys_1);

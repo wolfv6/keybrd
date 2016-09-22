@@ -40,7 +40,7 @@ Its layout has 52 keys, 3 primary layers, 5 sub-layers, 2 matrices, 8 LEDs, and 
 
 [keybrd_DH_library_developer_guide.md](https://github.com/wolfv6/keybrd_DH/blob/master/doc/keybrd_DH_library_developer_guide.md)<br>
 [mainSketch.ino](https://github.com/wolfv6/keybrd_DH/blob/master/examples/keybrd_DH/mainSketch.cpp)<br>
-[instantiations_pins.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_pins.h)<br>
+[instantiations_scannersLEDs.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_pins.h)<br>
 [instantiations_scancodes.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_scancodes.h)<br>
 [instantiations_layercodes.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_layercodes.h)<br>
 [instantiations_rows_L.h](https://github.com/wolfv6/keybrd_DH/blob/master/src/instantiations_rows_L.h)<br>

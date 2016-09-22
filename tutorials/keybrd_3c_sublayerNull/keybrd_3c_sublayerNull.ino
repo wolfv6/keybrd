@@ -7,7 +7,7 @@ This sketch:
 | Layout | **0** | **1** | **2** |
 |:------:|:-----:|:-----:|:-----:|
 |  **0** | a - 1 | b =   | c Num |
-|  **1** |Normal | Sym   | Enter |
+|  **1** | Alpha |  Sym  | Enter |
 
 */
 // ################## GLOBAL ###################
@@ -38,11 +38,11 @@ Scanner_uC scanner(LOW, readPins, readPinCount);
 /* ---------------- LAYER CODE -----------------
 One LayerState object manages all 3 layers.
 */
-enum layers { NORMAL, SYM, NUM };
+enum layers { ALPHA, SYM, NUM };
 
 LayerState layerState;
 
-Code_LayerLock l_normal(NORMAL, layerState);
+Code_LayerLock l_normal(ALPHA, layerState);
 Code_LayerLock l_sym(SYM, layerState);
 Code_LayerHold l_num(NUM, layerState);
 
@@ -68,22 +68,22 @@ The layout has one key with 3 layers, and two keys with 2 layers.
 But the layer scheme has 3 layers for all three keys.
 The extra layers are filled with duplicate codes and null codes.
 */
-Key* const ptrsCodes_00[] = { &s_a, &s_minus, &s_1 };
-Key_LayeredKeys k_00(ptrsCodes_00);
+Key* const ptrsKeys_00[] = { &s_a, &s_minus, &s_1 };
+Key_LayeredKeys k_00(ptrsKeys_00);
 
 /*
 s_equal is duplicated in layer 2.
 */
-Key* const ptrsCodes_01[] = { &s_b, &s_equal, &s_equal };
-Key_LayeredKeys k_01(ptrsCodes_01);
+Key* const ptrsKeys_01[] = { &s_b, &s_equal, &s_equal };
+Key_LayeredKeys k_01(ptrsKeys_01);
 
 /*
 code_null occupies layer 2.  Class Code_Null doesn't do anything.  It is useful for blank codes.
 Remember to fill all layers with codes.
-If the code_null were omitted from the array, dereferencing ptrsCodes_02[2] could cause a crash.
+If the code_null were omitted from the array, dereferencing ptrsKeys_02[2] could cause a crash.
 */
-Key* const ptrsCodes_02[] = { &s_c, &l_num, &code_null };
-Key_LayeredKeys k_02(ptrsCodes_02);
+Key* const ptrsKeys_02[] = { &s_c, &l_num, &code_null };
+Key_LayeredKeys k_02(ptrsKeys_02);
 
 // =================== ROWS ====================
 Key* const ptrsKeys_0[] = { &k_00, &k_01, &k_02 };

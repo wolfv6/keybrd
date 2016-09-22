@@ -13,9 +13,9 @@ Using smaller types on a 32-bit uC (Teensy LC) would accomplish nothing.
     For Scanner_ShiftRegsPISO: read_pins_t bits >= Scanner_ShiftRegsPISO::byte_count * 8
    (For Scanner_IOE: I/O expanders are assumed to have 8 bits per port or less)
 */
-typedef uint8_t read_pins_t;
+//typedef uint8_t read_pins_t;
 //typedef uint16_t read_pins_t;
-//typedef uint32_t read_pins_t;
+typedef uint32_t read_pins_t;
 
 /* SAMPLE_COUNT_MACRO is used in Debouncer_Samples.h
 SAMPLE_COUNT_MACRO = 4 is very reliable for a keyboard.

@@ -1,4 +1,4 @@
-/* tutorial_4a_split_keyboard_with_shift_registers.ino
+/* tutorial_4b_split_keyboard_with_shift_registers.ino
 Tested on Teensy LC and two 74HC165 shift registers.
 
 The right matrix has 2 shift registers daisy chained.
@@ -19,7 +19,6 @@ The right matrix has 2 shift registers daisy chained.
 #include <Row.h>
 
 //Right matrix
-//#include <SPI.h>//needed?? todo
 #include <Scanner_ShiftRegsPISOSingleRow.h>
 
 // =============== CONFIGURATION ===============
@@ -45,13 +44,20 @@ Code_Sc s_4(KEY_4);
 Code_Sc s_5(KEY_5);
 Code_Sc s_6(KEY_6);
 
-// =============== LEFT MATRIX =================
+// ================= SCANNERS ==================
+// --------------- LEFT SCANNER ----------------
 uint8_t readPins_L[] = {14};
 uint8_t readPinCount_L = sizeof(readPins_L)/sizeof(*readPins_L);
 
 Scanner_uC scanner_L(LOW, readPins_L, readPinCount_L); //active LOW
 
-//rows
+/* --------------- RIGHT SCANNER ---------------
+use slaveSelect pin SS (Arduino pin 10) for fastest scan
+*/
+Scanner_ShiftRegsPISOSingleRow scanner_R(HIGH, SS, 2); //active HIGH
+
+// =================== ROWS ====================
+// ----------------- LEFT ROWS -----------------
 Key* ptrsKeys_L0[] = { &s_x };
 uint8_t KEY_COUNT_L0 = sizeof(ptrsKeys_L0)/sizeof(*ptrsKeys_L0);
 Row row_L0(scanner_L, 0, ptrsKeys_L0, KEY_COUNT_L0);
@@ -60,11 +66,7 @@ Key* ptrsKeys_L1[] = { &s_y };
 uint8_t KEY_COUNT_L1 = sizeof(ptrsKeys_L1)/sizeof(*ptrsKeys_L1);
 Row row_L1(scanner_L, 1, ptrsKeys_L1, KEY_COUNT_L1);
 
-// =============== RIGHT MATRIX ================
-//use slaveSelect pin SS (Arduino pin 10) for fastest scan
-Scanner_ShiftRegsPISOSingleRow scanner_R(HIGH, SS, 2); //active HIGH
-
-//rows
+// ----------------- RIGHT ROWS ----------------
 Key* ptrsKeys_R0[] = { &s_6, &s_5, &s_4, &s_3,  //shift register on right
                        &s_c, &s_d, &s_e, &s_f,
                        &s_2, &s_1, &s_0, &s_g,  //shift register on left
@@ -75,7 +77,6 @@ Row row_R0(scanner_R, 0, ptrsKeys_R0, sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0));
 void setup()
 {
     Keyboard.begin();
-    SPI.begin();//todo move to begin()
     scanner_R.begin();
 }
 

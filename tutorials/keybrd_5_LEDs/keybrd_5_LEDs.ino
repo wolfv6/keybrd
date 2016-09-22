@@ -72,11 +72,11 @@ Code_Sc s_1(KEY_1);
 Code_Sc s_2(KEY_2);
 
 // =================== KEYS ====================
-Key* const ptrsCodes_01[] = { &s_a, &s_1 };
-Key_LayeredKeys k_01(ptrsCodes_01);
+Key* const ptrsKeys_01[] = { &s_a, &s_1 };
+Key_LayeredKeys k_01(ptrsKeys_01);
 
-Key* const ptrsCodes_11[] = { &s_b, &s_2 };
-Key_LayeredKeys k_11(ptrsCodes_11);
+Key* const ptrsKeys_11[] = { &s_b, &s_2 };
+Key_LayeredKeys k_11(ptrsKeys_11);
 
 LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
 

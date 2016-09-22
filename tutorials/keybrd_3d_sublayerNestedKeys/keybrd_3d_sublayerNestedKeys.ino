@@ -7,7 +7,7 @@ This sketch:
 | Layout | **0** | **1** | **2** |
 |:------:|:-----:|:-----:|:-----:|
 |  **0** | a - 1 | b =   | c Num |
-|  **1** |Normal | Sym   | Enter |
+|  **1** | Alpha |  Sym  | Enter |
 
 */
 // ################## GLOBAL ###################
@@ -36,11 +36,11 @@ Scanner_uC scanner(LOW, readPins, readPinCount);
 
 // =================== CODES ===================
 // ----------------- LAYER CODE ----------------
-enum layers { NORMAL, SYM };
+enum layers { ALPHA, SYM };
 
 LayerState layerState;
 
-Code_LayerLock l_normal(NORMAL, layerState);
+Code_LayerLock l_normal(ALPHA, layerState);
 Code_LayerLock l_sym(SYM, layerState);
 
 /*
@@ -49,8 +49,7 @@ Key_LayeredKeys are associated with layerState.
 LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
 
 /* ---------------- SUBLAYER CODE --------------
-Sublayers are implemented just like main layers.
-Here the Num sublayer is given it's own proper LayerState.
+Sublayers are implemented just like primary layers.
 */
 enum subLayers { SUBSYM, SUBNUM };
 
@@ -80,23 +79,23 @@ Code_Sc s_1(KEY_1);
 The key k_sub00 contains codes for layerIds SUBSYM and SUBNUM.
 (The Num sublayer only has one key because small example.  Usually sublayers have multiple keys.)
 */
-Key* const ptrsCodes_sub00[] = { &s_minus, &s_1 };
-Key_LayeredKeys1 k_sub00(ptrsCodes_sub00);
+Key* const ptrsKeys_sub00[] = { &s_minus, &s_1 };
+Key_LayeredKeys1 k_sub00(ptrsKeys_sub00);
 
 /*
 k_sub00 is nested in k_00.
-The key k_00 contains code and key for layerIds NORMAL and SYS.
+The key k_00 contains code and key for layerIds ALPHA and SYM.
 Notice that k_sub00 is of type Key_LayeredKeys1, while k_00 is of type Key_LayeredKeys.
 k_sub00 and k_00 are associated with distinct LayerStates.
 */
-Key* const ptrsCodes_00[] = { &s_a, &k_sub00 };
-Key_LayeredKeys k_00(ptrsCodes_00);
+Key* const ptrsKeys_00[] = { &s_a, &k_sub00 };
+Key_LayeredKeys k_00(ptrsKeys_00);
 
-Key* const ptrsCodes_01[] = { &s_b, &s_equal };
-Key_LayeredKeys k_01(ptrsCodes_01);
+Key* const ptrsKeys_01[] = { &s_b, &s_equal };
+Key_LayeredKeys k_01(ptrsKeys_01);
 
-Key* const ptrsCodes_02[] = { &s_c, &l_num };
-Key_LayeredKeys k_02(ptrsCodes_02);
+Key* const ptrsKeys_02[] = { &s_c, &l_num };
+Key_LayeredKeys k_02(ptrsKeys_02);
 
 // =================== ROWS ====================
 Key* const ptrsKeys_0[] = { &k_00, &k_01, &k_02 };
