@@ -24,8 +24,7 @@ This layout table shows left and right matrices:
 
 //right matrix
 #include <PortIOE.h>
-#include <PortWrite_MCP23S17.h>
-#include <PortRead_MCP23S17.h>
+#include <PortMCP23S17.h>
 #include <Scanner_IOE.h>
 #include <LED_IOE.h>
 
@@ -42,20 +41,15 @@ Scanner_uC scanner_L(LOW, readPins, READPIN_COUNT);
 const uint8_t PortIOE::DEVICE_ADDR = 0x20;      //MCP23S17 address with all 3 ADDR pins are grounded
 
 PortIOE port_A(0);
-PortRead_MCP23S17 portRead(port_A, 1<<0 | 1<<1 );
-PortWrite_MCP23S17 portWriteA(port_A); //for LED
-//todo portWriteA(port_A) instantiation would not be needed if PortRead_MCP23S17 had write()
-//  consider moving PortWrite_MCP23S17::write to Port_MCP23S17 (parent)
-//  and passing portRead to LED_IOE
-//  same for PCA9655E
+PortMCP23S17 portRead(port_A, 1<<0 | 1<<1 );
 
 PortIOE port_B(1);
-PortWrite_MCP23S17 portWrite(port_B);
+PortMCP23S17 portWrite(port_B, 0);
 
 Scanner_IOE scanner_R(LOW, portWrite, portRead);
 
 // ================ RIGHT LEDs =================
-LED_IOE LED_CapsLck(portWriteA, 1<<6); //tested LED on port A (read)
+//LED_IOE LED_CapsLck(portRead, 1<<6); //tested LED on port A (read)
 //LED_IOE LED_CapsLck(portWrite, 1<<6);//tested LED on port B (write)
 
 // =================== CODES ===================
@@ -68,7 +62,8 @@ Code_Sc s_1(KEY_1);
 Code_Sc s_2(KEY_2);
 Code_Sc s_3(KEY_3);
 
-Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_CapsLck);
+Code_Sc o_capsLock(KEY_4);
+//Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_CapsLck);
 
 // =================== ROWS ====================
 // ---------------- LEFT ROWS ------------------
@@ -93,6 +88,7 @@ Row row_R1(scanner_R, 1<<1, ptrsKeys_R1, KEY_COUNT_R1);
 void setup()
 {
     Keyboard.begin();
+delay(7000);
     scanner_R.begin();
 }
 

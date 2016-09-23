@@ -1,15 +1,16 @@
-#ifndef PORTWRITEINTERFACE_H
-#define PORTWRITEINTERFACE_H
+#ifndef PORTINTERFACE_H
+#define PORTINTERFACE_H
 #include <Arduino.h>
 #include <inttypes.h>
 
 /*
 Port classes are the keybrd library's interface to microcontroller ports or I/O expander ports.
 */
-class PortWriteInterface
+class PortInterface
 {
     public:
-        virtual void begin()=0;
+        virtual void begin(const uint8_t strobeOn)=0;
         virtual void write(const uint8_t strobePin, const bool pinLogicLevel)=0;
+        virtual uint8_t read()=0;
 };
 #endif

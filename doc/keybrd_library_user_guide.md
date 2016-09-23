@@ -187,6 +187,13 @@ Hardware items to check:
 * Diode orientation
 * To validate keyboard hardware, modify the simple [keybrd_1_breadboard.ino](../tutorials/keybrd_1_breadboard/keybrd_1_breadboard.ino) sketch.
 
+Debugging:
+Arduino doesn't have a debugger.  You can print values like this:
+    Keyboard.print(" var="); Keyboard.print(var);
+    Keyboard.print(" bitPattern="); Keyboard.println(bitPattern, BIN);
+    delay(200);
+The delay is so prints in a loop don't print too fast.
+
 Keybrd nomenclature
 -------------------
 **[scancode](http://en.wikipedia.org/wiki/Scancode)** -

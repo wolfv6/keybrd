@@ -4,8 +4,7 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <ScannerInterface.h>
-#include <PortWriteInterface.h>
-#include <PortReadInterface.h>
+#include <PortInterface.h>
 
 /* Scanner_IOE uses bit manipulation to read all pins of one port.
 The maximum keys per row is 8, because ports have a maximum of 8 pins each.
@@ -19,11 +18,11 @@ class Scanner_IOE : public ScannerInterface
     private:
         const bool strobeOn;                    //logic level of strobe on, HIGH or LOW
         const bool strobeOff;                   //logic level of strobe off, complement of strobeOn
-        PortWriteInterface& refPortWrite;       //the IC port containing the strobePin
-        PortReadInterface& refPortRead;         //the IC's read port
+        PortInterface& refPortWrite;            //the IC port containing the strobePin
+        PortInterface& refPortRead;             //the IC's read port
     public:
         Scanner_IOE(const bool strobeOn,
-                PortWriteInterface &refPortWrite, PortReadInterface& refPortRead)
+                PortInterface &refPortWrite, PortInterface& refPortRead)
             : strobeOn(strobeOn), strobeOff(!strobeOn),
             refPortWrite(refPortWrite), refPortRead(refPortRead) {}
         void init(const uint8_t strobePin);
