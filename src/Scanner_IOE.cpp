@@ -13,6 +13,7 @@ Initiates communication protocal and configs ports.
 void Scanner_IOE::begin()
 {
     refPortRead.begin(strobeOn);
+    refPortWrite.begin(strobeOn);
 }
 
 /* scan() is called on every iteration of sketch loop().
@@ -23,13 +24,10 @@ read_pins_t Scanner_IOE::scan(const uint8_t strobePin)
 {
     uint8_t readState;                          //bits, 1 means key is pressed, 0 means released
 
-delay(2000);//todo
     //strobe on
     refPortWrite.write(strobePin, strobeOn);
     delayMicroseconds(3);                       //time to stabilize voltage
-    //delayMicroseconds(300);                     //todo
 
-delay(2000);
     //read the port pins
     readState = refPortRead.read();
 

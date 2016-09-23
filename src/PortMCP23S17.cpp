@@ -22,6 +22,9 @@ strobeOn is logic level of strobe on, HIGH or LOW
 MCP23S17 SPI interface is 10 MHz max.
 The electrical limitation to bus speed is bus capacitance and the length of the wires involved.
 Longer wires require lower clock speeds. 
+
+begin() is called from Scanner_IOE::begin() twice, once each for refPortWrite and refPortRead.
+The first 4 lines only need to be called once, but seem to work OK if called a second time.
 */
 void PortMCP23S17::begin(const uint8_t strobeOn)
 {
@@ -41,10 +44,6 @@ void PortMCP23S17::begin(const uint8_t strobeOn)
     {
         pullUp = 0;
     }
-//todo
-Keyboard.print(" strobeOn="); Keyboard.print(strobeOn);
-Keyboard.print(" readPins="); Keyboard.print(readPins, BIN);
-Keyboard.print(" pullUp="); Keyboard.println(pullUp, BIN);
 
     transfer(port.DEVICE_ADDR << 1, port.num, readPins); //configure IODIR
     transfer(port.DEVICE_ADDR << 1, port.num + 0x0C, pullUp); //configure GPPU
@@ -65,13 +64,6 @@ void PortMCP23S17::write(const uint8_t pin, const bool logicLevel)
     {
         port.outputVal |= pin;                  //set pin output to high
     }
-//todo
-//Keyboard.print(" readPins="); Keyboard.print(readPins, BIN);
-Keyboard.print(" pin="); Keyboard.print(pin, BIN);
-Keyboard.print(" logicLevel="); Keyboard.print(logicLevel);
-Keyboard.print(" outputVal="); Keyboard.println(port.outputVal, BIN);
-//Keyboard.print(" ="); Keyboard.print();
-//delay(200);
 
     transfer(port.DEVICE_ADDR << 1, port.num + 0x12, port.outputVal); //set GPIO port to outputVal
 }
