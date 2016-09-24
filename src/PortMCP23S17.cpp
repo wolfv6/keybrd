@@ -17,24 +17,27 @@ uint8_t PortMCP23S17::transfer(const uint8_t command, const uint8_t registerAddr
 
 /* begin() is called from Scanner_IOE::begin().
 Initiates SPI bus and configures I/O pins for read and write.
-strobeOn is logic level of strobe on, HIGH or LOW
 
 MCP23S17 SPI interface is 10 MHz max.
 The electrical limitation to bus speed is bus capacitance and the length of the wires involved.
 Longer wires require lower clock speeds. 
-
-begin() is called from Scanner_IOE::begin() twice, once each for refPortWrite and refPortRead.
-The first 4 lines only need to be called once, but seem to work OK if called a second time.
 */
-void PortMCP23S17::begin(const uint8_t strobeOn)
+void PortMCP23S17::beginProtocol()
 {
-    uint8_t pullUp;                             //bits, GPPU 0=pull-up disabled, 1=pull-up enabled
-
     pinMode(SS, OUTPUT);                        //configure controller's Slave Select pin to output
     digitalWrite(SS, HIGH);                     //disable Slave Select
     SPI.begin();
     SPI.beginTransaction(SPISettings (5000000, MSBFIRST, SPI_MODE0)); //control SPI bus, 5 MHz
     //SPI.endTransaction() not called to release SPI bus because keyboard only has one SPI device
+}
+
+/* begin() is called from Scanner_IOE::begin().
+strobeOn is logic level of strobe on, HIGH or LOW
+configure IODIR and GPPU.
+*/
+void PortMCP23S17::begin(const uint8_t strobeOn)
+{
+    uint8_t pullUp;                             //bits, GPPU 0=pull-up disabled, 1=pull-up enabled
 
     if (strobeOn == LOW)                        //if active low, use internal pull-up resistors
     {

@@ -12,8 +12,9 @@ Initiates communication protocal and configs ports.
 */
 void Scanner_IOE::begin()
 {
-    refPortRead.begin(strobeOn);
+    refPortWrite.beginProtocol();
     refPortWrite.begin(strobeOn);
+    refPortRead.begin(strobeOn);
 }
 
 /* scan() is called on every iteration of sketch loop().

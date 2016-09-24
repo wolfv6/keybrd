@@ -42,6 +42,7 @@ class PortMCP23S17 : public PortInterface
         uint8_t transfer(const uint8_t command, const uint8_t registerAddr, const uint8_t data);
     public:
         PortMCP23S17(PortIOE& port, const uint8_t readPins) : port(port), readPins(readPins) {}
+        void beginProtocol();
         void begin(const uint8_t strobeOn);
         virtual void write(const uint8_t pin, const bool logicLevel);
         virtual uint8_t read();
