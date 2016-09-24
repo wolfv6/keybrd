@@ -35,7 +35,8 @@ The MCP23S17 with all address pins grounded has an device address of 0x20.
 The MCP23S17's /RESET pin is connected to VDD.
 
 The MCP23S17 I/O expander has two ports.  Each port has eight pins.
-Port B is connected to the matrix's rows.  Port A is connected to the matrix's columns.
+Port B is connected to the matrix's rows.
+Port A is connected to the matrix's columns.
 
 Building a split keyboard with I/O Expander
 -------------------------------------------

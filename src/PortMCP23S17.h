@@ -6,8 +6,8 @@
 #include <PortInterface.h>
 
 /*
-readPins are connected to matrix col
-write pin is connected to matrix Row (strobe pin) or LED.
+write pins are connected to matrix Row (strobe pin) or LED.
+readPins are connected to matrix column to read which keys are pressed.
 
 Slave Select is hardcoded to Arduino Pin 10.
 Arduino Pin 10 avoids the speed penalty of digitalWrite.
@@ -20,9 +20,9 @@ MCP23S17 datasheet identifies ports by letters, while class PortMCP23S17 uses po
 readPins parameter configures port's pins.
 
 Example instantiation:
-    const uint8_t Port_MCP23S17::DEVICE_ADDR = 0x20; //MCP23S17 address, all 3 ADDR pins grounded
-    Port_MCP23S17 portB(1, 0);                  //all pins are set to output for strobes and LEDs
-    Port_MCP23S17 portA(0, 1<<0 | 1<<1 );       //1 pins are set to input for reading,
+    const uint8_t IOE_ADDR = 0x20;              //MCP23S17 address, all 3 ADDR pins are grounded
+    Port_MCP23S17 portB(IOE_ADDR, 1, 0);        //all pins are set to output for strobes and LEDs
+    Port_MCP23S17 portA(IOE_ADDR, 0, 1<<0 | 1<<1 ); //first two pins are set to input for reading,
                                                 //remaining pins can be used for LEDs
 
 Diode orientation
@@ -39,7 +39,7 @@ class PortMCP23S17 : public PortInterface
         const uint8_t deviceAddr;
         const uint8_t portNum;                  //port identification number
         uint8_t outputVal;                      //bit pattern for strobe and LEDs
-        const uint8_t readPins;                 //bits, IODIR 0=output, 1=input
+        const uint8_t readPins;                 //bit pattern, IODIR 0=output, 1=input
         uint8_t transfer(const uint8_t command, const uint8_t registerAddr, const uint8_t data);
     public:
         PortMCP23S17(const uint8_t deviceAddr, const uint8_t portNum, const uint8_t readPins)

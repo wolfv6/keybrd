@@ -21,9 +21,7 @@ This layout table shows left and right matrices:
 #include <Scanner_uC.h>
 
 //right matrix
-#include <PortIOE.h>
-#include <PortWrite_MCP23S17.h>
-#include <PortRead_MCP23S17.h>
+#include <PortMCP23S17.h>
 #include <Scanner_IOE.h>
 
 // ============ SPEED CONFIGURATION ============
@@ -33,37 +31,28 @@ ScanDelay scanDelay(9000);
 Left matrix rows work the same as the ones in keybrd_2_single-layer.ino
 */
 uint8_t readPins[] = {14, 15};
-const uint8_t READPIN_COUNT = sizeof(readPins)/sizeof(*readPins);
+const uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
 
-Scanner_uC scanner_L(LOW, readPins, READPIN_COUNT);
+Scanner_uC scanner_L(LOW, readPins, readPinCount);
 
 /* =============== RIGHT SCANNER ===============
 The right matrix is scanned by an I/O expander.
-
-The I/O expander device address is configured by hardware pins.
-DEVICE_ADDR is a static variable of class PortIOE.
+The MCP23S17 address is set by grounding or powering pins.
 */
-const uint8_t PortIOE::DEVICE_ADDR = 0x20;      //MCP23S17 address with all 3 ADDR pins are grounded
+const uint8_t IOE_ADDR = 0x20;                  //MCP23S17 address, all 3 ADDR pins are grounded
 
 /*
-port_B stobes the row while port_A reads the colums.
-
-port_A is assigned port identification number 0.
-port_A is assigned to portRead, which reads port_A pins 0 and 1.
+Normally all strobe pins are on one port, and all the read pins are on the other port.
+In this example, portB stobes the row while portA reads the colums.
+PortMCP23S17 constructor parameters are: deviceAddr, portNum, readPins
+readPins is a bit pattern, where 0=output, 1=input.
+In portA, the first two pins are set to input for reading.
 "<<" (bit shift left) and "|" (OR) are bitwise operators.
 Pin numbers to be read are to the right of "1<<" and delimited by "|".
 */
-PortIOE port_A(0);
-PortRead_MCP23S17 portRead(port_A, 1<<0 | 1<<1 );
-
-/*
-port_B is assigned port identification number 1.
-port_B is assigned to portWrite.
-*/
-PortIOE port_B(1);
-PortWrite_MCP23S17 portWrite(port_B);
-
-Scanner_IOE scanner_R(LOW, portWrite, portRead);
+PortMCP23S17 portA(IOE_ADDR, 0, 1<<0 | 1<<1 );
+PortMCP23S17 portB(IOE_ADDR, 1, 0);
+Scanner_IOE scanner_R(LOW, portB, portA);
 
 // =================== CODES ===================
 Code_Sc s_a(KEY_A);
