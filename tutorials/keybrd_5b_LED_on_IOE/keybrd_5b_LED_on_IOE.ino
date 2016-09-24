@@ -27,7 +27,6 @@ This layout table shows left and right matrices:
 #include <LED_uC.h>
 
 //right matrix
-#include <PortIOE.h>
 #include <PortMCP23S17.h>
 #include <Scanner_IOE.h>
 #include <LED_IOE.h>
@@ -47,19 +46,15 @@ LED_uC LED_CapsLck(21);
 
 // =============== RIGHT ===============
 // --------------- RIGHT SCANNER ---------------
-const uint8_t PortIOE::DEVICE_ADDR = 0x20;      //MCP23S17 address with all 3 ADDR pins are grounded
+const uint8_t PortMCP23S17::DEVICE_ADDR = 0x20; //MCP23S17 address, all 3 ADDR pins are grounded
+PortMCP23S17 portA(0, 1<<0 | 1<<1 );            //for read and LED
+PortMCP23S17 portB(1, 0);                       //for strobe and LED
 
-PortIOE port_A(0);
-PortMCP23S17 portRead(port_A, 1<<0 | 1<<1 );//read and LED
-
-PortIOE port_B(1);
-PortMCP23S17 portWrite(port_B, 0);  //write to strobe and LED
-
-Scanner_IOE scanner_R(LOW, portWrite, portRead);
+Scanner_IOE scanner_R(LOW, portB, portA);
 
 // ---------------- RIGHT LEDs -----------------
-LED_IOE LED_normal(portRead, 1<<5); //port A
-LED_IOE LED_fn(portWrite, 1<<4);    //port B
+LED_IOE LED_normal(portA, 1<<5);
+LED_IOE LED_fn(portB, 1<<4);
 
 // =================== CODES ===================
 // ---------------- LAYER CODE -----------------

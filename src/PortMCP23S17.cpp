@@ -2,7 +2,8 @@
 
 /* transfer() writes data to registerAddr, reads portSate from registerAddr, and returns portState.
 */
-uint8_t PortMCP23S17::transfer(const uint8_t command, const uint8_t registerAddr, const uint8_t data)
+uint8_t PortMCP23S17::transfer(const uint8_t command, const uint8_t registerAddr,
+        const uint8_t data)
 {
     uint8_t portState;                          //bit pattern
 
@@ -27,7 +28,7 @@ void PortMCP23S17::beginProtocol()
     pinMode(SS, OUTPUT);                        //configure controller's Slave Select pin to output
     digitalWrite(SS, HIGH);                     //disable Slave Select
     SPI.begin();
-    SPI.beginTransaction(SPISettings (5000000, MSBFIRST, SPI_MODE0)); //control SPI bus, 5 MHz
+    SPI.beginTransaction( SPISettings(5000000, MSBFIRST, SPI_MODE0) ); //control SPI bus, 5 MHz
     //SPI.endTransaction() not called to release SPI bus because keyboard only has one SPI device
 }
 
@@ -48,8 +49,8 @@ void PortMCP23S17::begin(const uint8_t strobeOn)
         pullUp = 0;
     }
 
-    transfer(port.DEVICE_ADDR << 1, port.num, readPins); //configure IODIR
-    transfer(port.DEVICE_ADDR << 1, port.num + 0x0C, pullUp); //configure GPPU
+    transfer(DEVICE_ADDR << 1, portNum, readPins); //configure IODIR
+    transfer(DEVICE_ADDR << 1, portNum + 0x0C, pullUp); //configure GPPU
 }
 
 /* write() sets pin output to logicLevel (useful for strobePin, one LED pin, or multiple pins).
@@ -61,19 +62,19 @@ void PortMCP23S17::write(const uint8_t pin, const bool logicLevel)
 {
     if (logicLevel == LOW)
     {
-        port.outputVal &= ~pin;                 //set pin output to low
+        outputVal &= ~pin;                 //set pin output to low
     }
     else
     {
-        port.outputVal |= pin;                  //set pin output to high
+        outputVal |= pin;                  //set pin output to high
     }
 
-    transfer(port.DEVICE_ADDR << 1, port.num + 0x12, port.outputVal); //set GPIO port to outputVal
+    transfer(DEVICE_ADDR << 1, portNum + 0x12, outputVal); //set GPIO port to outputVal
 }
 
 /* read() returns portState.  Only portState pins with pull resistors are valid.
 */
 uint8_t PortMCP23S17::read()
 {
-    return transfer( (port.DEVICE_ADDR << 1) | 1, port.num + 0x12, 0); //read from GPIO
+    return transfer( (DEVICE_ADDR << 1) | 1, portNum + 0x12, 0); //read from GPIO
 }
