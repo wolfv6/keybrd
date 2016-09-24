@@ -49,7 +49,7 @@ PortMCP23S17 portWrite(port_B, 0);
 Scanner_IOE scanner_R(LOW, portWrite, portRead);
 
 // ================ RIGHT LEDs =================
-//LED_IOE LED_CapsLck(portRead, 1<<6); //tested LED on port A (read)
+LED_IOE LED_CapsLck(portRead, 1<<6); //tested LED on port A (read)
 //LED_IOE LED_CapsLck(portWrite, 1<<6);//tested LED on port B (write)
 
 // =================== CODES ===================
@@ -62,8 +62,7 @@ Code_Sc s_1(KEY_1);
 Code_Sc s_2(KEY_2);
 Code_Sc s_3(KEY_3);
 
-Code_Sc o_capsLock(KEY_4);
-//Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_CapsLck);
+Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_CapsLck);
 
 // =================== ROWS ====================
 // ---------------- LEFT ROWS ------------------

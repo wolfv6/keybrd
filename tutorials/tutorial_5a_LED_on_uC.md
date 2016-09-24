@@ -1,5 +1,5 @@
-Tutorial 5 - indicator LEDs
-===========================
+Tutorial 5a - indicator LEDs
+============================
 Keyboards often have LEDs to indicate CapsLock, NumLock, and other states.
 It's one of the first things we look at when a keyboard produces unexpected results.
 
@@ -9,44 +9,49 @@ The breadboard keyboard modifies the basic breadboard keyboard described in [tut
 
 Add components to the breadboard as shown in the picture.
 
-The three clear plastic cylinders are LEDs.
-LED anodes (the longer lead) are powered by 4.7k Ohm current limiting resistors connected to pins 16, 17, and 21.
-LED cathodes (the shorter lead) are grounded by a common terminal strip.
+The three clear plastic cylinders are red and yellow LEDs.
+Each LED is in series with a 4.7k Ohm current limiting resistor.
+LED anodes (the longer lead) are powered by pins 16, 17, and 21.
+LED cathodes (the shorter lead) are connected to a grounded terminal strip.
 
 !["LEDs"](keybrd_5_LEDs/LEDs_back.JPG "LEDs")
 
-keybrd sketch for driving LEDs
-------------------------------
-[keybrd_5_LEDs.ino](keybrd_5_LEDs/keybrd_5_LEDs.ino) is a simple sketch with three LEDs.
-The sketch will run on the above breadboard keyboard.
+keybrd sketch with LEDs
+-----------------------
+The [keybrd_5a_LED_on_uC.ino](keybrd_5a_LED_on_uC/keybrd_5a_LED_on_uC.ino) sketch will run on the above breadboard keyboard.
 As usual, the sketch annotations explain the code.
+
+LED forward voltage
+-------------------
+Forward voltage is the voltage used by the LED.
+Forward voltage is published in the LED's datasheet.
+
+Most blue and green LEDs have about 3.3 forward voltage, which does not reliably illuminate on Teensy LC's 3.3 volts.
+Most red and yellow LEDs have around 2.2 forward voltage.
+So use red and yellow LEDs on Teensy LC.
+Low-current LEDs can go as low as 1.6 forward voltage.
 
 LED brightness
 --------------
-An LED's current limiting resistor value effects the brightness of the LED.
-Lets see how much visual difference resistance makes.
-Replace an LED's 4.7k Ohm resistor with a 270 Ohm resistor.
+The amount of current (I) going through an LED is directly proportional to how bright it appears.
+By picking the correct resistor, you have full control over how bright the LED appears.
 
-It doesn't matter which end of the LED the resistor is on, the important thing is that the resistor and LED are in series.
+Lets see how much visual difference resistance makes.
+Replace an LED's 4.7k Ohm resistor with a 68 Ohm resistor.
 
 Less resistance makes the LED brighter.
 Too little resistance will burn out the LED.
-Connecting an LED directly to power will destroy the LED in a bright flash (do not look directly at the LED if you try this).
-
-2-mA LEDs are bright enough for keyboard indicator lights.
-Or you can use more resistance on a 20-mA LED to make it dimmer.
+The current supplied to an LED should always be limited by a resistor or some other device.
 
 LED current limiting resistor values
 ------------------------------------
-Never connect an LED directly from ground to power.  Doing so would destroy the LED.
-
 This formula calculates the minimum resistance for maximum LED brightness:
 ```
 output-pin Supply Voltage   Vs
 LED Forward Voltage         Vf
 Forward Current             If
 
-minimum current limiting restiance  R = (Vs - Vf) / If
+From Ohm's Law, minimum current limiting restiance  R = (Vs - Vf) / If
 ```
 
 For Forward Current, use the smaller of: 
@@ -59,14 +64,23 @@ Teensy LC output-pin capacities are:
 * Teensy LC on-board LED is on pin 13.
   It has a current-limiting resistor on the board, and does not provide enough power for another LED.
 
+Voltages and current capacities are published in datasheets and sometimes pinout diagrams.
 For Teensy LC 20 mA pin and the TT Electronics OVLLx8C7 LED:
 ```
 output-pin Supply Voltage   Vs = 3.3 volts
 LED Forward Voltage         Vf = 2.2 volts
+
+use the smaller of:
 max pin Current             If = 20 mA
-max LED Current             If = 20 mA
+max LED Current             If = 30 mA
 
 minimum current limiting restiance  R = (Vs - Vf) / If = 55 Ohms
+```
+Add a safety margin for resistor tolerances (1%, 2%, 5%, 10%), and round up to a standard value.
+ http://www.rfcafe.com/references/electrical/resistor-values.htm
+
+```
+    55 Ohms + (55 Ohms * 10%) = 60.5 Ohms < 68 Ohms
 ```
 It is safe to use more resistance.
 
@@ -88,7 +102,6 @@ From your LED's  datasheet, find:
 * Continuous Forward Current (mA)
 
 Calculate the minimum resistance needed for your LED and Supply Voltage.
-There are several "LED current limiting resistor calculators" on line.
 
 <br>
 <a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">keybrd tutorial</span> by <a xmlns:cc="https://creativecommons.org/ns" href="https://github.com/wolfv6/keybrd" property="cc:attributionName" rel="cc:attributionURL">Wolfram Volpi</a> is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="https://creativecommons.org/ns" href="https://github.com/wolfv6/keybrd/issues/new" rel="cc:morePermissions">https://github.com/wolfv6/keybrd/issues/new</a>.
