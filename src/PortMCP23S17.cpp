@@ -30,6 +30,7 @@ void PortMCP23S17::beginProtocol()
     SPI.begin();
     SPI.beginTransaction( SPISettings(5000000, MSBFIRST, SPI_MODE0) ); //control SPI bus, 5 MHz
     //SPI.endTransaction() not called to release SPI bus because keyboard only has one SPI device
+    //if two IOEs are used, move beginTransaction() endTransaction() to write() read() functions
 }
 
 /* begin() is called from Scanner_IOE::begin().
@@ -49,8 +50,8 @@ void PortMCP23S17::begin(const uint8_t strobeOn)
         pullUp = 0;
     }
 
-    transfer(DEVICE_ADDR << 1, portNum, readPins); //configure IODIR
-    transfer(DEVICE_ADDR << 1, portNum + 0x0C, pullUp); //configure GPPU
+    transfer(deviceAddr << 1, portNum, readPins); //configure IODIR
+    transfer(deviceAddr << 1, portNum + 0x0C, pullUp); //configure GPPU
 }
 
 /* write() sets pin output to logicLevel (useful for strobePin, one LED pin, or multiple pins).
@@ -69,12 +70,12 @@ void PortMCP23S17::write(const uint8_t pin, const bool logicLevel)
         outputVal |= pin;                  //set pin output to high
     }
 
-    transfer(DEVICE_ADDR << 1, portNum + 0x12, outputVal); //set GPIO port to outputVal
+    transfer(deviceAddr << 1, portNum + 0x12, outputVal); //set GPIO port to outputVal
 }
 
 /* read() returns portState.  Only portState pins with pull resistors are valid.
 */
 uint8_t PortMCP23S17::read()
 {
-    return transfer( (DEVICE_ADDR << 1) | 1, portNum + 0x12, 0); //read from GPIO
+    return transfer( (deviceAddr << 1) | 1, portNum + 0x12, 0); //read from GPIO
 }

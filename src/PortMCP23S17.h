@@ -36,14 +36,14 @@ MCP23S17 data sheet
 class PortMCP23S17 : public PortInterface
 {
     private:
-        static const uint8_t DEVICE_ADDR;
+        const uint8_t deviceAddr;
         const uint8_t portNum;                  //port identification number
         uint8_t outputVal;                      //bit pattern for strobe and LEDs
         const uint8_t readPins;                 //bits, IODIR 0=output, 1=input
         uint8_t transfer(const uint8_t command, const uint8_t registerAddr, const uint8_t data);
     public:
-        PortMCP23S17(const uint8_t portNum, const uint8_t readPins)
-            : portNum(portNum), outputVal(0), readPins(readPins) {}
+        PortMCP23S17(const uint8_t deviceAddr, const uint8_t portNum, const uint8_t readPins)
+            : deviceAddr(deviceAddr), portNum(portNum), outputVal(0), readPins(readPins) {}
         void beginProtocol();
         void begin(const uint8_t strobeOn);
         virtual void write(const uint8_t pin, const bool logicLevel);

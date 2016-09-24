@@ -46,9 +46,9 @@ LED_uC LED_CapsLck(21);
 
 // =============== RIGHT ===============
 // --------------- RIGHT SCANNER ---------------
-const uint8_t PortMCP23S17::DEVICE_ADDR = 0x20; //MCP23S17 address, all 3 ADDR pins are grounded
-PortMCP23S17 portA(0, 1<<0 | 1<<1 );            //for read and LED
-PortMCP23S17 portB(1, 0);                       //for strobe and LED
+const uint8_t IOE_ADDR = 0x20;                  //MCP23S17 address, all 3 ADDR pins are grounded
+PortMCP23S17 portA(IOE_ADDR, 0, 1<<0 | 1<<1 );  //for read and LED
+PortMCP23S17 portB(IOE_ADDR, 1, 0);             //for strobe and LED
 
 Scanner_IOE scanner_R(LOW, portB, portA);
 
