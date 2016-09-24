@@ -19,7 +19,7 @@ void LayerState::lock(const uint8_t layerId)
     lockedLayer = layerId;
 }
 
-/*Derived classes override setActiveLayer() to also set LED indicator lights e.g. LayerState_LED
+/* Derived classes override setActiveLayer() to also set LED indicator lights e.g. LayerState_LED
 */
 void LayerState::setActiveLayer(const uint8_t layerId)
 {

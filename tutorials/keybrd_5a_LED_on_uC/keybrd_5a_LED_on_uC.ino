@@ -1,4 +1,4 @@
-/* keybrd_5_LEDs.ino
+/* keybrd_5a_LED_on_uC.ino
 
 This sketch:
     is firmware for a simple 2-layer keyboard with three LEDs
