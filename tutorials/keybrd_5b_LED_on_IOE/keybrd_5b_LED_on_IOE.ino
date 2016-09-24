@@ -7,6 +7,7 @@ This sketch:
 
 This layout table shows left and right matrices:
 
+  Controller                I/O expander
 | Left  | **0** | **1** | | Right | **0** | **1** |
 |:-----:|-------|-------|-|:-----:|-------|-------|
 | **1** |CapsLck| a  1  | | **1** | b  2  | c  3  |

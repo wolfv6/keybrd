@@ -1,6 +1,6 @@
 /* keybrd_PCA9655E.ino
 
-  Teensy 2.0 controller     PCA9655E I/O expander
+  Controller                I/O expander
 | Left  | **0** | **1** | | Right | **0** | **1** |
 |:-----:|-------|-------| |:-----:|-------|-------|
 | **1** |   1   |   2   | | **1** |   3   |   4   |
@@ -16,31 +16,25 @@
 #include <Scanner_uC.h>
 
 //right matrix
-#include <PortIOE.h>
-#include <PortWrite_PCA9655E.h>
-#include <PortRead_PCA9655E.h>
+#include <PortPCA9655E.h>
 #include <Scanner_IOE.h>
 
 // ============ SPEED CONFIGURATION ============
 ScanDelay scanDelay(9000);
 
 // ================ LEFT SCANNER ===============
-uint8_t readPins_L[] = {0, 1};
-uint8_t READPIN_COUNT_L = sizeof(readPins_L)/sizeof(*readPins_L);
+uint8_t readPins[] = {0, 1};
+uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
 
-Scanner_uC scanner_L(HIGH, readPins_L, READPIN_COUNT_L);
+Scanner_uC scanner_L(HIGH, readPins, readPinCount);
 
 // =============== RIGHT SCANNER ===============
-const uint8_t PortIOE::DEVICE_ADDR = 0x18;
+const uint8_t IOE_ADDR = 0x18;
 
-PortIOE port_1(1);
-PortWrite_PCA9655E portWrite_1(port_1);
+PortPCA9655E port1(IOE_ADDR, 1, 0);             //for strobe
+PortPCA9655E port0(IOE_ADDR, 0, 1<<0 | 1<<1 );  //for read
 
-PortIOE port_0(0);
-//PortWrite_PCA9655E portWrite_R0(port_0);     //for LEDs
-PortRead_PCA9655E portRead_0(port_0, 1<<0 | 1<<1 );
-
-Scanner_IOE scanner_R(HIGH, portWrite_1, portRead_0);
+Scanner_IOE scanner_R(HIGH, port1, port0);
 
 // =================== CODES ===================
 Code_Sc s_a(KEY_A);
