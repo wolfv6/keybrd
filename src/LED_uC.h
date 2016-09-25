@@ -2,11 +2,11 @@
 #define LED_UC_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include <LED.h>
+#include <LEDInterface.h>
 
 /* A LED_uC turns LED on and off.
 */
-class LED_uC: public LED
+class LED_uC: public LEDInterface
 {
     private:
         const uint8_t pin;                      //Aduino pin that is connected to an LED

@@ -50,7 +50,7 @@ The active layerId is used as an index to dereference the prtsLayerLEDs[] array.
 */
 enum layers { NORMAL, FN };
 
-LED* prtsLayerLEDs[] = { &LED_normal, &LED_fn }; //array index matches enum layerIds
+LEDInterface* prtsLayerLEDs[] = { &LED_normal, &LED_fn }; //array index matches enum layerIds
 LayerState_LED layerState(prtsLayerLEDs);
 
 Code_LayerHold l_fn(FN, layerState);

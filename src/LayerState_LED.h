@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <LayerState.h>
-#include <LED.h>
+#include <LEDInterface.h>
 
 /* Basic LayerState with layer LED indictor lights.
 begin() should be called once to turn on LED for initial active layer.
@@ -12,10 +12,10 @@ begin() should be called once to turn on LED for initial active layer.
 class LayerState_LED : public LayerState
 {
     private:
-        LED*const *const ptrsLEDs;              //array of LEDs, where layerId is array index
+        LEDInterface*const *const ptrsLEDs;    //array of LEDs, where layerId is array index
         virtual void setActiveLayer(const uint8_t layerId);//set active layerId and turn on it's LED
     public:
-        LayerState_LED(LED*const ptrsLEDs[]): ptrsLEDs(ptrsLEDs) {}
+        LayerState_LED(LEDInterface*const ptrsLEDs[]): ptrsLEDs(ptrsLEDs) {}
         void begin();
 };
 #endif

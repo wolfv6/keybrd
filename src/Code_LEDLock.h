@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <Code.h>
-#include <LED.h>
+#include <LEDInterface.h>
 
 extern volatile uint8_t keyboard_leds;
 
@@ -21,11 +21,11 @@ class Code_LEDLock : public Code
     private:
         const uint16_t scancode;
         uint8_t USB_LED_bit;                    //codes used by keyboard output report
-        LED& refLED;                            //indicator on keyboard
+        LEDInterface& refLED;                   //indicator on keyboard
         void updateLED() const;
 
     public:
-        Code_LEDLock(const uint16_t scancode, LED& refLED);
+        Code_LEDLock(const uint16_t scancode, LEDInterface& refLED);
         virtual void press();
         virtual void release();
 };

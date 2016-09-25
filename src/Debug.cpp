@@ -31,7 +31,7 @@ void Debug::printScansPerSecond()
 
 //Sometimes OS takes 6 seconds to recongnize keyboard.
 //wait_for_OS() will blink LED and count up once per second for specified number of seconds.
-void Debug::wait_for_OS(LED& led, const uint8_t seconds)
+void Debug::wait_for_OS(LEDInterface& led, const uint8_t seconds)
 {
     for (uint8_t elapsed = 0; elapsed < seconds; elapsed++)
     {

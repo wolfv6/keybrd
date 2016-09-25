@@ -3,13 +3,13 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <Wire.h>
-#include <LED.h>
+#include <LEDInterface.h>
 #include <PortInterface.h>
 
 /* A LED_IOE object is an I/O expander pin that is connected to an LED indicator light.
 Input/Ouput Direction configuration are set to ouput in PortWrite_*.begin() and PortRead_*.begin(). todo PortRead_*??
 */
-class LED_IOE : public LED
+class LED_IOE : public LEDInterface
 {
     private:
         PortInterface& refPort;

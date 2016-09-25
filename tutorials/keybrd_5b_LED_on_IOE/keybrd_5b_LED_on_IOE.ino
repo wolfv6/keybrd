@@ -28,7 +28,7 @@ This layout table shows left and right matrices:
 #include <LED_uC.h>
 
 //right matrix
-#include <PortMCP23S17.h>
+#include <Port_MCP23S17.h>
 #include <Scanner_IOE.h>
 #include <LED_IOE.h>
 
@@ -47,8 +47,8 @@ LED_uC LED_CapsLck(21);
 
 // --------------- RIGHT SCANNER ---------------
 const uint8_t IOE_ADDR = 0x20;                  //MCP23S17 address, all 3 ADDR pins are grounded
-PortMCP23S17 portA(IOE_ADDR, 0, 1<<0 | 1<<1 );  //for read and LED
-PortMCP23S17 portB(IOE_ADDR, 1, 0);             //for strobe and LED
+Port_MCP23S17 portA(IOE_ADDR, 0, 1<<0 | 1<<1 );  //for read and LED
+Port_MCP23S17 portB(IOE_ADDR, 1, 0);             //for strobe and LED
 
 Scanner_IOE scanner_R(LOW, portB, portA);
 
@@ -60,7 +60,7 @@ LED_IOE LED_fn(portB, 1<<4);
 // ---------------- LAYER CODE -----------------
 enum layers { NORMAL, FN };
 
-LED* prtsLayerLEDs[] = { &LED_normal, &LED_fn }; //array index matches enum layerIds
+LEDInterface* prtsLayerLEDs[] = { &LED_normal, &LED_fn }; //array index matches enum layerIds
 LayerState_LED layerState(prtsLayerLEDs);
 
 Code_LayerHold l_fn(FN, layerState);

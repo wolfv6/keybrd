@@ -2,7 +2,7 @@
 
 /* USB_LED_bit are codes from http://www.usb.org/developers/hidpage/HID1_11.pdf keyboard output report
 */
-Code_LEDLock::Code_LEDLock(const uint16_t scancode, LED& refLED)
+Code_LEDLock::Code_LEDLock(const uint16_t scancode, LEDInterface& refLED)
     : scancode(scancode), refLED(refLED)
 {
     switch (scancode)                           //initilize USB_LED_bit for given scancode
