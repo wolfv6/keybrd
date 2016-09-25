@@ -26,17 +26,14 @@ Keybrd library class inheritance diagram
 
     PortIOE
 
-	           PortWriteInterface
-	              /        \
-	PortWrite_PCA9655E  PortWrite_MCP23S17            (one PortWrite class for each IOE type)
+	       PortInterface
+	         /        \
+	Port_PCA9655E  Port_MCP23S17                (one Port class for each IOE type)
  
-              PortReadInterface
-	             /        \
-	PortRead_PCA9655E  PortRead_MCP23S17              (one PortRead class for each IOE type)
  
-	    _ LED _
+	  LEDInterface
 	   /       \
-	LED_uC    LED_PCA9655E
+	LED_uC    LED_IOE
 
 
 	DebouncerInterface

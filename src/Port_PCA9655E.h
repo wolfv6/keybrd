@@ -1,5 +1,5 @@
-#ifndef PORTPCA9655E_H
-#define PORTPCA9655E_H
+#ifndef PORT_PCA9655E_H
+#define PORT_PCA9655E_H
 #include <Arduino.h>
 #include <inttypes.h>
 #include <Wire.h>
@@ -21,8 +21,8 @@ Instantiation
  ------------
 Example instantiation:
     const uint8_t IOE_ADDR = 0x20;              //PCA9655E address, all 3 ADDR pins are grounded
-    PortPCA9655E  portB(IOE_ADDR, 1, 0);        //all pins are set to output for strobes and LEDs
-    PortPCA9655E  portA(IOE_ADDR, 0, 1<<0 | 1<<1 ); //first two pins are set to input for reading,
+    Port_PCA9655E  portB(IOE_ADDR, 1, 0);       //all pins are set to output for strobes and LEDs
+    Port_PCA9655E  portA(IOE_ADDR, 0, 1<<0 | 1<<1 ); //first two pins are set to input for reading,
                                                 //remaining pins can be used for LEDs
 
 Diode orientation
@@ -34,7 +34,7 @@ PCA9655E data sheet
  http://www.onsemi.com/pub_link/Collateral/PCA9655E-D.PDF
 */
 
-class PortPCA9655E : public PortInterface
+class Port_PCA9655E : public PortInterface
 {
     private:
         const uint8_t deviceAddr;
@@ -42,7 +42,7 @@ class PortPCA9655E : public PortInterface
         uint8_t outputVal;                      //bit pattern for strobe and LEDs
         const uint8_t readPins;                 //bit pattern, IODIR 0=output, 1=input
     public:
-        PortPCA9655E(const uint8_t deviceAddr, const uint8_t portNum, const uint8_t readPins)
+        Port_PCA9655E(const uint8_t deviceAddr, const uint8_t portNum, const uint8_t readPins)
             : deviceAddr(deviceAddr), portNum(portNum), outputVal(0), readPins(readPins) {}
         void beginProtocol();
         void begin(const uint8_t strobeOn);

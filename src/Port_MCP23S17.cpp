@@ -1,4 +1,4 @@
-#include "PortMCP23S17.h"
+#include "Port_MCP23S17.h"
 
 /* transfer() writes data to registerAddr, reads portSate from registerAddr, and returns portState.
 
@@ -6,7 +6,7 @@ MCP23S17 SPI interface is 10 MHz max.
 The electrical limitation to bus speed is bus capacitance and the length of the wires involved.
 Longer wires require lower clock speeds. 
 */
-uint8_t PortMCP23S17::transfer(const uint8_t command, const uint8_t registerAddr,
+uint8_t Port_MCP23S17::transfer(const uint8_t command, const uint8_t registerAddr,
         const uint8_t data)
 {
     uint8_t portState;                          //bit pattern
@@ -24,7 +24,7 @@ uint8_t PortMCP23S17::transfer(const uint8_t command, const uint8_t registerAddr
 
 /* begin() is called from Scanner_IOE::begin().  Initiates SPI bus.
 */
-void PortMCP23S17::beginProtocol()
+void Port_MCP23S17::beginProtocol()
 {
     pinMode(SS, OUTPUT);                        //configure controller's Slave Select pin to output
     digitalWrite(SS, HIGH);                     //disable Slave Select
@@ -35,7 +35,7 @@ void PortMCP23S17::beginProtocol()
 strobeOn is logic level of strobe on, HIGH or LOW
 configure IODIR and GPPU.
 */
-void PortMCP23S17::begin(const uint8_t strobeOn)
+void Port_MCP23S17::begin(const uint8_t strobeOn)
 {
     uint8_t pullUp;                             //bits, GPPU 0=pull-up disabled, 1=pull-up enabled
 
@@ -57,7 +57,7 @@ pin is bit pattern, where pin being set is 1.
 logicLevel is HIGH or LOW.
 write() does not overwrite the other pins.
 */
-void PortMCP23S17::write(const uint8_t pin, const bool logicLevel)
+void Port_MCP23S17::write(const uint8_t pin, const bool logicLevel)
 {
     if (logicLevel == LOW)
     {
@@ -73,7 +73,7 @@ void PortMCP23S17::write(const uint8_t pin, const bool logicLevel)
 
 /* read() returns portState.  Only portState pins with pull resistors are valid.
 */
-uint8_t PortMCP23S17::read()
+uint8_t Port_MCP23S17::read()
 {
     return transfer( (deviceAddr << 1) | 1, portNum + 0x12, 0); //read from GPIO
 }

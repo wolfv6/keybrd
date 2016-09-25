@@ -1,4 +1,4 @@
-#include "PortPCA9655E.h"
+#include "Port_PCA9655E.h"
 
 /* begin() is called from Scanner_IOE::begin().  Initiates I2C bus.
 
@@ -7,7 +7,7 @@ The electrical limitation to bus speed is bus capacitance and the length of the 
 Longer wires require lower clock speeds. 
  http://playground.arduino.cc/Main/WireLibraryDetailedReference > Wire.setclock()
 */
-void PortPCA9655E::beginProtocol()
+void Port_PCA9655E::beginProtocol()
 {
     Wire.begin();                               //initiate I2C bus to 100 kHz
     //Wire.setClock(400000L);                     //set I2C bus to 400 kHz (have not tested 400 kHz)
@@ -17,7 +17,7 @@ void PortPCA9655E::beginProtocol()
 Configures read pins to input.
 strobeOn is not used because PCA9655E has no pull-up resistors.
 */
-void PortPCA9655E::begin(const uint8_t strobeOn)
+void Port_PCA9655E::begin(const uint8_t strobeOn)
 {
     Wire.beginTransmission(deviceAddr);
     Wire.write(portNum + 6);                    //configuration byte command
@@ -30,7 +30,7 @@ pin is bit pattern, where pin being strobed is 1.
 logicLevel is HIGH or LOW.
 write() does not overwrite the other pins.
 */
-void PortPCA9655E::write(const uint8_t pin, const bool logicLevel)
+void Port_PCA9655E::write(const uint8_t pin, const bool logicLevel)
 {
     if (logicLevel == LOW)
     {
@@ -50,7 +50,7 @@ void PortPCA9655E::write(const uint8_t pin, const bool logicLevel)
 /* read() returns portState.
 Only portState bits of readPins are valid.
 */
-uint8_t PortPCA9655E::read()
+uint8_t Port_PCA9655E::read()
 {
     Wire.beginTransmission(deviceAddr);
     Wire.write(portNum);                        //input byte command
