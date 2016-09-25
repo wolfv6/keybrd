@@ -35,7 +35,7 @@ This layout table shows left and right matrices:
 // ============ SPEED CONFIGURATION ============
 ScanDelay scanDelay(9000);
 
-// ================= LEFT PINS =================
+// ==================== IC =====================
 // ---------------- LEFT SCANNER ---------------
 uint8_t readPins[] = {14, 15};
 const uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
@@ -45,7 +45,6 @@ Scanner_uC scanner_L(LOW, readPins, readPinCount);
 // ----------------- LEFT LEDs -----------------
 LED_uC LED_CapsLck(21);
 
-// ================ RIGHT PINS =================
 // --------------- RIGHT SCANNER ---------------
 const uint8_t IOE_ADDR = 0x20;                  //MCP23S17 address, all 3 ADDR pins are grounded
 PortMCP23S17 portA(IOE_ADDR, 0, 1<<0 | 1<<1 );  //for read and LED
