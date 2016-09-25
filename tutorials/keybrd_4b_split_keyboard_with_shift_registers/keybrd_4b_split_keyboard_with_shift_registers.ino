@@ -1,9 +1,7 @@
 /* tutorial_4b_split_keyboard_with_shift_registers.ino
 Tested on Teensy LC and two 74HC165 shift registers.
 
-The right matrix has 2 shift registers daisy chained.
-
-  Layout          Layout
+  Controller      Two shift registers daisy chained
 | Left  |**0**| | Right |**0**|**1**|**2**|**3**|**4**|**5**|**6**|
 |:-----:|-----| |:-----:|-----|-----|-----|-----|-----|-----|-----|
 | **0** |  x  | | **0** |  0  |  1  |  2  |  3  |  4  |  5  |  6  |

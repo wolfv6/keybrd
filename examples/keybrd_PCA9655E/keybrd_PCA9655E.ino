@@ -16,7 +16,7 @@
 #include <Scanner_uC.h>
 
 //right matrix
-#include <PortPCA9655E.h>
+#include <Port_PCA9655E.h>
 #include <Scanner_IOE.h>
 
 // ============ SPEED CONFIGURATION ============
@@ -31,8 +31,8 @@ Scanner_uC scanner_L(HIGH, readPins, readPinCount);
 // =============== RIGHT SCANNER ===============
 const uint8_t IOE_ADDR = 0x18;
 
-PortPCA9655E port1(IOE_ADDR, 1, 0);             //for strobe
-PortPCA9655E port0(IOE_ADDR, 0, 1<<0 | 1<<1 );  //for read
+Port_PCA9655E port1(IOE_ADDR, 1, 0);             //for strobe
+Port_PCA9655E port0(IOE_ADDR, 0, 1<<0 | 1<<1 );  //for read
 
 Scanner_IOE scanner_R(HIGH, port1, port0);
 

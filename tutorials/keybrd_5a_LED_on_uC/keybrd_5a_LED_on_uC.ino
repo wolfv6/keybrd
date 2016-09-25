@@ -7,7 +7,7 @@ This sketch:
 | Layout | **0** | **1** |
 |:------:|-------|-------|
 |  **0** |CapsLck| a  1  |
-|  **1** |  fn   | b  2  |
+|  **1** |  fn   | x  =  |
 */
 
 // ################## GLOBAL ###################
@@ -63,15 +63,16 @@ For example, when o_capsLock is pressed, it sends KEY_CAPS_LOCK scancode and upd
 Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_CapsLck);
 
 Code_Sc s_a(KEY_A);
-Code_Sc s_b(KEY_B);
+Code_Sc s_x(KEY_X);
+
 Code_Sc s_1(KEY_1);
-Code_Sc s_2(KEY_2);
+Code_Sc s_equal(KEY_EQUAL);
 
 // =================== KEYS ====================
 Key* const ptrsKeys_01[] = { &s_a, &s_1 };
 Key_LayeredKeys k_01(ptrsKeys_01);
 
-Key* const ptrsKeys_11[] = { &s_b, &s_2 };
+Key* const ptrsKeys_11[] = { &s_x, &s_equal };
 Key_LayeredKeys k_11(ptrsKeys_11);
 
 LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;

@@ -8,6 +8,7 @@
 #include <inttypes.h>
 
 /* Key is an interface class
+Key class name does not end in "Interface" because sketches define so many Key[] arrays.
 */
 class Key
 {

@@ -4,8 +4,7 @@ This sketch:
     is a simple 1-layer keyboard
     runs on two matrices of a breadboard keyboard
 
-This layout table shows left and right matrices:
-
+  Controller                I/O expander
 | Left  | **0** | **1** | | Right | **0** | **1** |
 |:-----:|-------|-------|-|:-----:|-------|-------|
 | **1** |   1   |   2   | | **1** |   3   |   4   |
@@ -21,7 +20,7 @@ This layout table shows left and right matrices:
 #include <Scanner_uC.h>
 
 //right matrix
-#include <PortMCP23S17.h>
+#include <Port_MCP23S17.h>
 #include <Scanner_IOE.h>
 
 // ============ SPEED CONFIGURATION ============
@@ -44,14 +43,14 @@ const uint8_t IOE_ADDR = 0x20;                  //MCP23S17 address, all 3 ADDR p
 /*
 Normally all strobe pins are on one port, and all the read pins are on the other port.
 In this example, portB stobes the row while portA reads the colums.
-PortMCP23S17 constructor parameters are: deviceAddr, portNum, readPins
+Port_MCP23S17 constructor parameters are: deviceAddr, portNum, readPins
 readPins is a bit pattern, where 0=output, 1=input.
 In portA, the first two pins are set to input for reading.
 "<<" (bit shift left) and "|" (OR) are bitwise operators.
 Pin numbers to be read are to the right of "1<<" and delimited by "|".
 */
-PortMCP23S17 portA(IOE_ADDR, 0, 1<<0 | 1<<1 );
-PortMCP23S17 portB(IOE_ADDR, 1, 0);
+Port_MCP23S17 portA(IOE_ADDR, 0, 1<<0 | 1<<1 );
+Port_MCP23S17 portB(IOE_ADDR, 1, 0);
 Scanner_IOE scanner_R(LOW, portB, portA);
 
 // =================== CODES ===================

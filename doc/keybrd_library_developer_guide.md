@@ -118,7 +118,7 @@ Dependency diagram of example I/O expander matrix with LEDs
 	       /       |         \             /  \
 	strobePin  PortWrite  PortRead      Code  Code_LEDLock
 	             |   \      /   \              |
-	             |    PortIOE  readPins       LED
+	             |    PortIOE  readPins       LED_IOE
 	              \___________________________/ \
                                                 pin
 
@@ -138,7 +138,7 @@ This convention leads to class names that convey information about the classes i
 Underscore delineates base class name and sub-class name.  Capital letters delineate words.
 
 Interface class names end with "Interface".
-Except for Key, because sketches look nicer with short names defining Key[] arrays.
+Except for Key, to reduce clutter because sketches define so many Key[] arrays.
 
 Layer-class naming conventions
 ------------------------------
