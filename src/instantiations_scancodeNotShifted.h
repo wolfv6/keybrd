@@ -1,3 +1,6 @@
+#ifndef INSTANTIATIONS_SCANCODENOTSHIFTED_H
+#define INSTANTIATIONS_SCANCODENOTSHIFTED_H
+
 /* This file instandiates Code_ScNS objects for multiple-layer keybrd sketches.
 The scancode is always sent in the unshifted state regardless of shift key position.
 Letters will still print as capital if CapsLck is on.

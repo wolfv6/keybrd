@@ -2,8 +2,8 @@
 
 This sketch:
     is a simple 1-layer keyboard with CapsLck indicator LED on I/O expander
-    runs on two matrices of a breadboard keyboard
-    modified keybrd_4c_split_keyboard_with_IOE.ino by adding LED_CapsLck
+    runs on a two-matrix breadboard keyboard
+    modified keybrd_4c_split_keyboard_with_IOE.ino by adding LED_capsLck
 
 This layout table shows left and right matrices:
 
@@ -30,7 +30,7 @@ This layout table shows left and right matrices:
 //right matrix
 #include <Port_MCP23S17.h>
 #include <Scanner_IOE.h>
-#include <LED_IOE.h>
+#include <LED_Port.h>
 
 // ============ SPEED CONFIGURATION ============
 ScanDelay scanDelay(9000);
@@ -43,22 +43,24 @@ const uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
 Scanner_uC scanner_L(LOW, readPins, readPinCount);
 
 // ----------------- LEFT LEDs -----------------
-LED_uC LED_CapsLck(21);
+LED_uC LED_capsLck(21);
 
 // --------------- RIGHT SCANNER ---------------
 const uint8_t IOE_ADDR = 0x20;                  //MCP23S17 address, all 3 ADDR pins are grounded
-Port_MCP23S17 portA(IOE_ADDR, 0, 1<<0 | 1<<1 );  //for read and LED
-Port_MCP23S17 portB(IOE_ADDR, 1, 0);             //for strobe and LED
+Port_MCP23S17 portA(IOE_ADDR, 0, 1<<0 | 1<<1 ); //for read and LED
+Port_MCP23S17 portB(IOE_ADDR, 1, 0);            //for strobe and LED
 
 Scanner_IOE scanner_R(LOW, portB, portA);
 
-// ---------------- RIGHT LEDs -----------------
-LED_IOE LED_normal(portA, 1<<5);
-LED_IOE LED_fn(portB, 1<<4);
+/* ---------------- RIGHT LEDs -----------------
+The LED_Port constructor parameters are a port and pin number that is connected to an LED.
+*/
+LED_Port LED_normal(portA, 1<<5);
+LED_Port LED_fn(portB, 1<<4);
 
 // =================== CODES ===================
 // ---------------- LAYER CODE -----------------
-enum layers { NORMAL, FN };
+enum layerIds { NORMAL, FN };
 
 LEDInterface* prtsLayerLEDs[] = { &LED_normal, &LED_fn }; //array index matches enum layerIds
 LayerState_LED layerState(prtsLayerLEDs);
@@ -82,7 +84,7 @@ Code_Sc s_minus(KEY_MINUS);
 Code_Sc s_equal(KEY_EQUAL);
 Code_Sc s_slash(KEY_SLASH);
 
-Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_CapsLck);
+Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_capsLck);
 
 // =================== KEYS ====================
 //row0
@@ -126,12 +128,15 @@ Key* ptrsKeys_R1[] = { &k_12,  &k_13 };
 const uint8_t KEY_COUNT_R1 = sizeof(ptrsKeys_R1)/sizeof(*ptrsKeys_R1);
 Row row_R1(scanner_R, 1<<1, ptrsKeys_R1, KEY_COUNT_R1);
 
-// ################### MAIN ####################
+/* ################### MAIN ####################
+LayerState_LED::begin() is called after Scanner_IOE::begin()
+so that scanner's ports can turn on LayerState_LED's default-layer LED.
+*/
 void setup()
 {
     Keyboard.begin();
     scanner_R.begin();
-    layerState.begin();//must be after scanner begin for IOE ?? todo
+    layerState.begin();                 //call LayerState_LED::begin() after Scanner_IOE::begin()
 }
 
 void loop()

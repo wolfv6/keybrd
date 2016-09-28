@@ -7,16 +7,20 @@ and familiar with I/O expanders from tutorial_4c_split_keyboard_with_IOE.md.
 
 Adding LEDs to the basic breadboard keyboard
 --------------------------------------------
-The breadboard keyboard modifies the basic breadboard keyboard described in [tutorial_1_breadboard_keyboard.md](tutorial_1_breadboard_keyboard.md)
+The breadboard keyboard modifies the split breadboard keyboard described in [tutorial_4c_split_keyboard_with_IOE.md](tutorial_4c_split_keyboard_with_IOE.md)
 
 Add components to the breadboard as shown in the picture.
 
 The two clear plastic cylinders are red and yellow LEDs.
 Each LED is in series with a 4.7k Ohm current limiting resistor.
-LED anodes (the longer lead) are powered by pins GPA6 and GPB6.
+LED anodes (the longer lead) are powered by pins GPA5 and GPB4.
 LED cathodes (the shorter lead) are connected to a grounded terminal strip.
 
-!["LEDs"](keybrd_5_LEDs/LEDs_back.JPG "LEDs")
+!["front"](keybrd_5b_LED_on_IOE/front.JPG "front")
+
+!["back"](keybrd_5b_LED_on_IOE/back.JPG "back")
+
+!["LEDs"](keybrd_5b_LED_on_IOE/LEDs.JPG "LEDs")
 
 keybrd sketch with LEDs on IOE
 ------------------------------

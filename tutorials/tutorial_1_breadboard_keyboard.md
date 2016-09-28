@@ -18,7 +18,7 @@ Compared to PCBs, breadboard keyboards make learning faster because:
 
 Breadboard keyboards are useful for:
 * learning keyboard electronics - microcontroller, key matrix, diode, shift registers, I/O expander
-* learning the firmware development workflow
+* learning the keyboard-development workflow
 * prototyping circuits before making a PCB
 
 Breadboard keyboard starter kit
@@ -62,7 +62,7 @@ Building a basic breadboard keyboard
 ------------------------------------
 The basic breadboard keyboard has 4 switches.
 
-![basic breadboard keyboard](keybrd_1_breadboard/breadboard_keyboard_2x2.JPG "basic breadboard keyboard")
+![basic breadboard keyboard](keybrd_1_breadboard/basic_breadboard_keyboard_front.JPG "basic breadboard keyboard")
 
 A Teensy LC microcontroller is on the left.
 A key matrix with 4 switches is to the right.
@@ -75,7 +75,7 @@ Two bus strips are used as matrix rows.
 A jumper connects the top row to the microcontroller.
 A short wire connects the bottom row to the microcontroller.
 
-Switch-diode pairs, in series, connect rows to columns.
+A switches and diodes connect rows to columns.
 
 Tutorials 2 and 3 use the same basic breadboard keyboard pictured above.
 Tutorials 4, 5, and 6 add more components to the basic breadboard keyboard.
@@ -97,11 +97,11 @@ Breadboard keyboard assembly instructions:
   * Teensy LC is on the left
   * switch leads are oriented to connect diodes to columns (pictured below)
   * diode cut offs connect terminal strips into columns
-  * diodes connect switches to rows; orient diodes with cathode (banded end) towards the row (blue bus)
+  * diodes connect switches to rows; orient diodes with cathode (banded end) towards the rows (blue bus)
 
  ![switch orientation](keybrd_1_breadboard/switch_orientation.JPG "switch orientation")
 
- ![basic breadboard keyboard overhead](keybrd_1_breadboard/breadboard_keyboard_2x2_overhead.JPG "basic breadboard keyboard overhead")
+ ![basic breadboard keyboard overhead](keybrd_1_breadboard/basic_breadboard_keyboard_overhead.JPG "basic breadboard keyboard overhead")
 
 3. Insert jumper wires to connect Arduino pins to the matrix rows and columns.
   * [Teensy LC pinout diagram](https://www.pjrc.com/teensy/card6a_rev2.png).
@@ -140,7 +140,8 @@ The breadboard keyboards in this series of tutorials do it the other way:
 
 The keybrd library uses the word "strobe", which means powering one row for a very short time.
 Strobe pins are output pins connected to rows.
-One row at a time is strobed for the purpose of reading input pins.
+One row at a time is strobed.
+While a row is strobed, input pins connected to the columns sense which buttons are pressed.
 
 Exercises
 ---------

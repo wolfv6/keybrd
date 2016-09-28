@@ -1,3 +1,6 @@
+#ifndef INSTANTIATIONS_SCANCODE_H
+#define INSTANTIATIONS_SCANCODE_H
+
 /* Include this file in multiple-layer keybrd sketches.
 This file instandiates Code objects.
 

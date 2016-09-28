@@ -22,7 +22,7 @@ Instantiation
 Example instantiation:
     const uint8_t IOE_ADDR = 0x20;              //PCA9655E address, all 3 ADDR pins are grounded
     Port_PCA9655E  portB(IOE_ADDR, 1, 0);       //all pins are set to output for strobes and LEDs
-    Port_PCA9655E  portA(IOE_ADDR, 0, 1<<0 | 1<<1 ); //first two pins are set to input for reading,
+    Port_PCA9655E  portA(IOE_ADDR, 0, 1<<0 | 1<<1 ); //pin 0 and pin 1 are set to input for reading,
                                                 //remaining pins can be used for LEDs
 
 Diode orientation

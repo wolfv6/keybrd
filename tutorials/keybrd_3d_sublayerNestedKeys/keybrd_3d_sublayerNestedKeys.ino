@@ -1,7 +1,7 @@
 /* keybrd_3d_sublayerNested.ino
 
 This sketch:
-    is firmware for layout with 2 layers plus 1 sublayer.
+    is firmware for layout with two layers plus one sublayer.
     runs on the first three columns of a breadboard keyboard
 
 | Layout | **0** | **1** | **2** |
@@ -34,35 +34,47 @@ uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
 
 Scanner_uC scanner(LOW, readPins, readPinCount);
 
-// =================== CODES ===================
-// ----------------- LAYER CODE ----------------
+/* =================== CODES ===================
+Each LayerState object can manage one layer group.  This sketch uses two LayerState objects.
+*/
+// ---------------- LAYER GROUP ----------------
 enum layers { ALPHA, SYM };
 
-LayerState layerState;
-
-Code_LayerLock l_normal(ALPHA, layerState);
-Code_LayerLock l_sym(SYM, layerState);
+/*
+groupState keeps track of a layer group's active layer.
+*/
+LayerState groupState;
 
 /*
-Key_LayeredKeys are associated with layerState.
+groupState is assigned to layers ALPHA and SYM.
 */
-LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
+Code_LayerLock l_alpha(ALPHA, groupState);
+Code_LayerLock l_sym(SYM, groupState);
 
-/* ---------------- SUBLAYER CODE --------------
-Sublayers are implemented just like primary layers.
+/*
+groupState manages a layer group delineated by all layers that are in Key_LayeredKeys objects.
 */
+LayerStateInterface& Key_LayeredKeys::refLayerState = groupState;
+
+// --------------- LAYER SUBGROUP --------------
 enum subLayers { SUBSYM, SUBNUM };
 
-LayerState sublayerState;
-
-Code_LayerHold l_num(SUBNUM, sublayerState);
+/*
+subgroupState keeps track of a layer subgroup's active layer.
+*/
+LayerState subgroupState;
 
 /*
-Key_LayeredKeys1 are associated with sublayerState.
-Key_LayeredKeys (in layer) and Key_LayeredKeys1 (in sublayer) classes are nearly identical,
-only the static refLayerState are different.
+subgroupState is assigned to layer SUBNUM.
+subgroupState also has a default layer 0, which implicitly is layer SUBSYM.
 */
-LayerStateInterface& Key_LayeredKeys1::refLayerState = sublayerState;
+Code_LayerHold l_num(SUBNUM, subgroupState);
+
+/*
+Key_LayeredKeys and Key_LayeredKeys1 are identical classes with distinct static refLayerState.
+subgroupState manages a layer group delineated by all layers that are in Key_LayeredKeys1 objects.
+*/
+LayerStateInterface& Key_LayeredKeys1::refLayerState = subgroupState;
 
 // ---------------- SCAN CODES -----------------
 Code_Sc s_a(KEY_A);
@@ -76,17 +88,17 @@ Code_Sc s_enter(KEY_ENTER);
 Code_Sc s_1(KEY_1);
 
 /* =================== KEYS ====================
-The key k_sub00 contains codes for layerIds SUBSYM and SUBNUM.
+k_sub00 contains codes for sub layers SUBSYM and SUBNUM.
+k_sub00 gets it's active layer from subgroupState.
 (The Num sublayer only has one key because small example.  Usually sublayers have multiple keys.)
 */
 Key* const ptrsKeys_sub00[] = { &s_minus, &s_1 };
 Key_LayeredKeys1 k_sub00(ptrsKeys_sub00);
 
 /*
-k_sub00 is nested in k_00.
-The key k_00 contains code and key for layerIds ALPHA and SYM.
-Notice that k_sub00 is of type Key_LayeredKeys1, while k_00 is of type Key_LayeredKeys.
-k_sub00 and k_00 are associated with distinct LayerStates.
+k_00 contains code and key for layers ALPHA and SYM.
+k_00 gets it's active layer from groupState.
+k_sub00 is nested in layer SYM.
 */
 Key* const ptrsKeys_00[] = { &s_a, &k_sub00 };
 Key_LayeredKeys k_00(ptrsKeys_00);
@@ -102,7 +114,7 @@ Key* const ptrsKeys_0[] = { &k_00, &k_01, &k_02 };
 uint8_t keyCount_0 = sizeof(ptrsKeys_0)/sizeof(*ptrsKeys_0);
 Row row_0(scanner, 0, ptrsKeys_0, keyCount_0);
 
-Key* const ptrsKeys_1[] = { &l_normal, &l_sym, &s_enter };
+Key* const ptrsKeys_1[] = { &l_alpha, &l_sym, &s_enter };
 uint8_t keyCount_1 = sizeof(ptrsKeys_1)/sizeof(*ptrsKeys_1);
 Row row_1(scanner, 1, ptrsKeys_1, keyCount_1);
 

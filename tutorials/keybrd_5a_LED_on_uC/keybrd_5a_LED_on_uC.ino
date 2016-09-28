@@ -39,28 +39,28 @@ In this example, the LED_uC objects are named after the states they indicate.
 */
 LED_uC LED_normal(16);
 LED_uC LED_fn(17);
-LED_uC LED_CapsLck(21);
+LED_uC LED_capsLck(21);
 
 // =================== CODES ===================
 /* ---------------- LAYER CODE -----------------
-LayerState_LED is similar to LayerState, introduced in keybrd_3a_multi-layerHold.ino, but with LEDs.
+LayerState_LED is similar to LayerState introduced in keybrd_3a_multi-layerHold.ino, but with LEDs.
 The LayerState_LED turns on the LED of the active layer.
 The prtsLayerLEDs[] array contains one LED per layer.
 The active layerId is used as an index to dereference the prtsLayerLEDs[] array.
 */
-enum layers { NORMAL, FN };
+enum layerIds { NORMAL, FN };
 
-LEDInterface* prtsLayerLEDs[] = { &LED_normal, &LED_fn }; //array index matches enum layerIds
+LEDInterface* prtsLayerLEDs[] = { &LED_normal, &LED_fn }; //enum layerIds align with array index
 LayerState_LED layerState(prtsLayerLEDs);
 
 Code_LayerHold l_fn(FN, layerState);
 
 /* ---------------- SCAN CODES -----------------
 When a Code_LEDLock object is pressed, it sends its scancode and updates the its LED.
-Scancodes can be one of KEY_CAPS_LOCK, KEY_SCROLL_LOCK, or KEY_NUM_LOCK.
-For example, when o_capsLock is pressed, it sends KEY_CAPS_LOCK scancode and updates LED_CapsLck.
+Scancodes can be one of: KEY_CAPS_LOCK, KEY_SCROLL_LOCK, or KEY_NUM_LOCK.
+For example, when o_capsLock is pressed, it sends KEY_CAPS_LOCK scancode and updates LED_capsLck.
 */
-Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_CapsLck);
+Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_capsLck);
 
 Code_Sc s_a(KEY_A);
 Code_Sc s_x(KEY_X);

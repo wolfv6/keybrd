@@ -1,11 +1,11 @@
-#include "LED_IOE.h"
+#include "LED_Port.h"
 
-void LED_IOE::on()
+void LED_Port::on()
 {
     refPort.write(pin, HIGH);
 }
 
-void LED_IOE::off()
+void LED_Port::off()
 {
     refPort.write(pin, LOW);
 }

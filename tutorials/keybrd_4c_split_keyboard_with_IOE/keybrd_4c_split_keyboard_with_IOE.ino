@@ -43,7 +43,7 @@ const uint8_t IOE_ADDR = 0x20;                  //MCP23S17 address, all 3 ADDR p
 /*
 Normally all strobe pins are on one port, and all the read pins are on the other port.
 In this example, portB stobes the row while portA reads the colums.
-Port_MCP23S17 constructor parameters are: deviceAddr, portNum, readPins
+Port_MCP23S17 constructor parameters are: deviceAddr, portNum, readPins.
 readPins is a bit pattern, where 0=output, 1=input.
 In portA, the first two pins are set to input for reading.
 "<<" (bit shift left) and "|" (OR) are bitwise operators.
@@ -67,8 +67,7 @@ Code_Sc s_4(KEY_4);
 /* =================== ROWS ====================
 Left row names contain the letter 'L', while right row names conatain the letter 'R'.
 
-The first parameteer of a Row constructor specifies the scanner.
-The second parameter of the Row constructor specifies the Row's strobePin.
+Row constructor parameters are: scanner, strobePin, ptrsKeys[], keyCount.
 strobePin has one of two formats:
  * if refScanner a Scanner_uC, then strobePin is an Arduino pin number connected to this row
  * otherwise strobePin is a bit pattern, 1 indicating an IC pin connected to the row

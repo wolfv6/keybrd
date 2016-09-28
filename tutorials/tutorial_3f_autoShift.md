@@ -11,9 +11,9 @@ Two keybrd classes use AutoShift:
 
 The [keybrd_3f_autoShift.ino](keybrd_3f_autoShift/keybrd_3f_autoShift.ino) sketch explains the AutoShift feature.
 It will run on the basic breadboard keyboard described in [tutorial_1_breadboard_keyboard.md](tutorial_1_breadboard_keyboard.md).
-After reading the sketch you too will be able to automatically shifted characters.
+After reading the sketch you too will be able to automatically shift characters.
 
-![basic breadboard keyboard](keybrd_1_breadboard/breadboard_keyboard_2x2.JPG "basic breadboard keyboard")
+![basic breadboard keyboard](keybrd_1_breadboard/basic_breadboard_keyboard_front.JPG "basic breadboard keyboard")
 
 Exercises
 ---------

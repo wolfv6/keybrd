@@ -47,14 +47,15 @@ uint8_t readPins[] = {14, 15};
 uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
 
 /*
-The first parameter of the scanner constructor defines the logic level for the strobes.
+Scanner_uC constructor parameters are: strobeOn, readPins[], readPinCount.
+strobeOn defines the logic level for strobes, HIGH or LOW.
 "Active low" means that if a switch is pressed (active), the read pin is low.
-The scanner uses readPins, readPinCount to read the colums.
+The scanner uses readPins and readPinCount to read the colums.
 */
 Scanner_uC scanner(LOW, readPins, readPinCount);
 
 /* HOW SCANNER OBJECTS WORK
-The scanner object strobes a row.
+The Scanner object strobes a row.
 If a key is pressed, the LOW strobe pulls that readPin LOW.
 Then the scanner reads its readPins.
 */
@@ -76,11 +77,9 @@ Code_Sc s_2(KEY_2);
 Here we pack Code objects into Row objects.
 The Row objects names in this sketch start with a "row_" followed by a row number.
 
-Row constructor has four parameters:
- 1) scanner
- 2) strobePin connected to the row.
- 3) ptrsKeys[] containing all the Code objects of the row, one Code object per key.
- 4) the number of keys in the row.
+Row constructor parameters are: scanner, strobePin, ptrsKeys[], keyCount.
+strobePin is the Arduino pin number connected to the row.
+ptrsKeys[] contains all the Code objects of the row, one Code object per key.
 */
 Key* ptrsKeys_0[] = { &s_1, &s_2 };
 uint8_t keyCount_0 = sizeof(ptrsKeys_0)/sizeof(*ptrsKeys_0);
@@ -100,7 +99,7 @@ void setup()
 
 /*
 loop() continually scans the matrix, one row at a time.
-Each row object strobes its strobePin and reads the readPins.
+Each Row object strobes its strobePin and reads the readPins.
 And when a key press is detected, the row sends the key's scancode.
 
 scanDelay creates time intervals between matrix scans.

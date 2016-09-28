@@ -2,13 +2,20 @@
 #define CONFIG_KEYBRD_H
 #include <inttypes.h>
 
-/* size of read_pins_t depends on the maximum number of pins scanned by RowScanner.
-By default, read_pins_t is set to the largest type.
+/* The maximum number of pins scanned by RowScanner depends on size of read_pins_t.
+By default, read_pins_t is set to uint32_t.
 If your 8-bit AVR (Teensy 2) is running low on memory, using a smaller type saves SRAM.
 Using smaller types on a 32-bit uC (Teensy LC) would accomplish nothing.
-*/
 
-/* Use a read_pins_t size that covers all read pins of all Scanner objects i.e.
+read_pins_t is used in:
+    Row bit patterns
+    ScannerInterface::scan()
+     Scanner_ShiftRegsPISO::scan()
+     Scanner_uC::scan()
+    DebouncerInterface::debounce()
+     Debouncer_Samples::debounce()
+
+Use a read_pins_t size that covers all read pins of all Scanner objects i.e.
     For Scanner_uC: read_pins_t bits >= Scanner_uC::readPinCount
     For Scanner_ShiftRegsPISO: read_pins_t bits >= Scanner_ShiftRegsPISO::byte_count * 8
    (For Scanner_IOE: I/O expanders are assumed to have 8 bits per port or less)

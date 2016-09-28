@@ -24,8 +24,6 @@ Keybrd library class inheritance diagram
 	Scanner_uC  Scanner_IOE  Scanner_ShiftRegsPISO
 
 
-    PortIOE
-
 	       PortInterface
 	         /        \
 	Port_PCA9655E  Port_MCP23S17                (one Port class for each IOE type)
@@ -33,7 +31,7 @@ Keybrd library class inheritance diagram
  
 	  LEDInterface
 	   /       \
-	LED_uC    LED_IOE
+	LED_uC    LED_Port
 
 
 	DebouncerInterface
@@ -118,7 +116,7 @@ Dependency diagram of example I/O expander matrix with LEDs
 	       /       |         \             /  \
 	strobePin  PortWrite  PortRead      Code  Code_LEDLock
 	             |   \      /   \              |
-	             |    PortIOE  readPins       LED_IOE
+	             |    PortIOE  readPins       LED_Port
 	              \___________________________/ \
                                                 pin
 

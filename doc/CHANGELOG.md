@@ -6,10 +6,33 @@ This project adheres to [Semantic Versioning 2.0.0](http://semver.org/).
 keybrd version 0.x.x is for initial development.
 keybrd version 1.0.0 will be released when the public API is stable.
 
-<!--
+< !--
 Unreleased
 ----------
 -->
+
+0.6.0 (2016-09-28)
+------------------
+* Enhancements
+  * Add Port_MCP23S17
+  * Add Scanner_ShiftRegsPISOSingleRow and Scanner_ShiftRegsPISOMultiRow
+  * Refine and update tutorials
+  * Add tutorial_3cde_sublayer_keyboard.md
+  * Add tutorial_4_connecting_split_keyboards.md
+  * Add tutorial_4b_split_keyboard_with_shift_registers.md
+  * Add tutorial_4c_split_keyboard_with_IOE.md
+  * Add tutorial_5b_LED_on_IOE.md
+
+* Backward incompatible changes
+  * Move scanner instantiation from Row_* to sketch
+  * Delete Row_uC and Row_IOE, and replace them with Row
+  * Combine PortWrite_PCA9655E and PortRead_PCA9655E into Port_PCA9655E
+  * Delete PortIOE, and move PortIOE variables to IOE port classes
+  * Rename LED_PCA9655E to LED_Port
+  * Rename Scanner_Port to Scanner_IOE
+  * Rename Key_LayeredKeysArray to Key_LayeredKeys
+  * Rename Code_Layered* to Key_Layered*
+  * Rename object_*.h files to instantiations_*.h
 
 0.5.0 (2016-07-22)
 ------------------

@@ -8,6 +8,9 @@
 
 /* Basic LayerState with layer LED indictor lights.
 begin() should be called once to turn on LED for initial active layer.
+
+If LED is on Scanner_IOE, LayerState_LED::begin() should be called after Scanner_IOE::begin()
+so that scanner's ports can turn on LayerState_LED's default-layer LED.
 */
 class LayerState_LED : public LayerState
 {

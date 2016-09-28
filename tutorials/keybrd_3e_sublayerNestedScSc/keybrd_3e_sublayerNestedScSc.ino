@@ -1,7 +1,7 @@
 /* keybrd_3e_sublayerNestedScSc.ino
 
 This sketch:
-    is firmware for layout 2 layers plus 1 sublayer.
+    is firmware for layout two layers plus one sublayer.
     runs on the first three columns of a breadboard keyboard
 
 | Layout | **0** | **1** | **2** |
@@ -35,30 +35,30 @@ uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
 Scanner_uC scanner(LOW, readPins, readPinCount);
 
 // =================== CODES ===================
-// ---------------- LAYER CODE -----------------
+// ---------------- LAYER GROUP ----------------
 enum layerIds { ALPHA, SYM };
 
-LayerState layerState;
+LayerState groupState;
 
-Code_LayerLock l_normal(ALPHA, layerState);
-Code_LayerLock l_sym(SYM, layerState);
+Code_LayerLock l_normal(ALPHA, groupState);
+Code_LayerLock l_sym(SYM, groupState);
 
 /*
-Key_LayeredKeys are associated with layerState.
+groupState manages a layer group delineated by all layers that are in Key_LayeredKeys objects.
 */
-LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
+LayerStateInterface& Key_LayeredKeys::refLayerState = groupState;
 
-// ---------------- SUBLAYER CODE --------------
+// --------------- LAYER SUBGROUP --------------
 enum subLayers { SUBSYM, SUBNUM };
 
-LayerState sublayerState;
+LayerState subgroupState;
 
-Code_LayerHold l_num(SUBNUM, sublayerState);
+Code_LayerHold l_num(SUBNUM, subgroupState);
 
 /*
-Key_LayeredScSc is associated with layerState.
+subgroupState manages a layer group delineated by all layers that are in Key_LayeredScSc objects.
 */
-LayerStateInterface& Key_LayeredScSc::refLayerState = sublayerState;
+LayerStateInterface& Key_LayeredScSc::refLayerState = subgroupState;
 
 // ---------------- SCAN CODES -----------------
 Code_Sc s_a(KEY_A);
@@ -72,16 +72,15 @@ Code_Sc s_enter(KEY_ENTER);
 Code_Sc s_1(KEY_1);
 
 /* =================== KEYS ====================
-The key k_sub00 contains codes for layerIds SUBSYM and SUBNUM.
-Key_LayeredScSc takes two scancode arguments.
-(The Num sublayer only has one key because small example.  Usually sublayers have multiple keys.)
+k_sub00 contains codes for sub layers SUBSYM and SUBNUM.
+k_sub00 gets it's active layer from subgroupState.
 */
 Key_LayeredScSc sub_00(KEY_MINUS, KEY_1);
 
 /*
-k_sub00 is nested in k_00.
-The key k_00 contains code and key for layerIds ALPHA and SYM.
-k_sub00 and k_00 are associated with distinct LayerStates.
+k_00 contains code and key for layers ALPHA and SYM.
+k_00 gets it's active layer from groupState.
+k_sub00 is nested in layer SYM.
 */
 Key* const ptrsKeys_00[] = { &s_a, &sub_00 };
 Key_LayeredKeys k_00(ptrsKeys_00);

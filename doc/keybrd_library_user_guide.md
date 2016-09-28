@@ -115,36 +115,25 @@ Example keybrd sketches
 Example keybrd sketches are in the examples and tutorials directories.
 Extension libraries have their example sketches similarly located.
 
-The example sketch names use the following conventions.
-
-   **keybrd_feature_version.ino**
-
-where
-* **keybrd** is the library name e.g. keybrd, keybrd_DH
-* **feature** is a distinguishing feature of the keybrd sketch e.g. keyboard name, sound, layout
-* **version** is the sketch's version number (optional)
-
 Active state and diode orientation
 ----------------------------------
-Active state is set in the sketch by variables STROBE_ON and STROBE_OFF.
+Active state is set in the sketch by the scanner.
 The following instructions are for setting active state for a Scanner_uC class
 (Scanner_ShiftRegs74HC165 and Scanner_Port classes is similar).
 
 For active low:
 * Orient diodes with cathode (banded end) towards the write pins (row)
-* Define strobe on and strobe off in the sketch like this:
+* Instantiate the scanner in the sketch with strobeOn LOW, like this:
 ```
-    const bool Scanner_uC::STROBE_ON = LOW;
-    const bool Scanner_uC::STROBE_OFF = HIGH;
+Scanner_uC scanner(LOW, readPins, readPinCount);
 ```
 
 For active high:
 * Add an external 10k pull-down resistor to each read pin.
 * Orient diodes with cathode (banded end) towards the read pins.
-* Define strobe on and strobe off in the sketch like this:
+* Instantiate the scanner in the sketch with strobeOn HIGH, like this:
 ```
-    const bool Scanner_uC::STROBE_ON = HIGH;
-    const bool Scanner_uC::STROBE_OFF = LOW;
+Scanner_uC scanner(HIGH, readPins, readPinCount);
 ```
 
 Troubleshooting check list

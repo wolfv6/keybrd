@@ -44,10 +44,10 @@ enum layerIds { ALPHA, SYM };
 LayerState layerState;
 
 /*
-The Code_LayerLock constructor has two parameters:
- 1) the layerId that becomes the active layer when the key is pressed 
- 2) a LayerState that will keep track of the active layer
-When l_normal is pressed, ALPHA becomes the active layer.
+Code_LayerLock constructor parameters are: layerId, LayerState.
+layerId becomes the active layer when the key is pressed.
+LayerState keeps track of the active layer.
+In this example, when l_normal is pressed, ALPHA becomes the active layer.
 When l_sym is pressed, SYM becomes the active layer.
 */
 Code_LayerLock l_normal(ALPHA, layerState);

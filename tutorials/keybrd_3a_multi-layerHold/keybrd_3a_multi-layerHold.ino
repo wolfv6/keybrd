@@ -10,10 +10,11 @@ This sketch:
 |  **1** |  fn   | shift |
 
 Each cell in the table's body represents a key.
-The keys in column 1 have two characters each, one character for each layer.
+Each element in a cell represents a scancode or layer code.
+The keys in row 0 have two characters each, one character for each layer.
+Letters 'a' and 'b' are on the normal layer.  Symbols '-' and '=' are on the fn layer.
 "fn" is a layer key.  Holding the fn key down makes it the active layer. 
 Releasing the fn key restores the normal layer.
-Letters 'a' and 'b' are on the normal layer.  Symbols '-' and '=' are on the fn layer.
 */
 // ################## GLOBAL ###################
 // ================= INCLUDES ==================
@@ -40,7 +41,7 @@ Scanner_uC scanner(LOW, readPins, readPinCount);
 // =================== CODES ===================
 /* ---------------- LAYER CODE -----------------
 enum assigns layerId numbers to the layers.
-NORMAL=0 and FN=1.  LayerState's default layerId is 0.
+NORMAL=0 and FN=1.
 */
 enum layerIds { NORMAL, FN };
 
@@ -50,12 +51,14 @@ layerState keeps track of the active layer.
 LayerState layerState;
 
 /*
-The Code_LayerHold constructor has two parameters:
- 1) the layerId that will be the active layer while the key is held down
- 2) a LayerState that will keep track of the active layer
-When l_fn is pressed, it tells layerState to change the active layer to FN.
+Code_LayerHold constructor parameters are: layerId, LayerState.
+layerState is assigned to layer FN.
+layerState also has a default layer 0, which implicitly is layer NORMAL.
+
+FN is the active layer while the key is held down.
+In this example, when l_fn is pressed, it tells layerState to change the active layer to FN.
 When l_fn is released, it tells layerState that layer FN is released,
-and layerState restores the active layer to NORMAL (sets active layer to the default layerId 0).
+and layerState restores the active layer to default layerId 0 (NORMAL).
 */
 Code_LayerHold l_fn(FN, layerState);
 
@@ -68,7 +71,7 @@ Code_Sc s_shift(MODIFIERKEY_LEFT_SHIFT);
 
 /* =================== KEYS ====================
 Here we pack Codes into keys.
-The Key_LayeredKeys constructor takes one array of Code pointers - one Code object per layer.
+ptrsKeys_00[] contains all the Code objects of the key, one Code object per layer.
 
 The Key object names in this sketch start with a "k_" followed by row-column coordinates.
 */
@@ -90,13 +93,13 @@ The Code object then sends its scancode over USB.
 */
 
 /* =================== ROWS ====================
-Here we pack Key pointers into row objects.
+Here we pack Key pointers into Row objects.
 
 Rows are composed of a Key-pointer array.
 Codes are a kind of Key that only have one layer.
 Thus rows can contain a mix of codes and multi-layered keys (subtype polymorphism).
-In this example, Key-pointer arrays contain both Code pointers (&s_shift and &l_fn)
-and Key pointers (&k_01 and &k_11).
+In this example, Key-pointer arrays contain both Code pointers (&l_fn and &s_shift)
+and Key pointers (&k_00 and &k_01).
 */
 Key* const ptrsKeys_0[] = { &k_00, &k_01 };
 uint8_t keyCount_0 = sizeof(ptrsKeys_0)/sizeof(*ptrsKeys_0);

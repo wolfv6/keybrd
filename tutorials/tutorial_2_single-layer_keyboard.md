@@ -6,7 +6,7 @@ The sketch will run on the basic breadboard keyboard described in [tutorial_1_br
 
 After reading the sketch you will be able to modify it to suite your own single-layer keyboard design.
 
-![basic breadboard keyboard](keybrd_1_breadboard/breadboard_keyboard_2x2.JPG "basic breadboard keyboard")
+![basic breadboard keyboard](keybrd_1_breadboard/basic_breadboard_keyboard_front.JPG "basic breadboard keyboard")
 
 Exercises
 ---------

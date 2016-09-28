@@ -5,7 +5,7 @@ When you finish this tutorial you will be able to be able to modify a multi-laye
 Multi-layer nomenclature
 ------------------------
 **[layers](http://deskthority.net/wiki/Layer)** - are key bindings provided by the keyboard firmware.  For example,
-* The classic [IBM PC keyboard](http://en.wikipedia.org/wiki/IBM_PC_keyboard) has one layer.
+* The classic [IBM Model M keyboard](http://en.wikipedia.org/wiki/IBM_PC_keyboard) has one layer.
 * Many compact keyboards have an additional [Fn layer](http://en.wikipedia.org/wiki/Fn_key).
 * The [Neo layout](http://neo-layout.org/index_en.html) has 6 layers.
 
@@ -13,30 +13,30 @@ Multi-layer nomenclature
 
 **active layer** - is the layer currently used by the keyboard.
 
-**default layer** - is the active layer when the keyboard starts up (in class LayerState, default layerId=0).
+**default layer** - is the active layer when the keyboard starts up.
 
 **layer scheme** - is a system for changing the active layer while typing (a single-layer scheme does not change layers).
 
 Code classes
 ------------
-Code objects only have one scancode or code.
-Example single-layer Code classes include:
-* Code_Sc       (used in keybrd_2_single-layer.ino)
+Code objects only have one scancode or one layer code.
+Example Code classes include:
+* Code_Sc
 * Code_ScS
 * Code_ScNS
 * Code_Shift
 * Code_LayerHold
 * Code_LayerLock
 
-Single-layer keybrd sketches have one Code object per key.
-Multi-layer keybrd sketches have multiple Code objects per key, one code for each layer.
+Single-layer keys contain one Code object.
+Multi-layer keys contain multiple Code objects, one code for each layer.
 
 A simple multi-layer keybrd sketch
 ----------------------------------
 The [keybrd_3a_multi-layerHold.ino](keybrd_3a_multi-layerHold/keybrd_3a_multi-layerHold.ino) sketch is for a simple two-layer keyboard.
 It will run on the basic breadboard keyboard described in [tutorial_1_breadboard_keyboard.md](tutorial_1_breadboard_keyboard.md).
 
-![basic breadboard keyboard](keybrd_1_breadboard/breadboard_keyboard_2x2.JPG "basic breadboard keyboard")
+![basic breadboard keyboard](keybrd_1_breadboard/basic_breadboard_keyboard_front.JPG "basic breadboard keyboard")
 
 The sketch annotations explain how multi-layer keyboards work.
 The sketch uses three layer-scheme classes:
@@ -56,7 +56,7 @@ When a Code_Layer object is pressed, it tells LayerState to update the active la
 ```
 class Code_Layer
 {
-    int layerId;
+    const int layerId;
     LayerState& refLayerState;
     press() { refLayerState.setActiveLayer(layerId); }
 };
@@ -73,8 +73,8 @@ class LayerState
 };
 ```
 
-**Key_LayeredKeys** objects contain an array of keys, one key for each layer.
-Key_LayeredKeys objects use layerIds as Key_LayeredKeys indexes.
+**Key_LayeredKeys** objects contain arrays of keys, one key for each layer.
+Key_LayeredKeys objects use layerIds as array indexes.
 When a Key_LayeredKeys object is pressed, it gets the active layerId from LayerState, and sends the corresponding key.
 ```
 class Key_LayeredKeys
@@ -122,6 +122,58 @@ Key_Layered classes include:
 * Key_LayeredKeys
 * Key_LayeredScSc   (covered in next tutorial)
 * Key_LayeredCodeSc
+
+The association between Codes, Keys, and Rows
+---------------------------------------------
+Codes, Keys, and Rows are associated by class compositions:
+
+```
+Each Code object contains one scancode or one layercode.
+
+Each Key contains either
+* one Code object (single-layer)
+* multiple Code objects (multi-layer)
+* Key object (key nested in key)
+
+Each Row contains Key objects.
+```
+
+You may have been wondering why Code pointers are in Key pointers arrays.
+You don't need to know the reasons to write a sketch.
+For the curious, two reasons are explained below.
+
+1) Single-layer keys is the first reason you see Code pointers in a Key pointers array.
+Rows contain keys.  The keys can be Single-layer or Multi-layer.
+Wrapping a code in a single-layer key before placing it a row is tedious.
+It is more convenient to place a code directly in a row.
+Codes are a kind of Key (polymorphism), so that rows can contain codes and keys.
+
+From keybrd_3a_multi-layerHold.ino:
+
+```
+Key* const ptrsKeys_0[] = { &k_00, &k_01 };
+Row row_0(scanner, 0, ptrsKeys_0, keyCount_0);
+
+Key* const ptrsKeys_1[] = { &l_fn, &s_shift };
+Row row_1(scanner, 1, ptrsKeys_1, keyCount_1);
+```
+row0's ptrsKeys_0[] array contains pointers to Keys.
+row1's ptrsKeys_1[] array contains pointers to Codes.
+
+2) Sublayers (nested keys) is the second reason you see Code pointers in a Key pointers array.
+Layered keys usually contain just codes.  When nesting keys, layered keys contain keys.
+Codes are a kind of Key (polymorphism), so that layered keys can contain both codes and keys.
+
+From keybrd_3d_sublayerNested.ino:
+
+```
+Key* const ptrsKeys_sub00[] = { &s_minus, &s_1 };
+Key_LayeredKeys1 k_sub00(ptrsKeys_sub00);
+
+Key* const ptrsKeys_00[] = { &s_a, &k_sub00 };
+Key_LayeredKeys k_00(ptrsKeys_00);
+```
+k_00's ptrsKeys_00[] array contains pointers to code s_a and key k_sub00.
 
 Exercises
 ---------

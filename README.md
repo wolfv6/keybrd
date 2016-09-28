@@ -27,6 +27,7 @@ Example minimal keybrd sketch
 -----------------------------
 A [minimal keybrd sketch](/tutorials/keybrd_1_breadboard/keybrd_1_breadboard.ino)
 is 40 lines of code for a 4-key keyboard.
+It scans a key matrix just like the big keyboards.
 The sketch is small because the keybrd library takes care of the low-level details.
 It runs the breadboard keyboard in this picture.
 
@@ -34,9 +35,11 @@ It runs the breadboard keyboard in this picture.
 
 Example complex keybrd sketch
 -----------------------------
-keybrd_DH and its instantiation files contain about 800 lines of code.
-It emulates the DataHand keyboard.
+The keybrd_DH sketch is a showcase of the keybrd library's capability.
+It emulates the DataHand keyboard, which has the most complex layout I know of.
 Its layout has 52 keys, 3 primary layers, 5 sub-layers, 2 matrices, 8 LEDs, and blinking LEDs.
+Most layouts are much simpler.
+keybrd_DH and its instantiation files contain about 800 lines of code.
 
 [keybrd_DH_library_developer_guide.md](https://github.com/wolfv6/keybrd_DH/blob/master/doc/keybrd_DH_library_developer_guide.md)<br>
 [mainSketch.ino](https://github.com/wolfv6/keybrd_DH/blob/master/examples/keybrd_DH/mainSketch.cpp)<br>
