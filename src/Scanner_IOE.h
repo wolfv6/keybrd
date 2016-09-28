@@ -22,9 +22,9 @@ class Scanner_IOE : public ScannerInterface
         PortInterface& refPortRead;             //the IC's read port
     public:
         Scanner_IOE(const bool strobeOn,
-                PortInterface &refPortWrite, PortInterface& refPortRead)
+                    PortInterface &refPortWrite, PortInterface& refPortRead)
             : strobeOn(strobeOn), strobeOff(!strobeOn),
-            refPortWrite(refPortWrite), refPortRead(refPortRead) {}
+              refPortWrite(refPortWrite), refPortRead(refPortRead) {}
         void init(const uint8_t strobePin);
         void begin();
         read_pins_t scan(const uint8_t strobePin);

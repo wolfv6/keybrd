@@ -5,7 +5,7 @@
 Scanner_ShiftRegsPISOMultiRow::Scanner_ShiftRegsPISOMultiRow(const bool strobeOn,
         const uint8_t slaveSelect, const uint8_t byte_count)
     : strobeOn(strobeOn), strobeOff(!strobeOn),
-        slaveSelect(slaveSelect), byte_count(byte_count)
+      slaveSelect(slaveSelect), byte_count(byte_count)
 {
     pinMode(slaveSelect, OUTPUT);
 }
@@ -39,8 +39,8 @@ read_pins_t Scanner_ShiftRegsPISOMultiRow::scan(const uint8_t strobePin)
     delayMicroseconds(3);                       //time to stablize voltage
 
     //read all the column pins
-    digitalWrite(slaveSelect, LOW);              //load parallel inputs to the register
-    digitalWrite(slaveSelect, HIGH);             //shift the data toward a serial output
+    digitalWrite(slaveSelect, LOW);             //load parallel inputs to the register
+    digitalWrite(slaveSelect, HIGH);            //shift the data toward a serial output
     SPI.transfer(&readState, byte_count);
 
     //strobe row off

@@ -68,7 +68,8 @@ Row row_L1(scanner_L, 1, ptrsKeys_L1, KEY_COUNT_L1);
 Key* ptrsKeys_R0[] = { &s_6, &s_5, &s_4, &s_3,  //shift register on right
                        &s_c, &s_d, &s_e, &s_f,
                        &s_2, &s_1, &s_0, &s_g,  //shift register on left
-                       &s_a, &s_b };            //unused input pins are grounded
+                       &s_a, &s_b
+                     };            //unused input pins are grounded
 Row row_R0(scanner_R, 0, ptrsKeys_R0, sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0));
 
 // ################### MAIN ####################

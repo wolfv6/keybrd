@@ -43,12 +43,11 @@ class Scanner_ShiftRegsPISOMultiRow : public ScannerInterface
     private:
         const bool strobeOn;                    //logic level of strobe on, active state HIGH or LOW
         const bool strobeOff;                   //logic level of strobe off, complement of strobeOn
-        const uint8_t slaveSelect;              //controller's pin number that is
-                                                // connected to shift register's SHIFT-LOAD pin
+        const uint8_t slaveSelect;//controller pin number connected to shift register SHIFT-LOAD pin
         const uint8_t byte_count;               //number of bytes to read from shift registers
     public:
         Scanner_ShiftRegsPISOMultiRow(const bool strobeOn,
-                const uint8_t slaveSelect, const uint8_t byte_count);
+                                      const uint8_t slaveSelect, const uint8_t byte_count);
         virtual void init(const uint8_t strobePin);
         virtual void begin();
         virtual read_pins_t scan(const uint8_t strobePin);

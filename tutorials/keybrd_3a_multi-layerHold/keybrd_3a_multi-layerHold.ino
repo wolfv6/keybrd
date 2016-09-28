@@ -13,7 +13,7 @@ Each cell in the table's body represents a key.
 Each element in a cell represents a scancode or layer code.
 The keys in row 0 have two characters each, one character for each layer.
 Letters 'a' and 'b' are on the normal layer.  Symbols '-' and '=' are on the fn layer.
-"fn" is a layer key.  Holding the fn key down makes it the active layer. 
+"fn" is a layer key.  Holding the fn key down makes it the active layer.
 Releasing the fn key restores the normal layer.
 */
 // ################## GLOBAL ###################

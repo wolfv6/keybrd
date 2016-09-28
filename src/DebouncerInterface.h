@@ -3,7 +3,7 @@
 
 #include <config_keybrd.h>
 
-/* 
+/*
 debounce() takes rawSignal and returns debounced signal.  Signals are bit paterns.
 */
 class DebouncerInterface

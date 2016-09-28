@@ -4,9 +4,9 @@
 init() is called once for each row, to set scanner's uC strobePin to output.
 */
 Row::Row(ScannerInterface& refScanner, const uint8_t strobePin,
-        Key* const ptrsKeys[], const uint8_t keyCount)
+         Key* const ptrsKeys[], const uint8_t keyCount)
     : refScanner(refScanner), strobePin(strobePin),
-    ptrsKeys(ptrsKeys), keyCount(keyCount), debounced(0)
+      ptrsKeys(ptrsKeys), keyCount(keyCount), debounced(0)
 {
     refScanner.init(strobePin);
 }

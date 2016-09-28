@@ -31,7 +31,7 @@ class Row
         read_pins_t debounced; //bit pattern, state of keys after debouncing, 1=pressed, 0=released
     public:
         Row(ScannerInterface& refScanner, const uint8_t strobePin,
-                Key* const ptrsKeys[], const uint8_t keyCount);
+            Key* const ptrsKeys[], const uint8_t keyCount);
         virtual void process();
 };
 #endif

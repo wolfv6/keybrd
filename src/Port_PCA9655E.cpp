@@ -4,7 +4,7 @@
 
 PCA9655E supports I2C SCL Clock Frequencies: 100 kHz, 400 kHz, 1000 kHz (Datasheet page 1 & 6)
 The electrical limitation to bus speed is bus capacitance and the length of the wires involved.
-Longer wires require lower clock speeds. 
+Longer wires require lower clock speeds.
  http://playground.arduino.cc/Main/WireLibraryDetailedReference > Wire.setclock()
 */
 void Port_PCA9655E::beginProtocol()

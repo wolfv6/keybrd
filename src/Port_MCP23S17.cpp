@@ -4,18 +4,18 @@
 
 MCP23S17 SPI interface is 10 MHz max.
 The electrical limitation to bus speed is bus capacitance and the length of the wires involved.
-Longer wires require lower clock speeds. 
+Longer wires require lower clock speeds.
 */
 uint8_t Port_MCP23S17::transfer(const uint8_t command, const uint8_t registerAddr,
-        const uint8_t data)
+                                const uint8_t data)
 {
     uint8_t portState;                          //bit pattern
 
     SPI.beginTransaction( SPISettings(5000000, MSBFIRST, SPI_MODE0) ); //control SPI bus, 5 MHz
     digitalWrite(SS, LOW);                      //enable Slave Select
-      SPI.transfer(command);                    //write or read command
-      SPI.transfer(registerAddr);               //register address to write data to
-      portState = SPI.transfer(data);           //write data, read portState
+    SPI.transfer(command);                      //write or read command
+    SPI.transfer(registerAddr);                 //register address to write data to
+    portState = SPI.transfer(data);             //write data, read portState
     digitalWrite(SS, HIGH);                     //disable Slave Select
     SPI.endTransaction();
 

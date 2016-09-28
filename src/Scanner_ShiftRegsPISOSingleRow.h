@@ -45,12 +45,11 @@ Controller's MISO pin is connected to shift register's serial output (QH) pin
 class Scanner_ShiftRegsPISOSingleRow : public ScannerInterface
 {
     private:
-        const uint8_t slaveSelect;              //controller's pin number that is
-                                                // connected to shift register's SHIFT-LOAD pin
+        const uint8_t slaveSelect;//controller pin number connected to shift register SHIFT-LOAD pin
         const uint8_t byte_count;               //number of bytes to read from shift registers
     public:
         Scanner_ShiftRegsPISOSingleRow(const bool strobeOn,
-                const uint8_t slaveSelect, const uint8_t byte_count);
+                                       const uint8_t slaveSelect, const uint8_t byte_count);
         void init(const uint8_t strobePin);
         void begin();
         virtual read_pins_t scan(const uint8_t strobePin);
