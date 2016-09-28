@@ -31,7 +31,7 @@ It scans a key matrix just like the big keyboards.
 The sketch is small because the keybrd library takes care of the low-level details.
 It runs the breadboard keyboard in this picture.
 
-<img src="tutorials/keybrd_1_breadboard/breadboard_keyboard_2x2.JPG" title="breadboard keyboard" alt="breadboard keyboard" height="290" width="328">
+<img src="tutorials/keybrd_1_breadboard/basic_breadboard_keyboard_front.JPG" title="basic breadboard keyboard" alt="basic breadboard keyboard" height="290" width="328">
 
 Example complex keybrd sketch
 -----------------------------

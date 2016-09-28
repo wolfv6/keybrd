@@ -33,30 +33,31 @@ Switches are connected to power (red bus) and shift register input pins (jumpers
 
 This table lists what gets connected to the 74HC165 pins:
 
-```
-74HC165 left (lower half of breadboard)
-NAME    PIN# DESCRIPTION         TO TEENSY LC PIN#  CHAIN
-SH/LD   1    shift or load input CS0   10           green wire
-CLK     2    clock input         SCK0  13           yellow wire
- D4     3    parallel input
- D5     4    parallel input
- D6     5    parallel input
- D7     6    parallel input
-/QH     7    ~serial output
-GND     8    ground              gnd                blue bus
+**74HC165 left (lower half of breadboard)**
 
-74HC165 right (upper half of breadboard)
-NAME    PIN# DESCRIPTION         TO TEENSY LC PIN#  CHAIN
-VCC     16   power pin           3.3V               red wire
-CLK INH 15   clock inhibit                          blue bus
- D3     14   parallel input
- D2     13   parallel input
- D1     12   parallel input
- D0     11   parallel input
-SER     10   serial input                           blue wire to next QH
- QH      9   serial output       MISO0 12           blue wire to previous SER
+|NAME    |PIN#|DESCRIPTION         |TO TEENSY LC PIN#|CHAIN      |
+|--------|:--:|--------------------|-----------------|-----------|
+|SH/LD   |1   |shift or load input |CS0   10         |green wire |
+|CLK     |2   |clock input         |SCK0  13         |yellow wire|
+| D4     |3   |parallel input      |                 |           |
+| D5     |4   |parallel input      |                 |           |
+| D6     |5   |parallel input      |                 |           |
+| D7     |6   |parallel input      |                 |           |
+|/QH     |7   |~serial output      |                 |           |
+|GND     |8   |ground              |gnd              |blue bus   |
 
-```
+**74HC165 right (upper half of breadboard)**
+
+|NAME    |PIN#|DESCRIPTION         |TO TEENSY LC PIN#|CHAIN                    |
+|--------|:--:|--------------------|-----------------|-------------------------|
+|VCC     |16  |power pin           |3.3V             |red wire                 |
+|CLK INH |15  |clock inhibit       |                 |blue bus                 |
+| D3     |14  |parallel input      |                 |                         |
+| D2     |13  |parallel input      |                 |                         |
+| D1     |12  |parallel input      |                 |                         |
+| D0     |11  |parallel input      |                 |                         |
+|SER     |10  |serial input        |                 |blue wire to next QH     |
+| QH     | 9  |serial output       |MISO0 12         |blue wire to previous SER|
 
 ![breadboard keyboard with shift_registers](keybrd_4b_split_keyboard_with_shift_registers/overhead.JPG )
 

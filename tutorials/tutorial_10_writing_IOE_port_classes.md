@@ -17,8 +17,8 @@ Steps to writing a new port class:
  * [SPI I/O expander example sketch](keybrd_4c_split_with_IOE/keybrd_4c_split_with_IOE.ino)
  * [I2C I/O expander example sketch](../examples/keybrd_PCA9655E/keybrd_PCA9655E.ino)
 5. Study other keybrd port classes.
- * SPI I/O expander port classes: PortMCP23S17 PortWrite_MCP23S17 PortRead_MCP23S17
- * I2C I/O expander port classes: PortWrite_PCA9655E PortRead_PCA9655E 
+ * SPI I/O expander port classes: Port_MCP23S17
+ * I2C I/O expander port classes: Port_PCA9655E 
 6. Write the port classes for your I/O expander.
    Debugging I/O expander code is hard because SPI or I2C protocol adds a level of indirection.
 

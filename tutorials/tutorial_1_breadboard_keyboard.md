@@ -104,7 +104,7 @@ Breadboard keyboard assembly instructions:
  ![basic breadboard keyboard overhead](keybrd_1_breadboard/basic_breadboard_keyboard_overhead.JPG "basic breadboard keyboard overhead")
 
 3. Insert jumper wires to connect Arduino pins to the matrix rows and columns.
-  * [Teensy LC pinout diagram](https://www.pjrc.com/teensy/card6a_rev2.png).
+  * refer to the [Teensy LC pinout diagram](https://www.pjrc.com/teensy/card6a_rev2.png).
   * row_0 is the top row, and col_0 is the left column
 
 | Pin number | Connects to |
