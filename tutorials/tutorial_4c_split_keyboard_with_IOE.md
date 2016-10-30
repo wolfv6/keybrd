@@ -17,6 +17,31 @@ Two rows (red buses) are connected to the I/O expander.
 
 ![breadboard keyboard with IOE](keybrd_4c_split_keyboard_with_IOE/front.JPG "breadboard keyboard with IOE")
 
+I/O expanders
+-------------
+The MCP23S17 I/O expander has two ports with 8 I/O pins each.
+I/O expander input/output pins are connected to a switch matrix.
+Port B strobes one row at a time.
+Port A reads the columns.
+
+SPI and I2C communication protocols
+-----------------------------------
+SPI and I2C are popular communication protocols.
+Either one can be used to connect split keyboards.
+
+I2C is fast enough for scanning up to 5 rows.
+The keybrd_DH (DodoHand) sketch polls 5 rows over I2C at 7.5ms per keyboard scan.
+
+SPI is much faster, but requires 2 additional wires.
+Use SPI if your key matrix has more then 5 rows.
+
+| connection type        | controller pins | wire count |
+|------------------------|:---------------:|:----------:|
+| I/O expander SPI       | 4               | 6          |
+| I/O expander I2C       | 2               | 4          |
+
+The example in this tutorial uses the SPI protocol.
+
 Building a split keyboard with I/O Expander
 -------------------------------------------
 Starting with the basic breadboard keyboard described in [tutorial_1_breadboard_keyboard.md](tutorial_1_breadboard_keyboard.md), add parts as described above.

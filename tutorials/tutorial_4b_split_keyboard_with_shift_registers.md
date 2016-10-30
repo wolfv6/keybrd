@@ -36,7 +36,7 @@ This table lists what gets connected to the 74HC165 pins:
 **74HC165 left (lower half of breadboard)**
 
 |NAME    |PIN#|DESCRIPTION         |TO TEENSY LC PIN#|CHAIN      |
-|--------|:--:|--------------------|-----------------|-----------|
+|:-------|:--:|:-------------------|:----------------|:----------|
 |SH/LD   |1   |shift or load input |CS0   10         |green wire |
 |CLK     |2   |clock input         |SCK0  13         |yellow wire|
 | D4     |3   |parallel input      |                 |           |
@@ -49,7 +49,7 @@ This table lists what gets connected to the 74HC165 pins:
 **74HC165 right (upper half of breadboard)**
 
 |NAME    |PIN#|DESCRIPTION         |TO TEENSY LC PIN#|CHAIN                    |
-|--------|:--:|--------------------|-----------------|-------------------------|
+|:-------|:--:|:-------------------|:----------------|:------------------------|
 |VCC     |16  |power pin           |3.3V             |red wire                 |
 |CLK INH |15  |clock inhibit       |                 |blue bus                 |
 | D3     |14  |parallel input      |                 |                         |

@@ -22,7 +22,7 @@ uint8_t Port_MCP23S17::transfer(const uint8_t command, const uint8_t registerAdd
     return portState;
 }
 
-/* begin() is called from Scanner_IOE::begin().  Initiates SPI bus.
+/* beginProtocol() is called from Scanner_IOE::begin().  Initiates SPI bus.
 */
 void Port_MCP23S17::beginProtocol()
 {
@@ -39,13 +39,13 @@ void Port_MCP23S17::begin(const uint8_t strobeOn)
 {
     uint8_t pullUp;                             //bits, GPPU 0=pull-up disabled, 1=pull-up enabled
 
-    if (strobeOn == LOW)                        //if active low, use internal pull-up resistors
+    if (strobeOn == LOW)                        //if active low
     {
-        pullUp = readPins;
+        pullUp = readPins;              //0=pull-up disabled (for LED), 1=pull-up enabled (for read)
     }
-    else                                        //active high requires external pull-down resistors
+    else                                        //if active high
     {
-        pullUp = 0;
+        pullUp = 0;                         //0=pull-up disabled (for external pull-down resistors)
     }
 
     transfer(deviceAddr << 1, portNum, readPins); //configure IODIR

@@ -14,7 +14,7 @@ class LED_uC: public LEDInterface
     public:
         LED_uC(const uint8_t pin): pin(pin)
         {
-            pinMode(pin, OUTPUT);
+            pinMode(pin, OUTPUT);//todo move to .cpp file
         }
         virtual void on();
         virtual void off();

@@ -26,7 +26,7 @@ keybrd sketch with LEDs on IOE
 ------------------------------
 The [keybrd_5b_LED_on_IOE.ino](keybrd_5b_LED_on_IOE/keybrd_5b_LED_on_IOE.ino) sketch will run on the above breadboard keyboard.
 
-The sketch features:
+The sketch demonstrates:
 * multiple layers
 * split keyboard
 * LED on controller

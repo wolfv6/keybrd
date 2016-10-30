@@ -39,7 +39,7 @@ Less resistance makes the LED brighter.
 Too little resistance will burn out the LED.
 The current supplied to an LED should always be limited by a resistor or some other device.
 
-LED current limiting resistor values
+LED current-limiting resistor values
 ------------------------------------
 In the section we will compute the minimum resistor value for maximum LED brightness.
 

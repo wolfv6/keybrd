@@ -43,20 +43,20 @@ These are explained in [How to Use a Breadboard](https://learn.sparkfun.com/tuto
 
 Electrostatic discharge (ESD) safety
 ------------------------------------
-Static electricity can damage a microcontroller in ways that are hard to trouble shoot.
+Static electricity can damage a ICs in ways that are hard to trouble shoot.
 
-I live in a desert on a carpeted floor and get zapped by door knobs regularly.
-Here is the ESD precaution I take whenever I handle a microcontroller:
+Here is a ESD precaution for handling ICs:
 
 1. Touch the bare metal on the back of my desktop computer (its grounded).
-2. Then touch the metal USB connector case on the microcontroller.
+2. Then touch the IC or circuit (if its a micro-controller, touch the metal USB connector case).
 
-Anti-static mat or anti-static wristband are also effective.
-Being tethered by an anti-static wristband can be inconvenient (wireless antistatic wrist straps are a scam).
-
+I take these ESD precaution because I live in a dry environment on a carpeted floor.
 Not everyone needs to take ESD precautions:
 * http://forum.arduino.cc/index.php?topic=4643.0
 * https://forums.adafruit.com/viewtopic.php?f=8&t=12128
+
+Anti-static mat or anti-static wristband are also effective.
+But being tethered by an anti-static wristband can be inconvenient (wireless antistatic wrist straps are a scam).
 
 Building a basic breadboard keyboard
 ------------------------------------

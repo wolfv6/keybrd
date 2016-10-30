@@ -28,9 +28,10 @@ But if there are enough pins on the controller, using just a cable with more wir
 
 I/O Expanders can power LEDs, while PISO shift registers can not.
 
-I2C is a little slow if the I/O expander is scanning more than 4 rows.
-The keybrd_DH (DodoHand) sketch polls 5 rows over I2C at 7.5ms per keyboard scan.
-Which is acceptable, but faster would be nicer.
+I2C is fast enough for scanning up to 5 rows.
+SPI is much faster, but requires 2 additional wires.
+
+More scanning options are reviewed at http://www.openmusiclabs.com/learning/digital/input-matrix-scanning/
 
 ## Cables table
 
@@ -52,7 +53,7 @@ There are also wireless options if you don't mind adding complexity and maintain
 
 The 8-wire "GearIT Cat 6 Ethernet Flat Patch Cable 7 Feet" is very flexible.
 It's available at Walmart (9/19/16) if you want to feel the merchandise before you buy.
-All the modular connectors are flat.
+All the modular connector cables are available in the flat form factor.
 
 For prototyping on perfboards, consider a 0.1" header.
 

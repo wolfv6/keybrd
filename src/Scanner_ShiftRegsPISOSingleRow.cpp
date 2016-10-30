@@ -1,6 +1,7 @@
 #include "Scanner_ShiftRegsPISOSingleRow.h"
 
 /* constructor
+Parameter strobeOn is not used.
 */
 Scanner_ShiftRegsPISOSingleRow::Scanner_ShiftRegsPISOSingleRow(const bool strobeOn,
         const uint8_t slaveSelect, const uint8_t byte_count)
@@ -26,6 +27,7 @@ void Scanner_ShiftRegsPISOSingleRow::begin()
 }
 
 /* scan() returns state of the shift register's input pins.
+Parameter strobePin is not used.
 No strobe pin is needed, the shift register is wired so the strobe is effectivley always "on".
 Bit patterns are 1 bit per key.
 */

@@ -9,7 +9,7 @@
 
 /* Scanner_ShiftRegsPISOMultiRow reads shift registers.
 This was tested on 74HC165 shift registers, which are Parallel-In-Serial-Out (PISO).
-Upto 4 shift registers can be in a daisy chained for a total of 32 read pins.
+Shift registers can be daisy chained for a total of 32 read pins.
 
 Example instantiation:
     Scanner_ShiftRegsPISOMultiRow scanner_R(HIGH, SS, 4);
@@ -18,7 +18,6 @@ There are three Scanner_ShiftRegsPISOMultiRow parameters.
 "strobeOn" paramter is active state HIGH or LOW.
 
 "slaveSelect" paramter can be any controller pin connected to shift register's SHIFT-LOAD pin.
-slaveSelect pin SS (Arduino pin 10) has the fastest scan.
 
 "byte_count" is the number of bytes to read from shift registers (1 to 4).
 byte_count should cover all the row's keys:
@@ -26,7 +25,7 @@ byte_count should cover all the row's keys:
 
 Hardware setup:
 Each row needs to be connected to a strobe pin from the controller.
-Switche and diode in series are connected to shift-register parallel-input pins and strobed row.
+Switch and diode in series, connect shift-register parallel-input pins to strobed row.
 
 For active low:
 Shift-register parallel-input pins need 10k Ohm pull-up resistors powered.

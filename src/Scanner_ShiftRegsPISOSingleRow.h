@@ -22,7 +22,6 @@ There are three Scanner_ShiftRegsPISOSingleRow parameters.
 "strobeOn" paramter is ignored, but should be active state HIGH or LOW required by ScannerInterface.
 
 "slaveSelect" paramter can be any controller pin connected to shift register's SHIFT-LOAD pin.
-slaveSelect pin SS (Arduino pin 10) has the fastest scan.
 
 "byte_count" is the number of bytes to read from shift registers (1 to 4).
 byte_count should cover all the row's keys:
@@ -30,7 +29,8 @@ byte_count should cover all the row's keys:
 
 Hardware setup:
 There is only one row, and it is permanently active.
-Switches are connected to shift-register parallel-input pins (diodes are not needed) and row.
+Switches are connected to shift-register parallel-input pins and row.
+Diodes are not needed because there is only one row.
 
 For active low:
 Shift-register parallel-input pins need 10k Ohm pull-up resistors powered.

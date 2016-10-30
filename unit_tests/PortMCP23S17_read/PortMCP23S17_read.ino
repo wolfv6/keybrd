@@ -2,28 +2,24 @@
 Picture of hardware is in unit_tests/PortMCP23S17_read/PortMCP23S17_bb.JPG
 The setup is an MCP23S17 I/O expander on a Teensy LC controller.
 MCP23S17 port-B pins are alternately grounded and energized.
-portBState is a bitwise reading of port B.
 output is: 10101010
 */
 
-#include "PortIOE.h"
-#include "PortMCP23S17.h"
+#include "Port_MCP23S17.h"
 
-const uint8_t PortIOE::DEVICE_ADDR = 0x20;      //MCP23S17 address, all 3 ADDR pins are grounded
-PortIOE portB(1);
-
-PortMCP23S17 portBRead(portB, ~0);
+const uint8_t IOE_ADDR = 0x20;                  //MCP23S17 address, all 3 ADDR pins grounded
+Port_MCP23S17 portB(IOE_ADDR, 1, ~0);           //read all pins
 
 void setup()
 {
-    uint8_t portBState;                         //bit pattern
+    uint8_t BitPattern;                         //reading of port B
 
     delay(6000);
-    portBRead.begin(HIGH);                      //HIGH or LOW, not matter
+    portB.begin(HIGH);                          //HIGH or LOW, does not matter
 
-    portBState = portBRead.read();
-    Keyboard.print("portBState = ");
-    Keyboard.println(portBState, BIN);          //prints 10101010
+    BitPattern = portB.read();
+    Keyboard.print("BitPattern = ");
+    Keyboard.println(BitPattern, BIN);          //prints 10101010
 }
 
 void loop() { }

@@ -1,27 +1,43 @@
-#include "Port_PCA9655E.h"
+#include "Port_MCP23018.h"
+//todo add Port_MCP23018::write() like Port_MCP23S17::transer() ??
 
 /* beginProtocol() is called from Scanner_IOE::begin().  Initiates I2C bus.
 
-PCA9655E supports I2C SCL Clock Frequencies: 100 kHz, 400 kHz, 1000 kHz (Datasheet page 1 & 6)
+MCP23018 supports I2C SCL Clock Frequencies: 100 kHz, 400 kHz, 1000 kHz (Datasheet page 1 & 6)
 The electrical limitation to bus speed is bus capacitance and the length of the wires involved.
 Longer wires require lower clock speeds.
  http://playground.arduino.cc/Main/WireLibraryDetailedReference > Wire.setclock()
 */
-void Port_PCA9655E::beginProtocol()
+void Port_MCP23018::beginProtocol()
 {
     Wire.begin();                               //initiate I2C bus to 100 kHz
     //Wire.setClock(400000L);                     //set I2C bus to 400 kHz (have not tested 400 kHz)
 }
 
 /* begin() is called from Scanner_IOE::begin().
-Configures read pins to input.
-strobeOn is not used because PCA9655E has no pull-up resistors.
+Configures port's IODIR and GPPU.
 */
-void Port_PCA9655E::begin(const uint8_t strobeOn)
+void Port_MCP23018::begin(const uint8_t strobeOn)
 {
+    uint8_t pullUp;                             //bits, GPPU 0=pull-up disabled, 1=pull-up enabled
+
+    if (strobeOn == LOW)                        //if active low
+    {
+        pullUp = readPins;              //0=pull-up disabled (for LED), 1=pull-up enabled (for read)
+    }
+    else                                        //if active high
+    {
+        pullUp = 0;                         //0=pull-up disabled (for external pull-down resistors)
+    }
+
     Wire.beginTransmission(deviceAddr);
-    Wire.write(portNum + 6);                    //configuration byte command
+    Wire.write(portNum);                        //IODIR
     Wire.write(readPins);                       //0=output (for strobe and LED), 1=input (for read)
+    Wire.endTransmission();
+
+    Wire.beginTransmission(deviceAddr);
+    Wire.write(portNum + 0x0C);                 //GPPU
+    Wire.write(pullUp);
     Wire.endTransmission();
 }
 
@@ -30,31 +46,36 @@ pin is bit pattern, where pin being strobed is 1.
 logicLevel is HIGH or LOW.
 write() does not overwrite the other pins.
 */
-void Port_PCA9655E::write(const uint8_t pin, const bool logicLevel)
+void Port_MCP23018::write(const uint8_t pin, const bool logicLevel)
 {
     if (logicLevel == LOW)
     {
         outputVal &= ~pin;                      //set pin output to low
+//Keyboard.print(" low");
     }
     else
     {
         outputVal |= pin;                       //set pin output to high
+//Keyboard.print(" high");
     }
 
+//Keyboard.print(" outputVal=");//todo
+//Keyboard.println(outputVal);
     Wire.beginTransmission(deviceAddr);
-    Wire.write(portNum + 2);                    //output Byte command
+    Wire.write(portNum + 0x12);                 //GPIO
     Wire.write(outputVal);
     Wire.endTransmission();
+//delay(4000);
 }
 
 /* read() returns portState.
 Only portState bits of readPins are valid.
 */
-uint8_t Port_PCA9655E::read()
+uint8_t Port_MCP23018::read()
 {
     Wire.beginTransmission(deviceAddr);
-    Wire.write(portNum);                        //input byte command
-    Wire.endTransmission(false);                //PCA9655E needs false to send a restart
+    Wire.write(portNum + 0x12);                 //GPIO
+    Wire.endTransmission(false);                //MCP23018 needs false to send a restart ??really?
 
     Wire.requestFrom(deviceAddr, 1u);           //request one byte from input port
 

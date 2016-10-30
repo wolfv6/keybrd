@@ -1,7 +1,7 @@
 /* keybrd_5b_LED_on_IOE.ino
 
 This sketch:
-    is a simple 1-layer keyboard with CapsLck indicator LED on I/O expander
+    is a simple 1-layer keyboard with indicator LED on controller and 2 LEDs on I/O expander
     runs on a two-matrix breadboard keyboard
     modified keybrd_4c_split_keyboard_with_IOE.ino by adding LED_capsLck
 
@@ -10,8 +10,8 @@ This layout table shows left and right matrices:
   Controller                I/O expander
 | Left  | **0** | **1** | | Right | **0** | **1** |
 |:-----:|-------|-------|-|:-----:|-------|-------|
-| **1** |CapsLck| a  1  | | **1** | b  2  | c  3  |
-| **0** |  fn   | x  =  | | **0** | y  -  | z  /  |
+| **0** |CapsLck| a  1  | | **1** | b  2  | c  3  |
+| **1** |  fn   | x  =  | | **0** | y  -  | z  /  |
 */
 // ################## GLOBAL ###################
 // ================= INCLUDES ==================
@@ -35,7 +35,7 @@ This layout table shows left and right matrices:
 // ============ SPEED CONFIGURATION ============
 ScanDelay scanDelay(9000);
 
-// ==================== IC =====================
+// ==================== ICs ====================
 // ---------------- LEFT SCANNER ---------------
 uint8_t readPins[] = {14, 15};
 const uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
@@ -47,8 +47,8 @@ LED_uC LED_capsLck(21);
 
 // --------------- RIGHT SCANNER ---------------
 const uint8_t IOE_ADDR = 0x20;                  //MCP23S17 address, all 3 ADDR pins are grounded
-Port_MCP23S17 portA(IOE_ADDR, 0, 1<<0 | 1<<1 ); //for read and LED
-Port_MCP23S17 portB(IOE_ADDR, 1, 0);            //for strobe and LED
+Port_MCP23S17 portA(IOE_ADDR, 0, 1<<0 | 1<<1 ); //for read
+Port_MCP23S17 portB(IOE_ADDR, 1, 0);            //for strobe
 
 Scanner_IOE scanner_R(LOW, portB, portA);
 

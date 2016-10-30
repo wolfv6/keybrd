@@ -3,7 +3,7 @@ Tested on Teensy LC and two 74HC165 shift registers.
 
   Controller      Two shift registers daisy chained
 | Left  |**0**| | Right |**0**|**1**|**2**|**3**|**4**|**5**|**6**|
-|:-----:|-----| |:-----:|-----|-----|-----|-----|-----|-----|-----|
+|-------|-----| |-------|-----|-----|-----|-----|-----|-----|-----|
 | **0** |  x  | | **0** |  0  |  1  |  2  |  3  |  4  |  5  |  6  |
 | **1** |  y  | | **1** |  a  |  b  |  c  |  d  |  e  |  f  |  g  |
 */
@@ -49,10 +49,8 @@ uint8_t readPinCount_L = sizeof(readPins_L)/sizeof(*readPins_L);
 
 Scanner_uC scanner_L(LOW, readPins_L, readPinCount_L); //active LOW
 
-/* --------------- RIGHT SCANNER ---------------
-use slaveSelect pin SS (Arduino pin 10) for fastest scan
-*/
-Scanner_ShiftRegsPISOSingleRow scanner_R(HIGH, SS, 2); //active HIGH
+// --------------- RIGHT SCANNER ---------------
+Scanner_ShiftRegsPISOSingleRow scanner_R(HIGH, 10, 2); //active HIGH
 
 // =================== ROWS ====================
 // ----------------- LEFT ROWS -----------------
