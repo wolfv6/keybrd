@@ -2,7 +2,6 @@
 #define LED_PORT_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include <Wire.h>
 #include <LEDInterface.h>
 #include <PortInterface.h>
 

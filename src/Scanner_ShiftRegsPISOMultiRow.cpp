@@ -1,7 +1,5 @@
 #include "Scanner_ShiftRegsPISOMultiRow.h"
 
-/* constructor
-*/
 Scanner_ShiftRegsPISOMultiRow::Scanner_ShiftRegsPISOMultiRow(const bool strobeOn,
         const uint8_t slaveSelect, const uint8_t byte_count)
     : strobeOn(strobeOn), strobeOff(!strobeOn),
