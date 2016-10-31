@@ -21,7 +21,7 @@ Initializes shift register's shift/load pin.
 */
 void Scanner_ShiftRegsPISOMultiRow::begin()
 {
-    SPI.begin();
+    SPI.begin(); //todo move this to constructor or init()
 }
 
 /* scan() strobes the row's strobePin and returns state of the shift register's input pins.
@@ -32,7 +32,7 @@ read_pins_t Scanner_ShiftRegsPISOMultiRow::scan(const uint8_t strobePin)
 {
     read_pins_t readState = 0;                  //bits, 1 means key is pressed, 0 means released
 
-    //SPI.beginTransaction( SPISettings(5000000, MSBFIRST, SPI_MODE0) ); //control SPI bus, 5 MHz
+    SPI.beginTransaction( SPISettings(5000000, MSBFIRST, SPI_MODE0) ); //control SPI bus, 5 MHz
 
     digitalWrite(slaveSelect, LOW);             //load parallel inputs to registers
 
@@ -46,7 +46,7 @@ read_pins_t Scanner_ShiftRegsPISOMultiRow::scan(const uint8_t strobePin)
 
     SPI.transfer(&readState, byte_count);
 
-    //SPI.endTransaction();
+    SPI.endTransaction();
 
     return readState;
 }

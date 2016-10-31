@@ -11,8 +11,12 @@
 
 /*
 strobePin has one of two formats:
- * if refScanner a Scanner_uC, then strobePin is an Arduino pin number connected to this row
- * otherwise strobePin is bit pattern, 1 indicating an IC pin connected to this row
+1. if strobe pin is on uC (Scanner_uC or Scanner_ShiftRegsPISOMultiRow),
+    then strobePin is an Arduino pin number connected to this row.
+2. if strobe pin is on I/O expander (Scanner_IOE), then strobePin is bit pattern,
+    1 indicating the I/O expander pin connected to this row
+
+todo instantiation examples - here or in Scanner?
 */
 class Row
 {
