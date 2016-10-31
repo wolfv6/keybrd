@@ -2,11 +2,15 @@
 #define PORTINTERFACE_H
 #include <Arduino.h>
 #include <inttypes.h>
+#include <PortWriteInterface.h>
 
 /*
 Port classes are the keybrd library's interface to microcontroller ports or I/O expander ports.
+
+Port classes that can read and write, inherit from PortInterface.
+Port classes that can only write, inherit from PortWriteInterface.
 */
-class PortInterface
+class PortInterface : public PortWriteInterface
 {
     public:
         virtual void beginProtocol()=0;               //SPI bus or I2C bus

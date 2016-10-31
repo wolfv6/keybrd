@@ -6,12 +6,12 @@
 #include <PortWriteInterface.h>
 
 /* Port_ShiftRegs 
-shift register RCLK pin a.k.a. SS or ST
+slaveSelect is controller-pin number connected to shift register RCLK pin a.k.a. SS or ST
 */
 class Port_ShiftRegs : public PortWriteInterface
 {
     private:
-        const uint8_t slaveSelect;  //controller-pin number connected to shift register RCLK
+        const uint8_t slaveSelect;              //controller-pin number
         uint8_t outputVal;                      //bit pattern for LEDs
     public:
         Port_ShiftRegs(const uint8_t slaveSelect);

@@ -24,7 +24,9 @@ Keybrd library class inheritance diagram
 	Scanner_uC  Scanner_IOE  Scanner_ShiftRegsPISO
 
 
-	       PortInterface
+                PortWriteInterface
+                 /           \
+	       PortInterface   Port_ShiftRegs       (Port class for MOSI shift registers)
 	         /        \
 	Port_PCA9655E  Port_MCP23S17                (one Port class for each IOE type)
  
