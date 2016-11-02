@@ -142,6 +142,7 @@ The following is a listing of items to check when a new keybrd sketch or keyboar
 
 Development-environment items to check:
 * If the keyboard has an I/O expander, power cycle (replug the USB) after loading the HEX file.
+* Sometimes sketch will not loading properly if two instances of Arduino IDE are open.
 * For compile error:
 ```
     'KEY_A' was not declared in this scope
