@@ -17,7 +17,7 @@ Tested on Teensy LC and two 74HC165 shift registers.
 #include <Row.h>
 
 //Right matrix
-#include <Scanner_ShiftRegsPISOSingleRow.h>
+#include <Scanner_ShiftRegsRead.h>
 
 // =============== CONFIGURATION ===============
 ScanDelay scanDelay(9000);
@@ -50,7 +50,7 @@ uint8_t readPinCount_L = sizeof(readPins_L)/sizeof(*readPins_L);
 Scanner_uC scanner_L(LOW, readPins_L, readPinCount_L); //active LOW
 
 // --------------- RIGHT SCANNER ---------------
-Scanner_ShiftRegsPISOSingleRow scanner_R(HIGH, 10, 2); //active HIGH
+Scanner_ShiftRegsRead scanner_R(HIGH, 10, 2); //active HIGH
 
 // =================== ROWS ====================
 // ----------------- LEFT ROWS -----------------

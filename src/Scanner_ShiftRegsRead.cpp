@@ -1,9 +1,9 @@
-#include "Scanner_ShiftRegsPISOSingleRow.h"
+#include "Scanner_ShiftRegsRead.h"
 
 /* constructor
 Parameter strobeOn is not used.
 */
-Scanner_ShiftRegsPISOSingleRow::Scanner_ShiftRegsPISOSingleRow(const bool strobeOn,
+Scanner_ShiftRegsRead::Scanner_ShiftRegsRead(const bool strobeOn,
         const uint8_t slaveSelect, const uint8_t byte_count)
     : slaveSelect(slaveSelect), byte_count(byte_count)
 {
@@ -12,7 +12,7 @@ Scanner_ShiftRegsPISOSingleRow::Scanner_ShiftRegsPISOSingleRow(const bool strobe
 
 /* init() is called once for each row from Row constructor.
 */
-void Scanner_ShiftRegsPISOSingleRow::init(const uint8_t strobePin)
+void Scanner_ShiftRegsRead::init(const uint8_t strobePin)
 {
     //empty function
 }
@@ -20,7 +20,7 @@ void Scanner_ShiftRegsPISOSingleRow::init(const uint8_t strobePin)
 /* begin() should be called once from sketch setup().
 Initializes shift register's shift/load pin.
 */
-void Scanner_ShiftRegsPISOSingleRow::begin()
+void Scanner_ShiftRegsRead::begin()
 {
     SPI.begin();
     digitalWrite(slaveSelect, HIGH);
@@ -31,7 +31,7 @@ Parameter strobePin is not used.
 No strobe pin is needed, the shift register is wired so the strobe is effectivley always "on".
 Bit patterns are 1 bit per key.
 */
-read_pins_t Scanner_ShiftRegsPISOSingleRow::scan(const uint8_t strobePin)
+read_pins_t Scanner_ShiftRegsRead::scan(const uint8_t strobePin)
 {
     read_pins_t readState = 0;                  //bits, 1 means key is pressed, 0 means released
 

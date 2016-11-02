@@ -1,6 +1,6 @@
-#include "Scanner_ShiftRegsPISOMultiRow.h"
+#include "Scanner_ShiftRegsReadStrobed.h"
 
-Scanner_ShiftRegsPISOMultiRow::Scanner_ShiftRegsPISOMultiRow(const bool strobeOn,
+Scanner_ShiftRegsReadStrobed::Scanner_ShiftRegsReadStrobed(const bool strobeOn,
         const uint8_t slaveSelect, const uint8_t byte_count)
     : strobeOn(strobeOn), strobeOff(!strobeOn),
       slaveSelect(slaveSelect), byte_count(byte_count)
@@ -11,7 +11,7 @@ Scanner_ShiftRegsPISOMultiRow::Scanner_ShiftRegsPISOMultiRow(const bool strobeOn
 /* init() is called once for each row from Row constructor.
 Configures controller to communicate with shift register matrix.
 */
-void Scanner_ShiftRegsPISOMultiRow::init(const uint8_t strobePin)
+void Scanner_ShiftRegsReadStrobed::init(const uint8_t strobePin)
 {
     pinMode(strobePin, OUTPUT);
 }
@@ -19,7 +19,7 @@ void Scanner_ShiftRegsPISOMultiRow::init(const uint8_t strobePin)
 /* begin() should be called once from sketch setup().
 Initializes shift register's shift/load pin.
 */
-void Scanner_ShiftRegsPISOMultiRow::begin()
+void Scanner_ShiftRegsReadStrobed::begin()
 {
     digitalWrite(slaveSelect, HIGH);            //initialize ??only needed for first scan
     SPI.begin(); //todo move this to constructor or init()
@@ -29,7 +29,7 @@ void Scanner_ShiftRegsPISOMultiRow::begin()
 strobePin is Arduino pin number connected to this row.
 Bit patterns are 1 bit per key.
 
-Scanner_ShiftRegsPISOMultiRow class was tested on two sets of 74HC165 shift registers
+Scanner_ShiftRegsReadStrobed class was tested on two sets of 74HC165 shift registers
 and 74AHC1G126 tri-state buffer chips
 
 74HC165 is not an SPI device.
@@ -40,7 +40,7 @@ To use SPI-like protocol, 74HC*126 will high-Z the MISO pin when the slave selec
 SPI.beginTransaction() and SPI.endTransaction() are not needed,
 but would be needed if trackball uses interrupts.
 */
-read_pins_t Scanner_ShiftRegsPISOMultiRow::scan(const uint8_t strobePin)
+read_pins_t Scanner_ShiftRegsReadStrobed::scan(const uint8_t strobePin)
 {
     read_pins_t readState = 0;                  //bits, 1 means key is pressed, 0 means released
 

@@ -7,14 +7,14 @@
 #include <SPI.h>
 #include <ScannerInterface.h>
 
-/* Scanner_ShiftRegsPISOMultiRow reads shift registers.
+/* Scanner_ShiftRegsReadStrobed reads shift registers.
 This was tested on 74HC165 shift registers, which are Parallel-In-Serial-Out (PISO).
 Shift registers can be daisy chained for a total of 32 read pins.
 
 Example instantiation:
-    Scanner_ShiftRegsPISOMultiRow scanner_R(HIGH, SS, 4);
+    Scanner_ShiftRegsReadStrobed scanner_R(HIGH, SS, 4);
 
-There are three Scanner_ShiftRegsPISOMultiRow parameters.
+There are three Scanner_ShiftRegsReadStrobed parameters.
 "strobeOn" paramter is active state HIGH or LOW.
 
 "slaveSelect" paramter can be any controller pin connected to shift register's SHIFT-LOAD pin.
@@ -37,7 +37,7 @@ Shift-register parallel-input pins need 10k pull-down resistors grounded.
 Orient diodes with cathode (banded end) towards the read pins.
 Controller's MISO pin is connected to shift register's serial output (QH) pin
 */
-class Scanner_ShiftRegsPISOMultiRow : public ScannerInterface
+class Scanner_ShiftRegsReadStrobed : public ScannerInterface
 {
     private:
         const bool strobeOn;                    //logic level of strobe on, active state HIGH or LOW
@@ -45,7 +45,7 @@ class Scanner_ShiftRegsPISOMultiRow : public ScannerInterface
         const uint8_t slaveSelect;//controller pin number connected to shift register SHIFT-LOAD pin
         const uint8_t byte_count;               //number of bytes to read from shift registers
     public:
-        Scanner_ShiftRegsPISOMultiRow(const bool strobeOn,
+        Scanner_ShiftRegsReadStrobed(const bool strobeOn,
                                       const uint8_t slaveSelect, const uint8_t byte_count);
         virtual void init(const uint8_t strobePin);
         virtual void begin();
