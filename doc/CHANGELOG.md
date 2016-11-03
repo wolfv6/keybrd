@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning 2.0.0](http://semver.org/).
 keybrd version 0.x.x is for initial development.
 keybrd version 1.0.0 will be released when the public API is stable.
 
+0.6.1 (2016-10-02)
+------------------
+* Enhancements
+  * Redesign I/O expander Port classes
+  * Scanner_ShiftRegsReadtrobed class can now read from multiple shift register chains
+
+* Backward incompatible changes
+  * Rename Scanner_ShiftRegsPISOSingleRow to Scanner_ShiftRegsRead
+  * Rename Scanner_ShiftRegsPISOMultiRow to Scanner_ShiftRegsReadStrobed
+
 0.6.0 (2016-09-28)
 ------------------
 * Enhancements
