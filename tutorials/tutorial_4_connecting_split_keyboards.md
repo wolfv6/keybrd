@@ -49,7 +49,7 @@ More scanning options are reviewed at http://www.openmusiclabs.com/learning/digi
 
 Only ready-made cables that are widely available are listed.
 There are hundreds of other connectors listed at http://pinouts.ru/
-There are also wireless options if you don't mind adding complexity and maintaining a battery.
+There are also wireless options at the expense of adding complexity and maintaining a battery.
 
 The 8-wire "GearIT Cat 6 Ethernet Flat Patch Cable 7 Feet" is very flexible.
 It's available at Walmart (9/19/16) if you want to feel the merchandise before you buy.

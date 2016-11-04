@@ -1,5 +1,5 @@
-#ifndef ROWSCANNER_SHIFTREGSPISOSINGLEROW_H
-#define ROWSCANNER_SHIFTREGSPISOSINGLEROW_H
+#ifndef ROWSCANNER_SHIFTREGSREAD_H
+#define ROWSCANNER_SHIFTREGSREAD_H
 
 #include <Arduino.h>
 #include <inttypes.h>
@@ -8,29 +8,33 @@
 #include <ScannerInterface.h>
 
 /* Scanner_ShiftRegsRead reads shift registers.
-This was tested on 74HC165 shift registers, which are Parallel-In-Serial-Out (PISO).
 Upto 4 shift registers can be in a daisy chained for a total of 32 read pins.
+This was tested on 74HC165 shift registers, which are Parallel-In-Serial-Out (PISO).
+
+The row is always powered (there is no strobe that turns off).
 
 Example instantiation:
     Row row_R0(scanner_R, 0, ptrsKeys_R0, sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0));
-    Scanner_ShiftRegsRead scanner_R(HIGH, SS, 4);
+    Scanner_ShiftRegsRead scanner_R(HIGH, 6, 4);
 
-The Row "strobePin" parameter is ignored.
-In the above example, the "strobePin" argument is 0, but it doesn't matter what value is given.
+In the above Row instantiation, argument 0 for "strobePin" is ignored because there is no strobe.
 
 There are three Scanner_ShiftRegsRead parameters.
-"strobeOn" paramter is ignored, but should be active state HIGH or LOW required by ScannerInterface.
-
-"slaveSelect" paramter can be any controller pin connected to shift register's SHIFT-LOAD pin.
-
-"byte_count" is the number of bytes to read from shift registers (1 to 4).
-byte_count should cover all the row's keys:
-    byte_count*8 >= row's keyCount
+1. "strobeOn" paramter is ignored, but should be active state HIGH or LOW for ScannerInterface.
+2. "slaveSelect" paramter can be any controller pin connected to shift register's SHIFT-LOAD pin.
+3. "byte_count" is the number of bytes to read from shift registers (1 to 4).
+   byte_count should cover all the row's keys: byte_count*8 >= row's keyCount
 
 Hardware setup:
-There is only one row, and it is permanently active.
+The row of keys is connected to a controller by 5 wires:
+* GND
+* power
+* CLK
+* Slave Select
+* MISO
+
 Switches are connected to shift-register parallel-input pins and row.
-Diodes are not needed because there is only one row.
+Diodes are not needed if there is only one row.
 
 For active low:
 Shift-register parallel-input pins need 10k Ohm pull-up resistors powered.
@@ -41,6 +45,8 @@ For active high:
 Shift-register parallel-input pins need 10k pull-down resistors grounded.
 Switches connect grouned row to parallel-input pins.
 Controller's MISO pin is connected to shift register's serial output (QH) pin
+
+If multiple rows (or any SPI divice) share a MISO line, the shift registers need to be isolated by a tri-state buffer chip. 
 */
 class Scanner_ShiftRegsRead : public ScannerInterface
 {

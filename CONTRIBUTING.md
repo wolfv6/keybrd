@@ -36,6 +36,10 @@ Code contributions
 Unsure of where to begin contributing to keybrd code?
 You can start by looking through the improvement suggestions, bug reports, and [planned_features](doc/planned_features.md).
 
+Scratch your own itch.  Code for your own need.  Then share it with the keybrd community.
+* [Tutorial 8b - sharing your keybrd extension library](tutorials/tutorial_8b_sharing_your_keybrd_extension_library.md)
+* [Tutorial 8c - sharing your keybrd sketch](tutorials/tutorial_8c_sharing_your_keybrd_sketch.md)
+
 Git commit message style guide:
 * Limit the first line to 72 characters summary
 * Second line should be empty, followed by body of the commit message
@@ -94,17 +98,6 @@ Post the completed Q & A on [geekhack thread](https://geekhack.org/index.php?top
 If you prefer your answers remain confidential, pm the completed Q & A to [wolfv](https://geekhack.org/index.php?action=pm;sa=send;u=25471).
 
 Usability survey results will be used to make improvements to the keybrd library.
-
-### Schematics
-The most glaring deficiency is the tutorials' lack of schematics.
-Schematics would be easier to read than the current photos.
-
-Schematics are not my area of expertise.  Use what ever would be the best solution for the tutorials:
-* schematics
-* breadboard drawings
-* Arduino simulation software
-
-Contributions of tutorial schematics would benefit users new to the keybrd library.
 
 ### Documentation
 Suggest a clarification, simplification, correction, or other improvement.

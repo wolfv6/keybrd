@@ -3,7 +3,7 @@ keybrd Tutorial 4b - split keyboard with shift registers
 When you finish this tutorial you will be able to be able to modify a split keybrd sketch with 10 to 24 keys on the shift registers.
 
 Overview of split keyboard with shift registers
-------------------------------------------------
+-----------------------------------------------
 The breadboard in the following picture models a split keyboard.
 The green rectangle on the left is a Teensy LC micro controller.
 The black rectangles in the middle are two SN74HC165N shift registers daisy chained together.
