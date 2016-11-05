@@ -8,6 +8,8 @@ Port classes are the keybrd library's interface to MOSI shift registers i.e. Por
 
 Port classes that can read & write, inherit from PortInterface.
 Port classes that can only write, inherit from PortWriteInterface.
+
+write() interface emulates Arduino's digitalWrite().
 */
 class PortWriteInterface
 {

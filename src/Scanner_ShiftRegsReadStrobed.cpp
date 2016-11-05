@@ -48,7 +48,8 @@ read_pins_t Scanner_ShiftRegsReadStrobed::scan(const uint8_t strobePin)
 
     //SPI.beginTransaction( SPISettings(5000000, MSBFIRST, SPI_MODE0) ); //control SPI bus, 5 MHz
 
-    delayMicroseconds(20);                      //photo-transistor at 3.3v needs 20 ms to stablize
+                                                //photo-transistor at 3.3v needs 20 ms to stabilize
+    delayMicroseconds(20);                      //monitor trackball here
 
     digitalWrite(slaveSelect, HIGH);            //shift the data toward a serial output
 
