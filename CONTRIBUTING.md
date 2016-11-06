@@ -134,6 +134,8 @@ A healthy project needs the perspective of many people.
 Submitting a pull request
 -------------------------
 Pull request is the preferred way to contribute code and documentation.
+[How to contribute to an open source project on GitHub](http://blog.davidecoppola.com/2016/11/howto-contribute-to-open-source-project-on-github/)
+
 If you want to contribute some other way, please make a request in 
 [GitHub issues](https://github.com/wolfv6/Keybrd/issues)
 or [geekhack thread](https://geekhack.org/index.php?topic=83599.0).

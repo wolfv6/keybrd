@@ -20,7 +20,7 @@ Example instantiation:
 In the above Row instantiation, argument 0 for "strobePin" is ignored because there is no strobe.
 
 There are three Scanner_ShiftRegsRead parameters.
-1. "strobeOn" paramter is ignored, but should be active state HIGH or LOW for ScannerInterface.
+1. "activeState" paramter is ignored, but should be active state HIGH or LOW for ScannerInterface.
 2. "slaveSelect" paramter can be any controller pin connected to shift register's SHIFT-LOAD pin.
 3. "byte_count" is the number of bytes to read from shift registers (1 to 4).
    byte_count should cover all the row's keys: byte_count*8 >= row's keyCount
@@ -54,7 +54,7 @@ class Scanner_ShiftRegsRead : public ScannerInterface
         const uint8_t slaveSelect;//controller pin number connected to shift register SHIFT-LOAD pin
         const uint8_t byte_count;               //number of bytes to read from shift registers
     public:
-        Scanner_ShiftRegsRead(const bool strobeOn,
+        Scanner_ShiftRegsRead(const bool activeState,
                                        const uint8_t slaveSelect, const uint8_t byte_count);
         void init(const uint8_t strobePin);
         void begin();

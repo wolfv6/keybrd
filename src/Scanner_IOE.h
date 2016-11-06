@@ -16,15 +16,12 @@ keybrd_library_developer_guide.md has instructions for ## Active state and diode
 class Scanner_IOE : public ScannerInterface
 {
     private:
-        const bool strobeOn;                    //logic level of strobe on, HIGH or LOW
-        const bool strobeOff;                   //logic level of strobe off, complement of strobeOn
+        const bool activeState;                    //logic level of strobe on, HIGH or LOW
         PortInterface& refPortWrite;            //the IC port containing the strobePin
         PortInterface& refPortRead;             //the IC's read port
     public:
-        Scanner_IOE(const bool strobeOn,
-                    PortInterface &refPortWrite, PortInterface& refPortRead)
-            : strobeOn(strobeOn), strobeOff(!strobeOn),
-              refPortWrite(refPortWrite), refPortRead(refPortRead) {}
+        Scanner_IOE(const bool activeState, PortInterface &refPortWrite, PortInterface& refPortRead)
+            : activeState(activeState) refPortWrite(refPortWrite), refPortRead(refPortRead) {}
         void init(const uint8_t strobePin);
         void begin();
         read_pins_t scan(const uint8_t strobePin);

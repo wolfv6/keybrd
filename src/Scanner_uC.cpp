@@ -10,13 +10,13 @@ https://www.arduino.cc/en/Reference/Constants > Digital Pins modes: INPUT, INPUT
 
 /* constructor
 */
-Scanner_uC::Scanner_uC(const bool strobeOn, const uint8_t readPins[], const uint8_t readPinCount)
-    : strobeOn(strobeOn), strobeOff(!strobeOn), readPins(readPins), readPinCount(readPinCount)
+Scanner_uC::Scanner_uC(const bool activeState, const uint8_t readPins[], const uint8_t readPinCount)
+    : activeState(activeState), readPins(readPins), readPinCount(readPinCount)
 {
     uint8_t mode;
 
     //configure read pins
-    if (strobeOn == LOW)                        //if active low
+    if (activeState == LOW)                     //if active low
     {
         mode = INPUT_PULLUP;                    //use internal pull-up resistor
     }
@@ -48,22 +48,22 @@ read_pins_t Scanner_uC::scan(const uint8_t strobePin)
     read_pins_t readState = 0;                  //bits, 1 means key is pressed, 0 means released
     read_pins_t readMask = 1;                   //bits, active bit is 1
 
-    //strobe row on
-    digitalWrite(strobePin, strobeOn);
+    //strobe on
+    digitalWrite(strobePin, activeState);
     delayMicroseconds(3);                       //time to stablize voltage
 
     //read all the read pins
     for (uint8_t i=0; i < readPinCount; i++)
     {
-        if ( digitalRead(readPins[i]) == strobeOn )
+        if ( digitalRead(readPins[i]) == activeState )
         {
             readState |= readMask;
         }
         readMask <<= 1;
     }
 
-    //strobe row off
-    digitalWrite(strobePin, strobeOff);
+    //strobe off
+    digitalWrite(strobePin, !activeState);
 
     return readState;
 }

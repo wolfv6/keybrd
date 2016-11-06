@@ -1,8 +1,8 @@
 #include "Scanner_ShiftRegsReadStrobed.h"
 
-Scanner_ShiftRegsReadStrobed::Scanner_ShiftRegsReadStrobed(const bool strobeOn,
+Scanner_ShiftRegsReadStrobed::Scanner_ShiftRegsReadStrobed(const bool activeState,
         const uint8_t slaveSelect, const uint8_t byte_count)
-    : strobeOn(strobeOn), strobeOff(!strobeOn),
+    : activeState(activeState),
       slaveSelect(slaveSelect), byte_count(byte_count)
 {
     pinMode(slaveSelect, OUTPUT);
@@ -44,7 +44,7 @@ read_pins_t Scanner_ShiftRegsReadStrobed::scan(const uint8_t strobePin)
 {
     read_pins_t readState = 0;                  //bits, 1 means key is pressed, 0 means released
 
-    digitalWrite(strobePin, strobeOn);          //strobe on
+    digitalWrite(strobePin, activeState);       //strobe on
 
     //SPI.beginTransaction( SPISettings(5000000, MSBFIRST, SPI_MODE0) ); //control SPI bus, 5 MHz
 
@@ -53,7 +53,7 @@ read_pins_t Scanner_ShiftRegsReadStrobed::scan(const uint8_t strobePin)
 
     digitalWrite(slaveSelect, HIGH);            //shift the data toward a serial output
 
-    digitalWrite(strobePin, strobeOff);         //strobe off
+    digitalWrite(strobePin, !activeState);      //strobe off to preserv IR LED life
 
     SPI.transfer(&readState, byte_count);
 

@@ -1,9 +1,9 @@
 #include "Scanner_ShiftRegsRead.h"
 
 /* constructor
-Parameter strobeOn is not used.
+Parameter activeState is not used.
 */
-Scanner_ShiftRegsRead::Scanner_ShiftRegsRead(const bool strobeOn,
+Scanner_ShiftRegsRead::Scanner_ShiftRegsRead(const bool activeState,
         const uint8_t slaveSelect, const uint8_t byte_count)
     : slaveSelect(slaveSelect), byte_count(byte_count)
 {

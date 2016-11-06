@@ -19,7 +19,7 @@ Example instantiation:
     Scanner_ShiftRegsReadStrobed scanner_R(HIGH, 6, 4);
 
 There are three Scanner_ShiftRegsReadStrobed parameters.
-1. "strobeOn" paramter is active state HIGH or LOW.
+1. "activeState" paramter is active state HIGH or LOW.
 2. "slaveSelect" paramter is controller pin connected to shift register's SHIFT-LOAD pin.
 3. "byte_count" is the number of bytes to read from shift registers (1 to 4).
    byte_count should cover all the row's keys: byte_count*8 >= row's keyCount
@@ -48,12 +48,11 @@ If multiple rows (or any SPI divice) share a MISO line, the shift registers need
 class Scanner_ShiftRegsReadStrobed : public ScannerInterface
 {
     private:
-        const bool strobeOn;                    //logic level of strobe on, active state HIGH or LOW
-        const bool strobeOff;                   //logic level of strobe off, complement of strobeOn
+        const bool activeState;                 //logic level of strobe on, active state HIGH or LOW
         const uint8_t slaveSelect;//controller pin number connected to shift register SHIFT-LOAD pin
         const uint8_t byte_count;               //number of bytes to read from shift registers
     public:
-        Scanner_ShiftRegsReadStrobed(const bool strobeOn,
+        Scanner_ShiftRegsReadStrobed(const bool activeState,
                                       const uint8_t slaveSelect, const uint8_t byte_count);
         virtual void init(const uint8_t strobePin);
         virtual void begin();
