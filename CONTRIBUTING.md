@@ -70,7 +70,7 @@ Answer the questions you feel like answering, or make up your own questions.
 
 * Other comments or suggestions.
 
-Post the completed Q & A on [geekhack thread](https://geekhack.org/index.php?topic=83599.0) with a heading "Tutorial usability survey".
+Post the completed Q & A on [geekhack thread](https://geekhack.org/index.php?topic=83599.0) with the heading "Tutorial usability survey".
 If you prefer your answers remain confidential, pm the completed Q & A to [wolfv](https://geekhack.org/index.php?action=pm;sa=send;u=25471).
 
 Usability survey results will be used to make improvements to the tutorials.
@@ -94,7 +94,7 @@ Answer the questions you feel like answering, or make up your own questions.
 
 * Other comments or suggestions.
 
-Post the completed Q & A on [geekhack thread](https://geekhack.org/index.php?topic=83599.0) with a heading "keybrd library usability survey".
+Post the completed Q & A on [geekhack thread](https://geekhack.org/index.php?topic=83599.0) with the heading "keybrd library usability survey".
 If you prefer your answers remain confidential, pm the completed Q & A to [wolfv](https://geekhack.org/index.php?action=pm;sa=send;u=25471).
 
 Usability survey results will be used to make improvements to the keybrd library.
