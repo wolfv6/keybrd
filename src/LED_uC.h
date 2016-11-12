@@ -9,13 +9,9 @@
 class LED_uC: public LEDInterface
 {
     private:
-        const uint8_t pin;                      //Aduino pin that is connected to an LED
-
+        const uint8_t pin;                      //Aduino pin number connected to an LED
     public:
-        LED_uC(const uint8_t pin): pin(pin)
-        {
-            pinMode(pin, OUTPUT);//todo move to .cpp file
-        }
+        LED_uC(const uint8_t pin);
         virtual void on();
         virtual void off();
 };

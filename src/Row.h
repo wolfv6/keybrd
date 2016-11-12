@@ -11,12 +11,10 @@
 
 /*
 strobePin has one of two formats:
-1. if strobe pin is on uC (Scanner_uC or Scanner_ShiftRegsRead),
+ * if strobe pin is on uC (strobe for Scanner_uC or Scanner_ShiftRegsRead),
     then strobePin is an Arduino pin number connected to this row.
-2. if strobe pin is on I/O expander (Scanner_IOE), then strobePin is bit pattern,
+ * if strobe pin is on I/O expander (strobe for Scanner_IOE), then strobePin is bit pattern,
     1 indicating the I/O expander pin connected to this row
-
-todo instantiation examples - here or in Scanner?
 */
 class Row
 {
@@ -31,7 +29,7 @@ class Row
     protected:
         const uint8_t keyCount;                 //number of read pins
         //Debouncer_Samples debouncer;
-        Debouncer_Not debouncer; //todo
+        Debouncer_Not debouncer; //todo restore Debouncer_Samples after testing
         read_pins_t debounced; //bit pattern, state of keys after debouncing, 1=pressed, 0=released
     public:
         Row(ScannerInterface& refScanner, const uint8_t strobePin,

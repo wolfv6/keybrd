@@ -6,23 +6,18 @@ Scanner_ShiftRegsReadStrobed::Scanner_ShiftRegsReadStrobed(const bool activeStat
       slaveSelect(slaveSelect), byte_count(byte_count)
 {
     pinMode(slaveSelect, OUTPUT);
+    SPI.begin();
 }
 
 /* init() is called once for each row from Row constructor.
 Configures controller to communicate with shift register matrix.
+
+slaveSelect initialize not needed, only affects first scan, which is before USB is detected by OS.
+    digitalWrite(slaveSelect, HIGH);
 */
 void Scanner_ShiftRegsReadStrobed::init(const uint8_t strobePin)
 {
     pinMode(strobePin, OUTPUT);
-}
-
-/* begin() should be called once from sketch setup().
-Initializes shift register's shift/load pin.
-*/
-void Scanner_ShiftRegsReadStrobed::begin()
-{
-    digitalWrite(slaveSelect, HIGH);            //initialize ??only needed for first scan
-    SPI.begin(); //todo move this to constructor or init()
 }
 
 /* scan() strobes the row's strobePin and returns state of the shift register's input pins.
@@ -44,6 +39,7 @@ read_pins_t Scanner_ShiftRegsReadStrobed::scan(const uint8_t strobePin)
 {
     read_pins_t readState = 0;                  //bits, 1 means key is pressed, 0 means released
 
+//strobe off here NOT release continuously
     digitalWrite(strobePin, activeState);       //strobe on
 
     //SPI.beginTransaction( SPISettings(5000000, MSBFIRST, SPI_MODE0) ); //control SPI bus, 5 MHz
@@ -53,7 +49,7 @@ read_pins_t Scanner_ShiftRegsReadStrobed::scan(const uint8_t strobePin)
 
     digitalWrite(slaveSelect, HIGH);            //shift the data toward a serial output
 
-    digitalWrite(strobePin, !activeState);      //strobe off to preserv IR LED life
+    digitalWrite(strobePin, !activeState);      //strobe off to preserve IR LED life
 
     SPI.transfer(&readState, byte_count);
 
@@ -61,6 +57,7 @@ read_pins_t Scanner_ShiftRegsReadStrobed::scan(const uint8_t strobePin)
 
     digitalWrite(slaveSelect, LOW);             //load parallel inputs to registers
 
+//strobe off here still releases continuously
     return readState;
 }
 

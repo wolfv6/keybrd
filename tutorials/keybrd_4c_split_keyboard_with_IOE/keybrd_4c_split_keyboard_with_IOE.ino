@@ -49,8 +49,8 @@ In portA, the first two pins are set to input for reading.
 "<<" (bit shift left) and "|" (OR) are bitwise operators.
 Pin numbers to be read are to the right of "1<<" and delimited by "|".
 */
-Port_MCP23S17 portA(IOE_ADDR, 0, 1<<0 | 1<<1 );
-Port_MCP23S17 portB(IOE_ADDR, 1, 0);
+Port_MCP23S17 portA(IOE_ADDR, 0, 1<<0 | 1<<1 ); //for read
+Port_MCP23S17 portB(IOE_ADDR, 1, 0);            //for strobe
 Scanner_IOE scanner_R(LOW, portB, portA);
 
 // =================== CODES ===================
@@ -69,8 +69,10 @@ Left row names contain the letter 'L', while right row names conatain the letter
 
 Row constructor parameters are: scanner, strobePin, ptrsKeys[], keyCount.
 strobePin has one of two formats:
- * if refScanner a Scanner_uC, then strobePin is an Arduino pin number connected to this row
- * otherwise strobePin is a bit pattern, 1 indicating an IC pin connected to the row
+ * if strobe pin is on uC (strobe for Scanner_uC or Scanner_ShiftRegsRead),
+    then strobePin is an Arduino pin number connected to this row.
+ * if strobe pin is on I/O expander (strobe for Scanner_IOE), then strobePin is bit pattern,
+    1 indicating the I/O expander pin connected to this row
 */
 /* ---------------- LEFT ROWS ------------------
 The left rows have a Scanner_uC and Arduino pin numbers to strobe.

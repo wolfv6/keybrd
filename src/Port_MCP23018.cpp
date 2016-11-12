@@ -1,5 +1,4 @@
 #include "Port_MCP23018.h"
-//todo add Port_MCP23018::write() like Port_MCP23S17::transer() ??
 
 /* beginProtocol() is called from Scanner_IOE::begin().  Initiates I2C bus.
 
@@ -11,7 +10,6 @@ Longer wires require lower clock speeds.
 void Port_MCP23018::beginProtocol()
 {
     Wire.begin();                               //initiate I2C bus to 100 kHz
-    //Wire.setClock(400000L);                     //set I2C bus to 400 kHz (have not tested 400 kHz)
 }
 
 /* begin() is called from Scanner_IOE::begin().
@@ -51,21 +49,16 @@ void Port_MCP23018::write(const uint8_t pin, const bool logicLevel)
     if (logicLevel == LOW)
     {
         outputVal &= ~pin;                      //set pin output to low
-//Keyboard.print(" low");
     }
     else
     {
         outputVal |= pin;                       //set pin output to high
-//Keyboard.print(" high");
     }
 
-//Keyboard.print(" outputVal=");//todo
-//Keyboard.println(outputVal);
     Wire.beginTransmission(deviceAddr);
     Wire.write(portNum + 0x12);                 //GPIO
     Wire.write(outputVal);
     Wire.endTransmission();
-//delay(4000);
 }
 
 /* read() returns portState.

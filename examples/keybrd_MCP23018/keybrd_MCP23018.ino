@@ -71,7 +71,7 @@ Code_Sc s_2(KEY_2);
 Code_Sc s_3(KEY_3);
 Code_Sc s_4(KEY_4);
 
-Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_capsLck);//todo was testing LED, restore s_4 when done
+Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_capsLck);//was testing LED, restore s_4 when done
 
 /* =================== ROWS ====================
 Left row names contain the letter 'L', while right row names conatain the letter 'R'.
@@ -118,14 +118,9 @@ void loop()
 
     //right matrix
     row_R0.process();
-//Keyboard.println(" 0");
-//delay(2000);
     row_R1.process();
-//Keyboard.println(" 1");
-//delay(2000);
 
     scanDelay.delay();
-//Keyboard.println(" end loop");//todo
     //debug.print_scans_per_second();
     //debug.print_microseconds_per_scan();
 }

@@ -55,7 +55,6 @@ class Scanner_ShiftRegsReadStrobed : public ScannerInterface
         Scanner_ShiftRegsReadStrobed(const bool activeState,
                                       const uint8_t slaveSelect, const uint8_t byte_count);
         virtual void init(const uint8_t strobePin);
-        virtual void begin();
         virtual read_pins_t scan(const uint8_t strobePin);
 };
 #endif

@@ -15,12 +15,12 @@ void Port_PCA9655E::beginProtocol()
 
 /* begin() is called from Scanner_IOE::begin().
 Configures read pins to input.
-strobeOn is not used because PCA9655E has no pull-up resistors.
+strobeOn is not used because PCA9655E has no internal pull-up resistors.
 */
 void Port_PCA9655E::begin(const uint8_t strobeOn)
 {
     Wire.beginTransmission(deviceAddr);
-    Wire.write(portNum + 6);                    //configuration byte command
+    Wire.write(portNum + 6);                    //configure direction
     Wire.write(readPins);                       //0=output (for strobe and LED), 1=input (for read)
     Wire.endTransmission();
 }
