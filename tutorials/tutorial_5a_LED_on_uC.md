@@ -70,7 +70,7 @@ For Forward Current, use the smaller of:
 current capacity of output pin      If = 20 mA
 continuous Forward Current of LED   If = 30 mA
 
-minimum current limiting restiance is  R = (Vs - Vf) / If = 55 Ohms
+minimum current limiting resistance is  R = (Vs - Vf) / If = 55 Ohms
 ```
 Add a safety margin for resistor tolerances (1%, 2%, 5%, 10%), and round up to a standard value.
  http://www.rfcafe.com/references/electrical/resistor-values.htm

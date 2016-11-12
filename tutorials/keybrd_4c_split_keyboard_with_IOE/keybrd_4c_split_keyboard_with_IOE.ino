@@ -114,6 +114,6 @@ void loop()
     row_R1.process();
 
     scanDelay.delay();
-    //debug.print_scans_per_second();
-    //debug.print_microseconds_per_scan();
+    //debug.printScansPerSecond();
+    //debug.printMicrosecondsPerScan();
 }
