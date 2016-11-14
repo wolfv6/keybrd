@@ -46,7 +46,8 @@ class Port_PCA9655E : public PortInterface
             : deviceAddr(deviceAddr), portNum(portNum), outputVal(0), readPins(readPins) {}
         void beginProtocol();
         void begin(const uint8_t strobeOn);
-        virtual void write(const uint8_t pin, const bool logicLevel);
+        virtual void setLow(const uint8_t pin);
+        virtual void setHigh(const uint8_t pin);
         virtual uint8_t read();
 };
 #endif

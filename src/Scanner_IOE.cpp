@@ -26,18 +26,29 @@ read_pins_t Scanner_IOE::scan(const uint8_t strobePin)
     uint8_t readState;                          //bits, 1 means key is pressed, 0 means released
 
     //strobe on
-    refPortWrite.write(strobePin, activeState);
+    if (activeState == LOW)                     //if active low
+    {
+        refPortWrite.setLow(strobePin);
+    }
+    else                                        //if active high
+    {
+        refPortWrite.setHigh(strobePin);
+    }
     delayMicroseconds(3);                       //time to stabilize voltage
 
     //read the port pins
     readState = refPortRead.read();
 
     //strobe off
-    refPortWrite.write(strobePin, !activeState);
-
     if (activeState == LOW)                     //if active low
     {
+        refPortWrite.setHigh(strobePin);
         readState = ~readState;
     }
+    else                                        //if active high
+    {
+        refPortWrite.setLow(strobePin);
+    }
+
     return readState;
 }

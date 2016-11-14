@@ -52,22 +52,21 @@ void Port_MCP23S17::begin(const uint8_t strobeOn)
     transfer(deviceAddr << 1, portNum + 0x0C, pullUp); //configure GPPU
 }
 
-/* write() sets pin output to logicLevel (useful for strobePin, one LED pin, or multiple pins).
+/* setLow() sets pin output LOW.
 pin is bit pattern, where pin being set is 1.
-logicLevel is HIGH or LOW.
-write() does not overwrite the other pins.
 */
-void Port_MCP23S17::write(const uint8_t pin, const bool logicLevel)
+void Port_MCP23S17::setLow(const uint8_t pin)
 {
-    if (logicLevel == LOW)
-    {
-        outputVal &= ~pin;                 //set pin output to low
-    }
-    else
-    {
-        outputVal |= pin;                  //set pin output to high
-    }
+    outputVal &= ~pin;                 //set pin output to low
+    transfer(deviceAddr << 1, portNum + 0x12, outputVal); //set GPIO port to outputVal
+}
 
+/* setHigh() sets pin output HIGH.
+pin is bit pattern, where pin being set is 1.
+*/
+void Port_MCP23S17::setHigh(const uint8_t pin)
+{
+    outputVal |= pin;                  //set pin output to high
     transfer(deviceAddr << 1, portNum + 0x12, outputVal); //set GPIO port to outputVal
 }
 

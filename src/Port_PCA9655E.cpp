@@ -25,21 +25,25 @@ void Port_PCA9655E::begin(const uint8_t strobeOn)
     Wire.endTransmission();
 }
 
-/* write() sets pin output to logicLevel.
-pin is bit pattern, where pin being strobed is 1.
-logicLevel is HIGH or LOW.
-write() does not overwrite the other pins.
+/* setLow() sets pin output LOW.
+pin is bit pattern, where pin being set is 1.
 */
-void Port_PCA9655E::write(const uint8_t pin, const bool logicLevel)
+void Port_PCA9655E::setLow(const uint8_t pin)
 {
-    if (logicLevel == LOW)
-    {
-        outputVal &= ~pin;                      //set pin output to low
-    }
-    else
-    {
-        outputVal |= pin;                       //set pin output to high
-    }
+    outputVal &= ~pin;                          //set pin output to low
+
+    Wire.beginTransmission(deviceAddr);
+    Wire.write(portNum + 2);                    //output Byte command
+    Wire.write(outputVal);
+    Wire.endTransmission();
+}
+
+/* setHigh() sets pin output HIGH.
+pin is bit pattern, where pin being set is 1.
+*/
+void Port_PCA9655E::setHigh(const uint8_t pin)
+{
+    outputVal |= pin;                           //set pin output to high
 
     Wire.beginTransmission(deviceAddr);
     Wire.write(portNum + 2);                    //output Byte command

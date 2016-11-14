@@ -14,6 +14,7 @@ write() interface emulates Arduino's digitalWrite().
 class PortWriteInterface
 {
     public:
-        virtual void write(const uint8_t pin, const bool pinLogicLevel)=0;
+        virtual void setLow(const uint8_t pin)=0;
+        virtual void setHigh(const uint8_t pin)=0;
 };
 #endif

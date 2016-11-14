@@ -1,4 +1,4 @@
-/* keybrd_PCA9655E.ino
+/* PCA9655E_5_keybrd.ino
 keyboard layout is same as top-left keys of DH matrices:
 
   Controller                I/O expander
@@ -90,9 +90,9 @@ Row row_R1(scanner_R, 1<<1, ptrsKeys_R1, KEY_COUNT_R1);
 void setup()
 {
     delay(6000);
-    Keyboard.print("keybrd_PCA9655E.ino ");
+    Keyboard.print("PCA9655E_5_keybrd.ino ");
 
-    //Keyboard.begin(); not needed ?? it's in DH mainSketch.cpp and keybrd_4c_split_keyboard_with_IOE.ino
+    //Keyboard.begin();todo not needed ?? it's in DH mainSketch.cpp and keybrd_4c_split_keyboard_with_IOE.ino
     scanner_R.begin();
 }
 
