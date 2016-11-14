@@ -22,7 +22,7 @@ const uint8_t ADDR  = 0x18;                     //I2C address with AD2=GND AD1=S
 void setup()
 {
     delay(1000);
-    Serial.print("PCA9655E_read.ino");
+    Serial.print("PCA9655E_2_read.ino");
     Wire.begin();
 
     //Configure port 1 to output

@@ -33,7 +33,7 @@ Scanner_IOE scanner_R(HIGH, port1, port0);
 void setup()
 {
     delay(6000);
-    Keyboard.print("PCA9655E_scan.ino");
+    Keyboard.print("PCA9655E_3_scan.ino");
 
     scanner_R.begin();
 
