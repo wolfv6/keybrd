@@ -14,10 +14,10 @@ void Port_ShiftRegs::begin()
     SPI.begin();
 }
 
-/* setLow() sets pin output LOW.
+/* writeLow() sets pin output LOW.
 pin is bit pattern, where pin being set is 1.
 */
-void Port_ShiftRegs::setLow(const uint8_t pin)
+void Port_ShiftRegs::writeLow(const uint8_t pin)
 {
     outputVal &= ~pin;                          //set pin output to low
 
@@ -26,10 +26,10 @@ void Port_ShiftRegs::setLow(const uint8_t pin)
     digitalWrite (slaveSelect, HIGH);
 }
 
-/* setHigh() sets pin output HIGH.
+/* writeHigh() sets pin output HIGH.
 pin is bit pattern, where pin being set is 1.
 */
-void Port_ShiftRegs::setHigh(const uint8_t pin)
+void Port_ShiftRegs::writeHigh(const uint8_t pin)
 {
     outputVal |= pin;                           //set pin output to high
 

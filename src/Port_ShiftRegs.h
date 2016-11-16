@@ -16,7 +16,7 @@ class Port_ShiftRegs : public PortWriteInterface
     public:
         Port_ShiftRegs(const uint8_t slaveSelect);
         void begin();
-        void setLow(const uint8_t pin);
-        void setHigh(const uint8_t pin);
+        void writeLow(const uint8_t pin);
+        void writeHigh(const uint8_t pin);
 };
 #endif

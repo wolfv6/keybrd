@@ -52,19 +52,19 @@ void Port_MCP23S17::begin(const uint8_t activeState)
     transfer(deviceAddr << 1, portNum + 0x0C, pullUp); //configure GPPU
 }
 
-/* setLow() sets pin output LOW.
+/* writeLow() sets pin output LOW.
 pin is bit pattern, where pin being set is 1.
 */
-void Port_MCP23S17::setLow(const uint8_t pin)
+void Port_MCP23S17::writeLow(const uint8_t pin)
 {
     outputVal &= ~pin;                 //set pin output to low
     transfer(deviceAddr << 1, portNum + 0x12, outputVal); //set GPIO port to outputVal
 }
 
-/* setHigh() sets pin output HIGH.
+/* writeHigh() sets pin output HIGH.
 pin is bit pattern, where pin being set is 1.
 */
-void Port_MCP23S17::setHigh(const uint8_t pin)
+void Port_MCP23S17::writeHigh(const uint8_t pin)
 {
     outputVal |= pin;                  //set pin output to high
     transfer(deviceAddr << 1, portNum + 0x12, outputVal); //set GPIO port to outputVal

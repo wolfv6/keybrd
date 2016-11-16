@@ -46,8 +46,8 @@ class Port_MCP23S17 : public PortInterface
             : deviceAddr(deviceAddr), portNum(portNum), outputVal(0), readPins(readPins) {}
         void beginProtocol();
         void begin(const uint8_t activeState);
-        virtual void setLow(const uint8_t pin);
-        virtual void setHigh(const uint8_t pin);
+        virtual void writeLow(const uint8_t pin);
+        virtual void writeHigh(const uint8_t pin);
         virtual uint8_t read();
 };
 #endif

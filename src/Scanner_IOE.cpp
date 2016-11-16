@@ -28,11 +28,11 @@ read_pins_t Scanner_IOE::scan(const uint8_t strobePin)
     //strobe on
     if (activeState == LOW)                     //if active low
     {
-        refPortWrite.setLow(strobePin);
+        refPortWrite.writeLow(strobePin);
     }
     else                                        //if active high
     {
-        refPortWrite.setHigh(strobePin);
+        refPortWrite.writeHigh(strobePin);
     }
     delayMicroseconds(3);                       //time to stabilize voltage
 
@@ -42,12 +42,12 @@ read_pins_t Scanner_IOE::scan(const uint8_t strobePin)
     //strobe off
     if (activeState == LOW)                     //if active low
     {
-        refPortWrite.setHigh(strobePin);
+        refPortWrite.writeHigh(strobePin);
         readState = ~readState;
     }
     else                                        //if active high
     {
-        refPortWrite.setLow(strobePin);
+        refPortWrite.writeLow(strobePin);
     }
 
     return readState;

@@ -2,10 +2,10 @@
 
 void LED_Port::on()
 {
-    refPort.setHigh(pin);
+    refPort.writeHigh(pin);
 }
 
 void LED_Port::off()
 {
-    refPort.setLow(pin);
+    refPort.writeLow(pin);
 }

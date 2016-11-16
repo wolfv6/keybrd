@@ -25,10 +25,10 @@ void Port_PCA9655E::begin(const uint8_t activeState)
     Wire.endTransmission();
 }
 
-/* setLow() sets pin output LOW.
+/* writeLow() sets pin output LOW.
 pin is bit pattern, where pin being set is 1.
 */
-void Port_PCA9655E::setLow(const uint8_t pin)
+void Port_PCA9655E::writeLow(const uint8_t pin)
 {
     outputVal &= ~pin;                          //set pin output to low
 
@@ -38,10 +38,10 @@ void Port_PCA9655E::setLow(const uint8_t pin)
     Wire.endTransmission();
 }
 
-/* setHigh() sets pin output HIGH.
+/* writeHigh() sets pin output HIGH.
 pin is bit pattern, where pin being set is 1.
 */
-void Port_PCA9655E::setHigh(const uint8_t pin)
+void Port_PCA9655E::writeHigh(const uint8_t pin)
 {
     outputVal |= pin;                           //set pin output to high
 

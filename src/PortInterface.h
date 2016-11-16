@@ -17,8 +17,8 @@ class PortInterface : public PortWriteInterface
     public:
         virtual void beginProtocol()=0;               //SPI bus or I2C bus
         virtual void begin(const uint8_t activeState)=0; //configure GPIO pins
-        virtual void setLow(const uint8_t pin)=0;
-        virtual void setHigh(const uint8_t pin)=0;
+        virtual void writeLow(const uint8_t pin)=0;
+        virtual void writeHigh(const uint8_t pin)=0;
         virtual uint8_t read()=0;
 };
 #endif
