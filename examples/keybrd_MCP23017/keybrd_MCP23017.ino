@@ -60,7 +60,8 @@ DESTINATION  PIN PIN_NUMBER  PIN    DESTINATION
 #include <Scanner_uC.h>
 
 //right matrix
-#include <Port_MCP23018.h>
+#include <Port_MCP23017.h>
+//#include <Port_MCP23018.h>
 #include <Scanner_IOE.h>
 
 // ============ SPEED CONFIGURATION ============
@@ -77,8 +78,8 @@ Scanner_uC scanner_L(LOW, readPins, readPinCount);
 // =============== RIGHT SCANNER ===============
 const uint8_t IOE_ADDR = 0x20;                  //MCP23018 ADDR pin grounded
 
-Port_MCP23018 portA(IOE_ADDR, 0, 1<<0 | 1<<1 ); //read pins 0, 1
-Port_MCP23018 portB(IOE_ADDR, 1, 0);
+Port_MCP23017 portA(IOE_ADDR, 0, 1<<0 | 1<<1 ); //read pins 0, 1
+Port_MCP23017 portB(IOE_ADDR, 1, 0);
 Scanner_IOE scanner_R(LOW, portB, portA);
 
 // ================= RIGHT LED =================
