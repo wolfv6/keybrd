@@ -19,10 +19,12 @@ Example instantiation:
 
 In the above Row instantiation, argument 0 for "strobePin" is ignored because there is no strobe.
 
-There are three Scanner_ShiftRegsRead parameters.
-1. "activeState" paramter is ignored, but should be active state HIGH or LOW for ScannerInterface.
+There are three Scanner_ShiftRegsRead-constructor parameters.
+1. "activeState" paramter is ignored, but should be HIGH or LOW for documention.
+   activeState is required by ScannerInterface.
+   Actual activeState is determined by external pull-up or pull-down resistors described below.
 2. "slaveSelect" paramter can be any controller pin connected to shift register's SHIFT-LOAD pin.
-3. "byte_count" is the number of bytes to read from shift registers (1 to 4).
+3. "byte_count" is the number of bytes to read from shift registers (1, 2, 3, or 4).
    byte_count should cover all the row's keys: byte_count*8 >= row's keyCount
 
 Hardware setup:

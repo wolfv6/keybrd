@@ -91,8 +91,6 @@ void setup()
 {
     delay(6000);
     Keyboard.print("PCA9655E_5_keybrd.ino ");
-
-    //Keyboard.begin();todo not needed ?? it's in DH mainSketch.cpp and keybrd_4c_split_keyboard_with_IOE.ino
     scanner_R.begin();
 }
 
