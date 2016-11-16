@@ -90,11 +90,10 @@ uint8_t keyCount_1 = sizeof(ptrsKeys_1)/sizeof(*ptrsKeys_1);
 Row row_1(scanner, 1, ptrsKeys_1, keyCount_1);
 
 /* ################### MAIN ####################
-setup() is used to initialize the keyboard firmware.  Keyboard.begin() should be called once.
+setup() is required by Arduino.  Some keyboard firmware will initialize objects in setup().
 */
 void setup()
 {
-    Keyboard.begin();
 }
 
 /*

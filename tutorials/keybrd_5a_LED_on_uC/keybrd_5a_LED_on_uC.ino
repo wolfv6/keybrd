@@ -91,7 +91,6 @@ layerState.begin() turns on the LED of the default layer.
 */
 void setup()
 {
-    Keyboard.begin();
     layerState.begin();
 }
 

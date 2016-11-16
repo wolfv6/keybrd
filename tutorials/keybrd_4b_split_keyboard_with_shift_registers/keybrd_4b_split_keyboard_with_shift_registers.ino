@@ -73,7 +73,6 @@ Row row_R0(scanner_R, 0, ptrsKeys_R0, sizeof(ptrsKeys_R0)/sizeof(*ptrsKeys_R0));
 // ################### MAIN ####################
 void setup()
 {
-    Keyboard.begin();
     scanner_R.begin();
 }
 

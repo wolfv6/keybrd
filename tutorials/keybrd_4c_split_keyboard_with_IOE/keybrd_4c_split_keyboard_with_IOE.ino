@@ -99,7 +99,6 @@ Row row_R1(scanner_R, 1<<1, ptrsKeys_R1, KEY_COUNT_R1);
 // ################### MAIN ####################
 void setup()
 {
-    Keyboard.begin();
     scanner_R.begin();
 }
 

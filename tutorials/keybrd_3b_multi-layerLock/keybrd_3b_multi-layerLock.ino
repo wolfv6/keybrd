@@ -80,7 +80,6 @@ Row row_1(scanner, 1, ptrsKeys_1, keyCount_1);
 // ################### MAIN ####################
 void setup()
 {
-    Keyboard.begin();
 }
 
 void loop()
