@@ -39,7 +39,7 @@ DESTINATION  PIN PIN_NUMBER  PIN    DESTINATION
 //right matrix
 #include <Port_MCP23018.h>
 #include <Scanner_IOE.h>
-#include <LED_Port.h>
+#include <LED_PortOpenDrain.h>
 
 // ============ SPEED CONFIGURATION ============
 ScanDelay scanDelay(9000);
@@ -60,7 +60,7 @@ Port_MCP23018 portB(IOE_ADDR, 1, 0);
 Scanner_IOE scanner_R(LOW, portB, portA);
 
 // ================= RIGHT LED =================
-LED_Port LED_capsLck(portA, 1<<7);
+LED_PortOpenDrain LED_capsLck(portA, 1<<7);
 
 // =================== CODES ===================
 Code_Sc s_a(KEY_A);
