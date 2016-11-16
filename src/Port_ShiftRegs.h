@@ -6,7 +6,7 @@
 #include <PortWriteInterface.h>
 
 /* Port_ShiftRegs 
-slaveSelect is controller-pin number connected to shift register RCLK pin a.k.a. SS or ST
+slaveSelect is Arduino-pin number connected to shift register RCLK pin a.k.a. SS or ST
 */
 class Port_ShiftRegs : public PortWriteInterface
 {

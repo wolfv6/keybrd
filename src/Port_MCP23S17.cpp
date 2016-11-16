@@ -12,11 +12,11 @@ uint8_t Port_MCP23S17::transfer(const uint8_t command, const uint8_t registerAdd
     uint8_t portState;                          //bit pattern
 
     SPI.beginTransaction( SPISettings(5000000, MSBFIRST, SPI_MODE0) ); //control SPI bus, 5 MHz
-    digitalWrite(SS, LOW);                      //enable Slave Select
+    digitalWrite(slaveSelect, LOW);             //enable Slave Select
     SPI.transfer(command);                      //write or read command
     SPI.transfer(registerAddr);                 //register address to write data to
     portState = SPI.transfer(data);             //write data, read portState
-    digitalWrite(SS, HIGH);                     //disable Slave Select
+    digitalWrite(slaveSelect, HIGH);                     //disable Slave Select
     SPI.endTransaction();
 
     return portState;
@@ -26,8 +26,8 @@ uint8_t Port_MCP23S17::transfer(const uint8_t command, const uint8_t registerAdd
 */
 void Port_MCP23S17::beginProtocol()
 {
-    pinMode(SS, OUTPUT);                        //configure controller's Slave Select pin to output
-    digitalWrite(SS, HIGH);                     //disable Slave Select
+    pinMode(slaveSelect, OUTPUT);               //configure controller's Slave Select pin to output
+    digitalWrite(slaveSelect, HIGH);            //disable Slave Select
     SPI.begin();
 }
 
@@ -39,13 +39,13 @@ void Port_MCP23S17::begin(const uint8_t activeState)
 {
     uint8_t pullUp;                             //bits, GPPU 0=pull-up disabled, 1=pull-up enabled
 
-    if (activeState == LOW)                        //if active low
+    if (activeState == LOW)                     //if active low
     {
-        pullUp = readPins;              //0=pull-up disabled (for LED), 1=pull-up enabled (for read)
+        pullUp = readPins;                      //0=pull-up disabled (for LED), 1=pull-up enabled (for read)
     }
     else                                        //if active high
     {
-        pullUp = 0;                         //0=pull-up disabled (for external pull-down resistors)
+        pullUp = 0;                             //0=pull-up disabled (for external pull-down resistors)
     }
 
     transfer(deviceAddr << 1, portNum, readPins); //configure IODIR
@@ -57,7 +57,7 @@ pin is bit pattern, where pin being set is 1.
 */
 void Port_MCP23S17::writeLow(const uint8_t pin)
 {
-    outputVal &= ~pin;                 //set pin output to low
+    outputVal &= ~pin;                          //set pin output to low
     transfer(deviceAddr << 1, portNum + 0x12, outputVal); //set GPIO port to outputVal
 }
 
@@ -66,7 +66,7 @@ pin is bit pattern, where pin being set is 1.
 */
 void Port_MCP23S17::writeHigh(const uint8_t pin)
 {
-    outputVal |= pin;                  //set pin output to high
+    outputVal |= pin;                           //set pin output to high
     transfer(deviceAddr << 1, portNum + 0x12, outputVal); //set GPIO port to outputVal
 }
 

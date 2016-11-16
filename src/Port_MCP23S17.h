@@ -9,8 +9,7 @@
 write pins are connected to matrix Row (strobe pin) or LED.
 readPins are connected to matrix column to read which keys are pressed.
 
-Slave Select is hardcoded to Arduino Pin 10.
-Arduino Pin 10 avoids the speed penalty of digitalWrite.
+slaveSelect is Arduino-pin number connected to pin 11 (CS a.k.a. SS).
 
 Instantiation
  ------------
@@ -36,14 +35,15 @@ MCP23S17 data sheet
 class Port_MCP23S17 : public PortInterface
 {
     private:
+        const uint8_t slaveSelect;              //controller-pin number
         const uint8_t deviceAddr;
         const uint8_t portNum;                  //port identification number
         uint8_t outputVal;                      //bit pattern for strobe and LEDs
         const uint8_t readPins;                 //bit pattern, IODIR 0=output, 1=input
         uint8_t transfer(const uint8_t command, const uint8_t registerAddr, const uint8_t data);
     public:
-        Port_MCP23S17(const uint8_t deviceAddr, const uint8_t portNum, const uint8_t readPins)
-            : deviceAddr(deviceAddr), portNum(portNum), outputVal(0), readPins(readPins) {}
+        Port_MCP23S17(const uint8_t slaveSelect, const uint8_t deviceAddr, const uint8_t portNum, const uint8_t readPins)
+            : slaveSelect(slaveSelect), deviceAddr(deviceAddr), portNum(portNum), outputVal(0), readPins(readPins) {}
         void beginProtocol();
         void begin(const uint8_t activeState);
         virtual void writeLow(const uint8_t pin);
