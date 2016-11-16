@@ -1,7 +1,8 @@
 #ifndef PORT_MCP23018_H
 #define PORT_MCP23018_H
 #include "Port_MCP23017.h"
-/*
+
+/* Port_MCP23018
 write pins are connected to matrix Row (strobe pin) or LED.
 readPins are connected to matrix column to read which keys are pressed.
 

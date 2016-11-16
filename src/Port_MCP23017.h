@@ -5,7 +5,7 @@
 #include <Wire.h>
 #include <PortInterface.h>
 
-/*
+/* Port_MCP23017
 write pins are connected to matrix Row (strobe pin) or LED.
 readPins are connected to matrix column to read which keys are pressed.
 

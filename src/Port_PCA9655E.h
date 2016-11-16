@@ -5,7 +5,7 @@
 #include <Wire.h>
 #include <PortInterface.h>
 
-/*
+/* Port_PCA9655E
 write pins are connected to matrix Row (strobe pin) or LED.
 readPins are connected to matrix column to read which keys are pressed.
 
@@ -29,9 +29,6 @@ Diode orientation
  ----------------
 Diode orientation is explained in keybrd_library_user_guide.md > Diode orientation
 
-PCA9655E data sheet
- ----------------
- http://www.onsemi.com/pub_link/Collateral/PCA9655E-D.PDF
 */
 
 class Port_PCA9655E : public PortInterface
