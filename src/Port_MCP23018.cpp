@@ -15,11 +15,11 @@ void Port_MCP23018::beginProtocol()
 /* begin() is called from Scanner_IOE::begin().
 Configures port's IODIR and GPPU.
 */
-void Port_MCP23018::begin(const uint8_t strobeOn)
+void Port_MCP23018::begin(const uint8_t activeState)
 {
     uint8_t pullUp;                             //bits, GPPU 0=pull-up disabled, 1=pull-up enabled
 
-    if (strobeOn == LOW)                        //if active low
+    if (activeState == LOW)                        //if active low
     {
         pullUp = readPins;              //0=pull-up disabled (for LED), 1=pull-up enabled (for read)
     }

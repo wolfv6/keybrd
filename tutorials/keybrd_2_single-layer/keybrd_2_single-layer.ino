@@ -47,8 +47,8 @@ uint8_t readPins[] = {14, 15};
 uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
 
 /*
-Scanner_uC constructor parameters are: strobeOn, readPins[], readPinCount.
-strobeOn defines the logic level for strobes, HIGH or LOW.
+Scanner_uC constructor parameters are: activeState, readPins[], readPinCount.
+activeState defines the logic level for strobes, HIGH or LOW.
 "Active low" means that if a switch is pressed (active), the read pin is low.
 The scanner uses readPins and readPinCount to read the colums.
 */

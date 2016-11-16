@@ -17,7 +17,7 @@ Arduino boards have internal pull-up resistors, which saves on parts and labor c
 
 To make a key matrix active low:
 * Orient diodes with cathode (banded end) towards the strobe pins (row)
-* Instantiate the scanner in the sketch with strobeOn LOW, like this:
+* Instantiate the scanner in the sketch with activeState LOW, like this:
 ```
 Scanner_uC scanner(LOW, readPins, readPinCount);
 ```
@@ -33,7 +33,7 @@ If you want to use active low, you will have to add external pull-down resistors
 To make a key matrix active high:
 * Add an external 10k Ohm pull-down resistor to each read pin
 * Orient diodes with cathode (banded end) towards the read pins
-* Instantiate the scanner in the sketch with strobeOn HIGH, like this:
+* Instantiate the scanner in the sketch with activeState HIGH, like this:
 ```
 Scanner_uC scanner(HIGH, readPins, readPinCount);
 ```

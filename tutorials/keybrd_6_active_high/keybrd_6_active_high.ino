@@ -25,8 +25,8 @@ uint8_t readPins[] = {14, 15};
 uint8_t readPinCount = sizeof(readPins)/sizeof(*readPins);
 
 /*
-Scanner_uC constructor parameters are: strobeOn, readPins[], readPinCount.
-strobeOn defines the logic level for strobes, HIGH or LOW.
+Scanner_uC constructor parameters are: activeState, readPins[], readPinCount.
+activeState defines the logic level for strobes, HIGH or LOW.
 "Active high" means that if a switch is pressed (active), the read pin is high.
 */
 Scanner_uC scanner(HIGH, readPins, readPinCount);

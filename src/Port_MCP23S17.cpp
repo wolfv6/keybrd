@@ -32,14 +32,14 @@ void Port_MCP23S17::beginProtocol()
 }
 
 /* begin() is called from Scanner_IOE::begin().
-strobeOn is logic level of strobe on, HIGH or LOW
+activeState is logic level of strobe on, HIGH or LOW
 configure IODIR and GPPU.
 */
-void Port_MCP23S17::begin(const uint8_t strobeOn)
+void Port_MCP23S17::begin(const uint8_t activeState)
 {
     uint8_t pullUp;                             //bits, GPPU 0=pull-up disabled, 1=pull-up enabled
 
-    if (strobeOn == LOW)                        //if active low
+    if (activeState == LOW)                        //if active low
     {
         pullUp = readPins;              //0=pull-up disabled (for LED), 1=pull-up enabled (for read)
     }

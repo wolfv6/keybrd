@@ -123,7 +123,7 @@ The following instructions are for setting active state for a Scanner_uC class
 
 For active low:
 * Orient diodes with cathode (banded end) towards the write pins (row)
-* Instantiate the scanner in the sketch with strobeOn LOW, like this:
+* Instantiate the scanner in the sketch with activeState LOW, like this:
 ```
 Scanner_uC scanner(LOW, readPins, readPinCount);
 ```
@@ -131,7 +131,7 @@ Scanner_uC scanner(LOW, readPins, readPinCount);
 For active high:
 * Add an external 10k pull-down resistor to each read pin.
 * Orient diodes with cathode (banded end) towards the read pins.
-* Instantiate the scanner in the sketch with strobeOn HIGH, like this:
+* Instantiate the scanner in the sketch with activeState HIGH, like this:
 ```
 Scanner_uC scanner(HIGH, readPins, readPinCount);
 ```
