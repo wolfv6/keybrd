@@ -7,8 +7,9 @@
 
 /* An LED_PortOpenDrain object is an I/O expander ouput pin that is connected to an LED.
 LED_PortOpenDrain functions turn LED on and off.
+LED anode connected to power.  LED cathode connected to open-drain ouput pin.
 
-This is for open drain ouput pins.
+This class is for open drain ouput pins.
 For LEDs connected to push-pull output types, use LED_Port class.
 
 Example initialization:

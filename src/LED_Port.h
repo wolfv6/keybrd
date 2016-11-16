@@ -7,8 +7,9 @@
 
 /* An LED_Port object is an I/O expander output pin that is connected to an LED indicator light.
 LED_Port functions turn LED on and off.
+LED anode connected to ouput pin.  LED cathode grounded.
 
-This is for push-pull ouput pins.
+This class is for push-pull ouput pins.
 For LEDs connected to open drain output types, use LED_Port class.
 
 Example initialization:

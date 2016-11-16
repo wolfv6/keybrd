@@ -59,7 +59,7 @@ LED_Port LED_normal(portA, 1<<5);
 LED_Port LED_fn(portB, 1<<4);
 
 // =================== CODES ===================
-// ---------------- LAYER CODE -----------------
+// ---------------- LAYER CODES ----------------
 enum layerIds { NORMAL, FN };
 
 LEDInterface* prtsLayerLEDs[] = { &LED_normal, &LED_fn }; //array index matches enum layerIds
@@ -134,9 +134,8 @@ so that scanner's ports can turn on LayerState_LED's default-layer LED.
 */
 void setup()
 {
-    Keyboard.begin();
     scanner_R.begin();
-    layerState.begin();                 //call LayerState_LED::begin() after Scanner_IOE::begin()
+    layerState.begin();               //todo call LayerState_LED::begin() after Scanner_IOE::begin()
 }
 
 void loop()

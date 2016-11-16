@@ -3,7 +3,7 @@
 */
 void LED_PortOpenDrain::on()
 {
-    refPort.writeLow(pin);
+    refPort.writeLow(pin);                      //sink output pin
 }
 
 void LED_PortOpenDrain::off()

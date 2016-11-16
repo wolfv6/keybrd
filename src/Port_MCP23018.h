@@ -9,9 +9,11 @@
 write pins are connected to matrix Row (strobe pin) or LED.
 readPins are connected to matrix column to read which keys are pressed.
 
-MCP23018 has open-drain outputs (open-drain can only sink current).  If LEDs are used, connect:
-    LED anodes (the longer lead) to power
-    LED cathodes (the shorter lead) to GPIO pin
+Port_MCP23018 can only be active low (Scanner_IOE::activeState = LOW).
+Open-drain active high would not work because pull down resistors have no effect on sink.
+ https://en.wikipedia.org/wiki/Open_collector
+
+Use LED_PortOpenDrain class for indicator LEDs.
 
 Instantiation
  ------------
