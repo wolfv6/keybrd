@@ -47,7 +47,7 @@ LED_uC LED_capsLck(21);
 
 // --------------- RIGHT SCANNER ---------------
 const uint8_t IOE_ADDR = 0x20;                  //MCP23S17 address, all 3 ADDR pins are grounded
-const uint8_t slaveSelect = 10;
+const uint8_t slaveSelect = 10;                 //Arduino-pin number connected to MCP23S17 CS or SS
 Port_MCP23S17 portA(slaveSelect , IOE_ADDR, 0, 1<<0 | 1<<1 ); //for read
 Port_MCP23S17 portB(slaveSelect , IOE_ADDR, 1, 0);            //for strobe
 
@@ -136,7 +136,7 @@ so that scanner's ports can turn on LayerState_LED's default-layer LED.
 void setup()
 {
     scanner_R.begin();
-    layerState.begin();               //todo call LayerState_LED::begin() after Scanner_IOE::begin()
+    layerState.begin();               //call LayerState_LED::begin() after Scanner_IOE::begin()
 }
 
 void loop()

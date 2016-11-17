@@ -19,7 +19,9 @@ Steps to writing a new port class:
 5. Study other keybrd port classes.
  * SPI I/O expander port classes: Port_MCP23S17
  * I2C I/O expander port classes: Port_PCA9655E 
-6. Write the port classes for your I/O expander.  Debugging I/O expander code is hard because
+6. Write the port classes for your I/O expander.
+ * [Example](../examples/IOE_PCA9655E_development/) shows how Port_PCA9655E was developed in stages, from fundamental to practical
+ * Debugging I/O expander code is hard because
    SPI or I2C protocol, expander configuration, and expander commands.
 
 <br>

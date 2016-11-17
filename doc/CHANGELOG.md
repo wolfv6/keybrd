@@ -6,6 +6,27 @@ This project adheres to [Semantic Versioning 2.0.0](http://semver.org/).
 keybrd version 0.x.x is for initial development.
 keybrd version 1.0.0 will be released when the public API is stable.
 
+0.6.4 (2016-11-16)
+------------------
+* Enhancements
+  * add Port_MCP23018
+  * add Port_MCP23S18
+  * add Port_ShiftRegs
+  * add PortWriteInterface
+  * add add LED_PortOpenDrain
+  * add examples/IOE_PCA9655E_development/
+  * rename strobeOn to activeState
+  * move strobe logic from Port_*::write() to Scanner_IOE::scan()
+
+* Backward incompatible changes
+  * rename print_microseconds_per_scan() to printMicrosecondsPerScan()
+  * rename print_scans_per_second() to printScansPerSecond()
+  * rename Scanner_ShiftRegsPISOSingleRow to Scanner_ShiftRegsRead
+  * rename Scanner_ShiftRegsPISOMultiRow to Scanner_ShiftRegsReadStrobed
+  * in Scanner_ShiftRegsReadStrobed, reverse slaveSelect HIGH/LOW for SPI compatible tri-state
+  * in Port_MCP23S17, add slaveSelect to constructor parameter
+  * in Port_*, replace write() with writeHigh() and writeLow()
+
 0.6.3 (2016-10-06)
 ------------------
 * Enhancements

@@ -19,13 +19,13 @@ void Port_MCP23017::begin(const uint8_t activeState)
 {
     uint8_t pullUp;                             //bits, GPPU 0=pull-up disabled, 1=pull-up enabled
 
-    if (activeState == LOW)                        //if active low
+    if (activeState == LOW)                     //if active low
     {
         pullUp = readPins;              //0=pull-up disabled (for LED), 1=pull-up enabled (for read)
     }
     else                                        //if active high
     {
-        pullUp = 0;                         //0=pull-up disabled (for external pull-down resistors)
+        pullUp = 0;                             //0=pull-up disabled (external pull-down resistors)
     }
 
     Wire.beginTransmission(deviceAddr);
@@ -44,7 +44,7 @@ pin is bit pattern, where pin being set is 1.
 */
 void Port_MCP23017::writeLow(const uint8_t pin)
 {
-    outputVal &= ~pin;                 //set pin output to low
+    outputVal &= ~pin;                          //set pin output to low
 
     Wire.beginTransmission(deviceAddr);
     Wire.write(portNum + 0x12);                 //GPIO
@@ -72,7 +72,7 @@ uint8_t Port_MCP23017::read()
 {
     Wire.beginTransmission(deviceAddr);
     Wire.write(portNum + 0x12);                 //GPIO
-    Wire.endTransmission(false);                //MCP23017 needs false to send a restart ??todo really?
+    Wire.endTransmission(false);                //MCP23017 needs false to send a restart
 
     Wire.requestFrom(deviceAddr, 1u);           //request one byte from input port
 
