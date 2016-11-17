@@ -3,7 +3,7 @@
 
 #include <inttypes.h>
 #include <Code.h>
-#include "LayerState.h"
+#include <LayerState.h>
 
 /* Code_LayerHold calls LayerState when pressed to change activeLayer.
 */

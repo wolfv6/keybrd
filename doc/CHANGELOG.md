@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning 2.0.0](http://semver.org/).
 keybrd version 0.x.x is for initial development.
 keybrd version 1.0.0 will be released when the public API is stable.
 
+0.6.5 (2016-11-16)
+------------------
+* Enhancements
+  * add Code_LayerHoldShift and tutorials/keybrd_3g_shift_pairings/keybrd_3g_shift_pairings.ino
+
 0.6.4 (2016-11-16)
 ------------------
 * Enhancements

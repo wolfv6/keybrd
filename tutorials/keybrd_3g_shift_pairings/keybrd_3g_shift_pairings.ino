@@ -1,4 +1,4 @@
-/* keybrd_3f_autoShift.ino
+/* keybrd_3g_shift_pairings.ino
 
 This sketch:
     is a simple 2-layer keyboard with AutoShift
@@ -6,22 +6,23 @@ This sketch:
 
 | Layout | **0** | **1** |
 |:------:|-------|-------|
-|  **0** | a  !  | b  @  |
-|  **1** |  fn   | shift |
+|  **0** |  8 (  |  = -  |
+|  **1** | shift |  5 %  |
 
-The layered keys in row 0 have two layers; one character for each layer.
-Letters 'a' and 'b' are on the normal layer.  Symbols '!' and '@' are one the fn layer.
-Holding the fn key down makes it the active layer.  Releasing the fn key restores the normal layer.
+The layout has one shift key in the lower right.  The top-row keys are custom pairings.
+Characters '8' and '=' are on the normal layer.  Characters '(' and '-' are on the shift layer.
+Holding the shift key down makes it the active layer.
+Releasing the shift key restores the normal layer.
 */
 // ################## GLOBAL ###################
 // ================= INCLUDES ==================
 
 //Keys
 #include <Code_Sc.h>
-#include <Code_ScS.h>
+#include <Code_ScNS.h>
 #include <Code_Shift.h>
 #include <LayerState.h>
-#include <Code_LayerHold.h>
+#include <Code_LayerHoldShift.h>
 #include <Key_LayeredKeys.h>
 
 //Matrix
@@ -40,29 +41,25 @@ Scanner_uC scanner(LOW, readPins, readPinCount);
 
 // =================== CODES ===================
 // ---------------- LAYER CODE -----------------
-enum layerIds { NORMAL, FN };
-
+enum layerIds { NORMAL, SHIFT };
 LayerState layerState;
-Code_LayerHold l_fn(FN, layerState);
+Code_Shift s_shift(MODIFIERKEY_LEFT_SHIFT);
+Code_LayerHoldShift l_shift(SHIFT, layerState, s_shift);
 
 /* ---------------- SCAN CODES -----------------
 The "Sc" in Code_Sc means "scancode".
 When a Code_Sc is pressed, it sends its scancode.
 */
 Code_Sc s_a(KEY_A);
-Code_Sc s_b(KEY_B);
+Code_Sc s_5(KEY_5);
+Code_Sc s_8(KEY_8);
+Code_Sc s_equal(KEY_EQUAL);
+Code_Sc s_leftParen(KEY_9);
 
-/* The "ScS" in Code_ScS means "scancode shifted".
-When Code_ScS is pressed, it calls Code_AutoShift before sending its scancode.
+/* The "ScNS" in Code_ScNS means "scancode not shifted".
+When Code_ScNS is pressed, it calls Code_AutoShift before sending its scancode.
 */
-Code_ScS s_exclamation(KEY_1);
-Code_ScS s_at(KEY_2);
-
-// ----------------- SHIFT CODE ----------------
-/*
-The Code_Shift constructor takes one shift scancode.
-*/
-Code_Shift s_shift(MODIFIERKEY_LEFT_SHIFT);
+Code_ScNS ns_minus(KEY_MINUS);
 
 /*
 Code_Shift pointers are placed in an array because most keyboards have a left and right shift.
@@ -72,28 +69,11 @@ Code_Shift* const ptrsS[] = { &s_shift };
 Code_Shift* const* const Code_AutoShift::ptrsShifts = ptrsS;
 const uint8_t Code_AutoShift::shiftCount = sizeof(ptrsS)/sizeof(*ptrsS);
 
-/*
-HOW SHIFT WORKS
-When a shift key is pressed, a standard keyboard driver will temporarily modify the action of other scancodes.
-    KEY_1 writes '1'
-    MODIFIERKEY_LEFT_SHIFT + KEY_1 writes '!'
-
-    KEY_2 writes '2'
-    MODIFIERKEY_LEFT_SHIFT + KEY_2 writes '@'
-
-HOW AUTOSHIFT WORKS
-Code_ScS takes care of the MODIFIERKEY_LEFT_SHIFT automatically
-When the user presses '!' or '@' on the fn layer:
-    Code_AutoShift checks the position of each shift key
-    Code_ScS sends MODIFIERKEY_LEFT_SHIFT scancode if needed
-    Code_ScS sends its scancode
-*/
-
-// =================== KEYS ====================
-Key* const ptrsKeys_00[] = { &s_a, &s_exclamation };
+// =============== LAYERED KEYS ================
+Key* const ptrsKeys_00[] = { &s_8, &s_leftParen }; //custom key pairing
 Key_LayeredKeys k_00(ptrsKeys_00);
 
-Key* const ptrsKeys_01[] = { &s_b, &s_at };
+Key* const ptrsKeys_01[] = { &s_equal, &ns_minus }; //custom key pairing
 Key_LayeredKeys k_01(ptrsKeys_01);
 
 LayerStateInterface& Key_LayeredKeys::refLayerState = layerState;
@@ -103,7 +83,7 @@ Key* const ptrsKeys_0[] = { &k_00, &k_01 };
 uint8_t keyCount_0 = sizeof(ptrsKeys_0)/sizeof(*ptrsKeys_0);
 Row row_0(scanner, 0, ptrsKeys_0, keyCount_0);
 
-Key* const ptrsKeys_1[] = { &l_fn, &s_shift };
+Key* const ptrsKeys_1[] = { &l_shift, &s_5 };
 uint8_t keyCount_1 = sizeof(ptrsKeys_1)/sizeof(*ptrsKeys_1);
 Row row_1(scanner, 1, ptrsKeys_1, keyCount_1);
 
