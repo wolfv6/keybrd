@@ -171,7 +171,6 @@ Following the style guide makes it easier for the next programmer to understand 
 * Member names use camelCase starting with lowercase letter.
 * Use constants rather than macros, except for header guards.
 * Global const names and static const names use ALL_CAPS_WITH_UNDERSCORE.
-* Macros use ALL_CAPS_WITH_UNDERSCORE and have _MACRO suffix e.g. SAMPLE_COUNT_MACRO
 * Header guards have _H suffix e.g. #ifndef FILE_NAME_H
 * Pointer names are prefixed with "ptr" e.g. ptrRow =  &row;
 * Arrays names use the plural of the element name e.g. Row* const = ptrsRows { &row0,  &row1 };
