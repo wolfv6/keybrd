@@ -3,8 +3,8 @@
 
 #include <Arduino.h>
 #include <inttypes.h>
-#include <ScannerInterface.h>
-#include <PortInterface.h>
+#include "ScannerInterface.h"
+#include "PortInterface.h"
 
 /* Scanner_IOE uses bit manipulation to read all pins of one port.
 The maximum keys per row is 8, because ports have a maximum of 8 pins each.

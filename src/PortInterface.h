@@ -2,7 +2,7 @@
 #define PORTINTERFACE_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include <PortWriteInterface.h>
+#include "PortWriteInterface.h"
 
 /*
 Port classes are the keybrd library's interface to microcontroller ports or I/O expander ports.

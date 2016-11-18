@@ -2,7 +2,7 @@
 #define LED_UC_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include <LEDInterface.h>
+#include "LEDInterface.h"
 
 /* A LED_uC turns LED on and off.
 */

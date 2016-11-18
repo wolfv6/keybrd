@@ -2,8 +2,8 @@
 #define CODE_LEDLOCK_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include <Code.h>
-#include <LEDInterface.h>
+#include "Code.h"
+#include "LEDInterface.h"
 
 extern volatile uint8_t keyboard_leds;
 

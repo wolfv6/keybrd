@@ -8,10 +8,10 @@ The scancode macros are defined in the top part of
 Arduino\hardware\teensy\cores\teensy\keylayouts.h which is intended for use in "normal" programs.
 This has been tested on teensy2.0.
 */
-#include <Code_Null.h>
-#include <Code_Sc.h>
-#include <Code_ScS.h>
-#include <Code_Shift.h>
+#include "Code_Null.h"
+#include "Code_Sc.h"
+#include "Code_ScS.h"
+#include "Code_Shift.h"
 
 // ********** SCANCODES *********
 Code_Shift s_shift(MODIFIERKEY_LEFT_SHIFT);

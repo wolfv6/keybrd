@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <SPI.h>
-#include <PortInterface.h>
+#include "PortInterface.h"
 
 /* Port_MCP23S17
 write pins are connected to matrix Row (strobe pin) or LED.

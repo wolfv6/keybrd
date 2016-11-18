@@ -2,9 +2,9 @@
 #define CODE_LAYERHOLDSHIFT_H
 
 #include <inttypes.h>
-#include <Code.h>
-#include <LayerState.h>
-#include <Code_Shift.h>
+#include "Code.h"
+#include "LayerState.h"
+#include "Code_Shift.h"
 
 /* Code_LayerHoldShift calls LayerState when pressed to change activeLayer.
 When a Code_LayerHoldShift object is pressed or released, it:

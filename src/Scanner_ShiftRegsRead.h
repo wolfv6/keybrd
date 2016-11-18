@@ -3,9 +3,9 @@
 
 #include <Arduino.h>
 #include <inttypes.h>
-#include <config_keybrd.h>
 #include <SPI.h>
-#include <ScannerInterface.h>
+#include "config_keybrd.h"
+#include "ScannerInterface.h"
 
 /* Scanner_ShiftRegsRead reads shift registers.
 Upto 4 shift registers can be in a daisy chained for a total of 32 read pins.

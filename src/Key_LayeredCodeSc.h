@@ -2,8 +2,8 @@
 #define KEY_LAYEREDCODESC_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include <Key_LayeredCodeScBase.h>
-#include <LayerStateInterface.h>
+#include "Key_LayeredCodeScBase.h"
+#include "LayerStateInterface.h"
 
 /* Class Key_LayeredCodeSc is a 2-layer code, one object for each layer e.g.
     layer0: ms_up    //mouse up

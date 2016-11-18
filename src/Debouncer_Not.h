@@ -2,8 +2,8 @@
 #define DEBOUNCER_NOT_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include <config_keybrd.h>
-#include <DebouncerInterface.h>
+#include "config_keybrd.h"
+#include "DebouncerInterface.h"
 
 /* Debouncer_Not does not debounce.
 debounce() returns raw signal, no debouncing is performed.

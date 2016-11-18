@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <SPI.h>
-#include <PortWriteInterface.h>
+#include "PortWriteInterface.h"
 
 /* Port_ShiftRegs 
 slaveSelect is Arduino-pin number connected to shift register RCLK pin a.k.a. SS or ST

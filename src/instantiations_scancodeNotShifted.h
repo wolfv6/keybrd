@@ -12,8 +12,8 @@ The scancode macros are defined in the top part of
 Arduino\hardware\teensy\cores\teensy\keylayouts.h which is intended for use in "normal" programs.
 This has been tested on teensy2.0.
 */
-#include <Code_ScNS.h>
-#include <Code_ScNS_00.h>
+#include "Code_ScNS.h"
+#include "Code_ScNS_00.h"
 
 // ********** SCANCODES NOT SHIFTED *********
 Code_ScNS_00 ns_00;                             //double zero

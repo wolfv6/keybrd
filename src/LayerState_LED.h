@@ -3,8 +3,8 @@
 
 #include <Arduino.h>
 #include <inttypes.h>
-#include <LayerState.h>
-#include <LEDInterface.h>
+#include "LayerState.h"
+#include "LEDInterface.h"
 
 /* Basic LayerState with layer LED indictor lights.
 begin() should be called once to turn on LED for initial active layer.

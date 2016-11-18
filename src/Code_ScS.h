@@ -2,7 +2,7 @@
 #define CODE_ScS_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include <Code_AutoShift.h>
+#include "Code_AutoShift.h"
 
 /* Class Code_ScS contains one scancode, which it sends when press() or release() is called.
 autoShift insures that MODIFIERKEY_LEFT_SHIFT is pressed.

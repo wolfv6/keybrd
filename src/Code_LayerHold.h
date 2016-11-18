@@ -2,8 +2,8 @@
 #define CODE_LAYERHOLD_H
 
 #include <inttypes.h>
-#include <Code.h>
-#include <LayerState.h>
+#include "Code.h"
+#include "LayerState.h"
 
 /* Code_LayerHold calls LayerState when pressed to change activeLayer.
 */

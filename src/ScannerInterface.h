@@ -1,7 +1,7 @@
 #ifndef SCANNERINTERFACE_H
 #define SCANNERINTERFACE_H
 
-#include <config_keybrd.h>
+#include "config_keybrd.h"
 
 /* scan() retuns state of readPins.
 */

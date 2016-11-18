@@ -2,9 +2,9 @@
 #define KEY_LAYEREDKEYS1_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include <LayerStateInterface.h>
-#include <Key.h>
-#include <Key_LayeredKeysBase.h>
+#include "LayerStateInterface.h"
+#include "Key.h"
+#include "Key_LayeredKeysBase.h"
 
 /* Most of the Key_LayeredKeys1 functionality is in Key_LayeredKeysBase.
 Key_LayeredKeys1 is just like Key_LayeredKeys, but with a distinct refLayerState.

@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <Wire.h>
-#include <PortInterface.h>
+#include "PortInterface.h"
 
 /* Port_PCA9655E
 write pins are connected to matrix Row (strobe pin) or LED.

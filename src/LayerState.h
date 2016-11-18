@@ -2,7 +2,7 @@
 #define LAYERSTATE_H
 
 #include <inttypes.h>
-#include <LayerStateInterface.h>
+#include "LayerStateInterface.h"
 
 /* Basic LayerState for keyboard.
 When pressed, Code_Layer objects call LayerState functions lock() or hold().

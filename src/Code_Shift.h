@@ -2,7 +2,7 @@
 #define CODE_SHIFT_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include <Code.h>
+#include "Code.h"
 
 /* Class Code_Shift sends shift scancode for multi-layered keybrds.
 Explanation in Code_AutoShift.h

@@ -2,8 +2,8 @@
 #define KEY_LAYEREDKEYSBASE_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include <LayerStateInterface.h>
-#include <Key.h>
+#include "LayerStateInterface.h"
+#include "Key.h"
 
 /* Class Key_LayeredKeysBase contains an array of Key pointers, one pointer per layer.
 Codes are a kind of Key, so the Key pointers can point to Codes or Keys.

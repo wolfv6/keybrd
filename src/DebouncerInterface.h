@@ -1,7 +1,7 @@
 #ifndef DEBOUNCERINTERFACE_H
 #define DEBOUNCERINTERFACE_H
 
-#include <config_keybrd.h>
+#include "config_keybrd.h"
 
 /*
 debounce() takes rawSignal and returns debounced signal.  Signals are bit paterns.

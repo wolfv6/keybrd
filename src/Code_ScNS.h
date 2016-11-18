@@ -2,7 +2,7 @@
 #define CODE_SCNS_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include <Code_AutoShift.h>
+#include "Code_AutoShift.h"
 
 /* Class Code_ScNS is composed of one scancode, which it sends when press() or release() is called.
 autoShift insures that all MODIFIERKEY_SHIFTs are released.

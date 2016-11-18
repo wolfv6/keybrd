@@ -2,8 +2,8 @@
 #define KEY_LAYEREDSCSC_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include <LayerStateInterface.h>
-#include <Key_LayeredScScBase.h>
+#include "LayerStateInterface.h"
+#include "Key_LayeredScScBase.h"
 
 /* Class Key_LayeredScSc is composed of two scancodes; "S" stands for Scancode.
 layerId is retreived from refLayerState.

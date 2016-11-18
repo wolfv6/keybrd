@@ -3,11 +3,11 @@
 
 #include <Arduino.h>
 #include <inttypes.h>
-#include <config_keybrd.h>
-#include <Key.h>
-#include <ScannerInterface.h>
-#include <Debouncer_Samples.h>
-#include <Debouncer_Not.h>
+#include "config_keybrd.h"
+#include "Key.h"
+#include "ScannerInterface.h"
+#include "Debouncer_Samples.h"
+#include "Debouncer_Not.h"
 
 /*
 strobePin has one of two formats:

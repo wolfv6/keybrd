@@ -3,8 +3,8 @@
 
 #include <Arduino.h>
 #include <inttypes.h>
-#include <config_keybrd.h>
-#include <ScannerInterface.h>
+#include "config_keybrd.h"
+#include "ScannerInterface.h"
 
 /* Scanner_uC class uses Arduino pin numbers (not port pin numbers).
 Limit number of readPins to size of read_pins_t, which is defined in config_keybrd.h

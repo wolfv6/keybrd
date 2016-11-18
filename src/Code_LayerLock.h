@@ -2,7 +2,7 @@
 #define CODE_LAYERLOCK_H
 
 #include <inttypes.h>
-#include <Code.h>
+#include "Code.h"
 #include "LayerState.h"
 
 /* Code_LayerLock calls LayerState when pressed to change activeLayer.
