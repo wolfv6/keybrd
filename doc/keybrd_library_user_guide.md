@@ -147,7 +147,7 @@ Development-environment items to check:
 ```
     'KEY_A' was not declared in this scope
 ```
-  Where 'KEY_A' could be any scan code.
+  Where 'KEY_A' could be any scancode.
   Fix this error from the Arduino IDE tool bar: Tools > USB Type > Keyboard + Mouse + Joystick
 
 * If last line in Arduino IDE says "Low memory available",
