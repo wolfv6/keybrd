@@ -21,7 +21,7 @@ Keybrd library class inheritance diagram
 
 	     ___ ScannerInterface ___
 	    /          |             \
-	Scanner_uC  Scanner_IOE  Scanner_ShiftRegsPISO
+	Scanner_uC  Scanner_IOE  Scanner_ShiftRegsRead
 
 
                 PortWriteInterface

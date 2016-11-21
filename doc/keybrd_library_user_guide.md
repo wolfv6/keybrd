@@ -122,7 +122,7 @@ The following instructions are for setting active state for a Scanner_uC class
 (Scanner_ShiftRegs74HC165 and Scanner_Port classes is similar).
 
 For active low:
-* Orient diodes with cathode (banded end) towards the write pins (row)
+* Orient diodes with cathode (banded end) towards the write pins (strobe)
 * Instantiate the scanner in the sketch with activeState LOW, like this:
 ```
 Scanner_uC scanner(LOW, readPins, readPinCount);

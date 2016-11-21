@@ -2,7 +2,7 @@
 
 This sketch:
     is firmware for a simple 2-layer keyboard
-    runs on the first two rows and columns of a breadboard keyboard
+    runs on the basic breadboard keyboard
 
 | Layout | **0** | **1** |
 |:------:|-------|-------|

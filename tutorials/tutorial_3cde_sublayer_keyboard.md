@@ -1,6 +1,6 @@
 Tutorial 3cde - sublayer keyboard
 =================================
-This tutorial assumes you have read tutorial_3ab_multi-layer_keyboard.
+This tutorial assumes you understand tutorial_3ab_multi-layer_keyboard.
 
 When you finish this tutorial you will be able to be able to modify a multi-layer keybrd sketch.
 
@@ -28,14 +28,16 @@ Pressing the Alpha-layer key locks the Alpha layer.
 Letters 'a' 'b' 'c' are on the Alpha layer.
 
 Pressing the Sym-layer key locks the Sym layer.
-Symbols '-' '=' and "Num" layer key are on the Sym layer.
+Symbols '-' '=' and 'Num' layer key are on the Sym layer.
 
 If the keyboard is locked on the Sym layer, holding Num down makes it the active layer.
 Number '1' is on the Num sublayer.
 Releasing the Num key makes the locked layer active.
 
+Sublayers are very flexible.
 Example sketches 3c, 3d, and 3e implement the above layout.
-Each sketch uses a different layer scheme.
+Each sketch demonstrates a different layer scheme.
+Which approach works best depends on the layout.
 
 The sketches will run on the basic breadboard keyboard described in [tutorial_1_breadboard_keyboard.md](tutorial_1_breadboard_keyboard.md) with a 3rd column added to pin 16:
 
@@ -138,8 +140,8 @@ The top row is easily implemented in one layer group with duplicate keys filling
 |  **0**  | a - 1 | b = =  | c Ent Ent | layer group with three layers: Alpha Sym Num
 |  **1**  |       |        |           |
 
-Complex layerschemes
---------------------
+Complex layer schemes
+---------------------
 The basic LayerState class used in the tutorials is sufficient for implementing many layer schemes.
 More complicated layer schemes would need custom LayerState classes, and possibly custom Code_Layer and Key_Layered classes as well.
 Any layer scheme can be implemented with the right custom layer classes.
