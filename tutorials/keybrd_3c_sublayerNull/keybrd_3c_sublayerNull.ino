@@ -53,7 +53,7 @@ Thus groupState manages a layer group delineated by all layers in Key_LayeredKey
 */
 LayerStateInterface& Key_LayeredKeys::refLayerState = groupState;
 
-// ---------------- SCAN CODES -----------------
+// ----------------- SCANCODES -----------------
 Code_Sc s_a(KEY_A);
 Code_Sc s_b(KEY_B);
 Code_Sc s_c(KEY_C);

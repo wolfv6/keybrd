@@ -46,7 +46,7 @@ LayerState layerState;
 Code_Shift s_shift(MODIFIERKEY_LEFT_SHIFT);
 Code_LayerHoldShift l_shift(SHIFT, layerState, s_shift);
 
-/* ---------------- SCAN CODES -----------------
+/* ----------------- SCANCODES -----------------
 The "Sc" in Code_Sc means "scancode".
 When a Code_Sc is pressed, it sends its scancode.
 */

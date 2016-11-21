@@ -45,7 +45,7 @@ enum layerIds { NORMAL, FN };
 LayerState layerState;
 Code_LayerHold l_fn(FN, layerState);
 
-/* ---------------- SCAN CODES -----------------
+/* ----------------- SCANCODES -----------------
 The "Sc" in Code_Sc means "scancode".
 When a Code_Sc is pressed, it sends its scancode.
 */

@@ -10,7 +10,7 @@
 #include "Debouncer_Not.h"
 
 /*
-strobePin has one of two formats: todo
+strobePin has one of two formats:
  * if strobe pin is on uC (strobe for Scanner_uC or Scanner_ShiftRegsRead),
     then strobePin is an Arduino pin number connected to this row.
  * if strobe pin is on I/O expander (strobe for Scanner_IOE), then strobePin is bit pattern,

@@ -55,7 +55,7 @@ LayerState_LED layerState(prtsLayerLEDs);
 
 Code_LayerHold l_fn(FN, layerState);
 
-/* ---------------- SCAN CODES -----------------
+/* ----------------- SCANCODES -----------------
 When a Code_LEDLock object is pressed, it sends its scancode and updates the its LED.
 Scancodes can be one of: KEY_CAPS_LOCK, KEY_SCROLL_LOCK, or KEY_NUM_LOCK.
 For example, when o_capsLock is pressed, it sends KEY_CAPS_LOCK scancode and updates LED_capsLck.

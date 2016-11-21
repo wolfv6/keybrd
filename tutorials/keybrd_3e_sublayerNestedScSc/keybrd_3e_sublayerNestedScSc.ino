@@ -60,7 +60,7 @@ subgroupState manages a layer group delineated by all layers that are in Key_Lay
 */
 LayerStateInterface& Key_LayeredScSc::refLayerState = subgroupState;
 
-// ---------------- SCAN CODES -----------------
+// ----------------- SCANCODES -----------------
 Code_Sc s_a(KEY_A);
 Code_Sc s_b(KEY_B);
 Code_Sc s_c(KEY_C);

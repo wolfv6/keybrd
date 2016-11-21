@@ -68,7 +68,7 @@ LayerState_LED layerState(prtsLayerLEDs);
 
 Code_LayerHold l_fn(FN, layerState);
 
-// ---------------- SCAN CODES -----------------
+// ----------------- SCANCODES -----------------
 Code_Sc s_a(KEY_A);
 Code_Sc s_b(KEY_B);
 Code_Sc s_c(KEY_C);

@@ -53,7 +53,7 @@ When l_sym is pressed, SYM becomes the active layer.
 Code_LayerLock l_normal(ALPHA, layerState);
 Code_LayerLock l_sym(SYM, layerState);
 
-// ---------------- SCAN CODES -----------------
+// ----------------- SCANCODES -----------------
 Code_Sc s_a(KEY_A);
 Code_Sc s_b(KEY_B);
 Code_Sc s_minus(KEY_MINUS);

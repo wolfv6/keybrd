@@ -62,7 +62,7 @@ and layerState restores the active layer to default layerId 0 (NORMAL).
 */
 Code_LayerHold l_fn(FN, layerState);
 
-// ---------------- SCAN CODES -----------------
+// ----------------- SCANCODES -----------------
 Code_Sc s_a(KEY_A);
 Code_Sc s_b(KEY_B);
 Code_Sc s_minus(KEY_MINUS);

@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning 2.0.0](http://semver.org/).
 keybrd version 0.x.x is for initial development.
 keybrd version 1.0.0 will be released when the public API is stable.
 
+0.6.7 (2016-11-21)
+------------------
+* Enhancements
+  * change #define SAMPLE_COUNT_MACRO to const SAMPLE_COUNT
+  * add tutorial_7ab_mapping_layout_to_matix.md
+
 0.6.6 (2016-11-16)
 ------------------
 * Enhancements
